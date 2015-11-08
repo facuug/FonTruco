@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Mano {
 
-	List<Carta> cartas;
+	private List<Carta> cartas;
 
 	public List<Carta> getCartas() {
 		return cartas;
