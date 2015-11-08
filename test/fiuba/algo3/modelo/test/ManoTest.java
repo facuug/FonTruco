@@ -8,9 +8,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import fiuba.algo3.enums.Palo;
 import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Mano;
+import fiuba.algo3.modelo.enums.Palo;
 
 
 public class ManoTest {

@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import fiuba.algo3.enums.Palo;
 import fiuba.algo3.modelo.Carta;
+import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.excepciones.CartaInvalidaException;
 
 public class CartaTest {

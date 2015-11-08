@@ -1,7 +1,8 @@
 package fiuba.algo3.modelo;
 
 import java.util.Random;
-import fiuba.algo3.enums.Palo;
+
+import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.excepciones.CartaInvalidaException;
 
 public class Carta {
