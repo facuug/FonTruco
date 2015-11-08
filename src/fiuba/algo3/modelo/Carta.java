@@ -1,13 +1,10 @@
 package fiuba.algo3.modelo;
 
 import java.util.Random;
+import fiuba.algo3.enums.Palo;
+import fiuba.algo3.modelo.excepciones.CartaInvalidaException;
 
-/**
- * Created by Facundo on 07-Nov-15.
- */
 public class Carta {
-
-    public enum Palo { ESPADA, BASTO, ORO, COPA }
 
     private int valor;
     private Palo palo;

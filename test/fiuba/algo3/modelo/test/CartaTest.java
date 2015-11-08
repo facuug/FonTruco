@@ -1,35 +1,32 @@
 package fiuba.algo3.modelo.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
 
+import fiuba.algo3.enums.Palo;
 import fiuba.algo3.modelo.Carta;
-import fiuba.algo3.modelo.Carta.Palo;
-import fiuba.algo3.modelo.CartaInvalidaException;
+import fiuba.algo3.modelo.excepciones.CartaInvalidaException;
 
-
-/**
- * Created by Facundo on 07-Nov-15.
- */
 public class CartaTest {
 
     @Test
     public void creacionDeCartaExitosa() {
         Carta anchoEspada = new Carta( 1, Palo.ESPADA );
-        assertTrue( anchoEspada.getValor() == 1 );
-        assertTrue( anchoEspada.getPalo() == Palo.ESPADA );
+        assertEquals(1, anchoEspada.getValor());
+        assertEquals(Palo.ESPADA, anchoEspada.getPalo());
     }
 
     @Test
     public void getValorDevuelveValorDeCarta(){
         Carta carta = new Carta( 3, Palo.BASTO );
-        assertTrue( carta.getValor() == 3 );
+        assertEquals(3, carta.getValor());
     }
 
     @Test
     public void getPaloDevuelveTipoDePaloDeCarta(){
         Carta carta = new Carta( 3, Palo.BASTO );
-        assertTrue( carta.getPalo() == Palo.BASTO );
+        assertEquals(Palo.BASTO, carta.getPalo());
     }
 
     @Test (expected = CartaInvalidaException.class)
