@@ -41,4 +41,8 @@ public class Carta {
         return this.palo;
     }
 
+    public String getNombre(){
+      return  Integer.toString(this.valor) + " de " + this.palo.toString().toLowerCase();
+    }
+
 }

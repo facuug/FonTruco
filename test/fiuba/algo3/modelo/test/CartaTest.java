@@ -1,6 +1,6 @@
 package fiuba.algo3.modelo.test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -13,20 +13,20 @@ public class CartaTest {
     @Test
     public void creacionDeCartaExitosa() {
         Carta anchoEspada = new Carta( 1, Palo.ESPADA );
-        assertEquals(1, anchoEspada.getValor());
-        assertEquals(Palo.ESPADA, anchoEspada.getPalo());
+        assertTrue( 1 == anchoEspada.getValor() );
+        assertTrue( Palo.ESPADA == anchoEspada.getPalo() );
     }
 
     @Test
     public void getValorDevuelveValorDeCarta(){
         Carta carta = new Carta( 3, Palo.BASTO );
-        assertEquals(3, carta.getValor());
+        assertTrue( 3 == carta.getValor() );
     }
 
     @Test
     public void getPaloDevuelveTipoDePaloDeCarta(){
         Carta carta = new Carta( 3, Palo.BASTO );
-        assertEquals(Palo.BASTO, carta.getPalo());
+        assertTrue( Palo.BASTO == carta.getPalo() );
     }
 
     @Test (expected = CartaInvalidaException.class)
