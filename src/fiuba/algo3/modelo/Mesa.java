@@ -15,16 +15,22 @@ public class Mesa {
 
     private int rondasEquipoUno;
     private int rondasEquipoDos;
+    private int jugadoresEnMesa;
 
-    public Mesa(){
+    public Mesa(int cantidadDeJugadores){
         this.cartas = new ArrayList<Carta>();
         this.arbitro = new Arbitro();
+        this.jugadoresEnMesa = cantidadDeJugadores;
     }
 
     public void jugarCarta(Carta unaCarta) {
-        if (this.cartas.size() == 6) throw new MesaLlenaException();
+        if (this.mesaLlena()) throw new MesaLlenaException();
 
         this.cartas.add(unaCarta);
+    }
+
+    public boolean mesaLlena() {
+        return ( this.cartasEnMesa() == 3 * this.jugadoresEnMesa );
     }
 
     public Ganador determinarGanador() {

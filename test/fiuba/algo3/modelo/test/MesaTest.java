@@ -21,7 +21,8 @@ public class MesaTest {
         Carta dosDeCopa = new Carta(2, Palo.COPA);
         Carta seisDeOro = new Carta(6, Palo.ORO);
 
-        Mesa mesa = new Mesa();
+        int cantidadDeJugadores = 2;
+        Mesa mesa = new Mesa(cantidadDeJugadores);
 
         mesa.jugarCarta(anchoDeBasto);
         mesa.jugarCarta(dosDeCopa);
@@ -42,7 +43,8 @@ public class MesaTest {
         Carta dosDeCopa = new Carta(2, Palo.COPA);
         Carta seisDeOro = new Carta(6, Palo.ORO);
 
-        Mesa mesa = new Mesa();
+        int cantidadDeJugadores = 2;
+        Mesa mesa = new Mesa(cantidadDeJugadores);
 
         mesa.jugarCarta(dosDeCopa);
         mesa.jugarCarta(anchoDeBasto);
@@ -54,10 +56,12 @@ public class MesaTest {
     }
 
     @Test ( expected = MesaLlenaException.class)
-    public void mesaNoPuedeTenerMasDeSeisCartas(){
+    public void mesaNoPuedeTenerMasCartasUnaVezLlena(){
         Carta anchoDeBasto = new Carta(1, Palo.BASTO);
 
-        Mesa mesa = new Mesa();
+        int cantidadDeJugadores = 2;
+        Mesa mesa = new Mesa(cantidadDeJugadores);
+
         mesa.jugarCarta(anchoDeBasto);
         mesa.jugarCarta(anchoDeBasto);
         mesa.jugarCarta(anchoDeBasto);
@@ -71,7 +75,9 @@ public class MesaTest {
     public void limpiarMesaBorraLasCartas(){
         Carta anchoDeBasto = new Carta(1, Palo.BASTO);
 
-        Mesa mesa = new Mesa();
+        int cantidadDeJugadores = 2;
+        Mesa mesa = new Mesa(cantidadDeJugadores);
+
         mesa.jugarCarta(anchoDeBasto);
         mesa.jugarCarta(anchoDeBasto);
         mesa.jugarCarta(anchoDeBasto);
