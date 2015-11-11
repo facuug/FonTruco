@@ -27,5 +27,4 @@ public class Equipo {
 	public void setJugadores(List<Jugador> jugadores) {
 		this.jugadores = jugadores;
 	}
-
 }
