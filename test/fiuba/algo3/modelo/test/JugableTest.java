@@ -37,7 +37,7 @@ public class JugableTest {
 	private Jugable cuatro        = new Cuatro();
 	
 	@Test
-	public void AnchoDeEspadaGanaSiempre() {
+	public void anchoDeEspadaGanaSiempreTest() {
 		
 		Assert.assertEquals(anchoDeEspada, anchoDeEspada.contra(anchoDeBasto));
 		Assert.assertEquals(anchoDeEspada, anchoDeEspada.contra(sieteDeEspada));
@@ -52,5 +52,23 @@ public class JugableTest {
 		Assert.assertEquals(anchoDeEspada, anchoDeEspada.contra(seis));
 		Assert.assertEquals(anchoDeEspada, anchoDeEspada.contra(cinco));
 		Assert.assertEquals(anchoDeEspada, anchoDeEspada.contra(cuatro));
-	}		
+	}
+	
+	@Test
+	public void elCuatroPierdeConLasDemasCartasTest() {
+		
+		Assert.assertEquals(anchoDeEspada, cuatro.contra(anchoDeEspada));
+		Assert.assertEquals(anchoDeBasto, cuatro.contra(anchoDeBasto));
+		Assert.assertEquals(sieteDeEspada, cuatro.contra(sieteDeEspada));
+		Assert.assertEquals(sieteDeOro, cuatro.contra(sieteDeOro));
+		Assert.assertEquals(tres, cuatro.contra(tres));
+		Assert.assertEquals(dos, cuatro.contra(dos));
+		Assert.assertEquals(anchoFalso, cuatro.contra(anchoFalso));
+		Assert.assertEquals(doce, cuatro.contra(doce));
+		Assert.assertEquals(once, cuatro.contra(once));
+		Assert.assertEquals(diez, cuatro.contra(diez));
+		Assert.assertEquals(sieteFalso, cuatro.contra(sieteFalso));
+		Assert.assertEquals(seis, cuatro.contra(seis));
+		Assert.assertEquals(cinco, cuatro.contra(cinco));
+	}
 }
