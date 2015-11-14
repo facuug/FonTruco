@@ -31,4 +31,9 @@ public class Mazo {
 		
 		Collections.shuffle(mazoDeCartas);
 	}
+	
+	public int cantidadDeCartas() {
+		
+		return mazoDeCartas.size();
+	}
 }

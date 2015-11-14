@@ -10,6 +10,8 @@ import java.util.List;
  * Created by Facundo on 08-Nov-15.
  */
 public class Mesa {
+	
+	private Mazo mazo;
     private List<Carta> cartas;
     private Arbitro arbitro;
 
