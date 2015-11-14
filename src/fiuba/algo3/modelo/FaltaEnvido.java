@@ -5,30 +5,20 @@ package fiuba.algo3.modelo;
  */
 public class FaltaEnvido extends EstadoJuego {
 
-    private int puntosAcumulados;
-    private Boolean hayCantoPrevio;
-
-    public FaltaEnvido(int puntos, Boolean huboCantoPrevio) {
-        super();
-        this.puntosAcumulados = puntos;
-        this.hayCantoPrevio = huboCantoPrevio;
+    public FaltaEnvido(int puntosAcumulados) {
+        this.puntos = puntosAcumulados;
     }
 
     @Override
     public void noQuiero() {
-        if(!this.hayCantoPrevio) this.puntosAcumulados += 1;
-        else this.puntosAcumulados += 2;
+        if(this.puntos == 0) this.puntos = 1;
     }
 
-    @Override
-    public void quiero() {
+    public void quiero(){
     }
 
     @Override
     public int cuantosPuntos() {
-        return this.puntosAcumulados;
+        return this.puntos;
     }
-
-    @Override
-    public void envido() {}
 }

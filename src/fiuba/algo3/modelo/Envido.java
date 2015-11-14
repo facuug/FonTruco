@@ -7,25 +7,20 @@ import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
  */
 public class Envido extends EstadoJuego {
 
-    private boolean fueCantado = false;
 
-    public void noQuiero() {
-        if(!this.fueCantado) this.puntos += 1;
+    public Envido(int puntosAcumulados){
+        this.puntos = puntosAcumulados;
     }
 
-    public void quiero() {
+    public void noQuiero() {
+        if(this.puntos == 0) this.puntos = 1;
+    }
+
+    public void quiero(){
         this.puntos += 2;
     }
 
     public int cuantosPuntos() {
         return this.puntos;
-    }
-
-    @Override
-    public void envido() {
-        if(this.fueCantado) throw new CantoInvalidoException();
-
-        this.fueCantado = true;
-        this.puntos += 2;
     }
 }

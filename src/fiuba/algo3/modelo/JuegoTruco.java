@@ -1,15 +1,22 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
+
 /**
  * Created by Facundo on 11-Nov-15.
  */
 public class JuegoTruco {
 
     private EstadoJuego estadoEnvido;
+    private int puntosAcumulados;
+
+    public JuegoTruco(){
+        this.estadoEnvido = new EstadoSinCanto();
+    }
 
     public void envido() {
-        if ( estadoEnvido != null ) estadoEnvido.envido(); //si se canto envido
-        else estadoEnvido = new Envido();
+        estadoEnvido.quiero(); // si hubo un envido previo, se debe aceptar
+        estadoEnvido = new Envido(this.cuantosPuntos());
     }
 
     public void noQuiero() {
@@ -17,21 +24,20 @@ public class JuegoTruco {
     }
 
     public int cuantosPuntos() {
-        if (estadoEnvido == null) return 0;
-        return estadoEnvido.cuantosPuntos();
+        return this.estadoEnvido.cuantosPuntos();
     }
 
-    public void quiero() {
-        estadoEnvido.quiero();
+    public void quiero(){
+        this.estadoEnvido.quiero();
     }
 
     public void realEnvido() {
-        Boolean hayCantoPrevio = (estadoEnvido != null);
-        estadoEnvido = new RealEnvido(this.cuantosPuntos(),hayCantoPrevio);
+        this.estadoEnvido.quiero();
+        estadoEnvido = new RealEnvido(this.cuantosPuntos());
     }
 
     public void faltaEnvido() {
-        Boolean hayCantoPrevio = (estadoEnvido != null);
-        estadoEnvido = new FaltaEnvido(this.cuantosPuntos(),hayCantoPrevio);
+        this.estadoEnvido.quiero();
+        estadoEnvido = new FaltaEnvido(this.cuantosPuntos());
     }
 }

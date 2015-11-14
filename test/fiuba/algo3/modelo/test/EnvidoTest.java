@@ -49,13 +49,6 @@ public class EnvidoTest {
         assertEquals( juegoTruco.cuantosPuntos(), 2 );
     }
 
-    @Test ( expected = CantoInvalidoException.class)
-    public void noSePuedeCantarTresVecesEnvido(){
-        juegoTruco.envido();
-        juegoTruco.envido();
-        juegoTruco.envido();
-    }
-
     @Test
     public void cantarEnvidoLuegoRealEnvidoLuegoQuieroOtorgaCincoPuntos(){
         juegoTruco.envido();
@@ -122,9 +115,19 @@ public class EnvidoTest {
     }
 
     @Test
-    public void envidoMasFaltaEnvidoMasNoQuieroOtorgaUnPunto(){
+    public void faltaEnvidoMasNoQuieroOtorgaUnPunto(){
         juegoTruco.faltaEnvido();
         juegoTruco.noQuiero();
         assertEquals( juegoTruco.cuantosPuntos(), 1 );
+    }
+
+    @Test
+    public void envidoMasEnvidoMasRealEnvidoMasFaltaEnvidoMasNoQuieroOtorgaSietePuntos(){
+        juegoTruco.envido();
+        juegoTruco.envido();
+        juegoTruco.realEnvido();
+        juegoTruco.faltaEnvido();
+        juegoTruco.noQuiero();
+        assertEquals( juegoTruco.cuantosPuntos(), 7 );
     }
 }

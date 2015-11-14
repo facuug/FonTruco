@@ -8,9 +8,8 @@ public  abstract class EstadoJuego {
 
     public abstract void noQuiero();
 
-    public abstract void quiero();
+    public abstract  void quiero();
 
     public abstract int cuantosPuntos();
 
-    public abstract void envido();
 }

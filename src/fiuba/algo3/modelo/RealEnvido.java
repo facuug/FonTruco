@@ -5,32 +5,21 @@ package fiuba.algo3.modelo;
  */
 public class RealEnvido extends EstadoJuego {
 
-    int puntosAcumulados;
-    Boolean hayCantoPrevio;
-
-    public RealEnvido(int puntos, Boolean huboCantoPrevio) {
-        super();
-        this.puntosAcumulados = puntos;
-        this.hayCantoPrevio = huboCantoPrevio;
+    public RealEnvido(int puntosAcumulados) {
+        this.puntos = puntosAcumulados;
     }
 
     @Override
     public void noQuiero() {
-        if(!hayCantoPrevio) this.puntosAcumulados += 1;
-        else this.puntosAcumulados += 2;
+        if(this.puntos == 0) this.puntos = 1;
     }
 
-    @Override
-    public void quiero() {
-        if(!this.hayCantoPrevio) this.puntosAcumulados += 3;
-        else this.puntosAcumulados += 5;
+    public void quiero(){
+        this.puntos += 3;
     }
 
     @Override
     public int cuantosPuntos() {
-        return this.puntosAcumulados;
+        return this.puntos;
     }
-
-    @Override
-    public void envido() {}
 }
