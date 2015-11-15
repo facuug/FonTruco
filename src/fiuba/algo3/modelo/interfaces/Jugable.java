@@ -1,4 +1,19 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.interfaces;
+
+import fiuba.algo3.modelo.cartas.AnchoDeBasto;
+import fiuba.algo3.modelo.cartas.AnchoDeEspada;
+import fiuba.algo3.modelo.cartas.AnchoFalso;
+import fiuba.algo3.modelo.cartas.Cinco;
+import fiuba.algo3.modelo.cartas.Cuatro;
+import fiuba.algo3.modelo.cartas.Diez;
+import fiuba.algo3.modelo.cartas.Doce;
+import fiuba.algo3.modelo.cartas.Dos;
+import fiuba.algo3.modelo.cartas.Once;
+import fiuba.algo3.modelo.cartas.Seis;
+import fiuba.algo3.modelo.cartas.SieteDeEspada;
+import fiuba.algo3.modelo.cartas.SieteDeOro;
+import fiuba.algo3.modelo.cartas.SieteFalso;
+import fiuba.algo3.modelo.cartas.Tres;
 
 public interface Jugable {
 	

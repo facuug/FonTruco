@@ -1,5 +1,14 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.estados.Envido;
+import fiuba.algo3.modelo.estados.EstadoJuego;
+import fiuba.algo3.modelo.estados.EstadoSinCanto;
+import fiuba.algo3.modelo.estados.FaltaEnvido;
+import fiuba.algo3.modelo.estados.ReTruco;
+import fiuba.algo3.modelo.estados.RealEnvido;
+import fiuba.algo3.modelo.estados.Truco;
+import fiuba.algo3.modelo.estados.ValeCuatro;
+
 /**
  * Created by Facundo on 11-Nov-15.
  */

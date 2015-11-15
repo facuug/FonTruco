@@ -1,6 +1,8 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.cartas;
 
-public class Tres implements Jugable {
+import fiuba.algo3.modelo.interfaces.Jugable;
+
+public class Once implements Jugable {
 
 	@Override
 	public Jugable contra(Jugable cartaJugable) {
@@ -35,25 +37,25 @@ public class Tres implements Jugable {
 	@Override
 	public Jugable contra(Tres tres) {
 		
-		return this;
+		return tres;
 	}
 
 	@Override
 	public Jugable contra(Dos dos) {
 		
-		return this;
+		return dos;
 	}
 
 	@Override
 	public Jugable contra(AnchoFalso anchoFalso) {
 		
-		return this;
+		return anchoFalso;
 	}
 
 	@Override
 	public Jugable contra(Doce doce) {
 		
-		return this;
+		return doce;
 	}
 
 	@Override

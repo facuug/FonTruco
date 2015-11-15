@@ -3,21 +3,21 @@ package fiuba.algo3.modelo.test;
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.algo3.modelo.AnchoDeBasto;
-import fiuba.algo3.modelo.AnchoDeEspada;
-import fiuba.algo3.modelo.AnchoFalso;
-import fiuba.algo3.modelo.Cinco;
-import fiuba.algo3.modelo.Cuatro;
-import fiuba.algo3.modelo.Diez;
-import fiuba.algo3.modelo.Doce;
-import fiuba.algo3.modelo.Dos;
-import fiuba.algo3.modelo.Jugable;
-import fiuba.algo3.modelo.Once;
-import fiuba.algo3.modelo.Seis;
-import fiuba.algo3.modelo.SieteDeEspada;
-import fiuba.algo3.modelo.SieteDeOro;
-import fiuba.algo3.modelo.SieteFalso;
-import fiuba.algo3.modelo.Tres;
+import fiuba.algo3.modelo.cartas.AnchoDeBasto;
+import fiuba.algo3.modelo.cartas.AnchoDeEspada;
+import fiuba.algo3.modelo.cartas.AnchoFalso;
+import fiuba.algo3.modelo.cartas.Cinco;
+import fiuba.algo3.modelo.cartas.Cuatro;
+import fiuba.algo3.modelo.cartas.Diez;
+import fiuba.algo3.modelo.cartas.Doce;
+import fiuba.algo3.modelo.cartas.Dos;
+import fiuba.algo3.modelo.cartas.Once;
+import fiuba.algo3.modelo.cartas.Seis;
+import fiuba.algo3.modelo.cartas.SieteDeEspada;
+import fiuba.algo3.modelo.cartas.SieteDeOro;
+import fiuba.algo3.modelo.cartas.SieteFalso;
+import fiuba.algo3.modelo.cartas.Tres;
+import fiuba.algo3.modelo.interfaces.Jugable;
 
 public class JugableTest {
 
