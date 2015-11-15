@@ -20,6 +20,8 @@ public class Mesa {
     private int jugadoresEnMesa;
 
     public Mesa(int cantidadDeJugadores){
+    	
+    	this.mazo = new Mazo();
         this.cartas = new ArrayList<Carta>();
         this.arbitro = new Arbitro();
         this.jugadoresEnMesa = cantidadDeJugadores;
