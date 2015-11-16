@@ -1,37 +1,39 @@
 package fiuba.algo3.modelo.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.enums.Palo;
-import fiuba.algo3.modelo.excepciones.CartaInvalidaException;
+import fiuba.algo3.modelo.enums.TipoCarta;
 
 public class CartaTest {
-
-    @Test
-    public void creacionDeCartaExitosa() {
-        Carta anchoEspada = new Carta( 1, Palo.ESPADA );
-        assertTrue( 1 == anchoEspada.getValor() );
-        assertTrue( Palo.ESPADA == anchoEspada.getPalo() );
-    }
-
-    @Test
-    public void getValorDevuelveValorDeCarta(){
-        Carta carta = new Carta( 3, Palo.BASTO );
-        assertTrue( 3 == carta.getValor() );
-    }
-
-    @Test
-    public void getPaloDevuelveTipoDePaloDeCarta(){
-        Carta carta = new Carta( 3, Palo.BASTO );
-        assertTrue( Palo.BASTO == carta.getPalo() );
-    }
-
-    @Test (expected = CartaInvalidaException.class)
-    public void cartaInvalidaNoSeCrea(){
-        new Carta( 0, Palo.ESPADA );
-    }
-
+	@Test 
+	public void crearCarta_conValoresCorrectos_creaCartaConValorEnJerarquiaYEnvido() {
+		Carta anchoEspada = new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA);
+		
+		
+		assertEquals(14,anchoEspada.getTipoCarta().getValor());
+		assertEquals(Palo.ESPADA, anchoEspada.getPalo());
+		assertEquals(1, anchoEspada.getTipoCarta().getValorEnvido());
+	}
+	
+	@Test
+	public void comparar_conCartasDeMismoValor_devuelveCero(){
+		Carta cuatroDeCopas = new Carta(TipoCarta.CUATRO, Palo.COPA);
+		Carta cuatroDeOro = new Carta(TipoCarta.CUATRO, Palo.ORO);
+		
+		assertEquals(0,cuatroDeCopas.comparar(cuatroDeOro));
+		assertEquals(0,cuatroDeOro.comparar(cuatroDeCopas));
+	}
+	
+	@Test
+	public void comparar_conCartasDeDistintoValor_devuelveDistintoDeCero() {
+		Carta anchoDeCopas = new Carta(TipoCarta.FALSO_ANCHO, Palo.COPA);
+		Carta sieteDeEspadas = new Carta(TipoCarta.SIETE_ESPADA, Palo.ESPADA);
+		
+		assertEquals(-1,anchoDeCopas.comparar(sieteDeEspadas));
+		assertEquals(1,sieteDeEspadas.comparar(anchoDeCopas));
+	}
 }

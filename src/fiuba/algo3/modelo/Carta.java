@@ -1,48 +1,27 @@
 package fiuba.algo3.modelo;
 
-import java.util.Random;
-
 import fiuba.algo3.modelo.enums.Palo;
-import fiuba.algo3.modelo.excepciones.CartaInvalidaException;
+import fiuba.algo3.modelo.enums.TipoCarta;
 
 public class Carta {
 
-    private int valor;
+    private TipoCarta tipoCarta;
     private Palo palo;
 
-    public Carta(int unValor, Palo unTipo) {
-        if ( unValor <= 0 ) throw new CartaInvalidaException();
-
-        this.valor = unValor;
-        this.palo = unTipo;
+    public Carta(TipoCarta tipoCarta, Palo palo) {
+        this.tipoCarta = tipoCarta;
+        this.palo = palo;
     }
 
-    //crea una carta aleatoria
-    public Carta(){
-        Random rnd = new Random();
-
-        int maximoValorDeCarta = 12;
-        int minimoValorDeCarta = 1;
-
-        this.valor = (int) (rnd.nextDouble() * maximoValorDeCarta + minimoValorDeCarta);
-
-        int maximoValorDePalo = 3;
-
-        int paloElegido = (int) (rnd.nextDouble() * maximoValorDePalo);
-
-        this.palo = Palo.values()[paloElegido];
-    }
-
-    public int getValor() {
-        return this.valor;
+    public TipoCarta getTipoCarta() {
+        return this.tipoCarta;
     }
 
     public Palo getPalo() {
         return this.palo;
     }
-
-    public String getNombre(){
-      return  Integer.toString(this.valor) + " de " + this.palo.toString().toLowerCase();
+    
+    public int comparar(Carta otraCarta){
+    	return this.tipoCarta.comparar(otraCarta.tipoCarta);
     }
-
 }
