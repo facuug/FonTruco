@@ -45,9 +45,10 @@ public class Mazo {
 		return this.mazoDeCartas.remove(0);
 	}
 	
-	//	Esto hay que borrarlo, quiero ver si se crean
-	//	todas las cartas, no se como probarlo si no.
-	
+	/*	
+	 * Esto hay que borrarlo, quiero ver si se crean
+	 * todas las cartas, no se como probarlo si no.
+	 */
 	public void verCartas() {
 		
 		for (int i = 0; i < 40; i++) {
