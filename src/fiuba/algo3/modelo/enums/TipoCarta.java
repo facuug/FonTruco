@@ -5,13 +5,13 @@ public enum TipoCarta {
 	ANCHO_BASTO (13,1),
 	SIETE_ESPADA (12,7),
 	SIETE_ORO (11,7),
+	FALSO_ANCHO (8,1),
+	FALSO_SIETE (4,7),
 	TRES (10,3),
 	DOS (9,2),
-	FALSO_ANCHO (8,1),
 	REY (7,0),
 	CABALLO (6,0),
 	SOTA (5,0),
-	FALSO_SIETE (4,7),
 	SEIS (3,6),
 	CINCO (2,5),
 	CUATRO (1,4);
@@ -23,9 +23,11 @@ public enum TipoCarta {
 		this.valor = valor;
 		this.valorEnvido = valorEnvido;
 	}
+	
 	public int getValor() {
 		return valor;
 	}
+	
 	public int getValorEnvido() {
 		return valorEnvido;
 	}

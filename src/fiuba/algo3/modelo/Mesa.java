@@ -12,7 +12,7 @@ import java.util.List;
 public class Mesa {
 	
 	private Mazo mazo;
-    private List<Carta> cartas;
+    private List<Carta> cartasJugadas;
     private Arbitro arbitro;
 
     private int rondasEquipoUno;
@@ -22,7 +22,7 @@ public class Mesa {
     public Mesa(int cantidadDeJugadores){
     	
     	this.mazo = new Mazo();
-        this.cartas = new ArrayList<Carta>();
+        this.cartasJugadas = new ArrayList<Carta>();
         this.arbitro = new Arbitro();
         this.jugadoresEnMesa = cantidadDeJugadores;
     }
@@ -30,7 +30,7 @@ public class Mesa {
     public void jugarCarta(Carta unaCarta) {
         if (this.mesaLlena()) throw new MesaLlenaException();
 
-        this.cartas.add(unaCarta);
+        this.cartasJugadas.add(unaCarta);
     }
 
     public boolean mesaLlena() {
@@ -43,9 +43,9 @@ public class Mesa {
         Carta cartaJugadorDos;
         Carta cartaGanadora;
 
-        for(int posicion = 0; posicion < this.cartas.size(); posicion += 2){
-            cartaJugadorUno = this.cartas.get(posicion);
-            cartaJugadorDos = this.cartas.get(posicion + 1);
+        for(int posicion = 0; posicion < this.cartasJugadas.size(); posicion += 2){
+            cartaJugadorUno = this.cartasJugadas.get(posicion);
+            cartaJugadorDos = this.cartasJugadas.get(posicion + 1);
 
             cartaGanadora = arbitro.ganadorEntre(cartaJugadorUno, cartaJugadorDos);
 
@@ -59,10 +59,10 @@ public class Mesa {
     }
 
     public void limpiar() {
-        this.cartas.clear();
+        this.cartasJugadas.clear();
     }
 
     public int cartasEnMesa() {
-        return this.cartas.size();
+        return this.cartasJugadas.size();
     }
 }

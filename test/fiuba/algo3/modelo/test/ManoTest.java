@@ -2,56 +2,53 @@ package fiuba.algo3.modelo.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.enums.Palo;
+import fiuba.algo3.modelo.enums.TipoCarta;
 
 
 public class ManoTest {
-	List<Carta> cartas;
+
+
+	private Mano mano;
+	
 	@Before
 	public void setUp() {
-		cartas = new ArrayList<>();
+
+		this.mano = new Mano();
 		
-		cartas.add(new Carta(1,Palo.ESPADA));
-		cartas.add(new Carta(4,Palo.BASTO));
-		
+		this.mano.recibirCarta( new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA) );
+		this.mano.recibirCarta( new Carta(TipoCarta.CUATRO, Palo.BASTO) );
 	}
 	
 	@Test
 	public void sacarCarta_posicionEnElRango_DevuelveCartaEnLaPosicion(){
 		
 		int posicionBuscada = 2;
-		Carta cartaBuscada = new Carta(6,Palo.COPA);
-		cartas.add(cartaBuscada);
-		int tamanioAntesDeLaExtraccion = cartas.size();
-		Mano mano = new Mano();
-		mano.setCartas(cartas);
+		Carta cartaBuscada = new Carta(TipoCarta.SEIS,Palo.COPA);
+		this.mano.recibirCarta(cartaBuscada);
+		int tamanioAntesDeLaExtraccion = this.mano.cantidadDeCartas();
 		
 		Carta otraCarta = mano.sacarCarta(posicionBuscada);
 		
 		assertEquals(cartaBuscada.getPalo(),otraCarta.getPalo());
-		assertEquals(cartaBuscada.getValor(), otraCarta.getValor());
-		assertEquals(tamanioAntesDeLaExtraccion-1,mano.getCartas().size());
+		assertEquals(cartaBuscada.getTipoCarta(), otraCarta.getTipoCarta());
+		assertEquals(tamanioAntesDeLaExtraccion-1, this.mano.cantidadDeCartas());
 	}
 	
 	@Test
 	public void sacarCarta_ConPosicionFueraDelRango_DevuelveUltimaCarta() {
-		int posicion = cartas.size()+100;
-		Carta cartaEsperada = new Carta(4,Palo.BASTO);
-		Mano mano = new Mano();
-		mano.setCartas(cartas);
+		int posicion = this.mano.cantidadDeCartas() + 100;
+		Carta cartaEsperada = new Carta(TipoCarta.CUATRO,Palo.BASTO);
+		
 		
 		Carta ultimaCarta = mano.sacarCarta(posicion);
 		
 		assertEquals(cartaEsperada.getPalo(),ultimaCarta.getPalo());
-		assertEquals(cartaEsperada.getValor(),ultimaCarta.getValor());
+		assertEquals(cartaEsperada.getTipoCarta(),ultimaCarta.getTipoCarta());
 	}
-	
 }

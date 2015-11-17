@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import fiuba.algo3.modelo.enums.Palo;
+import fiuba.algo3.modelo.enums.TipoCarta;
 import fiuba.algo3.modelo.excepciones.NoHayMasCartasException;
 
 public class Mazo {
@@ -13,31 +14,36 @@ public class Mazo {
 	
 	public Mazo() {
 		
-		mazoDeCartas = new ArrayList<Carta>();
+		this.mazoDeCartas = new ArrayList<Carta>();
+		
+		this.agregarCarta( new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA) );
+		this.agregarCarta( new Carta(TipoCarta.ANCHO_BASTO, Palo.BASTO) );
+		this.agregarCarta( new Carta(TipoCarta.SIETE_ESPADA, Palo.ESPADA) );
+		this.agregarCarta( new Carta(TipoCarta.SIETE_ORO, Palo.ORO) );
+		this.agregarCarta( new Carta(TipoCarta.FALSO_ANCHO, Palo.ORO) );
+		this.agregarCarta( new Carta(TipoCarta.FALSO_ANCHO, Palo.COPA) );
+		this.agregarCarta( new Carta(TipoCarta.FALSO_SIETE, Palo.BASTO) );
+		this.agregarCarta( new Carta(TipoCarta.FALSO_SIETE, Palo.COPA) );
 		
 		for(Palo palo: Palo.values()){
 			
-			for(int numero = 1; numero < 8; numero++){
+			for(int i = 6; i < 14; i++) {
 				
-				mazoDeCartas.add(new Carta(numero,palo));
-			}
-			for(int numero = 10; numero < 13; numero++){
-				
-				mazoDeCartas.add(new Carta(numero,palo));
+				this.agregarCarta( new Carta (TipoCarta.values()[i], palo) );
 			}
 		}
+	}
+	
+	private void agregarCarta(Carta carta) {
+		
+		this.mazoDeCartas.add(carta);
 	}
 	
 	void mezclar() {
 		
 		Collections.shuffle(mazoDeCartas);
 	}
-	
-	public int cantidadDeCartas() {
-		
-		return mazoDeCartas.size();
-	}
-	
+
 	public Carta repartirCarta() {
 		
 		if(this.cantidadDeCartas() == 0) throw new NoHayMasCartasException();
@@ -45,15 +51,8 @@ public class Mazo {
 		return this.mazoDeCartas.remove(0);
 	}
 	
-	/*	
-	 * Esto hay que borrarlo, quiero ver si se crean
-	 * todas las cartas, no se como probarlo si no.
-	 */
-	public void verCartas() {
+	public int cantidadDeCartas() {
 		
-		for (int i = 0; i < 40; i++) {
-			
-			System.out.println(mazoDeCartas.get(i).getNombre());
-		}
+		return mazoDeCartas.size();
 	}
 }
