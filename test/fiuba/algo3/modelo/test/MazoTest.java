@@ -26,4 +26,6 @@ public class MazoTest {
 			mazo.repartirCarta();
 		}
 	}
+	
+	
 }

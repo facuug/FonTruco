@@ -14,22 +14,23 @@ public class Mazo {
 	
 	public Mazo() {
 		
-		this.mazoDeCartas = new ArrayList<Carta>();
+		mazoDeCartas = new ArrayList<Carta>();
 		
-		this.agregarCarta( new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA) );
-		this.agregarCarta( new Carta(TipoCarta.ANCHO_BASTO, Palo.BASTO) );
-		this.agregarCarta( new Carta(TipoCarta.SIETE_ESPADA, Palo.ESPADA) );
-		this.agregarCarta( new Carta(TipoCarta.SIETE_ORO, Palo.ORO) );
-		this.agregarCarta( new Carta(TipoCarta.FALSO_ANCHO, Palo.ORO) );
-		this.agregarCarta( new Carta(TipoCarta.FALSO_ANCHO, Palo.COPA) );
-		this.agregarCarta( new Carta(TipoCarta.FALSO_SIETE, Palo.BASTO) );
-		this.agregarCarta( new Carta(TipoCarta.FALSO_SIETE, Palo.COPA) );
+		agregarCarta( new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA) );
+		agregarCarta( new Carta(TipoCarta.ANCHO_BASTO, Palo.BASTO) );
+		agregarCarta( new Carta(TipoCarta.SIETE_ESPADA, Palo.ESPADA) );
+		agregarCarta( new Carta(TipoCarta.SIETE_ORO, Palo.ORO) );
+		agregarCarta( new Carta(TipoCarta.FALSO_ANCHO, Palo.ORO) );
+		agregarCarta( new Carta(TipoCarta.FALSO_ANCHO, Palo.COPA) );
+		agregarCarta( new Carta(TipoCarta.FALSO_SIETE, Palo.BASTO) );
+		agregarCarta( new Carta(TipoCarta.FALSO_SIETE, Palo.COPA) );
 		
 		for(Palo palo: Palo.values()){
 			
 			for(int i = 6; i < 14; i++) {
 				
-				this.agregarCarta( new Carta (TipoCarta.values()[i], palo) );
+				
+				agregarCarta( new Carta (TipoCarta.values()[i], palo) );
 			}
 		}
 	}
@@ -38,6 +39,9 @@ public class Mazo {
 		
 		this.mazoDeCartas.add(carta);
 	}
+	
+	
+	
 	
 	void mezclar() {
 		
