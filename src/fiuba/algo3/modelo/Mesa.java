@@ -65,65 +65,34 @@ public class Mesa {
 	}
 
 	public Ganador determinarGanadorDeMano() {
-		List<Object> listCartasJugadas = Arrays.asList(cartasJugadas.values().toArray());
-		int vecesGanadasEquipoUno = 0;
-		int vecesEmpatadas = 0;
-		List<Carta> cartasJugadorUno = (List<Carta>)listCartasJugadas.get(0);
-		List<Carta> cartasJugadorDos = (List<Carta>)listCartasJugadas.get(1);
-		List<Carta> cartasJugadorTres = null;
-		List<Carta> cartasJugadorCuatro = null;
-		if(listCartasJugadas.size()>=3) {
-			 cartasJugadorTres = (List<Carta>)listCartasJugadas.get(2);
-		} if(listCartasJugadas.size()>=4){
-			 cartasJugadorCuatro = (List<Carta>)listCartasJugadas.get(3);
-		}
-		for(int i = 0 ; i < 3 && vecesGanadasEquipoUno != 2; i++) {
-			
-			if(cartasJugadorTres != null && cartasJugadorCuatro != null) {
-				if(compararDosCartasContraUna(cartasJugadorUno.get(i), cartasJugadorDos.get(i), cartasJugadorCuatro.get(i))==1
-						|| compararDosCartasContraUna(cartasJugadorTres.get(i), cartasJugadorDos.get(i), cartasJugadorCuatro.get(i))==1) {
-					vecesGanadasEquipoUno++;
-				} else if (compararDosCartasContraUna(cartasJugadorUno.get(i), cartasJugadorDos.get(i), cartasJugadorCuatro.get(i))==0
-						&& compararDosCartasContraUna(cartasJugadorTres.get(i), cartasJugadorDos.get(i), cartasJugadorCuatro.get(i))==0) {
-					vecesEmpatadas++;
-				}
-			} else {
-				if(compararDosCartasContraUna(cartasJugadorUno.get(i), cartasJugadorDos.get(i), null)==1) {
-					vecesGanadasEquipoUno++;
-				} else if (compararDosCartasContraUna(cartasJugadorUno.get(i), cartasJugadorDos.get(i), null)==0) {
-					vecesEmpatadas++;
-				}
-			}
-		}
-		if(vecesEmpatadas==2) {
-			return Ganador.EquipoUno;
-		} else if(vecesEmpatadas == 3 || (vecesGanadasEquipoUno==1 && vecesEmpatadas == 1)) {
-			return Ganador.Emparda;
-		}
-		return Ganador.EquipoDos;
+		List<List<Carta>> cartas = new ArrayList(cartasJugadas.values());
+		List<Ganador> ganadores = new ArrayList<>();
+		for(int j = 0; j<3;j++){
+		for(int i = 0; i<cantidadDeJugadores/2 ; i+=2) {
+			ganadores.add(comparar(cartas.get(i), cartas.get(i+1)));
+		}}
+		return definirGanador(ganadores);
+		
     }
 	
-	/*
-	 * Devuelve -1 si la primera pierde
-	 * Devuelve 0 si las tres son iguales
-	 * Devuelve 1 si la primera gana
-	 */
-	
-	private int compararDosCartasContraUna(Carta unaCarta, Carta otraCarta, Carta otraCartaMas) {
-		int resultadoPrimerComparacion = unaCarta.comparar(otraCarta);
-		int resultadoSegundaComparacion = 0;
-		if(otraCartaMas != null){
-			resultadoSegundaComparacion = unaCarta.comparar(otraCartaMas);
-		}
-		 
-		if(resultadoPrimerComparacion == 0 && resultadoSegundaComparacion == 0) {
-			return 0;
-		} else if (resultadoPrimerComparacion == -1 || resultadoSegundaComparacion == -1) {
-			return -1;
-		} else {
-			return 1;
+	private Ganador comparar(List<Carta> cartasEquipoUno, List<Carta> cartasEquipoDos) {
+		int puntosEquipoUno = 0;
+		int puntosEquipoDos = 0;
+		for(int i = 0; i<cartasEquipoUno.size() && puntosEquipoUno<2 ; i++){
+			if(cartasEquipoUno.get(i).comparar(cartasEquipoDos.get(i))==1) {
+				puntosEquipoUno++;
+			} else if (cartasEquipoUno.get(i).comparar(cartasEquipoDos.get(i))==-1) {
+				puntosEquipoDos++;
+			}
 		}
 		
+		if(puntosEquipoUno>=2) return Ganador.EquipoUno;
+		else if (puntosEquipoDos>=2)return Ganador.EquipoDos;
+		else return Ganador.Emparda;
+	}
+	
+	private Ganador definirGanador(List<Ganador> ganadores) {
+		return Ganador.definir(ganadores);
 	}
 	
 	

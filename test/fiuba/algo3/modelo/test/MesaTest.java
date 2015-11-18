@@ -84,14 +84,14 @@ public class MesaTest {
 	
 	
 	@Test
-	public void determinarGanadorDeMano_conDosJugadoresEmpatados_devuelveEquipoDos() {
+	public void determinarGanadorDeMano_conJugadores_devuelveEquipoDos() {
 		prepararManosParaTest();
 		equipoUno.getJugadores().get(0).setMano(manoZim);
 		equipoDos.getJugadores().get(0).setMano(manoDib);
-		mesa.jugarCarta(equipoDos.getJugadores().get(0), equipoDos.getJugadores().get(0).jugarCarta(0));
 		mesa.jugarCarta(equipoUno.getJugadores().get(0), equipoUno.getJugadores().get(0).jugarCarta(1));
-		mesa.jugarCarta(equipoDos.getJugadores().get(0), equipoDos.getJugadores().get(0).jugarCarta(1));
+		mesa.jugarCarta(equipoDos.getJugadores().get(0), equipoDos.getJugadores().get(0).jugarCarta(0));
 		mesa.jugarCarta(equipoUno.getJugadores().get(0), equipoUno.getJugadores().get(0).jugarCarta(0));
+		mesa.jugarCarta(equipoDos.getJugadores().get(0), equipoDos.getJugadores().get(0).jugarCarta(1));
 		mesa.jugarCarta(equipoUno.getJugadores().get(0), equipoUno.getJugadores().get(0).jugarCarta(2));
 		mesa.jugarCarta(equipoDos.getJugadores().get(0), equipoDos.getJugadores().get(0).jugarCarta(2));
 		Ganador equipoGanador = mesa.determinarGanadorDeMano();
