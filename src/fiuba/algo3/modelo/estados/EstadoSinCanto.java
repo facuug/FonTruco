@@ -9,12 +9,10 @@ public class EstadoSinCanto extends EstadoJuego {
 
     @Override
     public void noQuiero() {
-        //mas adelante es metodo puede lanzar excepcion
     }
 
     @Override
     public void quiero() {
-
     }
 
     @Override

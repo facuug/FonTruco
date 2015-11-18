@@ -15,6 +15,7 @@ public class Mesa {
     private LinkedHashMap<Jugador, List<Carta>> cartasJugadas;
     private List<Equipo> equipos;
     private int cantidadDeJugadores;
+
     public Mesa(List<Equipo> equipos){
     	this.mazo = new Mazo();
         this.cartasJugadas = new LinkedHashMap<>();
