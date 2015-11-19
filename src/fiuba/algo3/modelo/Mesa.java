@@ -68,10 +68,11 @@ public class Mesa {
 	public Ganador determinarGanadorDeMano() {
 		List<List<Carta>> cartas = new ArrayList(cartasJugadas.values());
 		List<Ganador> ganadores = new ArrayList<>();
-		for(int j = 0; j<3;j++){
-		for(int i = 0; i<cantidadDeJugadores/2 ; i+=2) {
-			ganadores.add(comparar(cartas.get(i), cartas.get(i+1)));
-		}}
+		for(int j = 0; j<cartas.get(0).size();j++){
+			for(int i = 0; i<cantidadDeJugadores/2 ; i+=2) {
+				ganadores.add(comparar(cartas.get(i), cartas.get(i+1)));
+			}
+		}
 		return definirGanador(ganadores);
 		
     }
@@ -87,8 +88,8 @@ public class Mesa {
 			}
 		}
 		
-		if(puntosEquipoUno>=2) return Ganador.EquipoUno;
-		else if (puntosEquipoDos>=2)return Ganador.EquipoDos;
+		if(puntosEquipoUno>puntosEquipoDos) return Ganador.EquipoUno;
+		else if (puntosEquipoDos>puntosEquipoUno)return Ganador.EquipoDos;
 		else return Ganador.Emparda;
 	}
 	

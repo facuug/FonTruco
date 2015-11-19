@@ -109,10 +109,13 @@ public class JuegoTruco {
     }
 
     public void sumarPuntos() {
-        if( this.puntosTruco == 0 ) this.puntosTruco = 1; // si no hubo cantos, el ganador de la mano recibe un punto
-
-        if ( this.mesa.determinarGanadorDeMano().equals(Ganador.EquipoUno) ) this.equipoUno.setPuntos(this.puntosTruco);
-        else  if ( this.mesa.determinarGanadorDeMano().equals(Ganador.EquipoDos) ) this.equipoDos.setPuntos(this.puntosTruco);
+    	if(puntosTruco<=1)
+    		puntosTruco++; // si no hubo cantos, el ganador de la mano recibe un punto
+        
+        Ganador ganador =mesa.determinarGanadorDeMano(); 
+        
+        if ( ganador.equals(Ganador.EquipoUno) ) this.equipoUno.setPuntos(this.puntosTruco);
+        else  if ( ganador.equals(Ganador.EquipoDos) ) this.equipoDos.setPuntos(this.puntosTruco);
     }
     
     public void jugadorDeTurnoJuegaCarta(Carta carta) {

@@ -88,8 +88,10 @@ public class TrucoConDosJugadoresTest {
 
         juegoTruco.sumarPuntos();
 
-        assertEquals( juegoTruco.puntosEquipoUno(), 2 );
-        assertEquals( juegoTruco.puntosEquipoDos(), 4 );
+        
+        assertEquals( 4, juegoTruco.puntosEquipoDos() );
+        assertEquals( 2,juegoTruco.puntosEquipoUno());
+        
     }
 
     @Test
@@ -98,19 +100,16 @@ public class TrucoConDosJugadoresTest {
         juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.BASTO));
 
         juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS,Palo.COPA));
-
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.BASTO));
 
         juegoTruco.truco();
         juegoTruco.noQuiero();
 
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SIETE_ORO,Palo.ORO));
+        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS,Palo.COPA));
 
         juegoTruco.sumarPuntos();
 
-        assertEquals( juegoTruco.puntosEquipoUno(), 2 );
-        assertEquals( juegoTruco.puntosEquipoDos(), 0 );
+        assertEquals(2, juegoTruco.puntosEquipoUno());
+        assertEquals(0, juegoTruco.puntosEquipoDos());
     }
 
 
