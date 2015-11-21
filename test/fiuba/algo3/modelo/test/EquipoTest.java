@@ -1,8 +1,5 @@
 package fiuba.algo3.modelo.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
@@ -16,18 +13,22 @@ public class EquipoTest {
 	
 	@Before
 	public void setUp() {
-		
-		Jugador jugadorPrueba = new Jugador("Jorge");
-		
-		List<Jugador> jugadores = new ArrayList<Jugador>();
-		jugadores.add(jugadorPrueba);
-		
-		this.equipoPrueba = new Equipo(jugadores);
+
+		Equipo equipoPrueba = new Equipo();
+		equipoPrueba.agregarJugador(new Jugador("Facu"));
 	}
 	
 	@Test
 	public void elEquipoSeCreaConCeroPunto() {
 		
-		Assert.assertEquals(0, this.equipoPrueba.getPuntos());
+		Assert.assertEquals(0, this.equipoPrueba.obtenerPuntos());
+	}
+
+	@Test
+	public void jugadorDeTurnoDevuelveJugadorSiguiente(){
+		Assert.assertEquals( "Jorge",equipoPrueba.jugadorDeTurno().getNombre() );
+		Assert.assertEquals( "homero",equipoPrueba.jugadorDeTurno().getNombre() );
+		Assert.assertEquals( "Jorge",equipoPrueba.jugadorDeTurno().getNombre() );
+		Assert.assertEquals( "homero",equipoPrueba.jugadorDeTurno().getNombre() );
 	}
 }

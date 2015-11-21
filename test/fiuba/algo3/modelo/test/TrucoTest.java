@@ -2,80 +2,175 @@ package fiuba.algo3.modelo.test;
 
 import static org.junit.Assert.assertEquals;
 
-import fiuba.algo3.modelo.JuegoTruco;
-
-import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.interfaces.EstadoJuego;
+import fiuba.algo3.modelo.EstadoSinCanto;
+import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Facundo on 14-Nov-15.
  */
 public class TrucoTest {
 
-    private JuegoTruco juegoTruco;
-    private Boolean sinFlor;
-    private int dosJugadores = 2;
+    private EstadoJuego estadoJuego;
 
     @Before
     public void setup(){
-        this.sinFlor = false;
-
-        List<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("facu"));
-        jugadores.add(new Jugador("agus"));
-
-        this.juegoTruco = new JuegoTruco(jugadores,sinFlor);
+        estadoJuego = new EstadoSinCanto();
     }
 
     @Test
     public void trucoMasNoQuieroOtorgaUnPunto(){
-        juegoTruco.truco();
-        juegoTruco.noQuiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 1 );
+        estadoJuego = estadoJuego.truco();
+        estadoJuego.noQuiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 1 );
     }
 
     @Test
     public void trucoMasQuieroOtorgaDosPuntos(){
-        juegoTruco.truco();
-        juegoTruco.quiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 2 );
+        estadoJuego = estadoJuego.truco();
+        estadoJuego.quiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 2 );
     }
 
     @Test
     public void trucoMasReTrucoMasNoQuieroOtorgaDosPuntos(){
-        juegoTruco.truco();
-        juegoTruco.reTruco();
-        juegoTruco.noQuiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 2 );
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego.noQuiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 2 );
     }
 
     @Test
     public void trucoMasReTrucoMasQuieroOtorgaTresPuntos(){
-        juegoTruco.truco();
-        juegoTruco.reTruco();
-        juegoTruco.quiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 3 );
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego.quiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 3 );
     }
 
     @Test
     public void trucoMasReTrucoMasValeCuatroMasNoQuieroOtorgaTresPuntos(){
-        juegoTruco.truco();
-        juegoTruco.reTruco();
-        juegoTruco.valeCuatro();
-        juegoTruco.noQuiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 3 );
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego = estadoJuego.valeCuatro();
+        estadoJuego.noQuiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 3 );
     }
 
     @Test
     public void trucoMasReTrucoMasValeCuatroMasQuieroOtorgaCuatroPuntos(){
-        juegoTruco.truco();
-        juegoTruco.reTruco();
-        juegoTruco.valeCuatro();
-        juegoTruco.quiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 4 );
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego = estadoJuego.valeCuatro();
+        estadoJuego.quiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 4 );
     }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void trucoMasEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.envido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void trucoMasTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.truco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void trucoMasRealEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.realEnvido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void trucoMasFaltaEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.faltaEnvido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void reRrucoSinTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.reTruco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void reTrucoMasEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego = estadoJuego.envido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void reTrucoMasRealEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego = estadoJuego.realEnvido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void reTrucoMasFaltaEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego = estadoJuego.faltaEnvido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void reTrucoMasTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego = estadoJuego.truco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void reTrucoMasReTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego = estadoJuego.reTruco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void valeCuatroSinReTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.valeCuatro();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void valeCuatroMasTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.valeCuatro();
+        estadoJuego = estadoJuego.truco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void valeCuatroMasReTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.valeCuatro();
+        estadoJuego = estadoJuego.reTruco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void valeCuatroMasValeCuatroLanzaExcepcion(){
+        estadoJuego = estadoJuego.valeCuatro();
+        estadoJuego = estadoJuego.valeCuatro();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void valeCuatroMasEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.valeCuatro();
+        estadoJuego = estadoJuego.envido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void valeCuatroMasRealEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.valeCuatro();
+        estadoJuego = estadoJuego.realEnvido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void valeCuatroMasFaltaEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.valeCuatro();
+        estadoJuego = estadoJuego.faltaEnvido();
+    }
+
 }

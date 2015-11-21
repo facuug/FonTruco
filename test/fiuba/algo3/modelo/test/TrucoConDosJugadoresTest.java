@@ -1,7 +1,8 @@
 package fiuba.algo3.modelo.test;
 
 import fiuba.algo3.modelo.Carta;
-import fiuba.algo3.modelo.JuegoTruco;
+import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.TrucoSinFlor;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
@@ -18,99 +19,160 @@ import static org.junit.Assert.assertEquals;
  */
 public class TrucoConDosJugadoresTest {
 
-    private JuegoTruco juegoTruco;
+    private TrucoSinFlor trucoSinFlor;
     private Boolean sinFlor;
 
     @Before
     public void setup(){
-        this.sinFlor = false;
+        Equipo equipoUno = new Equipo();
+        equipoUno.agregarJugador(new Jugador("Facu"));
 
-        List<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("facu"));
-        jugadores.add(new Jugador("agus"));
+        Equipo equipoDos = new Equipo();
+        equipoDos.agregarJugador(new Jugador("Homero"));
 
-        this.juegoTruco = new JuegoTruco(jugadores,sinFlor);
+        this.trucoSinFlor = new TrucoSinFlor(equipoUno,equipoDos);
     }
 
     @Test
     public void juegoSinCantosOtorgaUnPuntoAlGanadorDeLaMano(){
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
 
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.BASTO));
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.BASTO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
 
-        juegoTruco.sumarPuntos();
+        trucoSinFlor.sumarPuntos();
 
-        assertEquals( juegoTruco.puntosEquipoUno(), 1 );
-        assertEquals( juegoTruco.puntosEquipoDos(), 0 );
+        assertEquals( trucoSinFlor.puntosEquipoUno(), 1 );
+        assertEquals( trucoSinFlor.puntosEquipoDos(), 0 );
     }
 
     @Test
     public void elTrucoLoGanaELGanadorDeLaMano(){
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
 
-        juegoTruco.truco();
-        juegoTruco.reTruco();
-        juegoTruco.quiero();
+        trucoSinFlor.truco();
+        trucoSinFlor.reTruco();
+        trucoSinFlor.quiero();
 
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.BASTO));
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.BASTO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
 
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SIETE_ORO,Palo.ORO));
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS,Palo.COPA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SIETE_ORO,Palo.ORO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS,Palo.COPA));
 
-        juegoTruco.sumarPuntos();
+        trucoSinFlor.sumarPuntos();
 
-        assertEquals( juegoTruco.puntosEquipoUno(), 3 );
-        assertEquals( juegoTruco.puntosEquipoDos(), 0 );
+        assertEquals( trucoSinFlor.puntosEquipoUno(), 3 );
+        assertEquals( trucoSinFlor.puntosEquipoDos(), 0 );
     }
 
     @Test
     public void juegoConEnvidoYTruco(){
-        juegoTruco.envido();
-        juegoTruco.quiero();
+        trucoSinFlor.envido();
+        trucoSinFlor.quiero();
 
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
 
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.BASTO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.BASTO));
 
-        juegoTruco.truco();
-        juegoTruco.reTruco();
-        juegoTruco.valeCuatro();
-        juegoTruco.quiero();
+        trucoSinFlor.truco();
+        trucoSinFlor.reTruco();
+        trucoSinFlor.valeCuatro();
+        trucoSinFlor.quiero();
 
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS,Palo.COPA));
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SIETE_ORO,Palo.ORO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS,Palo.COPA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SIETE_ORO,Palo.ORO));
 
-        juegoTruco.sumarPuntos();
+        trucoSinFlor.sumarPuntos();
 
         
-        assertEquals( 4, juegoTruco.puntosEquipoDos() );
-        assertEquals( 2,juegoTruco.puntosEquipoUno());
+        assertEquals( 4, trucoSinFlor.puntosEquipoDos() );
+        assertEquals( 2, trucoSinFlor.puntosEquipoUno());
         
     }
 
     @Test
     public void juegoConRondaEmpardada(){
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.BASTO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.BASTO));
 
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
 
-        juegoTruco.truco();
-        juegoTruco.noQuiero();
+        trucoSinFlor.truco();
+        trucoSinFlor.noQuiero();
 
-        juegoTruco.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS,Palo.COPA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS,Palo.COPA));
 
-        juegoTruco.sumarPuntos();
+        trucoSinFlor.sumarPuntos();
 
-        assertEquals(2, juegoTruco.puntosEquipoUno());
-        assertEquals(0, juegoTruco.puntosEquipoDos());
+        assertEquals(1, trucoSinFlor.puntosEquipoUno());
+        assertEquals(1, trucoSinFlor.puntosEquipoDos());
     }
 
+    @Test
+    public void ganadorDeRondaNoSeLLevaPuntosDeTrucoSiDiceNoQuiero(){
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS,Palo.COPA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
 
+        trucoSinFlor.truco();
+        trucoSinFlor.noQuiero();
+
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.BASTO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
+
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS,Palo.ORO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SIETE_ORO,Palo.ORO));
+
+        trucoSinFlor.sumarPuntos();
+
+        assertEquals(1, trucoSinFlor.puntosEquipoUno());
+        assertEquals(1, trucoSinFlor.puntosEquipoDos());
+    }
+
+    @Test
+    public void ganadorDeRondaNoSeLLevaPuntosDeReTrucoSiDiceNoQuiero() {
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS, Palo.COPA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
+
+        trucoSinFlor.truco();
+        trucoSinFlor.reTruco();
+        trucoSinFlor.noQuiero();
+
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.BASTO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
+
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SIETE_ORO, Palo.ORO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS, Palo.ORO));
+
+        trucoSinFlor.sumarPuntos();
+
+        assertEquals(1, trucoSinFlor.puntosEquipoUno());
+        assertEquals(2, trucoSinFlor.puntosEquipoDos());
+    }
+
+    @Test
+    public void ganadorDeRondaNoSeLLevaPuntosDeValeTrucoSiDiceNoQuiero(){
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS, Palo.COPA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
+
+        trucoSinFlor.truco();
+        trucoSinFlor.reTruco();
+        trucoSinFlor.valeCuatro();
+        trucoSinFlor.noQuiero();
+
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.BASTO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
+
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS, Palo.ORO));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SIETE_ORO, Palo.ORO));
+
+        trucoSinFlor.sumarPuntos();
+
+        assertEquals(3, trucoSinFlor.puntosEquipoUno());
+        assertEquals(1, trucoSinFlor.puntosEquipoDos());
+    }
 }

@@ -28,14 +28,12 @@ public class MesaTest {
 	
 	@Before
 	public void setUp() {
-		List<Jugador> jugadoresEquipoA = new ArrayList<>();
-		List<Jugador> jugadoresEquipoB = new ArrayList<>();
-		Jugador unJugador = new Jugador("Zim");
-		jugadoresEquipoA.add(unJugador);
-		Jugador otroJugador = new Jugador("Dib");
-		jugadoresEquipoB.add(otroJugador);
-		equipoUno= new Equipo(jugadoresEquipoA);
-		equipoDos = new Equipo(jugadoresEquipoB);
+		Equipo equipoUno = new Equipo();
+		equipoUno.agregarJugador(new Jugador("Zim"));
+
+		Equipo equipoDos = new Equipo();
+		equipoUno.agregarJugador(new Jugador("Dib"));
+
 		mesa = new Mesa(Arrays.asList(equipoUno,equipoDos));
 	}
 	
@@ -44,17 +42,15 @@ public class MesaTest {
 		mesa.repartir();
 		int cantidadDeCartasZim = mesa.getEquipos().get(0).getJugadores().get(0).getMano().cantidadDeCartas();
 		int cantidadDeCartasDib = mesa.getEquipos().get(1).getJugadores().get(0).getMano().cantidadDeCartas();
-		
+
 		assertEquals(3, cantidadDeCartasZim);
 		assertEquals(3,cantidadDeCartasDib);
 	}
 	
 	@Test
 	public void repartir_conCuatroJugadores_losJugadoresQuedanConTresCartas() {
-		Jugador unJugador = new Jugador("Kaz");
-		Jugador otroJugador = new Jugador("GIR");
-		equipoUno.getJugadores().add(unJugador);
-		equipoDos.getJugadores().add(otroJugador);
+		equipoUno.agregarJugador( new Jugador("Kaz") );
+		equipoUno.agregarJugador( new Jugador("GIR") );
 		mesa.repartir();
 		int cantidadDeCartasZim = mesa.getEquipos().get(0).getJugadores().get(0).getMano().cantidadDeCartas();
 		int cantidadDeCartasDib = mesa.getEquipos().get(1).getJugadores().get(0).getMano().cantidadDeCartas();

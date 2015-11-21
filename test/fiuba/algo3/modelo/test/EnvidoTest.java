@@ -2,144 +2,217 @@ package fiuba.algo3.modelo.test;
 
 import static org.junit.Assert.assertEquals;
 
-import fiuba.algo3.modelo.JuegoTruco;
-
-import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.interfaces.EstadoJuego;
+import fiuba.algo3.modelo.EstadoSinCanto;
+import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Facundo on 11-Nov-15.
  */
 public class EnvidoTest {
 
-    private JuegoTruco juegoTruco;
-    private Boolean sinFlor;
-    private int dosJugadores = 2;
+    private EstadoJuego estadoJuego;
 
     @Before
     public void setup(){
-        this.sinFlor = false;
-
-        List<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("facu"));
-        jugadores.add(new Jugador("agus"));
-
-        this.juegoTruco = new JuegoTruco(jugadores,sinFlor);
+        this.estadoJuego = new EstadoSinCanto();
     }
 
    @Test
     public void envidoConNoquieroOtorgaUnPunto(){
-       juegoTruco.envido();
-       juegoTruco.noQuiero();
-       assertEquals( juegoTruco.cuantosPuntos(), 1 );
+       estadoJuego = estadoJuego.envido();
+       estadoJuego.noQuiero();
+       assertEquals( estadoJuego.cuantosPuntos(), 1 );
     }
 
     @Test
     public void envidoConQuieroOtorgaDosPuntos(){
-        juegoTruco.envido();
-        juegoTruco.quiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 2 );
+        estadoJuego = estadoJuego.envido();
+        estadoJuego.quiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 2 );
     }
 
     @Test
     public void cantarEnvidoLuegoDeCantarEnvidoYLuegoQuieroOtorgaCuatroPuntos(){
-        juegoTruco.envido();
-        juegoTruco.envido();
-        juegoTruco.quiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 4 );
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.envido();
+        estadoJuego.quiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 4 );
     }
 
     @Test
     public void cantarEnvidoLuegoDeCantarEnvidoYLuegoNoQuieroOtorgaDosPuntos(){
-        juegoTruco.envido();
-        juegoTruco.envido();
-        juegoTruco.noQuiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 2 );
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.envido();
+        estadoJuego.noQuiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 2 );
     }
 
     @Test
     public void cantarEnvidoLuegoRealEnvidoLuegoQuieroOtorgaCincoPuntos(){
-        juegoTruco.envido();
-        juegoTruco.realEnvido();
-        juegoTruco.quiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 5 );
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego.quiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 5 );
     }
 
     @Test
     public void cantarEnvidoLuegoRealEnvidoLuegoNoQuieroOtorgaDosPuntos(){
-        juegoTruco.envido();
-        juegoTruco.realEnvido();
-        juegoTruco.noQuiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 2 );
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego.noQuiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 2 );
     }
 
     @Test
     public void envidoMasEnvidoMasRealEnvidoMasQuieroDevuelveSietePuntos(){
-        juegoTruco.envido();
-        juegoTruco.envido();
-        juegoTruco.realEnvido();
-        juegoTruco.quiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 7 );
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego.quiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 7 );
     }
 
     @Test
     public void envidoMasEnvidoMasRealEnvidoMasNoQuieroDevuelveCuatroPuntos(){
-        juegoTruco.envido();
-        juegoTruco.envido();
-        juegoTruco.realEnvido();
-        juegoTruco.noQuiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 4 );
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego.noQuiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 4 );
     }
 
     @Test
     public void CantarRealEnvidoMasQuieroOtorgaTresPuntos(){
-        juegoTruco.realEnvido();
-        juegoTruco.quiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 3 );
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego.quiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 3 );
     }
 
     @Test
     public void CantarRealEnvidoMasNoQuieroOtorgaUnPunto(){
-        juegoTruco.realEnvido();
-        juegoTruco.noQuiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 1 );
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego.noQuiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 1 );
     }
 
     @Test
     public void cantarEnvidoLuegoFaltaEnvidoLuegoNoQuieroOtorgaUnPunto(){
-        juegoTruco.envido();
-        juegoTruco.faltaEnvido();
-        juegoTruco.noQuiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 2 );
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego.noQuiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 2 );
     }
 
     @Test
     public void envidoMasEnvidoMasFaltaEnvidoMasNoQuieroOtorgaCuatroPuntos(){
-        juegoTruco.envido();
-        juegoTruco.envido();
-        juegoTruco.faltaEnvido();
-        juegoTruco.noQuiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 4 );
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego.noQuiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 4 );
     }
 
     @Test
     public void faltaEnvidoMasNoQuieroOtorgaUnPunto(){
-        juegoTruco.faltaEnvido();
-        juegoTruco.noQuiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 1 );
+        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego.noQuiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 1 );
     }
 
     @Test
     public void envidoMasEnvidoMasRealEnvidoMasFaltaEnvidoMasNoQuieroOtorgaSietePuntos(){
-        juegoTruco.envido();
-        juegoTruco.envido();
-        juegoTruco.realEnvido();
-        juegoTruco.faltaEnvido();
-        juegoTruco.noQuiero();
-        assertEquals( juegoTruco.cuantosPuntos(), 7 );
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego.noQuiero();
+        assertEquals( estadoJuego.cuantosPuntos(), 7 );
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void envidoMasTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.truco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void envidoMasReTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.reTruco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void envidoMasValeCuatroLanzaExcepcion(){
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.valeCuatro();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void realEnvidoMasEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego = estadoJuego.envido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void realEnvidoMasRealEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego = estadoJuego.realEnvido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void realEnvidoMasTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego = estadoJuego.truco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void realEnvidoMasReTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego = estadoJuego.reTruco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void realEnvidoMasValeCuatroLanzaExcepcion(){
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego = estadoJuego.valeCuatro();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void faltaEnvidoMasEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.envido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void faltaEnvidoMasFaltaEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void faltaEnvidoMasRealEnvidoLanzaExcepcion(){
+        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.realEnvido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void faltaEnvidoMasTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.truco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void faltaEnvidoMasReTrucoLanzaExcepcion(){
+        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.reTruco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void faltaEnvidoMasValeCuatroLanzaExcepcion(){
+        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.valeCuatro();
     }
 }
