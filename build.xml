@@ -58,13 +58,13 @@
 	</target>
 
 	<target name="compilar.tests" depends="instrumentar.aplicacion">
-		<javac srcdir="test" destdir="${build}/tests" includeantruntime="false" debug="yes" target="1.8">
+		<javac srcdir="test" destdir="${build}/tests" includeantruntime="false" debug="yes" target="1.7">
 			<classpath refid="classpath" />
 		</javac>
 	</target>
 
     <target name="compilar.tests.sin.instrumentar" depends="compilar.aplicacion">
-        <javac srcdir="test" destdir="${build}/tests" includeantruntime="false" debug="yes" target="1.8">
+        <javac srcdir="test" destdir="${build}/tests" includeantruntime="false" debug="yes" target="1.7">
             <classpath refid="classpath" />
         </javac>
     </target>
@@ -205,7 +205,7 @@
 	</target>
 
 	<target name="ejecutar.aplicacion" depends="empaquetar">
-		<java classname="fiuba.algo3.javafx.Program" fork="true">
+		<java classname="fiuba.algo3.vista.controller.Main" fork="true">
 			<classpath refid="classpath" />
 			<!--<classpath location="${build}/dist/algo3.jar" />-->
 		</java>

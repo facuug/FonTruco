@@ -1,10 +1,12 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.estados;
 
-import fiuba.algo3.modelo.enums.Ganador;
-import fiuba.algo3.modelo.interfaces.*;
+import java.util.Arrays;
+
+import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.Mesa;
+import fiuba.algo3.modelo.Turno;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
-
-import java.util.*;
+import fiuba.algo3.modelo.interfaces.JuegoTruco;
 
 /**
  * Created by Facundo on 11-Nov-15.

@@ -1,8 +1,6 @@
 package fiuba.algo3.modelo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -66,7 +64,7 @@ public class Mesa {
 	}
 
 	public Ganador determinarGanadorDeMano() {
-		List<List<Carta>> cartas = new ArrayList(cartasJugadas.values());
+		List<List<Carta>> cartas = new ArrayList<>(cartasJugadas.values());
 		List<Ganador> ganadores = new ArrayList<>();
 		for(int j = 0; j<cartas.get(0).size();j++){
 			for(int i = 0; i<cantidadDeJugadores/2 ; i+=2) {
