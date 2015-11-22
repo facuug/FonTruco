@@ -35,12 +35,14 @@ public abstract class Controller implements Initializable {
 		try {
 			 pane = (Pane)FXMLLoader.load(Main.class.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
 			 Scene scene = new Scene(pane);
+			 
 			 Stage popup = new Stage();
 			 popup.initModality(Modality.APPLICATION_MODAL);
 			 popup.initOwner(stage);
 			 popup.setScene(scene);
-			 popup.setTitle(new StringBuilder().append("AlgoMail - ").append(nombreVista).toString());
+			 popup.setTitle(new StringBuilder().append(nombreVista).toString());
 			 popup.showAndWait();
+			 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

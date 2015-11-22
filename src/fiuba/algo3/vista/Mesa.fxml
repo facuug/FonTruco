@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="801.0" prefWidth="843.0" style="-fx-background-color: #598749;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.vista.controller.MesaController">
+   <children>
+      <GridPane layoutX="2.0" layoutY="-6.0" prefHeight="810.0" prefWidth="843.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="2.0" prefWidth="186.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="680.0" minWidth="10.0" prefWidth="444.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="369.0" minWidth="10.0" prefWidth="186.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="217.5" minHeight="10.0" prefHeight="186.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="520.0" minHeight="10.0" prefHeight="500.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="217.5" minHeight="10.0" prefHeight="186.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <Button fx:id="btnJugarCarta" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Jugar Carta" />
+                  <Button fx:id="btnEnvido" layoutX="14.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Envido!" />
+                  <Button fx:id="btnTruco" layoutX="14.0" layoutY="92.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Truco!" />
+                  <Button fx:id="btnFlor" layoutX="14.0" layoutY="127.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Flor!" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnSalir" layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Salir" />
+                  <Button fx:id="btnAyuda" layoutX="24.0" layoutY="64.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Ayuda" />
+                  <Button fx:id="btnVolver" layoutX="24.0" layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="&lt;- Volver" />
+               </children>
+            </Pane>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="carta1Jug1" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="carta2Jug1" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="carta3Jug1" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+            <GridPane rotate="180.0" GridPane.columnIndex="1">
+               <children>
+                  <ImageView fx:id="carta1Jug3" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="carta2Jug3" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="carta3Jug3" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="188.0" minHeight="10.0" prefHeight="188.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="155.0" minHeight="10.0" prefHeight="119.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="273.0" minHeight="10.0" prefHeight="172.0" valignment="TOP" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="carta1Jug4" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="carta2Jug4" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="carta3Jug4" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="cartaJugadaJug4" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="cartaJugadaJug2" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="cartaJugadaJug1" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="cartaJugadaJug3" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" GridPane.columnIndex="1">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="mazo" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+               <children>
+                  <Label layoutX="78.0" layoutY="16.0" text="Puntos" textFill="WHITE" />
+                  <Label layoutX="62.0" layoutY="45.0" text="Equipo 1:" textFill="WHITE" />
+                  <Label fx:id="lblPuntosEq1" layoutX="124.0" layoutY="45.0" text="0" textFill="WHITE" />
+                  <Label layoutX="62.0" layoutY="75.0" text="Equipo 2:" textFill="WHITE" />
+                  <Label fx:id="lblPuntosEq2" layoutX="124.0" layoutY="75.0" text="0" textFill="WHITE" />
+               </children>
+            </Pane>
+            <GridPane rotate="180.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fx:id="carta1Jug2" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="carta2Jug2" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="carta3Jug2" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="188.0" minHeight="10.0" prefHeight="188.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="155.0" minHeight="10.0" prefHeight="119.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="273.0" minHeight="10.0" prefHeight="172.0" valignment="TOP" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </GridPane>
+   </children>
+</Pane>

@@ -21,9 +21,10 @@
             <Font name="Levenim MT" size="53.0" />
          </font>
       </Label>
-      <Button fx:id="btnDosJugadores" layoutX="34.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="2 jugadores" visible="false" />
-      <Button fx:id="btnCuatroJugadores" layoutX="238.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="4 jugadores" visible="false" />
+      <Button fx:id="btnDosJugadores" layoutX="164.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="2 jugadores" visible="false" />
+      <Button fx:id="btnCuatroJugadores" layoutX="312.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="4 jugadores" visible="false" />
       <Button fx:id="btnPicaPica" layoutX="463.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Pica Pica" visible="false" />
       <Button fx:id="btnVolver" layoutX="27.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="&lt;- Volver" visible="false" />
+      <Button fx:id="btnContraIA" layoutX="34.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Conta la IA" visible="false" />
    </children>
 </Pane>

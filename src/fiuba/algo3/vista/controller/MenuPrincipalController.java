@@ -3,7 +3,7 @@ package fiuba.algo3.vista.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.application.Platform;
+import fiuba.algo3.vista.controller.handler.btnSalirHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,7 +25,9 @@ public class MenuPrincipalController extends Controller {
 	@FXML
 	private Button btnPicaPica;
 	@FXML
-	private Button btnVolver;         
+	private Button btnVolver;     
+	@FXML
+	private Button btnContraIA;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle resource) {
@@ -33,6 +35,7 @@ public class MenuPrincipalController extends Controller {
 		btnVolverHandler();
 		btnSalirHandler();
 		btnAyudaHandler();
+		btnDosJugadoresHandler();
 	}
 	
 	private EventHandler<ActionEvent> esconderOtrosBotonesHandler = new EventHandler<ActionEvent>(){
@@ -57,6 +60,7 @@ public class MenuPrincipalController extends Controller {
 		cambiarVisibilidadBoton(btnJugar);
 		cambiarVisibilidadBoton(btnSalir);
 		cambiarVisibilidadBoton(btnVolver);
+		cambiarVisibilidadBoton(btnContraIA);
 	}
 	
 	private void cambiarVisibilidadBoton(Button unBoton) {
@@ -64,13 +68,7 @@ public class MenuPrincipalController extends Controller {
 	}
 	
 	private void btnSalirHandler() {
-		btnSalir.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				Platform.exit();
-			}
-		});
+		btnSalir.setOnAction(new btnSalirHandler());
 	}
 	
 	private void btnAyudaHandler() {
@@ -79,6 +77,19 @@ public class MenuPrincipalController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				redirect("Ayuda");
+			}
+		});
+	}
+	
+	private void btnDosJugadoresHandler() {
+		btnDosJugadores.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				/*
+				 * Aca va como se arma la mesa
+				 */
+				redirect("Mesa");
 			}
 		});
 	}

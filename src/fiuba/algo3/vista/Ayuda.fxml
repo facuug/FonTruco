@@ -6,7 +6,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.vista.controller.AyudaController">
    <children>
       <Label fx:id="lblTitulo" layoutX="225.0" layoutY="-17.0" text="Ayuda" textFill="WHITE">
@@ -47,5 +46,5 @@
             <Label layoutX="9.0" layoutY="8.0" prefHeight="298.0" prefWidth="271.0" text="Para ganar el truco hay que llevarse dos de tres cartas.Si los dos adversarios tienen carta de igual valor para ganar la carta, la misma se empata: carta  emparda.En caso de que cada pareja gane una carta y otra quede en empate, gana la pareja que antes haya conseguido la suya. En el caso excepcional de que las tres sean empate, gana la pareja que tiene la mano.En aquellos casos en que la tercera carta es irrelevante, porque ya estuviera decidida la mano, esta última carta no llega a disputarse (porque una pareja ya ha ganado las dos primeras cartas, o bien ha ganado una y empatado la otra).El jugador que gane una carta es quien dará comienzo a la siguiente lanzando una carta." textFill="WHITE" wrapText="true" />
          </children>
       </Pane>
-      <Button fx:id="btnVolver" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="&lt;- Volver" />   </children>
+      <Button fx:id="btnVolver" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="172.0" text="&lt;- Volver al menu principal" />   </children>
 </Pane>
