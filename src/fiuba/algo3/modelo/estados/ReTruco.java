@@ -1,25 +1,24 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.estados;
+
 
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import fiuba.algo3.modelo.interfaces.EstadoJuego;
 
 /**
- * Created by Facundo on 12-Nov-15.
+ * Created by Facundo on 14-Nov-15.
  */
-public class FaltaEnvido implements EstadoJuego {
+public class ReTruco implements EstadoJuego {
 
     private int puntos = 0;
 
-    public FaltaEnvido(int puntosAcumulados) {
-        this.puntos = puntosAcumulados;
+    @Override
+    public void noQuiero() {
+        this.puntos = 2;
     }
 
     @Override
-    public void noQuiero() {
-        if(this.puntos == 0) this.puntos = 1;
-    }
-
-    public void quiero(){
+    public void quiero() {
+        this.puntos = 3;
     }
 
     @Override
@@ -39,7 +38,7 @@ public class FaltaEnvido implements EstadoJuego {
 
     @Override
     public EstadoJuego valeCuatro() {
-        throw new CantoInvalidoException();
+        return new ValeCuatro();
     }
 
     @Override

@@ -2,6 +2,7 @@ package fiuba.algo3.modelo.interfaces;
 
 import fiuba.algo3.modelo.*;
 import fiuba.algo3.modelo.enums.Ganador;
+import fiuba.algo3.modelo.estados.EstadoSinCanto;
 
 /**
  * Created by Facundo on 20-Nov-15.
