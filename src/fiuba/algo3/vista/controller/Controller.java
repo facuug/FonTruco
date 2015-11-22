@@ -19,11 +19,11 @@ public abstract class Controller implements Initializable {
 	public void redirect(String nombreVista){
 		Pane pane;
 		try {
-			 pane = (Pane)FXMLLoader.load(Main.class.getResource(new StringBuilder().append(nombreVista).append(".fxml").toString()));
+			 pane = (Pane)FXMLLoader.load(Main.class.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
 			 Scene scene = new Scene(pane);
 			 stage.setScene(scene);
 			 stage.close();
-			 stage.setTitle(new StringBuilder().append("AlgoMail - ").append(nombreVista).toString());
+			 stage.setTitle(new StringBuilder().append(nombreVista).toString());
 			 stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -33,7 +33,7 @@ public abstract class Controller implements Initializable {
 	public void popup(String nombreVista) {
 		Pane pane;
 		try {
-			 pane = (Pane)FXMLLoader.load(Main.class.getResource(new StringBuilder().append(nombreVista).append(".fxml").toString()));
+			 pane = (Pane)FXMLLoader.load(Main.class.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
 			 Scene scene = new Scene(pane);
 			 Stage popup = new Stage();
 			 popup.initModality(Modality.APPLICATION_MODAL);

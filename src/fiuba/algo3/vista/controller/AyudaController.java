@@ -25,7 +25,6 @@ public class AyudaController extends Controller{
 			@Override
 			public void handle(ActionEvent event) {
 				redirect("MenuPrincipal");
-				
 			}
 		});
 	}
