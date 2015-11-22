@@ -10,12 +10,25 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class MesaController extends Controller{
+	
+	//Cada control de javafx tiene por nombre el id:fx del control que esta en Mesa.fxml
+	
 	@FXML
 	private Button btnSalir;
 	@FXML
 	private Button btnAyuda;
 	@FXML
     private Button btnVolver;
+	@FXML
+	private Button btnJugarCarta;
+	@FXML
+    private Button btnEnvido;
+	@FXML
+    private Button btnTruco;
+	@FXML
+    private Button btnFlor;
+	
+	
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		btnSalirHandler();
@@ -45,5 +58,36 @@ public class MesaController extends Controller{
 		});
 	}
 
-	
+	public void btnJugarCartaHandler() {
+		btnJugarCarta.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+			}
+		});
+	}
+	public void btnTrucoHandler() {
+		btnTruco.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+			}
+		});
+	}
+	public void btnEnvidoHandler() {
+		btnEnvido.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+			}
+		});
+	}
+	public void btnFlorHandler() {
+		btnFlor.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+			}
+		});
+	}
 }
