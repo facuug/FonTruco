@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.vista.controller.AyudaController">
+   <children>
+      <Label fx:id="lblTitulo" layoutX="225.0" layoutY="-17.0" text="Ayuda" textFill="WHITE">
+         <font>
+            <Font name="Levenim MT" size="53.0" />
+         </font>
+      </Label>
+      <Label layoutX="77.0" layoutY="76.0" prefHeight="26.0" prefWidth="153.0" text="Jerarquía de Cartas" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Pane layoutX="77.0" layoutY="85.0" prefHeight="269.0" prefWidth="145.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="100.0" text="Ancho de espada" textFill="WHITE" wrapText="true" />
+            <Label layoutX="14.0" layoutY="31.0" prefHeight="17.0" prefWidth="100.0" text="Ancho de basto" textFill="WHITE" wrapText="true" />
+            <Label layoutX="14.0" layoutY="48.0" prefHeight="17.0" prefWidth="100.0" text="Siete de espadas" textFill="WHITE" wrapText="true" />
+            <Label layoutX="13.0" layoutY="65.0" prefHeight="17.0" prefWidth="100.0" text="Siete de oros" textFill="WHITE" wrapText="true" />
+            <Label layoutX="13.0" layoutY="82.0" prefHeight="17.0" prefWidth="100.0" text="Tres" textFill="WHITE" wrapText="true" />
+            <Label layoutX="13.0" layoutY="99.0" prefHeight="17.0" prefWidth="100.0" text="Dos" textFill="#fcfcfc" wrapText="true" />
+            <Label layoutX="13.0" layoutY="116.0" prefHeight="17.0" prefWidth="122.0" text="Ancho de oro y copa" textFill="WHITE" wrapText="true" />
+            <Label layoutX="12.0" layoutY="133.0" prefHeight="17.0" prefWidth="122.0" text="Rey" textFill="WHITE" wrapText="true" />
+            <Label layoutX="12.0" layoutY="150.0" prefHeight="17.0" prefWidth="122.0" text="Caballo" textFill="WHITE" wrapText="true" />
+            <Label layoutX="12.0" layoutY="167.0" prefHeight="17.0" prefWidth="122.0" text="Sota" textFill="WHITE" wrapText="true" />
+            <Label layoutX="12.0" layoutY="184.0" prefHeight="17.0" prefWidth="122.0" text="Siete de copa y basto" textFill="WHITE" wrapText="true" />
+            <Label layoutX="12.0" layoutY="201.0" prefHeight="17.0" prefWidth="122.0" text="Seis" textFill="WHITE" wrapText="true" />
+            <Label layoutX="12.0" layoutY="218.0" prefHeight="17.0" prefWidth="122.0" text="Cinco" textFill="WHITE" wrapText="true" />
+            <Label layoutX="12.0" layoutY="235.0" prefHeight="17.0" prefWidth="122.0" text="Cuatro" textFill="WHITE" wrapText="true" />
+         </children>
+      </Pane>
+      <Label layoutX="291.0" layoutY="74.0" prefHeight="26.0" prefWidth="153.0" text="Reglas" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Pane layoutX="293.0" layoutY="65.0" prefHeight="313.0" prefWidth="288.0">
+         <children>
+            <Label layoutX="9.0" layoutY="8.0" prefHeight="298.0" prefWidth="271.0" text="Para ganar el truco hay que llevarse dos de tres cartas.Si los dos adversarios tienen carta de igual valor para ganar la carta, la misma se empata: carta  emparda.En caso de que cada pareja gane una carta y otra quede en empate, gana la pareja que antes haya conseguido la suya. En el caso excepcional de que las tres sean empate, gana la pareja que tiene la mano.En aquellos casos en que la tercera carta es irrelevante, porque ya estuviera decidida la mano, esta última carta no llega a disputarse (porque una pareja ya ha ganado las dos primeras cartas, o bien ha ganado una y empatado la otra).El jugador que gane una carta es quien dará comienzo a la siguiente lanzando una carta." textFill="WHITE" wrapText="true" />
+         </children>
+      </Pane>
+      <Button fx:id="btnVolver" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="&lt;- Volver" />
+   </children>
+</Pane>
