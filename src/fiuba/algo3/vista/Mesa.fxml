@@ -63,17 +63,17 @@
             </GridPane>
             <GridPane rotate="180.0" GridPane.columnIndex="1">
                <children>
-                  <ImageView fx:id="carta1Jug3" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="carta1Jug3" disable="true" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="carta2Jug3" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                  <ImageView fx:id="carta2Jug3" disable="true" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                      <image>
                         <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="carta3Jug3" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                  <ImageView fx:id="carta3Jug3" disable="true" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                      <image>
                         <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
                      </image>
@@ -98,17 +98,17 @@
                 <RowConstraints maxHeight="273.0" minHeight="10.0" prefHeight="172.0" valignment="TOP" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="carta1Jug4" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="carta1Jug4" disable="true" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                      <image>
                         <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="carta2Jug4" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1">
+                  <ImageView fx:id="carta2Jug4" disable="true" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1">
                      <image>
                         <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="carta3Jug4" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="2">
+                  <ImageView fx:id="carta3Jug4" disable="true" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="2">
                      <image>
                         <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
                      </image>
@@ -149,17 +149,17 @@
             </Pane>
             <GridPane rotate="180.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <ImageView fx:id="carta1Jug2" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="carta1Jug2" disable="true" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                      <image>
                         <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="carta2Jug2" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1">
+                  <ImageView fx:id="carta2Jug2" disable="true" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1">
                      <image>
                         <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="carta3Jug2" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="2">
+                  <ImageView fx:id="carta3Jug2" disable="true" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="2">
                      <image>
                         <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
                      </image>
