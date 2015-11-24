@@ -28,74 +28,39 @@ public class MesaTest {
 	
 	@Before
 	public void setUp() {
-		Equipo equipoUno = new Equipo();
+		equipoUno = new Equipo();
 		equipoUno.agregarJugador(new Jugador("Zim"));
 
-		Equipo equipoDos = new Equipo();
-		equipoUno.agregarJugador(new Jugador("Dib"));
+		equipoDos = new Equipo();
+		equipoDos.agregarJugador(new Jugador("Dib"));
 
-		mesa = new Mesa(Arrays.asList(equipoUno,equipoDos));
+		mesa = new Mesa(equipoUno,equipoDos);
 	}
 	
 	@Test
-	public void repartir_conDosJugadores_ambosJugadoresQuedanConTresCartas() {
-		mesa.repartir();
-		int cantidadDeCartasZim = mesa.getEquipos().get(0).getJugadores().get(0).getMano().cantidadDeCartas();
-		int cantidadDeCartasDib = mesa.getEquipos().get(1).getJugadores().get(0).getMano().cantidadDeCartas();
-
-		assertEquals(3, cantidadDeCartasZim);
-		assertEquals(3,cantidadDeCartasDib);
+	public void determinarGanadorDeRondaDevuelveGanadorDeRonda(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+		
+		assertEquals(equipoDos,this.mesa.determinarGanadorDeRonda().verEquipo());
 	}
 	
 	@Test
-	public void repartir_conCuatroJugadores_losJugadoresQuedanConTresCartas() {
-		equipoUno.agregarJugador( new Jugador("Kaz") );
-		equipoUno.agregarJugador( new Jugador("GIR") );
-		mesa.repartir();
-		int cantidadDeCartasZim = mesa.getEquipos().get(0).getJugadores().get(0).getMano().cantidadDeCartas();
-		int cantidadDeCartasDib = mesa.getEquipos().get(1).getJugadores().get(0).getMano().cantidadDeCartas();
-		int cantidadDeCartasKaz = mesa.getEquipos().get(0).getJugadores().get(1).getMano().cantidadDeCartas();
-		int cantidadDeCartasGIR = mesa.getEquipos().get(1).getJugadores().get(1).getMano().cantidadDeCartas();
-		assertEquals(3, cantidadDeCartasZim);
-		assertEquals(3,cantidadDeCartasDib);
-		assertEquals(3, cantidadDeCartasGIR);
-		assertEquals(3,cantidadDeCartasKaz);
+	public void determinarGanadorDeRondaConUnaSolaCartaDevuelveComoGanadorAlEquipoJugadorDeLaCarta(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		assertEquals(equipoUno,this.mesa.determinarGanadorDeRonda().verEquipo());
 	}
 	
 	@Test
-	public void determinarGanadorDeMano_conDosJugadoresEmpatados_devuelveEmparda() {
-		prepararManosParaTest();
-		equipoUno.getJugadores().get(0).setMano(manoZim);
-		equipoDos.getJugadores().get(0).setMano(manoDib);
-		mesa.jugarCarta(equipoUno.getJugadores().get(0), equipoUno.getJugadores().get(0).jugarCarta(0));
-		mesa.jugarCarta(equipoDos.getJugadores().get(0), equipoDos.getJugadores().get(0).jugarCarta(0));
-		mesa.jugarCarta(equipoUno.getJugadores().get(0), equipoUno.getJugadores().get(0).jugarCarta(1));
-		mesa.jugarCarta(equipoDos.getJugadores().get(0), equipoDos.getJugadores().get(0).jugarCarta(1));
-		mesa.jugarCarta(equipoUno.getJugadores().get(0), equipoUno.getJugadores().get(0).jugarCarta(2));
-		mesa.jugarCarta(equipoDos.getJugadores().get(0), equipoDos.getJugadores().get(0).jugarCarta(2));
-		Ganador equipoGanador = mesa.determinarGanadorDeMano();
-		assertNotNull(equipoGanador);
-		assertEquals(Ganador.Emparda,equipoGanador);
+	public void determinarGanadorDeManoDevuelveGanador(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+		
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+		
+		assertEquals(equipoDos,this.mesa.determinarGanadorDeMano().verEquipo());
 	}
-	
-	
-	@Test
-	public void determinarGanadorDeMano_conJugadores_devuelveEquipoDos() {
-		prepararManosParaTest();
-		equipoUno.getJugadores().get(0).setMano(manoZim);
-		equipoDos.getJugadores().get(0).setMano(manoDib);
-		mesa.jugarCarta(equipoUno.getJugadores().get(0), equipoUno.getJugadores().get(0).jugarCarta(1));
-		mesa.jugarCarta(equipoDos.getJugadores().get(0), equipoDos.getJugadores().get(0).jugarCarta(0));
-		mesa.jugarCarta(equipoUno.getJugadores().get(0), equipoUno.getJugadores().get(0).jugarCarta(0));
-		mesa.jugarCarta(equipoDos.getJugadores().get(0), equipoDos.getJugadores().get(0).jugarCarta(1));
-		mesa.jugarCarta(equipoUno.getJugadores().get(0), equipoUno.getJugadores().get(0).jugarCarta(2));
-		mesa.jugarCarta(equipoDos.getJugadores().get(0), equipoDos.getJugadores().get(0).jugarCarta(2));
-		Ganador equipoGanador = mesa.determinarGanadorDeMano();
-		assertNotNull(equipoGanador);
-		assertEquals(Ganador.EquipoDos,equipoGanador);
-	}
-	
-	
 	
 	private void prepararManosParaTest() {
 		manoZim = new Mano();

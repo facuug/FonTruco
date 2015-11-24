@@ -14,7 +14,8 @@ public enum TipoCarta {
 	SOTA (5,0),
 	SEIS (3,6),
 	CINCO (2,5),
-	CUATRO (1,4);
+	CUATRO (1,4),
+	INVALIDO(0,0);
 	
 	private final int valor;
 	private final int valorEnvido;
@@ -32,7 +33,7 @@ public enum TipoCarta {
 		return valorEnvido;
 	}
 
-	public int comparar(TipoCarta tipoCarta) {
+	public int comparar(TipoCarta tipoCarta) {	
 		if(this.valor < tipoCarta.valor) {
 			return -1;
 		} else if (this.valor > tipoCarta.valor) {
