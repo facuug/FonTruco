@@ -22,13 +22,16 @@ public class TrucoConDosJugadoresTest {
 
     private TrucoSinFlor trucoSinFlor;
     private Boolean sinFlor;
+    
+    private Equipo equipoUno;
+    private Equipo equipoDos;
 
     @Before
     public void setup(){
-        Equipo equipoUno = new Equipo();
+        this.equipoUno = new Equipo();
         equipoUno.agregarJugador(new Jugador("Facu"));
 
-        Equipo equipoDos = new Equipo();
+        this.equipoDos = new Equipo();
         equipoDos.agregarJugador(new Jugador("Homero"));
 
         this.trucoSinFlor = new TrucoSinFlor(equipoUno,equipoDos);

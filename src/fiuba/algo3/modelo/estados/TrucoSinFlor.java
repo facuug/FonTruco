@@ -22,7 +22,7 @@ public class TrucoSinFlor extends JuegoTruco{
         this.equipoUno = unEquipo;
         this.equipoDos = otroEquipo;
 
-        this.mesa = new Mesa(Arrays.asList(this.equipoUno,this.equipoDos));
+        this.mesa = new Mesa(equipoUno,equipoDos);
 
         this.turnoParaCanto = new Turno(this.equipoUno,this.equipoDos);
         this.turnoParaCarta = new Turno(this.equipoUno,this.equipoDos);

@@ -12,22 +12,24 @@ import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * Created by Facundo on 14-Nov-15.
  */
 public class TrucoSinFlorTest {
 
     private TrucoSinFlor trucoSinFlor;
+    
+    private Equipo equipoUno;
+    private Equipo equipoDos;
 
     @Before
     public void setup(){
 
-        Equipo equipoUno = new Equipo();
+        this.equipoUno = new Equipo();
         equipoUno.agregarJugador(new Jugador("Facu"));
         equipoUno.agregarJugador(new Jugador("Agus"));
 
-        Equipo equipoDos = new Equipo();
+        this.equipoDos = new Equipo();
         equipoDos.agregarJugador(new Jugador("Homero"));
         equipoDos.agregarJugador(new Jugador("Lisa"));
 
@@ -45,9 +47,8 @@ public class TrucoSinFlorTest {
         assertEquals( trucoSinFlor.puntosEquipoDos(), 0 );
     }
 
-    @Test ( expected = CantoInvalidoException.class)
+    @Test ( expected = CantoInvalidoException.class )
     public void cantarFlorLanzaExcepcion() {
         trucoSinFlor.flor();
     }
 }
-

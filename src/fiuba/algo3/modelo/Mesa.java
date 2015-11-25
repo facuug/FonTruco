@@ -1,11 +1,12 @@
 package fiuba.algo3.modelo;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import fiuba.algo3.modelo.enums.Ganador;
 import fiuba.algo3.modelo.excepciones.MesaLlenaException;
 import fiuba.algo3.modelo.interfaces.Ronda;
-
-import java.util.LinkedHashMap;
-import java.util.List;
 
 public class Mesa {
 	
@@ -19,6 +20,7 @@ public class Mesa {
     	this.equipoUno = unEquipo;
     	this.equipoDos = otroEquipo;
     	this.ronda = new PrimeraRonda(this.equipoUno,this.equipoDos);
+    	this.cantidadDeJugadores = unEquipo.cantidadDeJugadores() + otroEquipo.cantidadDeJugadores();
 	}
 
 	public void jugarCarta(Jugador jugador, Carta unaCarta) {

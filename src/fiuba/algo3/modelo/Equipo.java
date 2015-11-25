@@ -29,15 +29,21 @@ public class Equipo {
 	}
 
 	public void agregarJugador(Jugador unJugador){
+		
 		this.jugadores.add(unJugador);
+	}
+	
+	public int cantidadDeJugadores() {
+		
+		return this.jugadores.size();
 	}
 
 	public Jugador jugadorDeTurno() {
 		try{
-			return this.getJugadores().get(this.posicion++);
+			return this.jugadores.get(this.posicion++);
 		} catch (Exception exception){
 			this.posicion = 0;
-			return this.getJugadores().get(this.posicion++);
+			return this.jugadores.get(this.posicion++);
 		}
 	}
 }
