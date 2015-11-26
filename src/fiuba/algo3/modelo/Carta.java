@@ -24,4 +24,8 @@ public class Carta {
     public int comparar(Carta otraCarta){
     	return this.tipoCarta.comparar(otraCarta.tipoCarta);
     }
+
+    public int valorDeEnvido() {
+        return this.tipoCarta.getValorEnvido();
+    }
 }

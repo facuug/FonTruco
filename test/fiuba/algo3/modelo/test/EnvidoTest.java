@@ -101,7 +101,7 @@ public class EnvidoTest {
     @Test
     public void cantarEnvidoLuegoFaltaEnvidoLuegoNoQuieroOtorgaUnPunto(){
         estadoJuego = estadoJuego.envido();
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
         estadoJuego.noQuiero();
         assertEquals( estadoJuego.cuantosPuntos(), 2 );
     }
@@ -110,14 +110,14 @@ public class EnvidoTest {
     public void envidoMasEnvidoMasFaltaEnvidoMasNoQuieroOtorgaCuatroPuntos(){
         estadoJuego = estadoJuego.envido();
         estadoJuego = estadoJuego.envido();
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
         estadoJuego.noQuiero();
         assertEquals( estadoJuego.cuantosPuntos(), 4 );
     }
 
     @Test
     public void faltaEnvidoMasNoQuieroOtorgaUnPunto(){
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
         estadoJuego.noQuiero();
         assertEquals( estadoJuego.cuantosPuntos(), 1 );
     }
@@ -127,7 +127,7 @@ public class EnvidoTest {
         estadoJuego = estadoJuego.envido();
         estadoJuego = estadoJuego.envido();
         estadoJuego = estadoJuego.realEnvido();
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
         estadoJuego.noQuiero();
         assertEquals( estadoJuego.cuantosPuntos(), 7 );
     }
@@ -148,6 +148,12 @@ public class EnvidoTest {
     public void envidoMasValeCuatroLanzaExcepcion(){
         estadoJuego = estadoJuego.envido();
         estadoJuego = estadoJuego.valeCuatro();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void envidoMasFlorLanzaExcepcion(){
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.flor();
     }
 
     @Test ( expected = CantoInvalidoException.class )
@@ -181,38 +187,50 @@ public class EnvidoTest {
     }
 
     @Test ( expected = CantoInvalidoException.class )
+    public void realEnvidoMasFlorLanzaExcepcion(){
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego = estadoJuego.flor();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
     public void faltaEnvidoMasEnvidoLanzaExcepcion(){
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
         estadoJuego = estadoJuego.envido();
     }
 
     @Test ( expected = CantoInvalidoException.class )
     public void faltaEnvidoMasFaltaEnvidoLanzaExcepcion(){
-        estadoJuego = estadoJuego.faltaEnvido();
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
+        estadoJuego = estadoJuego.faltaEnvido(0);
     }
 
     @Test ( expected = CantoInvalidoException.class )
     public void faltaEnvidoMasRealEnvidoLanzaExcepcion(){
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
         estadoJuego = estadoJuego.realEnvido();
     }
 
     @Test ( expected = CantoInvalidoException.class )
     public void faltaEnvidoMasTrucoLanzaExcepcion(){
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
         estadoJuego = estadoJuego.truco();
     }
 
     @Test ( expected = CantoInvalidoException.class )
     public void faltaEnvidoMasReTrucoLanzaExcepcion(){
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
         estadoJuego = estadoJuego.reTruco();
     }
 
     @Test ( expected = CantoInvalidoException.class )
     public void faltaEnvidoMasValeCuatroLanzaExcepcion(){
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
         estadoJuego = estadoJuego.valeCuatro();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void faltaEnvidoMasFlorLanzaExcepcion(){
+        estadoJuego = estadoJuego.faltaEnvido(0);
+        estadoJuego = estadoJuego.flor();
     }
 }

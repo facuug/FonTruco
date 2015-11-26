@@ -16,7 +16,7 @@ public class CartaTest {
 		
 		assertEquals(14,anchoEspada.getTipoCarta().getValor());
 		assertEquals(Palo.ESPADA, anchoEspada.getPalo());
-		assertEquals(1, anchoEspada.getTipoCarta().getValorEnvido());
+		assertEquals(11, anchoEspada.valorDeEnvido());
 	}
 	
 	@Test

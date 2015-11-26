@@ -28,8 +28,7 @@ public class Mazo {
 		for(Palo palo: Palo.values()){
 			
 			for(int i = 6; i < 14; i++) {
-				
-				
+
 				agregarCarta( new Carta (TipoCarta.values()[i], palo) );
 			}
 		}

@@ -2,8 +2,8 @@ package fiuba.algo3.modelo.test;
 
 import static org.junit.Assert.assertEquals;
 
-import fiuba.algo3.modelo.interfaces.EstadoJuego;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
+import fiuba.algo3.modelo.interfaces.EstadoJuego;;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import org.junit.Before;
 import org.junit.Test;
@@ -89,7 +89,13 @@ public class TrucoTest {
     @Test ( expected = CantoInvalidoException.class )
     public void trucoMasFaltaEnvidoLanzaExcepcion(){
         estadoJuego = estadoJuego.truco();
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void trucoMasFlorLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.flor();
     }
 
     @Test ( expected = CantoInvalidoException.class )
@@ -115,7 +121,7 @@ public class TrucoTest {
     public void reTrucoMasFaltaEnvidoLanzaExcepcion(){
         estadoJuego = estadoJuego.truco();
         estadoJuego = estadoJuego.reTruco();
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
     }
 
     @Test ( expected = CantoInvalidoException.class )
@@ -130,6 +136,13 @@ public class TrucoTest {
         estadoJuego = estadoJuego.truco();
         estadoJuego = estadoJuego.reTruco();
         estadoJuego = estadoJuego.reTruco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void reTrucoMasFlorLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego = estadoJuego.flor();
     }
 
     @Test ( expected = CantoInvalidoException.class )
@@ -170,7 +183,12 @@ public class TrucoTest {
     @Test ( expected = CantoInvalidoException.class )
     public void valeCuatroMasFaltaEnvidoLanzaExcepcion(){
         estadoJuego = estadoJuego.valeCuatro();
-        estadoJuego = estadoJuego.faltaEnvido();
+        estadoJuego = estadoJuego.faltaEnvido(0);
     }
 
+    @Test ( expected = CantoInvalidoException.class )
+    public void valeCuatroMasFlorLanzaExcepcion(){
+        estadoJuego = estadoJuego.valeCuatro();
+        estadoJuego = estadoJuego.flor();
+    }
 }

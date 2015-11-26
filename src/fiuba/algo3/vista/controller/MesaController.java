@@ -65,7 +65,7 @@ public class MesaController extends Controller{
 	
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
-		 cartasEnMano = new ArrayList<>(Arrays.asList(carta1Jug1,carta2Jug1,carta3Jug1,
+		 cartasEnMano = new ArrayList<ImageView>(Arrays.asList(carta1Jug1,carta2Jug1,carta3Jug1,
 				carta1Jug2,carta2Jug2,carta3Jug2,
 				carta1Jug3,carta2Jug3,carta3Jug3,
 				carta1Jug4,carta2Jug4,carta3Jug4));

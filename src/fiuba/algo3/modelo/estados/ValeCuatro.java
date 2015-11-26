@@ -10,15 +10,21 @@ import fiuba.algo3.modelo.interfaces.EstadoJuego;
 public class ValeCuatro implements EstadoJuego {
 
     private int puntos = 0;
+    private Boolean fueRespondido = false;
+    private boolean fueNoQuerido;
 
     @Override
     public void noQuiero() {
         this.puntos = 3;
+        this.fueRespondido = true;
+        this.fueNoQuerido = true;
     }
 
     @Override
     public void quiero() {
         this.puntos = 4;
+        this.fueRespondido = true;
+        this.fueNoQuerido = false;
     }
 
     @Override
@@ -52,7 +58,22 @@ public class ValeCuatro implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego faltaEnvido() {
+    public EstadoJuego faltaEnvido(int puntosActuales) {
+        throw new CantoInvalidoException();
+    }
+
+    @Override
+    public Boolean fueRespondido() {
+        return this.fueRespondido;
+    }
+
+    @Override
+    public Boolean fueNoQuerido() {
+        return this.fueNoQuerido;
+    }
+
+    @Override
+    public EstadoJuego flor() {
         throw new CantoInvalidoException();
     }
 }

@@ -9,17 +9,21 @@ import fiuba.algo3.modelo.interfaces.EstadoJuego;
 public class Envido implements EstadoJuego {
 
     private int puntos = 0;
+    private Boolean cantoRespondido;
 
     public Envido(int puntosAcumulados){
         this.puntos = puntosAcumulados;
+        this.cantoRespondido = false;
     }
 
     public void noQuiero() {
         if(this.puntos == 0) this.puntos = 1;
+        this.cantoRespondido = true;
     }
 
     public void quiero(){
         this.puntos += 2;
+        this.cantoRespondido = true;
     }
 
     public int cuantosPuntos() {
@@ -52,7 +56,22 @@ public class Envido implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego faltaEnvido() {
+    public EstadoJuego faltaEnvido(int puntosActuales) {
         return new FaltaEnvido(this.puntos + 2);
+    }
+
+    @Override
+    public Boolean fueRespondido() {
+        return this.cantoRespondido;
+    }
+
+    @Override
+    public Boolean fueNoQuerido() {
+        return null;
+    }
+
+    @Override
+    public EstadoJuego flor() {
+        throw new CantoInvalidoException();
     }
 }

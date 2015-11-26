@@ -21,5 +21,11 @@ public interface  EstadoJuego {
 
     public EstadoJuego realEnvido();
 
-    public EstadoJuego faltaEnvido();
+    public EstadoJuego faltaEnvido(int puntosActuales);
+
+    public Boolean fueRespondido();
+
+    public Boolean fueNoQuerido();
+
+    public EstadoJuego flor();
 }

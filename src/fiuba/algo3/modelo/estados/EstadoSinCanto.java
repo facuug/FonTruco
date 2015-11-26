@@ -1,5 +1,6 @@
 package fiuba.algo3.modelo.estados;
 
+import fiuba.algo3.modelo.Flor;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import fiuba.algo3.modelo.interfaces.EstadoJuego;
 
@@ -47,7 +48,22 @@ public class EstadoSinCanto implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego faltaEnvido() {
-        return new FaltaEnvido(0);
+    public EstadoJuego faltaEnvido(int puntosActuales) {
+        return new FaltaEnvido(puntosActuales);
+    }
+
+    @Override
+    public Boolean fueRespondido() {
+        return true;
+    }
+
+    @Override
+    public Boolean fueNoQuerido() {
+        return false;
+    }
+
+    @Override
+    public EstadoJuego flor() {
+        return new Flor();
     }
 }

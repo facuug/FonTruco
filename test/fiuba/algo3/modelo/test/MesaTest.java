@@ -20,6 +20,7 @@ import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
 
 public class MesaTest {
+
 	private Equipo equipoUno;
 	private Equipo equipoDos;
 	private Mesa mesa;
@@ -32,7 +33,7 @@ public class MesaTest {
 		equipoUno.agregarJugador(new Jugador("Zim"));
 
 		equipoDos = new Equipo();
-		equipoDos.agregarJugador(new Jugador("Dib"));
+		equipoUno.agregarJugador(new Jugador("Dib"));
 
 		mesa = new Mesa(equipoUno,equipoDos);
 	}
@@ -59,7 +60,21 @@ public class MesaTest {
 		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
 		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
 		
-		assertEquals(equipoDos,this.mesa.determinarGanadorDeMano().verEquipo());
+		assertEquals(equipoDos,this.mesa.ganadorDeMano().verEquipo());
+	}
+
+	@Test
+	public void ganadorDeManoDevuelveGanadorDeManoCompleta(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.DOS,Palo.BASTO));
+
+		assertEquals(equipoUno,this.mesa.ganadorDeMano().verEquipo());
 	}
 	
 	private void prepararManosParaTest() {
@@ -78,5 +93,4 @@ public class MesaTest {
 		manoDib.recibirCarta(cartaCinco);
 		manoDib.recibirCarta(cartaSeis);
 	}
-	
 }

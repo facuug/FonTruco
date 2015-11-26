@@ -17,7 +17,7 @@ public class CartaHandler implements EventHandler<Event> {
 	
 	public CartaHandler(ImageView cartaSeleccionada, List<ImageView> cartasEnMano) {
 		this.cartaSeleccionada = cartaSeleccionada;
-		this.cartasEnMano = new ArrayList<>(cartasEnMano);
+		this.cartasEnMano = new ArrayList<ImageView>(cartasEnMano);
 		this.cartasEnMano.remove(cartaSeleccionada);
 	}
 	

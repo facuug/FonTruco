@@ -1,6 +1,7 @@
 package fiuba.algo3.modelo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -13,14 +14,21 @@ public class Mesa {
 	private Mazo mazo;
     private LinkedHashMap<Jugador, List<Carta>> cartasJugadas;
     private Equipo equipoUno,equipoDos;
+	private List<Equipo> equipos;
     private int cantidadDeJugadores;
+
+	private Equipo equipoMano;
 	private Ronda ronda;
 
     public Mesa(Equipo unEquipo, Equipo otroEquipo) {
     	this.equipoUno = unEquipo;
     	this.equipoDos = otroEquipo;
-    	this.ronda = new PrimeraRonda(this.equipoUno,this.equipoDos);
+		this.equipoMano = unEquipo;
+
+		this.equipos = Arrays.asList(unEquipo,otroEquipo);
+		this.ronda = new PrimeraRonda(this.equipoUno,this.equipoDos);
     	this.cantidadDeJugadores = unEquipo.cantidadDeJugadores() + otroEquipo.cantidadDeJugadores();
+		this.cartasJugadas = new LinkedHashMap<Jugador, List<Carta>>();
 	}
 
 	public void jugarCarta(Jugador jugador, Carta unaCarta) {
@@ -32,7 +40,7 @@ public class Mesa {
 
         }
         else {
-        	cartasJugador = new ArrayList<>();
+        	cartasJugador = new ArrayList<Carta>();
         	cartasJugador.add(unaCarta);
         }
     	cartasJugadas.put(jugador, cartasJugador);
@@ -42,8 +50,50 @@ public class Mesa {
         return ( cartasJugadas.size() == 3 * cantidadDeJugadores );
     }
 
-	public Resultado determinarGanadorDeMano() {
-		return this.ronda.determinarGanadorDeMano();
+    public void repartir() {
+    	List<Jugador> jugadores = new ArrayList<Jugador>();
+    	mazo.mezclar();
+    	for(Equipo equipo : equipos) {
+    		jugadores.addAll(equipo.getJugadores());
+    	}
+    	for(Jugador unJugador : jugadores) {
+    		Mano unaMano = new Mano();
+    		for(int i = 0 ; i<3 ; i++) {
+    			unaMano.recibirCarta(mazo.repartirCarta());
+    		}
+    		unJugador.setMano(unaMano);
+    	}
+		this.rotarMano();
+    }
+
+	private void rotarMano() {
+		int posicion = this.equipos.indexOf(this.equipoMano);
+
+		try{
+			this.equipoMano = this.equipos.get(posicion);
+		} catch (Exception exception){
+			this.equipoMano = this.equipos.get(0);
+		}
+	}
+
+	public List<Equipo> getEquipos() {
+		return equipos;
+	}
+
+	public void setEquipos(List<Equipo> equipos) {
+		this.equipos = equipos;
+	}
+
+	public Ganador determinarGanadorDeMano() {
+		List<List<Carta>> cartas = new ArrayList(cartasJugadas.values());
+		List<Ganador> ganadores = new ArrayList<Ganador>();
+		for(int j = 0; j<cartas.get(0).size();j++){
+			for(int i = 0; i<cantidadDeJugadores/2 ; i+=2) {
+				ganadores.add(comparar(cartas.get(i), cartas.get(i+1)));
+			}
+		}
+		return definirGanador(ganadores);
+
     }
 	
 	private Ganador comparar(List<Carta> cartasEquipoUno, List<Carta> cartasEquipoDos) {
@@ -81,5 +131,13 @@ public class Mesa {
 	
 	public Resultado determinarGanadorDeRonda() {
 		return this.ronda.ganadorDeRonda();
+	}
+
+	public Equipo equipoMano() {
+		return this.equipoMano;
+	}
+
+	public Resultado ganadorDeMano() {
+		return this.ronda.determinarGanadorDeMano();
 	}
 }

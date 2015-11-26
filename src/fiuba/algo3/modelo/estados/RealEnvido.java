@@ -9,18 +9,22 @@ import fiuba.algo3.modelo.interfaces.EstadoJuego;
 public class RealEnvido implements EstadoJuego {
 
     private int puntos = 0;
+    private Boolean fueRespondido;
 
     public RealEnvido(int puntosAcumulados) {
         this.puntos = puntosAcumulados;
+        this.fueRespondido = false;
     }
 
     @Override
     public void noQuiero() {
         if(this.puntos == 0) this.puntos = 1;
+        this.fueRespondido = true;
     }
 
     public void quiero(){
         this.puntos += 3;
+        this.fueRespondido = true;
     }
 
     @Override
@@ -54,7 +58,22 @@ public class RealEnvido implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego faltaEnvido() {
+    public EstadoJuego faltaEnvido(int puntosActuales) {
         return new FaltaEnvido(this.puntos + 3);
+    }
+
+    @Override
+    public Boolean fueRespondido() {
+        return this.fueRespondido;
+    }
+
+    @Override
+    public Boolean fueNoQuerido() {
+        return null;
+    }
+
+    @Override
+    public EstadoJuego flor() {
+        throw new CantoInvalidoException();
     }
 }

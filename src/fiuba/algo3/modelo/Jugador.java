@@ -1,5 +1,7 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.excepciones.NoHayMasCartasException;
+
 public class Jugador {
 	
 	private Mano mano;
@@ -29,6 +31,7 @@ public class Jugador {
 	}
 	
 	public Carta jugarCarta(int posicion) {
+		if(this.cartasEnMano() == 0) throw new NoHayMasCartasException();
 		
 		return this.mano.sacarCarta(posicion);
 	}
@@ -36,5 +39,13 @@ public class Jugador {
 	public int cartasEnMano() {
 		
 		return this.mano.cantidadDeCartas();
+	}
+
+	public int puntosDeEnvido() {
+		return this.mano.puntosDeEnvido();
+	}
+
+	public int puntosDeFlor() {
+		return this.mano.puntosDeFlor();
 	}
 }
