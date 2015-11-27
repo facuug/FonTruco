@@ -13,10 +13,9 @@ public class CartaTest {
 	public void crearCarta_conValoresCorrectos_creaCartaConValorEnJerarquiaYEnvido() {
 		Carta anchoEspada = new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA);
 		
-		
 		assertEquals(14,anchoEspada.getTipoCarta().getValor());
 		assertEquals(Palo.ESPADA, anchoEspada.getPalo());
-		assertEquals(11, anchoEspada.valorDeEnvido());
+		assertEquals(1, anchoEspada.valorDeEnvido());
 	}
 	
 	@Test

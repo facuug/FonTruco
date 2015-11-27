@@ -13,19 +13,32 @@ public class CartaHandler implements EventHandler<Event> {
 
 	private List<ImageView> cartasEnMano;
 	
+	private List<ImageView> cartasTotales;
+	
 	private ImageView cartaSeleccionada;
+	
+	private static int posicionCartaJugador = 0;
+	
+	private ImageView contenedorEnMesa;
 	
 	public CartaHandler(ImageView cartaSeleccionada, List<ImageView> cartasEnMano) {
 		this.cartaSeleccionada = cartaSeleccionada;
+		this.cartasTotales = cartasEnMano;
 		this.cartasEnMano = new ArrayList<ImageView>(cartasEnMano);
 		this.cartasEnMano.remove(cartaSeleccionada);
 	}
 	
+	public void setContendorEnMesa(ImageView contenedor) {
+		contenedorEnMesa = contenedor;
+	}
+	
 	@Override
 	public void handle(Event event) {
-		 cartaSeleccionada.setEffect(new DropShadow(20, Color.BLACK));
-		 for(ImageView cartaEnMano : cartasEnMano) {
-			 cartaEnMano.setEffect(null);
-		 }
+		ImageView cartaJugada = (ImageView)event.getSource(); 
+		cartaJugada.setVisible(false);
+		cartasEnMano.remove(event.getSource());
+		cartasTotales.remove(event.getSource());
 	}
+	
+	
 }

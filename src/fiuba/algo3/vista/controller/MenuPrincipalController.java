@@ -3,6 +3,9 @@ package fiuba.algo3.vista.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.vista.controller.handler.btnSalirHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -86,11 +89,20 @@ public class MenuPrincipalController extends Controller {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				/*
-				 * Aca va como se arma la mesa
-				 */
+				MesaController.setCantidadJugadores(2);
+				MesaController.setMesa(new Mesa(armarEquipo(1), armarEquipo(1)));
 				redirect("Mesa");
 			}
 		});
+	}
+	
+	private Equipo armarEquipo(int cantidadDeJugadores) {
+		Equipo equipo = new Equipo();
+		
+		for(int i = 0; i<cantidadDeJugadores;i+=2) {
+			equipo.agregarJugador(new Jugador("Jugador"+(i+1)));
+		}
+		return equipo;
+		
 	}
 }

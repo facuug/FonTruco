@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.vista.controller.handler.CartaHandler;
-import fiuba.algo3.vista.controller.handler.btnSalirHandler;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -17,14 +16,22 @@ public class MesaController extends Controller{
 	
 	//Cada control de javafx tiene por nombre el id:fx del control que esta en Mesa.fxml
 	
+	private static int cantidadJugadores = 0;
+	
+	private static Mesa mesa;
+	
+	public static int getCantidadJugadores() {
+		return cantidadJugadores;
+	}
+
+	public static void setCantidadJugadores(int cantidadJugadores) {
+		MesaController.cantidadJugadores = cantidadJugadores;
+	}
+
 	@FXML
 	private Button btnSalir;
 	@FXML
-	private Button btnAyuda;
-	@FXML
     private Button btnVolver;
-	@FXML
-	private Button btnJugarCarta;
 	@FXML
     private Button btnEnvido;
 	@FXML
@@ -57,101 +64,50 @@ public class MesaController extends Controller{
 	@FXML
     private ImageView carta3Jug4;
 	
-	private int cantidadDeJugadores = 4; //sacar el hardcodeo!!!!!!!!!!
-	
-	private int numeroCartaJugador = 0;
-	
-	private List<ImageView> cartasEnMano;
+	List<List<ImageView>> cartasJugando;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
-		 cartasEnMano = new ArrayList<ImageView>(Arrays.asList(carta1Jug1,carta2Jug1,carta3Jug1,
-				carta1Jug2,carta2Jug2,carta3Jug2,
-				carta1Jug3,carta2Jug3,carta3Jug3,
-				carta1Jug4,carta2Jug4,carta3Jug4));
-		btnSalirHandler();
-		btnAyudaHandler();
-		btnVolverHandler();
-		cartasHandler();
-		btnJugarCartaHandler();
-	}
-	
-	public void btnSalirHandler() {
-		btnSalir.setOnAction(new btnSalirHandler());
-	}
-	
-	private void btnAyudaHandler() {
-		btnAyuda.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				popup("Ayuda");
-			}
-		});
-	}
-	
-	public void btnVolverHandler() {
-		btnVolver.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				redirect("MenuPrincipal");
-			}
-		});
+		cartasJugando = new ArrayList<>(Arrays.asList(
+				Arrays.asList(carta1Jug1,carta2Jug1,carta3Jug1),
+				Arrays.asList(carta1Jug2,carta2Jug2,carta3Jug2),
+				Arrays.asList(carta1Jug3,carta2Jug3,carta3Jug3),
+				Arrays.asList(carta1Jug4,carta2Jug4,carta3Jug4)));
+		prepararMesa();
+		setImageViewCartaHandler();
 	}
 
-	public void btnJugarCartaHandler() {
-		btnJugarCarta.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				rotarJugador();
-			}
-		});
+	public static Mesa getMesa() {
+		return mesa;
 	}
-	public void btnTrucoHandler() {
-		btnTruco.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-			}
-		});
-	}
-	public void btnEnvidoHandler() {
-		btnEnvido.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-			}
-		});
-	}
-	public void btnFlorHandler() {
-		btnFlor.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-			}
-		});
+
+	public static void setMesa(Mesa mesa) {
+		MesaController.mesa = mesa;
 	}
 	
-	public void cartasHandler() {
-		for (ImageView carta : cartasEnMano) {
-			carta.setOnMouseClicked(new CartaHandler(carta, cartasEnMano));
+	private void prepararMesa() {
+		if(cantidadJugadores == 2) {
+			esconderCartas();
 		}
 	}
 	
-	public void rotarJugador() {
-		habilitarCarta();
-		numeroCartaJugador= numeroCartaJugador+3;
-		if(numeroCartaJugador>11){
-			numeroCartaJugador=0;
-		}
-		
-		habilitarCarta();
-	
-	}
-	
-	public void habilitarCarta() {
-		for(int i=numeroCartaJugador;i<numeroCartaJugador+3;i++){
-			cartasEnMano.get(i).setDisable(!cartasEnMano.get(i).isDisable());
-		}
+	private void setImageViewCartaHandler() {
+		//for ( ImageView carta : cartasJugando) {
+			//carta.setOnMouseClicked(new CartaHandler(carta, cartasJugando));
+		//}
 		
 	}
+	
+	private void esconderCartas() {
+		
+		for(int i=1; i<3;i++) {
+			List<ImageView> cartasNoUsadas = cartasJugando.get(i);
+			for(ImageView cartaAEsconder : cartasNoUsadas) {
+				cartaAEsconder.setVisible(false);
+				
+			}
+			cartasJugando.remove(i);
+		}
+	}
+	
 }

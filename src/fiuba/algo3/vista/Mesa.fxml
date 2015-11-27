@@ -7,7 +7,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="801.0" prefWidth="843.0" style="-fx-background-color: #598749;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.vista.controller.MesaController">
    <children>
-      <GridPane layoutX="2.0" layoutY="-6.0" prefHeight="810.0" prefWidth="843.0">
+      <GridPane layoutX="2.0" layoutY="-6.0" prefHeight="737.0" prefWidth="843.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="2.0" prefWidth="186.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="680.0" minWidth="10.0" prefWidth="444.0" />
@@ -19,18 +19,9 @@
           <RowConstraints maxHeight="217.5" minHeight="10.0" prefHeight="186.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <children>
-                  <Button fx:id="btnJugarCarta" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Jugar Carta" />
-                  <Button fx:id="btnEnvido" layoutX="14.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Envido!" />
-                  <Button fx:id="btnTruco" layoutX="14.0" layoutY="92.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Truco!" />
-                  <Button fx:id="btnFlor" layoutX="14.0" layoutY="127.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Flor!" />
-               </children>
-            </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnSalir" layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Salir" />
-                  <Button fx:id="btnAyuda" layoutX="24.0" layoutY="64.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Ayuda" />
+                  <Button fx:id="btnSalir" layoutX="24.0" layoutY="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Salir" />
                   <Button fx:id="btnVolver" layoutX="24.0" layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="&lt;- Volver" />
                </children>
             </Pane>
@@ -174,6 +165,33 @@
                   <RowConstraints maxHeight="273.0" minHeight="10.0" prefHeight="172.0" valignment="TOP" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
+         </children>
+      </GridPane>
+      <GridPane layoutX="27.0" layoutY="721.0" prefHeight="62.0" prefWidth="858.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.0" minWidth="0.0" prefWidth="66.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="662.0" minWidth="70.0" prefWidth="83.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="742.0" minWidth="0.0" prefWidth="95.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="742.0" minWidth="10.0" prefWidth="66.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="742.0" minWidth="10.0" prefWidth="94.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="742.0" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="742.0" minWidth="0.0" prefWidth="64.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="742.0" minWidth="10.0" prefWidth="96.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="742.0" minWidth="10.0" prefWidth="197.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnTruco" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" text="Truco!" />
+            <Button fx:id="btnTruco1" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Retruco!" GridPane.columnIndex="1" />
+            <Button fx:id="btnTruco11" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Vale Cuatro!" GridPane.columnIndex="2" />
+            <Button fx:id="btnEnvido1" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Real Envido!" GridPane.columnIndex="4" />
+            <Button fx:id="btnEnvido3" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" text="Envido!" GridPane.columnIndex="3" />
+            <Button fx:id="btnEnvido4" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" text="Falta Envido!" GridPane.columnIndex="5" />
+            <Button fx:id="btnFlor" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Flor!" GridPane.columnIndex="6" />
+            <Button fx:id="btnFlor1" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Contra Flor!" GridPane.columnIndex="7" />
+            <Button fx:id="btnFlor11" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Contra Flor al Resto!" GridPane.columnIndex="8" />
          </children>
       </GridPane>
    </children>
