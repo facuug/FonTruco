@@ -64,8 +64,17 @@ public class MesaController extends Controller{
 	@FXML
     private ImageView carta3Jug4;
 	
-	List<List<ImageView>> cartasJugando;
+	@FXML
+	private ImageView contenedor1;
+	@FXML
+	private ImageView contenedor2;
+	@FXML
+	private ImageView contenedor3;
+	@FXML
+	private ImageView contenedor4;
 	
+	List<List<ImageView>> cartasJugando;
+	List<ImageView> contenedores;
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		cartasJugando = new ArrayList<>(Arrays.asList(
@@ -73,6 +82,8 @@ public class MesaController extends Controller{
 				new ArrayList<>(Arrays.asList(carta1Jug2,carta2Jug2,carta3Jug2)),
 				new ArrayList<>(Arrays.asList(carta1Jug3,carta2Jug3,carta3Jug3)),
 				new ArrayList<>(Arrays.asList(carta1Jug4,carta2Jug4,carta3Jug4))));
+		
+		contenedores = new ArrayList<>(Arrays.asList(contenedor1,contenedor2,contenedor3,contenedor4));
 		prepararMesa();
 		setImageViewCartaHandler();
 	}
@@ -92,22 +103,24 @@ public class MesaController extends Controller{
 	}
 	
 	private void setImageViewCartaHandler() {
+		int i = 0;
 		for(List<ImageView> cartasEnMano : cartasJugando) {
 			for(ImageView carta : cartasEnMano) {
 				carta.setOnMouseClicked(new CartaHandler(cartasEnMano,cartasJugando));
+				((CartaHandler)carta.getOnMouseClicked()).setContendorEnMesa(contenedores.get(i));
 			}
+			i++;
 		}
 	}
 	
 	private void esconderCartas() {
-		
 		for(int i=1; i<3;i++) {
 			List<ImageView> cartasNoUsadas = cartasJugando.get(i);
 			for(ImageView cartaAEsconder : cartasNoUsadas) {
 				cartaAEsconder.setVisible(false);
-				
 			}
 			cartasJugando.remove(i);
+			contenedores.remove(i);
 		}
 	}
 	

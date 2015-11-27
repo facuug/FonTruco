@@ -118,15 +118,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="cartaJugadaJug4" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1" />
-                  <ImageView fx:id="cartaJugadaJug2" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <ImageView fx:id="cartaJugadaJug1" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ImageView fx:id="cartaJugadaJug3" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" GridPane.columnIndex="1" />
-                  <ImageView fx:id="mazo" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="contenedor4" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1" />
+                  <ImageView fx:id="contenedor2" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <ImageView fx:id="contenedor1" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ImageView fx:id="contenedor3" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">

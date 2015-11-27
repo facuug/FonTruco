@@ -5,9 +5,8 @@ import java.util.List;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 
 public class CartaHandler implements EventHandler<Event> {
 
@@ -34,7 +33,11 @@ public class CartaHandler implements EventHandler<Event> {
 		ImageView cartaJugada = (ImageView)event.getSource();
 		cartasDeMano.remove(cartaJugada);
 		cartaJugada.setVisible(false);
-		//pasar carta al contenedor
+		jugarCarta(cartaJugada);
+		habilitarCartas();
+	}
+	
+	private void habilitarCartas() {
 		List<ImageView> cartasAHabilitar = new ArrayList();
 		cartasAHabilitar.addAll(cartasDeMano);
 		cartasAHabilitar.addAll(cartasSiguientes);
@@ -42,9 +45,10 @@ public class CartaHandler implements EventHandler<Event> {
 		for(ImageView carta : cartasAHabilitar) {
 			carta.setDisable(!carta.isDisable());
 		}
-		
-		
 	}
 	
-	
+	private void jugarCarta(ImageView cartaJugada) {
+		Image imagenCarta = cartaJugada.getImage();
+		contenedorAsociado.setImage(imagenCarta);
+	}
 }
