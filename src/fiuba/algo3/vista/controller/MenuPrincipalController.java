@@ -39,6 +39,7 @@ public class MenuPrincipalController extends Controller {
 		btnSalirHandler();
 		btnAyudaHandler();
 		btnDosJugadoresHandler();
+		btnCuatroJugadoresHandler();
 	}
 	
 	private EventHandler<ActionEvent> esconderOtrosBotonesHandler = new EventHandler<ActionEvent>(){
@@ -91,6 +92,18 @@ public class MenuPrincipalController extends Controller {
 			public void handle(ActionEvent event) {
 				MesaController.setCantidadJugadores(2);
 				MesaController.setMesa(new Mesa(armarEquipo(1), armarEquipo(1)));
+				redirect("Mesa");
+			}
+		});
+	}
+	
+	private void btnCuatroJugadoresHandler() {
+		btnCuatroJugadores.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				MesaController.setCantidadJugadores(4);
+				MesaController.setMesa(new Mesa(armarEquipo(2), armarEquipo(2)));
 				redirect("Mesa");
 			}
 		});

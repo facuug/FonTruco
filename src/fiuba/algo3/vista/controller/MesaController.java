@@ -69,10 +69,10 @@ public class MesaController extends Controller{
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		cartasJugando = new ArrayList<>(Arrays.asList(
-				Arrays.asList(carta1Jug1,carta2Jug1,carta3Jug1),
-				Arrays.asList(carta1Jug2,carta2Jug2,carta3Jug2),
-				Arrays.asList(carta1Jug3,carta2Jug3,carta3Jug3),
-				Arrays.asList(carta1Jug4,carta2Jug4,carta3Jug4)));
+				new ArrayList<>(Arrays.asList(carta1Jug1,carta2Jug1,carta3Jug1)),
+				new ArrayList<>(Arrays.asList(carta1Jug2,carta2Jug2,carta3Jug2)),
+				new ArrayList<>(Arrays.asList(carta1Jug3,carta2Jug3,carta3Jug3)),
+				new ArrayList<>(Arrays.asList(carta1Jug4,carta2Jug4,carta3Jug4))));
 		prepararMesa();
 		setImageViewCartaHandler();
 	}
@@ -92,10 +92,11 @@ public class MesaController extends Controller{
 	}
 	
 	private void setImageViewCartaHandler() {
-		//for ( ImageView carta : cartasJugando) {
-			//carta.setOnMouseClicked(new CartaHandler(carta, cartasJugando));
-		//}
-		
+		for(List<ImageView> cartasEnMano : cartasJugando) {
+			for(ImageView carta : cartasEnMano) {
+				carta.setOnMouseClicked(new CartaHandler(cartasEnMano,cartasJugando));
+			}
+		}
 	}
 	
 	private void esconderCartas() {

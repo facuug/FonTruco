@@ -11,33 +11,39 @@ import javafx.scene.paint.Color;
 
 public class CartaHandler implements EventHandler<Event> {
 
-	private List<ImageView> cartasEnMano;
-	
-	private List<ImageView> cartasTotales;
-	
-	private ImageView cartaSeleccionada;
-	
-	private static int posicionCartaJugador = 0;
-	
-	private ImageView contenedorEnMesa;
-	
-	public CartaHandler(ImageView cartaSeleccionada, List<ImageView> cartasEnMano) {
-		this.cartaSeleccionada = cartaSeleccionada;
-		this.cartasTotales = cartasEnMano;
-		this.cartasEnMano = new ArrayList<ImageView>(cartasEnMano);
-		this.cartasEnMano.remove(cartaSeleccionada);
+	private ImageView contenedorAsociado;
+	private List<ImageView> cartasDeMano;
+	private List<ImageView> cartasSiguientes;
+		
+	public CartaHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando) {
+		this.cartasDeMano = cartasDeMano;
+		int posicionSiguiente = cartasJugando.indexOf(cartasDeMano)+1;
+		if(posicionSiguiente == cartasJugando.size()) {
+			posicionSiguiente = 0;
+		}
+		
+		this.cartasSiguientes = cartasJugando.get(posicionSiguiente);
 	}
 	
 	public void setContendorEnMesa(ImageView contenedor) {
-		contenedorEnMesa = contenedor;
+		contenedorAsociado = contenedor;
 	}
 	
 	@Override
 	public void handle(Event event) {
-		ImageView cartaJugada = (ImageView)event.getSource(); 
+		ImageView cartaJugada = (ImageView)event.getSource();
+		cartasDeMano.remove(cartaJugada);
 		cartaJugada.setVisible(false);
-		cartasEnMano.remove(event.getSource());
-		cartasTotales.remove(event.getSource());
+		//pasar carta al contenedor
+		List<ImageView> cartasAHabilitar = new ArrayList();
+		cartasAHabilitar.addAll(cartasDeMano);
+		cartasAHabilitar.addAll(cartasSiguientes);
+		
+		for(ImageView carta : cartasAHabilitar) {
+			carta.setDisable(!carta.isDisable());
+		}
+		
+		
 	}
 	
 	
