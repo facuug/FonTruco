@@ -1,15 +1,21 @@
 package fiuba.algo3.vista.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import fiuba.algo3.modelo.Carta;
+import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.vista.controller.handler.CartaHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class MesaController extends Controller{
@@ -86,6 +92,8 @@ public class MesaController extends Controller{
 		contenedores = new ArrayList<>(Arrays.asList(contenedor1,contenedor2,contenedor3,contenedor4));
 		prepararMesa();
 		setImageViewCartaHandler();
+		mesa.repartir();
+		mostrarCartas();
 	}
 
 	public static Mesa getMesa() {
@@ -105,9 +113,11 @@ public class MesaController extends Controller{
 	private void setImageViewCartaHandler() {
 		int i = 0;
 		for(List<ImageView> cartasEnMano : cartasJugando) {
+			
 			for(ImageView carta : cartasEnMano) {
 				carta.setOnMouseClicked(new CartaHandler(cartasEnMano,cartasJugando));
 				((CartaHandler)carta.getOnMouseClicked()).setContendorEnMesa(contenedores.get(i));
+				if(i==4) i=0;
 			}
 			i++;
 		}
@@ -124,4 +134,27 @@ public class MesaController extends Controller{
 		}
 	}
 	
+	private void mostrarCartas() {
+		List<Equipo> equipos = mesa.getEquipos();
+		plasmarCartaEnImageView(equipos.get(0).getJugadores().get(0).getMano(),0);
+	}
+	
+	private void plasmarCartaEnImageView(Mano unaMano, int posicionJugador) {
+		List<ImageView> vistaCartas = cartasJugando.get(posicionJugador);
+		int posicionCarta = 0;
+		for(Carta carta : unaMano.getCartas()) {
+			String rutaImagen = armarRutaImagen(carta);
+			File archivoCarta = new File(rutaImagen);
+			Image pngCarta = new Image(archivoCarta.toURI().toString());
+			vistaCartas.get(posicionCarta).setImage(pngCarta);
+			posicionCarta+=1;
+		}
+	}
+	
+	private String armarRutaImagen(Carta carta) {
+		return new StringBuilder().append("src/fiuba/algo3/vista/recursos/carta/")
+				.append(carta.getPalo().toString().toLowerCase())
+				.append("/").append(String.valueOf(carta.getTipoCarta().getValorRealCarta()))
+				.append(".png").toString();
+	}
 }

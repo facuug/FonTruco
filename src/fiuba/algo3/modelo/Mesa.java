@@ -24,7 +24,7 @@ public class Mesa {
     	this.equipoUno = unEquipo;
     	this.equipoDos = otroEquipo;
 		this.equipoMano = unEquipo;
-
+		mazo = new Mazo();
 		this.equipos = Arrays.asList(unEquipo,otroEquipo);
 		this.ronda = new PrimeraRonda(this.equipoUno,this.equipoDos);
     	this.cantidadDeJugadores = unEquipo.cantidadDeJugadores() + otroEquipo.cantidadDeJugadores();
@@ -37,7 +37,6 @@ public class Mesa {
         if(cartasJugadas.containsKey(jugador)) {
         	cartasJugador = cartasJugadas.get(jugador);
         	cartasJugador.add(unaCarta);
-
         }
         else {
         	cartasJugador = new ArrayList<Carta>();

@@ -112,10 +112,9 @@ public class MenuPrincipalController extends Controller {
 	private Equipo armarEquipo(int cantidadDeJugadores) {
 		Equipo equipo = new Equipo();
 		
-		for(int i = 0; i<cantidadDeJugadores;i+=2) {
+		for(int i = 0; i<cantidadDeJugadores;i++) {
 			equipo.agregarJugador(new Jugador("Jugador"+(i+1)));
 		}
 		return equipo;
-		
 	}
 }

@@ -14,6 +14,14 @@ public class Mano {
 		this.cartas = new ArrayList<Carta>();
 	}
 	
+	public List<Carta> getCartas() {
+		return cartas;
+	}
+
+	public void setCartas(List<Carta> cartas) {
+		this.cartas = cartas;
+	}
+
 	public void recibirCarta(Carta carta) {
 		
 		this.cartas.add(carta);

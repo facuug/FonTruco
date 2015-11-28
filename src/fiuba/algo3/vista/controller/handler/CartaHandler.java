@@ -1,8 +1,11 @@
 package fiuba.algo3.vista.controller.handler;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import fiuba.algo3.modelo.Carta;
+import fiuba.algo3.modelo.Mano;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
@@ -13,7 +16,9 @@ public class CartaHandler implements EventHandler<Event> {
 	private ImageView contenedorAsociado;
 	private List<ImageView> cartasDeMano;
 	private List<ImageView> cartasSiguientes;
-		
+	private Mano miMano;
+	private Mano manoSiguiente;
+	
 	public CartaHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando) {
 		this.cartasDeMano = cartasDeMano;
 		int posicionSiguiente = cartasJugando.indexOf(cartasDeMano)+1;
@@ -24,6 +29,17 @@ public class CartaHandler implements EventHandler<Event> {
 		this.cartasSiguientes = cartasJugando.get(posicionSiguiente);
 	}
 	
+	public CartaHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Mano miMano, Mano manoSiguiente) {
+		this.cartasDeMano = cartasDeMano;
+		int posicionSiguiente = cartasJugando.indexOf(cartasDeMano)+1;
+		if(posicionSiguiente == cartasJugando.size()) {
+			posicionSiguiente = 0;
+		}
+		
+		this.cartasSiguientes = cartasJugando.get(posicionSiguiente);
+		this.miMano = miMano;
+		this.manoSiguiente = manoSiguiente;
+	}
 	public void setContendorEnMesa(ImageView contenedor) {
 		contenedorAsociado = contenedor;
 	}
@@ -38,7 +54,7 @@ public class CartaHandler implements EventHandler<Event> {
 	}
 	
 	private void habilitarCartas() {
-		List<ImageView> cartasAHabilitar = new ArrayList();
+		List<ImageView> cartasAHabilitar = new ArrayList<>();
 		cartasAHabilitar.addAll(cartasDeMano);
 		cartasAHabilitar.addAll(cartasSiguientes);
 		
@@ -51,4 +67,5 @@ public class CartaHandler implements EventHandler<Event> {
 		Image imagenCarta = cartaJugada.getImage();
 		contenedorAsociado.setImage(imagenCarta);
 	}
+	
 }
