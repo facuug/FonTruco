@@ -6,6 +6,7 @@ import java.util.List;
 
 import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
+import fiuba.algo3.modelo.interfaces.Resultado;
 import fiuba.algo3.modelo.interfaces.Ronda;
 
 public class RondaFinal implements Ronda {

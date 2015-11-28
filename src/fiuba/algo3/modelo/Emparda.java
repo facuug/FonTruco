@@ -1,5 +1,6 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.interfaces.Resultado;
 import fiuba.algo3.modelo.interfaces.Ronda;
 
 public class Emparda implements Resultado {

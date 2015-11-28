@@ -18,10 +18,6 @@ public class Equipo {
 		this.posicion = 0;
 		this.jugadores = new ArrayList<Jugador>();
 	}
-	
-	public List<Jugador> getJugadores() {
-		return this.jugadores;
-	}
 
 	public int obtenerPuntos() {
 		return this.puntos;
@@ -29,6 +25,14 @@ public class Equipo {
 
 	public void sumarPuntos(int puntos) {
 		this.puntos += puntos;
+	}
+
+	public int cantidadDeJugadores() {
+		return this.jugadores.size();
+	}
+
+	public List<Jugador> getJugadores() {
+		return this.jugadores;
 	}
 
 	public void agregarJugador(Jugador unJugador){
@@ -46,6 +50,11 @@ public class Equipo {
 		}
 	}
 
+	public void establecerJugadorDeTurno(Jugador jugador) {
+		if(!this.jugadores.contains(jugador)) throw new JugadorInexistenteException();
+
+		this.posicion = this.jugadores.indexOf(jugador);
+	}
 
 	public int puntosDeEnvido() {
 		int mayorPuntaje = 0;
@@ -63,15 +72,5 @@ public class Equipo {
 			if ( jugador.puntosDeFlor() > mayorPuntaje ) mayorPuntaje = jugador.puntosDeFlor();
 		}
 		return mayorPuntaje;
-	}
-
-	public int cantidadDeJugadores() {
-		return this.jugadores.size();
-	}
-
-	public void establecerJugadorDeTurno(Jugador jugador) {
-		if(!this.jugadores.contains(jugador)) throw new JugadorInexistenteException();
-
-		this.posicion = this.jugadores.indexOf(jugador);
 	}
 }

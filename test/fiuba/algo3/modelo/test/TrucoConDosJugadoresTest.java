@@ -268,7 +268,7 @@ public class TrucoConDosJugadoresTest {
         assertEquals(1, trucoSinFlor.puntosEquipoDos());
     }
 
-    @Test ( expected = AccionInvalidaException.class)
+    @Test ( expected = AccionInvalidaException.class )
     public void jugarCartaDespuesDeFinalizarLaManoLanzaExcepcion(){
         trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS, Palo.COPA));
         trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
@@ -277,7 +277,6 @@ public class TrucoConDosJugadoresTest {
         trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SIETE_ORO, Palo.ORO));
 
         trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS, Palo.COPA));
-
     }
 
     @Test

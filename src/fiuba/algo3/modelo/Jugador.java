@@ -13,16 +13,16 @@ public class Jugador {
 		this.nombre = nombre;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
 	public void setMano(Mano mano) {
 		this.mano = mano;
 	}
 
 	public Mano getMano() {
 		return mano;
-	}
-
-	public String getNombre() {
-		return nombre;
 	}
 	
 	public void recibirCarta(Carta carta) {

@@ -1,11 +1,6 @@
 package fiuba.algo3.modelo.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +10,6 @@ import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
-import fiuba.algo3.modelo.enums.Ganador;
 import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
 
@@ -39,20 +33,6 @@ public class MesaTest {
 	}
 	
 	@Test
-	public void determinarGanadorDeRondaDevuelveGanadorDeRonda(){
-		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
-		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
-		
-		assertEquals(equipoDos,this.mesa.determinarGanadorDeRonda().verEquipo());
-	}
-	
-	@Test
-	public void determinarGanadorDeRondaConUnaSolaCartaDevuelveComoGanadorAlEquipoJugadorDeLaCarta(){
-		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
-		assertEquals(equipoUno,this.mesa.determinarGanadorDeRonda().verEquipo());
-	}
-	
-	@Test
 	public void determinarGanadorDeManoDevuelveGanador(){
 		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
 		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
@@ -62,7 +42,7 @@ public class MesaTest {
 		
 		assertEquals(equipoDos,this.mesa.ganadorDeMano().verEquipo());
 	}
-
+	
 	@Test
 	public void ganadorDeManoDevuelveGanadorDeManoCompleta(){
 		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
@@ -76,6 +56,23 @@ public class MesaTest {
 
 		assertEquals(equipoUno,this.mesa.ganadorDeMano().verEquipo());
 	}
+
+	@Test
+	public void determinarGanadorDeRondaConUnaSolaCartaDevuelveComoGanadorAlEquipoJugadorDeLaCarta(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		assertEquals(equipoUno,this.mesa.determinarGanadorDeRonda().verEquipo());
+	}
+	
+	@Test
+	public void determinarGanadorDeRondaDevuelveGanadorDeRonda(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+		
+		assertEquals(equipoDos,this.mesa.determinarGanadorDeRonda().verEquipo());
+	}
+
+
+
 	
 	private void prepararManosParaTest() {
 		manoZim = new Mano();
