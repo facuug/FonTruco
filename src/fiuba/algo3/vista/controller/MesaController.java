@@ -12,7 +12,10 @@ import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
+import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
 import fiuba.algo3.vista.controller.handler.CartaHandler;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -88,14 +91,30 @@ public class MesaController extends Controller{
 				new ArrayList<>(Arrays.asList(carta1Jug2,carta2Jug2,carta3Jug2)),
 				new ArrayList<>(Arrays.asList(carta1Jug3,carta2Jug3,carta3Jug3)),
 				new ArrayList<>(Arrays.asList(carta1Jug4,carta2Jug4,carta3Jug4))));
-		
+		setBtnVolverHandler();
+		setBtnSalirHandler();
 		contenedores = new ArrayList<>(Arrays.asList(contenedor1,contenedor2,contenedor3,contenedor4));
 		prepararMesa();
-		setImageViewCartaHandler();
 		mesa.repartir();
+		setImageViewCartaHandler();
 		mostrarCartas();
 	}
+	
+	public void setBtnSalirHandler() {
+		btnSalir.setOnAction(new BtnSalirHandler());
+	}
 
+	public void setBtnVolverHandler() {
+		btnVolver.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				redirect("MenuPrincipal");
+				
+			}
+		});
+	}
+	
 	public static Mesa getMesa() {
 		return mesa;
 	}
@@ -111,16 +130,34 @@ public class MesaController extends Controller{
 	}
 	
 	private void setImageViewCartaHandler() {
+		
+		
+		
+		List<Equipo> equipos = mesa.getEquipos();
+		List<Mano> manos = obtenerManosIntercaladas();
 		int i = 0;
 		for(List<ImageView> cartasEnMano : cartasJugando) {
-			
+			int j = 0;
 			for(ImageView carta : cartasEnMano) {
-				carta.setOnMouseClicked(new CartaHandler(cartasEnMano,cartasJugando));
+				carta.setOnMouseClicked(new CartaHandler(cartasEnMano,cartasJugando,manos.get(i).getCartas().get(j)));
 				((CartaHandler)carta.getOnMouseClicked()).setContendorEnMesa(contenedores.get(i));
-				if(i==4) i=0;
+				j++;
 			}
 			i++;
 		}
+	}
+	
+	private List<Mano> obtenerManosIntercaladas() {
+		int posicionOtraMano = 0;
+		List<Jugador> equipoUno = mesa.getEquipos().get(0).getJugadores();
+		List<Jugador> equipoDos = mesa.getEquipos().get(1).getJugadores();
+		List<Mano> manos = new ArrayList<>();
+		for(Jugador jugador : equipoUno) {
+			manos.add(jugador.getMano());
+			manos.add(equipoDos.get(posicionOtraMano).getMano());
+			posicionOtraMano++;
+		}
+		return manos;
 	}
 	
 	private void esconderCartas() {

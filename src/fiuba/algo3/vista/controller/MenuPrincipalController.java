@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mesa;
-import fiuba.algo3.vista.controller.handler.btnSalirHandler;
+import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -72,7 +72,7 @@ public class MenuPrincipalController extends Controller {
 	}
 	
 	private void btnSalirHandler() {
-		btnSalir.setOnAction(new btnSalirHandler());
+		btnSalir.setOnAction(new BtnSalirHandler());
 	}
 	
 	private void btnAyudaHandler() {
