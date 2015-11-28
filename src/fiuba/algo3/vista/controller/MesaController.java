@@ -86,14 +86,14 @@ public class MesaController extends Controller{
 	List<ImageView> contenedores;
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
-		cartasJugando = new ArrayList<>(Arrays.asList(
-				new ArrayList<>(Arrays.asList(carta1Jug1,carta2Jug1,carta3Jug1)),
+		cartasJugando = new ArrayList<List<ImageView>>(Arrays.asList(
+				new ArrayList<>(Arrays.asList(carta1Jug1, carta2Jug1, carta3Jug1)),
 				new ArrayList<>(Arrays.asList(carta1Jug2,carta2Jug2,carta3Jug2)),
 				new ArrayList<>(Arrays.asList(carta1Jug3,carta2Jug3,carta3Jug3)),
 				new ArrayList<>(Arrays.asList(carta1Jug4,carta2Jug4,carta3Jug4))));
 		setBtnVolverHandler();
 		setBtnSalirHandler();
-		contenedores = new ArrayList<>(Arrays.asList(contenedor1,contenedor2,contenedor3,contenedor4));
+		contenedores = new ArrayList<ImageView>(Arrays.asList(contenedor1,contenedor2,contenedor3,contenedor4));
 		prepararMesa();
 		mesa.repartir();
 		setImageViewCartaHandler();
@@ -130,9 +130,7 @@ public class MesaController extends Controller{
 	}
 	
 	private void setImageViewCartaHandler() {
-		
-		
-		
+
 		List<Equipo> equipos = mesa.getEquipos();
 		List<Mano> manos = obtenerManosIntercaladas();
 		int i = 0;

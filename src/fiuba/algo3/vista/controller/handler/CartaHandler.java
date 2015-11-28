@@ -42,7 +42,7 @@ public class CartaHandler implements EventHandler<Event> {
 	}
 	
 	private void habilitarCartas() {
-		List<ImageView> cartasAHabilitar = new ArrayList<>();
+		List<ImageView> cartasAHabilitar = new ArrayList<ImageView>();
 		cartasAHabilitar.addAll(cartasDeMano);
 		cartasAHabilitar.addAll(cartasSiguientes);
 		for(ImageView carta : cartasAHabilitar) {

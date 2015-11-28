@@ -4,7 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 
@@ -24,7 +24,7 @@ public class Main extends Application {
 	            menuPrincipalController.setStage(stage);
 	            stage.show();
 	        } catch (Exception ex) {
-	           ex.printStackTrace();;
+	           ex.printStackTrace();
 	        }
 	}
 

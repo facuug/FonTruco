@@ -1,7 +1,6 @@
 package fiuba.algo3.modelo.interfaces;
 
 import fiuba.algo3.modelo.*;
-import fiuba.algo3.modelo.enums.Ganador;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 
@@ -128,26 +127,22 @@ public abstract class JuegoTruco {
     }
 
     public void jugadorDeTurnoJuegaCarta(Carta carta) {
-        if( (!this.estadoDeEnvido.fueRespondido()) || (!this.estadoDeTruco.fueRespondido()) || (this.finDeMano) || (this.manoFinalizada()) ) throw new AccionInvalidaException();
+        if( (!this.estadoDeEnvido.fueRespondido()) || (!this.estadoDeTruco.fueRespondido()) || (this.manoFinalizada()) ) throw new AccionInvalidaException();
 
         Jugador jugadorDeTurno = this.turnoParaCarta.calcularJugadorDeTurno();
         this.turnoParaCarta.jugadorJuegaCarta(jugadorDeTurno,carta);
-        mesa.jugarCarta(jugadorDeTurno,carta);
+        mesa.jugarCarta(jugadorDeTurno.miEquipo(),carta);
 
         if( this.ultimoJugadorDeCarta == jugadorDeTurno ) this.turnoParaCanto.rotarEquipoDeTurno();
         this.ultimoJugadorDeCarta = jugadorDeTurno;
     }
 
     public boolean manoFinalizada() {
-        return false;
+        return ( this.mesa.manoFinalizada() || ( this.finDeMano ) );
     }
 
     private Equipo determinarGanadorDeMano(){
-        Ganador ganador = mesa.determinarGanadorDeMano();
-
-        if ( ganador.equals(Ganador.EquipoUno) ) return this.equipoUno;
-        else  if ( ganador.equals(Ganador.EquipoDos) ) return this.equipoDos;
-            else return mesa.equipoMano();
+        return this.mesa.determinarGanadorDeMano().verEquipo();
     }
 
     private Equipo determinarGanadorDeEnvido(){

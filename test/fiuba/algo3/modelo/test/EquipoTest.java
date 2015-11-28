@@ -1,16 +1,17 @@
 package fiuba.algo3.modelo.test;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import fiuba.algo3.modelo.Carta;
-import fiuba.algo3.modelo.Equipo;
-import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
 import fiuba.algo3.modelo.excepciones.JugadorInexistenteException;
 import fiuba.algo3.modelo.excepciones.NoHayJugadoresException;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.Assert;
+
+import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.Jugador;
 
 public class EquipoTest {
 
@@ -26,8 +27,8 @@ public class EquipoTest {
 
 		Jugador facu = new Jugador("Facu");
 		facu.recibirCarta(new Carta(TipoCarta.CUATRO, Palo.BASTO));
+		facu.recibirCarta(new Carta(TipoCarta.CUATRO, Palo.BASTO));
 		facu.recibirCarta(new Carta(TipoCarta.CINCO, Palo.BASTO));
-		facu.recibirCarta(new Carta(TipoCarta.SEIS, Palo.BASTO));
 
 		this.equipoPrueba = new Equipo();
 		this.equipoPrueba.agregarJugador(facu);
@@ -35,7 +36,7 @@ public class EquipoTest {
 	}
 	
 	@Test
-	public void elEquipoSeCreaConCeroPuntoTest() {
+	public void elEquipoSeCreaConCeroPunto() {
 		
 		Assert.assertEquals(0, this.equipoPrueba.obtenerPuntos());
 	}
@@ -49,19 +50,6 @@ public class EquipoTest {
 	}
 
 	@Test
-	public void establecerJugadorDeTurnoLoGuardaComoProximoJugadorDeTurno(){
-		Jugador alguien = new Jugador("Alguien");
-		this.equipoPrueba.agregarJugador(alguien);
-
-		this.equipoPrueba.establecerJugadorDeTurno(alguien);
-		Assert.assertEquals(alguien,this.equipoPrueba.jugadorDeTurno());
-	}
-
-	@Test ( expected = JugadorInexistenteException.class)
-	public void establecerJugadorDeTurnoConJugadorInexistenteEnEquipoLanzaExcepcion(){
-		this.equipoPrueba.establecerJugadorDeTurno(new Jugador("Alguien"));
-	}
-	@Test
 	public void puntosDeEnvidoDevuelveMayorPuntajeDeEnvido(){
 		Assert.assertEquals(32, this.equipoPrueba.puntosDeEnvido());
 	}
@@ -69,11 +57,9 @@ public class EquipoTest {
 	@Test
 	public void PuntosDeEnvidoDevuelveCeroSiNoHayPuntosDeEnvido(){
 		Equipo otroEquipo = new Equipo();
-		otroEquipo.agregarJugador(new Jugador("Alguien"));
-				
-		otroEquipo.getJugadores().get(0).recibirCarta(new Carta(TipoCarta.CINCO, Palo.COPA));
-		otroEquipo.getJugadores().get(0).recibirCarta(new Carta(TipoCarta.SIETE_ORO, Palo.ORO));
-		otroEquipo.getJugadores().get(0).recibirCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
+		Jugador alguien = new Jugador("Alguien");
+		alguien.recibirCarta(new Carta(TipoCarta.CUATRO, Palo.ORO));
+		otroEquipo.agregarJugador(alguien);
 
 		Assert.assertEquals(0,otroEquipo.puntosDeEnvido());
 	}
@@ -93,5 +79,19 @@ public class EquipoTest {
 	@Test
 	public void puntosDeFlorDevuelveMayorPuntajeDeFlor(){
 		Assert.assertEquals(36, this.equipoPrueba.puntosDeFlor() );
+	}
+
+	@Test
+	public void establecerJugadorDeTurnoLoGuardaComoProximoJugadorDeTurno(){
+		Jugador alguien = new Jugador("Alguien");
+		this.equipoPrueba.agregarJugador(alguien);
+
+		this.equipoPrueba.establecerJugadorDeTurno(alguien);
+		Assert.assertEquals(alguien,this.equipoPrueba.jugadorDeTurno());
+	}
+
+	@Test ( expected = JugadorInexistenteException.class)
+	public void establecerJugadorDeTurnoConJugadorInexistenteEnEquipoLanzaExcepcion(){
+		this.equipoPrueba.establecerJugadorDeTurno(new Jugador("Alguien"));
 	}
 }

@@ -12,9 +12,13 @@ public class Emparda implements Resultado {
 	}
 
 	@Override
-	public Ronda calcularRondaSiguiente(Ronda primeraRonda) {
-		// TODO Auto-generated method stub
-		return null;
+	public RondaFinal calcularRondaSiguiente(Ronda unaRonda) {
+		return new RondaFinal(unaRonda);
+	}
+
+	@Override
+	public String situacion() {
+		return "empardada";
 	}
 
 }

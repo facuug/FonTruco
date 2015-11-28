@@ -21,4 +21,9 @@ public class EquipoGanador implements Resultado {
 		return unaRonda.siguiente();
 	}
 
+	@Override
+	public String situacion() {
+		return "hayGanador";
+	}
+
 }

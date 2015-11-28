@@ -33,9 +33,11 @@ public class TrucoConDosJugadoresTest {
         homero.recibirCarta(new Carta(TipoCarta.SIETE_ORO, Palo.ORO));
 
         Equipo equipoUno = new Equipo();
+        facu.asignarEquipo(equipoUno);
         equipoUno.agregarJugador(facu);
 
         Equipo equipoDos = new Equipo();
+        homero.asignarEquipo(equipoDos);
         equipoDos.agregarJugador(homero);
 
         this.trucoSinFlor = new TrucoSinFlor(equipoUno,equipoDos);
@@ -292,9 +294,11 @@ public class TrucoConDosJugadoresTest {
         homero.recibirCarta(new Carta(TipoCarta.SEIS, Palo.BASTO));
 
         Equipo equipoUno = new Equipo();
+        facu.asignarEquipo(equipoUno);
         equipoUno.agregarJugador(facu);
 
         Equipo equipoDos = new Equipo();
+        homero.asignarEquipo(equipoDos);
         equipoDos.agregarJugador(homero);
 
         TrucoSinFlor truco = new TrucoSinFlor(equipoUno,equipoDos);

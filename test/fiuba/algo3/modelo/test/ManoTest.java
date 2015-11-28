@@ -2,7 +2,6 @@ package fiuba.algo3.modelo.test;
 
 import static org.junit.Assert.assertEquals;
 
-import fiuba.algo3.modelo.excepciones.NoHayFlorException;
 import fiuba.algo3.modelo.excepciones.NoHayMasCartasException;
 import org.junit.Before;
 import org.junit.Test;
@@ -61,30 +60,8 @@ public class ManoTest {
 	}
 
 	@Test
-	public void puntosDeEnvidoConManoConFlorDevuelveLaMayorPuntuacion(){
-		Mano mano = new Mano();
-		mano.recibirCarta(new Carta(TipoCarta.ANCHO_ESPADA,Palo.ESPADA));
-		mano.recibirCarta(new Carta(TipoCarta.CUATRO,Palo.ESPADA));
-		mano.recibirCarta(new Carta(TipoCarta.TRES,Palo.ESPADA));
-
-		assertEquals(27,mano.puntosDeEnvido());
-	}
-
-	@Test ( expected = NoHayMasCartasException.class)
-	public void puntosDeEnvidoSinCartasLanzaExcepcion(){
-		Mano mano = new Mano();
-		mano.puntosDeEnvido();
-	}
-
-	@Test ( expected = NoHayMasCartasException.class)
-	public void puntosDeFlorSinCartasLanzaExcepcion(){
-		Mano mano = new Mano();
-		mano.puntosDeFlor();
-	}
-
-	@Test ( expected = NoHayFlorException.class )
-	public void puntosDeFlorSinFlorLanzaExcepcion(){
-		this.mano.puntosDeFlor();
+	public void puntosDeFlorSinFlorDevuelveCero(){
+		assertEquals(0, this.mano.puntosDeFlor() );
 	}
 
 	@Test
@@ -95,5 +72,27 @@ public class ManoTest {
 		mano.recibirCarta(new Carta(TipoCarta.TRES,Palo.ESPADA));
 
 		assertEquals(28,mano.puntosDeFlor());
+	}
+
+	@Test
+	public void puntosDeEnvidoConManoConFlorDevuelveLaMayorPuntuacion(){
+		Mano mano = new Mano();
+		mano.recibirCarta(new Carta(TipoCarta.ANCHO_ESPADA,Palo.ESPADA));
+		mano.recibirCarta(new Carta(TipoCarta.CUATRO,Palo.ESPADA));
+		mano.recibirCarta(new Carta(TipoCarta.TRES,Palo.ESPADA));
+
+		assertEquals(27,mano.puntosDeEnvido());
+	}
+
+	@Test ( expected = NoHayMasCartasException.class)
+	public void puntosDeFlorSinCartasLanzaExcepcion(){
+		Mano mano = new Mano();
+		mano.puntosDeFlor();
+	}
+
+	@Test ( expected = NoHayMasCartasException.class)
+	public void puntosDeEnvidoSinCartasLanzaExcepcion(){
+		Mano mano = new Mano();
+		mano.puntosDeEnvido();
 	}
 }

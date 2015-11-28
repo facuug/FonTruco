@@ -6,11 +6,17 @@ public class Jugador {
 	
 	private Mano mano;
 	private String nombre;
+	private Equipo miEquipo;
 
 	public Jugador(String nombre) {
 		
 		this.mano = new Mano();
 		this.nombre = nombre;
+
+	}
+
+	public void asignarEquipo(Equipo unEquipo){
+		this.miEquipo = unEquipo;
 	}
 
 	public String getNombre() {
@@ -47,5 +53,13 @@ public class Jugador {
 
 	public int puntosDeFlor() {
 		return this.mano.puntosDeFlor();
+	}
+
+	public Equipo miEquipo() {
+		return miEquipo;
+	}
+
+	public Boolean tieneFlor() {
+		return this.mano.hayFlor();
 	}
 }

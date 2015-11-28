@@ -73,4 +73,13 @@ public class Equipo {
 		}
 		return mayorPuntaje;
 	}
+
+	public boolean tieneFlor() {
+		Boolean hayFlor = false;
+
+		for(Jugador jugador: this.jugadores){
+			hayFlor = jugador.tieneFlor();
+		}
+		return hayFlor;
+	}
 }

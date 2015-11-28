@@ -1,6 +1,7 @@
 package fiuba.algo3.modelo.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +9,6 @@ import org.junit.Test;
 import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
-import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
@@ -18,49 +18,16 @@ public class MesaTest {
 	private Equipo equipoUno;
 	private Equipo equipoDos;
 	private Mesa mesa;
-	private Mano manoZim;
-	private Mano manoDib;
-	
+
 	@Before
 	public void setUp() {
 		equipoUno = new Equipo();
 		equipoUno.agregarJugador(new Jugador("Zim"));
 
 		equipoDos = new Equipo();
-		equipoUno.agregarJugador(new Jugador("Dib"));
+		equipoDos.agregarJugador(new Jugador("Dib"));
 
 		mesa = new Mesa(equipoUno,equipoDos);
-	}
-	
-	@Test
-	public void determinarGanadorDeManoDevuelveGanador(){
-		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
-		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
-		
-		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
-		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
-		
-		assertEquals(equipoDos,this.mesa.ganadorDeMano().verEquipo());
-	}
-	
-	@Test
-	public void ganadorDeManoDevuelveGanadorDeManoCompleta(){
-		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
-		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
-
-		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.DOS,Palo.BASTO));
-		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
-
-		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
-		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.DOS,Palo.BASTO));
-
-		assertEquals(equipoUno,this.mesa.ganadorDeMano().verEquipo());
-	}
-
-	@Test
-	public void determinarGanadorDeRondaConUnaSolaCartaDevuelveComoGanadorAlEquipoJugadorDeLaCarta(){
-		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
-		assertEquals(equipoUno,this.mesa.determinarGanadorDeRonda().verEquipo());
 	}
 	
 	@Test
@@ -70,24 +37,132 @@ public class MesaTest {
 		
 		assertEquals(equipoDos,this.mesa.determinarGanadorDeRonda().verEquipo());
 	}
-
-
-
 	
-	private void prepararManosParaTest() {
-		manoZim = new Mano();
-		manoDib = new Mano();
-		Carta cartaUno = new Carta(TipoCarta.CABALLO, Palo.BASTO);
-		Carta cartaDos = new Carta(TipoCarta.ANCHO_BASTO, Palo.BASTO);
-		Carta cartaTres = new Carta(TipoCarta.CUATRO, Palo.COPA);
-		Carta cartaCuatro = new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA);
-		Carta cartaCinco = new Carta(TipoCarta.FALSO_ANCHO, Palo.COPA);
-		Carta cartaSeis = new Carta(TipoCarta.CUATRO, Palo.ORO);
-		manoZim.recibirCarta(cartaUno);
-		manoZim.recibirCarta(cartaDos);
-		manoZim.recibirCarta(cartaTres);
-		manoDib.recibirCarta(cartaCuatro);
-		manoDib.recibirCarta(cartaCinco);
-		manoDib.recibirCarta(cartaSeis);
+	@Test
+	public void determinarGanadorDeRondaConUnaSolaCartaDevuelveEmparda(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		assertEquals("empardada",this.mesa.determinarGanadorDeRonda().situacion());
+	}
+	
+	@Test
+	public void determinarGanadorDeManoDevuelveGanador(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+		
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.COPA));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.SIETE_ORO,Palo.BASTO));
+		
+		assertEquals(equipoDos,this.mesa.determinarGanadorDeMano().verEquipo());
+	}
+
+	@Test
+	public void ganadorDeManoDevuelveGanadorDeManoCompleta(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.DOS,Palo.COPA));
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.SIETE_ORO,Palo.ORO));
+
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.TRES,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.DOS,Palo.ESPADA));
+
+		assertEquals(equipoUno,this.mesa.determinarGanadorDeMano().verEquipo());
+	}
+
+	@Test
+	public void determinarGanadorDeManoConManoEnPrimeraRonda(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+
+		assertEquals("empardada",this.mesa.determinarGanadorDeMano().situacion());
+	}
+
+	@Test
+	public void determinarGanadorDeManoConManoEnSegundaRonda(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.ANCHO_ESPADA,Palo.ESPADA));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.TRES,Palo.BASTO));
+
+		assertEquals("empardada",this.mesa.determinarGanadorDeMano().situacion());
+	}
+
+	@Test
+	public void manoConPrimeraRondaEmapardada(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.DOS,Palo.ORO));
+
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.COPA));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+
+		assertEquals(equipoDos,this.mesa.determinarGanadorDeMano().verEquipo());
+	}
+
+	@Test
+	public void siSeEmpardaSegundaRondaGanaLaManoElGanadorDeLaPrimera(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.CINCO,Palo.ESPADA));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.CINCO,Palo.ORO));
+
+		assertEquals(equipoDos,this.mesa.determinarGanadorDeMano().verEquipo());
+	}
+
+	@Test
+	public void SiSeEmpardaTerceraRondaGanaLaManoElGanadorDeLaPrimera(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.CINCO,Palo.ESPADA));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.CINCO,Palo.ORO));
+
+		assertEquals(equipoDos,this.mesa.determinarGanadorDeMano().verEquipo());
+	}
+
+	@Test
+	public void ganadorDeManoSiSeEmpardanLasDosRondasDevuelveElGanadorDeLaTercera(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.CINCO,Palo.ESPADA));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.CINCO,Palo.ORO));
+
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.CINCO,Palo.ESPADA));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.CINCO,Palo.ORO));
+
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.DOS,Palo.BASTO));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+
+		assertEquals(equipoDos,this.mesa.determinarGanadorDeMano().verEquipo());
+	}
+
+	@Test
+	public void ganadorDeManoConTodasLasRondasEmpardadasDevuelveEquipoManoCuandoElManoEsEquipoUno(){
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.CINCO,Palo.ESPADA));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.CINCO,Palo.ORO));
+
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.CINCO,Palo.ESPADA));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.CINCO,Palo.ORO));
+
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.CINCO,Palo.ESPADA));
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.CINCO,Palo.ORO));
+
+		assertEquals(equipoUno,this.mesa.determinarGanadorDeMano().verEquipo());
+	}
+
+	@Test
+	public void ganadorDeManoConTodasLasRondasEmpardadasDevuelveEquipoManoCuandoElManoEsEquipoDos(){
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.CINCO,Palo.ESPADA));
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.CINCO,Palo.ORO));
+
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.CINCO,Palo.ESPADA));
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.CINCO,Palo.ORO));
+
+		this.mesa.jugarCarta(equipoDos, new Carta(TipoCarta.CINCO,Palo.ESPADA));
+		this.mesa.jugarCarta(equipoUno, new Carta(TipoCarta.CINCO,Palo.ORO));
+
+		assertEquals(equipoDos,this.mesa.determinarGanadorDeMano().verEquipo());
 	}
 }

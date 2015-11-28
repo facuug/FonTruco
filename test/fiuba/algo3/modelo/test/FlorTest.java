@@ -6,6 +6,8 @@ import fiuba.algo3.modelo.interfaces.EstadoJuego;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
+
 /**
  * Created by Facundo on 25-Nov-15.
  */
@@ -18,8 +20,16 @@ public class FlorTest {
         estadoJuego = new EstadoSinCanto();
     }
 
+    @Test
+    public void cantarFlorMasFlorOtorgaSeisPuntos(){
+        estadoJuego = estadoJuego.flor();
+        estadoJuego = estadoJuego.flor();
+        assertEquals(6,estadoJuego.cuantosPuntos());
+    }
+
     @Test ( expected = CantoInvalidoException.class)
-    public void cantarFlorMasFlorLanzaExcepcion(){
+    public void cantarTresVecesFlorLanzaExcepcion(){
+        estadoJuego = estadoJuego.flor();
         estadoJuego = estadoJuego.flor();
         estadoJuego = estadoJuego.flor();
     }

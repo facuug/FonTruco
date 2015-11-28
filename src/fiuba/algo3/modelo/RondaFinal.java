@@ -1,42 +1,17 @@
 package fiuba.algo3.modelo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import fiuba.algo3.modelo.enums.Palo;
-import fiuba.algo3.modelo.enums.TipoCarta;
 import fiuba.algo3.modelo.interfaces.Resultado;
 import fiuba.algo3.modelo.interfaces.Ronda;
 
-public class RondaFinal implements Ronda {
+public class RondaFinal extends Ronda {
 
-	private HashMap<Equipo,Carta> cartas;
-	private Equipo equipoGanadorDePrimeraRonda,equipoDos;
+	private Ronda rondaAnterior;
 
-	public RondaFinal(Equipo equipoGanador, Equipo otroEquipo) {
-		this.equipoGanadorDePrimeraRonda = equipoGanador;
-		this.equipoDos = otroEquipo;
-		
-		this.cartas = new HashMap<Equipo,Carta>();
-		this.cartas.put(equipoGanador, new CartaInvalida(TipoCarta.INVALIDO,Palo.BASTO));
-		this.cartas.put(otroEquipo, new CartaInvalida(TipoCarta.INVALIDO,Palo.BASTO));
-	}
-
-	@Override
-	public void jugarCarta(Equipo equipo, Carta carta) {
-		this.cartas.replace(equipo, carta);
-	}
-
-	@Override
-	public Resultado ganadorDeRonda() {
-		List<Carta> cartas = new ArrayList<Carta>(this.cartas.values());
-		
-		int resultado = 0;
-		resultado = cartas.get(0).comparar(cartas.get(1));
-
-		if (resultado == 1) return new EquipoGanador(this.equipoGanadorDePrimeraRonda);
-		else return new EquipoGanador(this.equipoDos);
+	public RondaFinal(Ronda unaRonda){
+		this.rondaAnterior = unaRonda;
 	}
 
 	@Override
@@ -45,24 +20,37 @@ public class RondaFinal implements Ronda {
 	}
 
 	@Override
-	public Ronda calcularRondaSiguiente() {
-		if(this.cartasJugadas() < 2) return this;
-		
-		return this.ganadorDeRonda().calcularRondaSiguiente(this);
+	public Ronda siguiente() {
+		return new PrimeraRonda(this.cantidadDeJugadores());
 	}
 
 	@Override
-	public Ronda siguiente() {
-		return new PrimeraRonda(this.equipoGanadorDePrimeraRonda,this.equipoDos);
-	}
-	
-	private int cartasJugadas() {
-		int total = 0;
+	public Resultado ganadorDeRonda() {
+		List<Carta> cartas = new ArrayList<Carta>(this.cartas.keySet());
 
-		for(Carta carta: this.cartas.values()){
-			if(!carta.getTipoCarta().equals(TipoCarta.INVALIDO)) total++;
+		Carta cartaMayor = cartas.get(0);
+		for(Carta carta: cartas){
+			if( carta.comparar(cartaMayor) > 0){
+				cartaMayor = carta;
+			}
 		}
-		return total;
+		if(this.empardan()) return this.rondaAnterior.rondaAnterior().ganadorDeRonda(); //ganador de la primera ronda
+		else return new EquipoGanador(this.cartas.get(cartaMayor));
+	}
+
+	@Override
+	public Ronda rondaAnterior() {
+		return this.rondaAnterior;
+	}
+
+	@Override
+	public boolean manoFinalizada() {
+		return ( this.cartasJugadas() == this.cantidadDeJugadores() );
+	}
+
+	@Override
+	public int cantidadDeJugadores() {
+		return this.rondaAnterior.cantidadDeJugadores();
 	}
 
 }

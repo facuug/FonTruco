@@ -15,11 +15,15 @@ public class TrucoConFlor extends JuegoTruco {
     @Override
     public void flor() {
         this.estadoDeEnvido = this.estadoDeEnvido.flor();
-        this.determinarGanadorDeFlor().sumarPuntos(3);
+        this.determinarGanadorDeFlor().sumarPuntos(this.estadoDeEnvido.cuantosPuntos());
     }
 
     private Equipo determinarGanadorDeFlor() {
+        if(!this.turnoParaCanto.equipoDeTurno().tieneFlor()){
+            this.turnoParaCanto.rotarEquipoDeTurno();
+            return this.turnoParaCanto.equipoDeTurno();
+        }
         if( this.equipoUno.puntosDeFlor() > this.equipoDos.puntosDeFlor() ) return this.equipoUno;
-        else return this.equipoDos;
+        else  return this.equipoDos;
     }
 }

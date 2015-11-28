@@ -64,6 +64,6 @@ public class EstadoSinCanto implements EstadoJuego {
 
     @Override
     public EstadoJuego flor() {
-        return new Flor();
+        return new Flor(3);
     }
 }

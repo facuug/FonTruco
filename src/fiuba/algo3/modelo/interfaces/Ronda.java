@@ -1,17 +1,50 @@
 package fiuba.algo3.modelo.interfaces;
 
-import fiuba.algo3.modelo.Carta;
-import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.*;
 
-public interface Ronda {
+import java.util.*;
 
-	void jugarCarta(Equipo equipo, Carta carta);
+public abstract class Ronda {
 
-	Resultado ganadorDeRonda();
+	protected LinkedHashMap<Carta,Equipo> cartas;
 
-	Resultado determinarGanadorDeMano();
+	public Ronda(){
+		this.cartas = new LinkedHashMap<Carta,Equipo>();
+	}
 
-	Ronda calcularRondaSiguiente();
+	public void jugarCarta(Equipo equipo, Carta carta){
+		this.cartas.put(carta,equipo);
+	}
 
-	Ronda siguiente();
+	public Boolean empardan(){
+		Carta cartaActual = new ArrayList<Carta>(this.cartas.keySet()).get(0);
+		Equipo equipoActual = new ArrayList<Equipo>(this.cartas.values()).get(0);
+
+		for(Map.Entry<Carta,Equipo> carta: this.cartas.entrySet()){
+			if( (cartaActual.comparar(carta.getKey()) != 0) && (!carta.getValue().equals(equipoActual)) ) return false;
+		}
+		return true;
+	}
+
+	public Ronda calcularRondaSiguiente() {
+		if(this.cartasJugadas() < this.cantidadDeJugadores()) return this;
+
+		return this.ganadorDeRonda().calcularRondaSiguiente(this);
+	}
+
+	protected int cartasJugadas() {
+		return this.cartas.keySet().size();
+	}
+
+	public abstract Resultado determinarGanadorDeMano();
+
+	public abstract Ronda siguiente();
+
+	public abstract Resultado ganadorDeRonda();
+
+	public abstract Ronda rondaAnterior();
+
+	public abstract boolean manoFinalizada();
+
+	public abstract int cantidadDeJugadores();
 }

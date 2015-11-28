@@ -7,6 +7,12 @@ import fiuba.algo3.modelo.interfaces.EstadoJuego;
  * Created by Facundo on 25-Nov-15.
  */
 public class Flor implements EstadoJuego {
+    private int puntos;
+
+    public Flor(int puntosAcumulados) {
+        this.puntos = puntosAcumulados;
+    }
+
     @Override
     public void noQuiero() {
 
@@ -19,7 +25,7 @@ public class Flor implements EstadoJuego {
 
     @Override
     public int cuantosPuntos() {
-        return 0;
+        return this.puntos;
     }
 
     @Override
@@ -64,6 +70,8 @@ public class Flor implements EstadoJuego {
 
     @Override
     public EstadoJuego flor() {
-        throw new CantoInvalidoException();
+        if(this.cuantosPuntos() == 6) throw new CantoInvalidoException();
+
+        return new Flor(6);
     }
 }
