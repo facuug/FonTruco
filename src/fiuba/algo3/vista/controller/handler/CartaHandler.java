@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.modelo.Carta;
-import fiuba.algo3.modelo.Mano;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
