@@ -28,6 +28,7 @@ public abstract class JuegoTruco {
     protected boolean finDeMano;
 
     protected Jugador ultimoJugadorDeCarta;
+    private Jugador jugadorDeTurno;
 
     public JuegoTruco(Equipo unEquipo, Equipo otroEquipo){
         this.puntosDeMano = 1;  //si no hay cantos la mano vale 1 punto
@@ -129,7 +130,7 @@ public abstract class JuegoTruco {
     public void jugadorDeTurnoJuegaCarta(Carta carta) {
         if( (!this.estadoDeEnvido.fueRespondido()) || (!this.estadoDeTruco.fueRespondido()) || (this.manoFinalizada()) ) throw new AccionInvalidaException();
 
-        Jugador jugadorDeTurno = this.turnoParaCarta.calcularJugadorDeTurno();
+        this.jugadorDeTurno = this.turnoParaCarta.calcularJugadorDeTurno();
         this.turnoParaCarta.jugadorJuegaCarta(jugadorDeTurno,carta);
         mesa.jugarCarta(jugadorDeTurno.miEquipo(),carta);
 
@@ -154,4 +155,8 @@ public abstract class JuegoTruco {
     public abstract void flor();
 
     public abstract void contraFlorAlResto();
+
+    public Jugador jugadorDeTurno(){
+        return this.jugadorDeTurno;
+    }
 }
