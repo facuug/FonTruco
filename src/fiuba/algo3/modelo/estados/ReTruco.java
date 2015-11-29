@@ -76,4 +76,14 @@ public class ReTruco implements EstadoJuego {
     public EstadoJuego flor() {
         throw new CantoInvalidoException();
     }
+
+    @Override
+    public EstadoJuego contraFlor() {
+        throw new CantoInvalidoException();
+    }
+
+    @Override
+    public EstadoJuego contraFlorAlResto(int puntosActuales) {
+        throw new CantoInvalidoException();
+    }
 }

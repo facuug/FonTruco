@@ -10,4 +10,6 @@ public interface Resultado {
 	Ronda calcularRondaSiguiente(Ronda primeraRonda);
 
 	String situacion();
+
+	void sumarPuntos(int i);
 }

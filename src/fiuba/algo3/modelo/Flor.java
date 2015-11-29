@@ -1,5 +1,7 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.estados.ContraFlor;
+import fiuba.algo3.modelo.estados.ContraFlorAlResto;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import fiuba.algo3.modelo.interfaces.EstadoJuego;
 
@@ -15,12 +17,11 @@ public class Flor implements EstadoJuego {
 
     @Override
     public void noQuiero() {
-
+        throw new CantoInvalidoException();
     }
 
     @Override
     public void quiero() {
-
     }
 
     @Override
@@ -60,7 +61,7 @@ public class Flor implements EstadoJuego {
 
     @Override
     public Boolean fueRespondido() {
-        return null;
+        return true;
     }
 
     @Override
@@ -73,5 +74,15 @@ public class Flor implements EstadoJuego {
         if(this.cuantosPuntos() == 6) throw new CantoInvalidoException();
 
         return new Flor(6);
+    }
+
+    @Override
+    public EstadoJuego contraFlor() {
+        return new ContraFlor(this.puntos);
+    }
+
+    @Override
+    public EstadoJuego contraFlorAlResto(int puntosActuales) {
+        return new ContraFlorAlResto(puntosActuales + this.puntos);
     }
 }

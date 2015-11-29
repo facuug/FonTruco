@@ -26,4 +26,9 @@ public class EquipoGanador implements Resultado {
 		return "hayGanador";
 	}
 
+	@Override
+	public void sumarPuntos(int puntos) {
+		this.equipo.sumarPuntos(puntos);
+	}
+
 }

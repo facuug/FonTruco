@@ -141,15 +141,17 @@ public abstract class JuegoTruco {
         return ( this.mesa.manoFinalizada() || ( this.finDeMano ) );
     }
 
-    private Equipo determinarGanadorDeMano(){
-        return this.mesa.determinarGanadorDeMano().verEquipo();
+    protected Resultado determinarGanadorDeMano(){
+        return this.mesa.determinarGanadorDeMano();
     }
 
-    private Equipo determinarGanadorDeEnvido(){
+    protected Equipo determinarGanadorDeEnvido(){
         if( this.equipoUno.puntosDeEnvido() > this.equipoDos.puntosDeEnvido() ) return this.equipoUno;
         else if( this.equipoUno.puntosDeEnvido() < this.equipoDos.puntosDeEnvido() ) return this.equipoDos;
             else return this.mesa.equipoMano();
     }
 
     public abstract void flor();
+
+    public abstract void contraFlorAlResto();
 }

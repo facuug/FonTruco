@@ -21,4 +21,9 @@ public class Emparda implements Resultado {
 		return "empardada";
 	}
 
+	@Override
+	public void sumarPuntos(int i) {
+
+	}
+
 }
