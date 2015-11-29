@@ -28,4 +28,12 @@ public interface  EstadoJuego {
     public Boolean fueNoQuerido();
 
     public EstadoJuego flor();
+
+    public EstadoJuego contraFlor();
+
+    EstadoJuego contraFlorAlResto(int puntosActuales);
+
+    public boolean esTruco();
+
+    public boolean esEnvido();
 }

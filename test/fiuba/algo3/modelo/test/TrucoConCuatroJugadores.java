@@ -157,4 +157,49 @@ public class TrucoConCuatroJugadores {
 
         assertEquals(3,trucoConFlor.puntosEquipoUno());
     }
+
+    @Test
+    public void cantarFlorMasContraFlorAlRestoOtorgaLosPuntosNecesaiosParaGanar(){
+        trucoConFlor.flor();
+        trucoConFlor.contraFlorAlResto();
+        trucoConFlor.quiero();
+
+        trucoConFlor.sumarPuntos();
+
+        assertEquals(30, this.trucoConFlor.puntosEquipoUno());
+        assertEquals(0, this.trucoConFlor.puntosEquipoDos());
+    }
+
+    @Test
+    public void juegoConFlorYTruco(){
+        trucoConFlor.flor();
+
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
+
+        trucoConFlor.truco();
+        trucoConFlor.quiero();
+
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SIETE_ORO, Palo.ORO));
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.ORO));
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.ORO));
+
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.BASTO));
+
+        trucoConFlor.reTruco();
+        trucoConFlor.quiero();
+
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CINCO,Palo.COPA));
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.FALSO_ANCHO, Palo.COPA));
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.TRES, Palo.COPA));
+
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS,Palo.COPA));
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
+        trucoConFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CINCO,Palo.COPA));
+
+        trucoConFlor.sumarPuntos();
+
+        assertEquals(6, this.trucoConFlor.puntosEquipoUno());
+        assertEquals(0, this.trucoConFlor.puntosEquipoDos());
+    }
 }

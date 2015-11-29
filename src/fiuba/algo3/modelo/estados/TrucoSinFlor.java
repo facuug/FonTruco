@@ -17,4 +17,14 @@ public class TrucoSinFlor extends JuegoTruco{
     public void flor() {
         throw new CantoInvalidoException();
     }
+
+    @Override
+    public void contraFlorAlResto() {
+        throw new CantoInvalidoException();
+    }
+
+    @Override
+    public void contraFlor() {
+        throw new CantoInvalidoException();
+    }
 }

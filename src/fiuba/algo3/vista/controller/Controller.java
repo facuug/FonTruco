@@ -2,6 +2,7 @@ package fiuba.algo3.vista.controller;
 
 import java.io.IOException;
 
+import fiuba.algo3.modelo.interfaces.JuegoTruco;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -11,7 +12,7 @@ import javafx.stage.Stage;
 
 public abstract class Controller implements Initializable {
 	protected static Stage stage;
-
+	public static JuegoTruco juegoTruco;
 	
 	public void setStage(Stage stage) {
 		this.stage = stage;

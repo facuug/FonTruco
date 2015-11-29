@@ -28,4 +28,9 @@ public class PrimeraEmparda implements Resultado {
     public String situacion() {
         return "empardada";
     }
+
+    @Override
+    public void sumarPuntos(int i) {
+
+    }
 }

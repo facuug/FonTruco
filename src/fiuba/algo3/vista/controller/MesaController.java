@@ -12,6 +12,7 @@ import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
+import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
 import fiuba.algo3.vista.controller.handler.CartaHandler;
 import javafx.event.ActionEvent;
@@ -93,6 +94,7 @@ public class MesaController extends Controller{
 				new ArrayList<>(Arrays.asList(carta1Jug4,carta2Jug4,carta3Jug4))));
 		setBtnVolverHandler();
 		setBtnSalirHandler();
+		setBtnTrucoHandler();
 		contenedores = new ArrayList<ImageView>(Arrays.asList(contenedor1,contenedor2,contenedor3,contenedor4));
 		prepararMesa();
 		mesa.repartir();
@@ -111,6 +113,18 @@ public class MesaController extends Controller{
 			public void handle(ActionEvent event) {
 				redirect("MenuPrincipal");
 				
+			}
+		});
+	}
+
+	private void setBtnTrucoHandler(){
+		btnTruco.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event){
+				try{
+					Controller.juegoTruco.truco();
+				}catch ( CantoInvalidoException exception ){}
 			}
 		});
 	}

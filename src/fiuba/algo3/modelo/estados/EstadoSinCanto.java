@@ -66,4 +66,24 @@ public class EstadoSinCanto implements EstadoJuego {
     public EstadoJuego flor() {
         return new Flor(3);
     }
+
+    @Override
+    public EstadoJuego contraFlor() {
+        throw new CantoInvalidoException();
+    }
+
+    @Override
+    public EstadoJuego contraFlorAlResto(int puntosActuales) {
+        throw new CantoInvalidoException();
+    }
+
+    @Override
+    public boolean esTruco() {
+        return false;
+    }
+
+    @Override
+    public boolean esEnvido() {
+        return false;
+    }
 }

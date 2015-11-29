@@ -1,28 +1,27 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.estados;
 
-import fiuba.algo3.modelo.estados.ContraFlor;
-import fiuba.algo3.modelo.estados.ContraFlorAlResto;
-import fiuba.algo3.modelo.estados.Truco;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import fiuba.algo3.modelo.interfaces.EstadoJuego;
 
 /**
- * Created by Facundo on 25-Nov-15.
+ * Created by Facundo on 29-Nov-15.
  */
-public class Flor implements EstadoJuego {
+public class ContraFlorAlResto implements EstadoJuego {
+
     private int puntos;
 
-    public Flor(int puntosAcumulados) {
+    public ContraFlorAlResto(int puntosAcumulados) {
         this.puntos = puntosAcumulados;
     }
 
     @Override
     public void noQuiero() {
-        throw new CantoInvalidoException();
+        this.puntos += 0;
     }
 
     @Override
     public void quiero() {
+        this.puntos = 33 - this.puntos;
     }
 
     @Override
@@ -32,7 +31,7 @@ public class Flor implements EstadoJuego {
 
     @Override
     public EstadoJuego truco() {
-        return new Truco();
+        throw new CantoInvalidoException();
     }
 
     @Override
@@ -62,29 +61,27 @@ public class Flor implements EstadoJuego {
 
     @Override
     public Boolean fueRespondido() {
-        return true;
+        throw new CantoInvalidoException();
     }
 
     @Override
     public Boolean fueNoQuerido() {
-        return null;
+        throw new CantoInvalidoException();
     }
 
     @Override
     public EstadoJuego flor() {
-        if(this.cuantosPuntos() == 6) throw new CantoInvalidoException();
-
-        return new Flor(6);
+        throw new CantoInvalidoException();
     }
 
     @Override
     public EstadoJuego contraFlor() {
-        return new ContraFlor(this.puntos);
+        throw new CantoInvalidoException();
     }
 
     @Override
     public EstadoJuego contraFlorAlResto(int puntosActuales) {
-        return new ContraFlorAlResto(puntosActuales + this.puntos);
+        throw new CantoInvalidoException();
     }
 
     @Override

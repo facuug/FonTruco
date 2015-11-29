@@ -24,8 +24,8 @@ public class FaltaEnvido implements EstadoJuego {
 
     public void quiero(){
         this.fueRespondido = true;
-        if(this.puntos < 15) this.puntos = 15;
-        else this.puntos = 30;
+        if(this.puntos < 15) this.puntos = 15 - this.puntos;
+        else this.puntos = 30 - this.puntos;
     }
 
     @Override
@@ -70,11 +70,31 @@ public class FaltaEnvido implements EstadoJuego {
 
     @Override
     public Boolean fueNoQuerido() {
-        return null;
+        return false;
     }
 
     @Override
     public EstadoJuego flor() {
         throw new CantoInvalidoException();
+    }
+
+    @Override
+    public EstadoJuego contraFlor() {
+        throw new CantoInvalidoException();
+    }
+
+    @Override
+    public EstadoJuego contraFlorAlResto(int puntosActuales) {
+        throw new CantoInvalidoException();
+    }
+
+    @Override
+    public boolean esTruco() {
+        return false;
+    }
+
+    @Override
+    public boolean esEnvido() {
+        return true;
     }
 }

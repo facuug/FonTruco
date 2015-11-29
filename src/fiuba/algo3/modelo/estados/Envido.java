@@ -67,11 +67,31 @@ public class Envido implements EstadoJuego {
 
     @Override
     public Boolean fueNoQuerido() {
-        return null;
+        return false;
     }
 
     @Override
     public EstadoJuego flor() {
         throw new CantoInvalidoException();
+    }
+
+    @Override
+    public EstadoJuego contraFlor() {
+        throw new CantoInvalidoException();
+    }
+
+    @Override
+    public EstadoJuego contraFlorAlResto(int puntosActuales) {
+        throw new CantoInvalidoException();
+    }
+
+    @Override
+    public boolean esTruco() {
+        return false;
+    }
+
+    @Override
+    public boolean esEnvido() {
+        return true;
     }
 }

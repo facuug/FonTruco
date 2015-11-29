@@ -233,4 +233,40 @@ public class EnvidoTest {
         estadoJuego = estadoJuego.faltaEnvido(0);
         estadoJuego = estadoJuego.flor();
     }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void envidoMasContraFlorLanzaExcepcion(){
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.contraFlor();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void envidoMasContraFlorAlRestoLanzaExcepcion(){
+        estadoJuego = estadoJuego.envido();
+        estadoJuego = estadoJuego.contraFlorAlResto(0);
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void realEnvidoMasContraFlorLanzaExcepcion(){
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego = estadoJuego.contraFlor();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void realEnvidoMasContraFlorAlRestoLanzaExcepcion(){
+        estadoJuego = estadoJuego.realEnvido();
+        estadoJuego = estadoJuego.contraFlorAlResto(0);
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void faltaEnvidoMasContraFlorLanzaExcepcion(){
+        estadoJuego = estadoJuego.faltaEnvido(0);
+        estadoJuego = estadoJuego.contraFlor();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void faltaEnvidoMasContraFlorAlRestoLanzaExcepcion(){
+        estadoJuego = estadoJuego.faltaEnvido(0);
+        estadoJuego = estadoJuego.contraFlorAlResto(0);
+    }
 }

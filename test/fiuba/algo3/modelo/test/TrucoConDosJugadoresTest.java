@@ -318,4 +318,16 @@ public class TrucoConDosJugadoresTest {
         assertEquals(1, truco.puntosEquipoDos());
 
     }
+
+    @Test
+    public void sumarPuntosSinFinalizarLaManoNoSumaPuntos(){
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS, Palo.COPA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
+
+        trucoSinFlor.sumarPuntos();
+
+        assertEquals(0, trucoSinFlor.puntosEquipoUno());
+        assertEquals(0, trucoSinFlor.puntosEquipoDos());
+
+    }
 }
