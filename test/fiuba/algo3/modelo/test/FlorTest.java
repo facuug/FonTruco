@@ -53,12 +53,6 @@ public class FlorTest {
     }
 
     @Test ( expected = CantoInvalidoException.class)
-    public void cantarFlorMasTrucoLanzaExcepcion(){
-        estadoJuego = estadoJuego.flor();
-        estadoJuego = estadoJuego.truco();
-    }
-
-    @Test ( expected = CantoInvalidoException.class)
     public void cantarFlorMasReTrucoLanzaExcepcion(){
         estadoJuego = estadoJuego.flor();
         estadoJuego = estadoJuego.reTruco();

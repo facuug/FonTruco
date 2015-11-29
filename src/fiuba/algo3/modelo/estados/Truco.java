@@ -86,4 +86,14 @@ public class Truco implements EstadoJuego {
     public EstadoJuego contraFlorAlResto(int puntosActuales) {
         throw new CantoInvalidoException();
     }
+
+    @Override
+    public boolean esTruco() {
+        return true;
+    }
+
+    @Override
+    public boolean esEnvido() {
+        return false;
+    }
 }

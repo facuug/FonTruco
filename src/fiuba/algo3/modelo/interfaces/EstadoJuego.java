@@ -32,4 +32,8 @@ public interface  EstadoJuego {
     public EstadoJuego contraFlor();
 
     EstadoJuego contraFlorAlResto(int puntosActuales);
+
+    public boolean esTruco();
+
+    public boolean esEnvido();
 }

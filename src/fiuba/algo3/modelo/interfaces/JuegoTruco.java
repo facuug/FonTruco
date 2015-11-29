@@ -10,7 +10,7 @@ import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
  */
 public abstract class JuegoTruco {
 
-    protected EstadoJuego estadoDeTruco,estadoDeEnvido;
+    protected EstadoJuego estadoDeTruco,estadoDeEnvido,estadoJuego;
 
     protected Equipo equipoUno;
     protected Equipo equipoDos;
@@ -42,6 +42,7 @@ public abstract class JuegoTruco {
 
         this.estadoDeTruco = new EstadoSinCanto();
         this.estadoDeEnvido = new EstadoSinCanto();
+        this.estadoJuego = new EstadoSinCanto();
 
         this.turnoParaCanto = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
         this.turnoParaCarta = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
@@ -51,65 +52,60 @@ public abstract class JuegoTruco {
     }
 
     public void envido() {
-        this.estadoDeEnvido = this.estadoDeEnvido.envido();
+        this.estadoJuego = this.estadoJuego.envido();
         this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
         this.turnoParaCanto.rotarEquipoDeTurno();
     }
 
     public void noQuiero() {
-        this.estadoDeTruco.noQuiero();
-        this.estadoDeEnvido.noQuiero();
-
-        this.equipoCantador.sumarPuntos(this.estadoDeTruco.cuantosPuntos());
-        this.equipoCantador.sumarPuntos(this.estadoDeEnvido.cuantosPuntos());
-
-        this.estadoDeEnvido = new EstadoSinCanto();
+        this.estadoJuego.noQuiero();
+        this.equipoCantador.sumarPuntos(this.estadoJuego.cuantosPuntos());
         this.puntosDeMano = 1;
-
-        this.finDeMano = this.estadoDeTruco.fueNoQuerido();
+        this.finDeMano = this.estadoJuego.fueNoQuerido();
+        this.estadoJuego = new EstadoSinCanto();
     }
 
     public int cuantosPuntos() {
-        return this.estadoDeTruco.cuantosPuntos();
+        return this.estadoJuego.cuantosPuntos();
     }
 
     public void quiero(){
-        this.estadoDeTruco.quiero();
-        this.estadoDeEnvido.quiero();
+        this.estadoJuego.quiero();
 
-        this.puntosDeTruco = this.estadoDeTruco.cuantosPuntos();
-        this.puntosDeEnvido += this.estadoDeEnvido.cuantosPuntos();
-
-        this.estadoDeEnvido = new EstadoSinCanto();
+        if( this.estadoJuego.esTruco() )this.puntosDeTruco = this.estadoJuego.cuantosPuntos();
+        else{
+            this.puntosDeEnvido += this.estadoJuego.cuantosPuntos();
+            this.estadoJuego = new EstadoSinCanto();
+        }
     }
 
     public void realEnvido() {
-        this.estadoDeEnvido = this.estadoDeEnvido.realEnvido();
+        this.estadoJuego = this.estadoJuego.realEnvido();
         this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
         this.turnoParaCanto.rotarEquipoDeTurno();
     }
 
     public void faltaEnvido() {
-        this.estadoDeEnvido = this.estadoDeEnvido.faltaEnvido(this.determinarGanadorDeEnvido().obtenerPuntos());
+        this.estadoJuego = this.estadoJuego.faltaEnvido(this.determinarGanadorDeEnvido().obtenerPuntos());
         this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
         this.turnoParaCanto.rotarEquipoDeTurno();
     }
 
     public void truco() {
-        this.estadoDeTruco = this.estadoDeTruco.truco();
+        this.estadoJuego = this.estadoJuego.truco();
         this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
         this.turnoParaCanto.rotarEquipoDeTurno();
         this.puntosDeMano = 0;
     }
 
     public void reTruco(){
-        this.estadoDeTruco = this.estadoDeTruco.reTruco();
+        this.estadoJuego = this.estadoJuego.reTruco();
         this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
         this.turnoParaCanto.rotarEquipoDeTurno();
     }
 
     public void valeCuatro() {
-        this.estadoDeTruco = this.estadoDeTruco.valeCuatro();
+        this.estadoJuego = this.estadoJuego.valeCuatro();
         this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
         this.turnoParaCanto.rotarEquipoDeTurno();
     }
@@ -128,7 +124,7 @@ public abstract class JuegoTruco {
     }
 
     public void jugadorDeTurnoJuegaCarta(Carta carta) {
-        if( (!this.estadoDeEnvido.fueRespondido()) || (!this.estadoDeTruco.fueRespondido()) || (this.manoFinalizada()) ) throw new AccionInvalidaException();
+        if( (!this.estadoJuego.fueRespondido()) || (this.manoFinalizada()) ) throw new AccionInvalidaException();
 
         this.jugadorDeTurno = this.turnoParaCarta.calcularJugadorDeTurno();
         this.turnoParaCarta.jugadorJuegaCarta(jugadorDeTurno,carta);
@@ -156,7 +152,13 @@ public abstract class JuegoTruco {
 
     public abstract void contraFlorAlResto();
 
+    public abstract void contraFlor();
+
     public Jugador jugadorDeTurno(){
         return this.jugadorDeTurno;
+    }
+
+    public Mesa obtenerMesa(){
+        return this.mesa;
     }
 }

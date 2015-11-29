@@ -18,24 +18,24 @@ public class TrucoConFlor extends JuegoTruco {
     }
 
     @Override
-    public void flor() {
-        this.estadoFlor = this.estadoFlor.flor();
-        this.determinarGanadorDeFlor().sumarPuntos(this.estadoFlor.cuantosPuntos());
-        this.turnoParaCanto.rotarEquipoDeTurno();
+    public void quiero(){
+        this.estadoJuego.quiero();
+
+        if( this.estadoJuego.esTruco() )this.puntosDeTruco = this.estadoJuego.cuantosPuntos();
+        else if( this.estadoJuego.esEnvido() ){
+            this.puntosDeEnvido += this.estadoJuego.cuantosPuntos();
+            this.estadoJuego = new EstadoSinCanto();
+        } else{
+            this.puntosFlor = this.estadoJuego.cuantosPuntos();
+            this.estadoJuego = new EstadoSinCanto();
+        }
     }
 
     @Override
-    public void quiero(){
-        this.estadoDeTruco.quiero();
-        this.estadoDeEnvido.quiero();
-        this.estadoFlor.quiero();
-
-        this.puntosDeTruco = this.estadoDeTruco.cuantosPuntos();
-        this.puntosDeEnvido += this.estadoDeEnvido.cuantosPuntos();
-        this.puntosFlor = this.estadoFlor.cuantosPuntos();
-
-        this.estadoDeEnvido = new EstadoSinCanto();
-        this.estadoFlor = new EstadoSinCanto();
+    public void flor() {
+        this.estadoJuego = this.estadoJuego.flor();
+        this.determinarGanadorDeFlor().sumarPuntos(this.estadoJuego.cuantosPuntos());
+        this.turnoParaCanto.rotarEquipoDeTurno();
     }
 
     @Override
@@ -47,7 +47,14 @@ public class TrucoConFlor extends JuegoTruco {
 
     @Override
     public void contraFlorAlResto() {
-        this.estadoFlor = this.estadoFlor.contraFlorAlResto(this.determinarGanadorDeFlor().obtenerPuntos());
+        this.estadoJuego = this.estadoJuego.contraFlorAlResto(this.determinarGanadorDeFlor().obtenerPuntos());
+        this.turnoParaCanto.rotarEquipoDeTurno();
+    }
+
+    @Override
+    public void contraFlor() {
+        this.estadoFlor = this.estadoFlor.contraFlor();
+        this.determinarGanadorDeFlor().sumarPuntos(this.estadoFlor.cuantosPuntos());
         this.turnoParaCanto.rotarEquipoDeTurno();
     }
 

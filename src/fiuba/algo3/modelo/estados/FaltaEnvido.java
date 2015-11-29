@@ -70,7 +70,7 @@ public class FaltaEnvido implements EstadoJuego {
 
     @Override
     public Boolean fueNoQuerido() {
-        return null;
+        return false;
     }
 
     @Override
@@ -86,5 +86,15 @@ public class FaltaEnvido implements EstadoJuego {
     @Override
     public EstadoJuego contraFlorAlResto(int puntosActuales) {
         throw new CantoInvalidoException();
+    }
+
+    @Override
+    public boolean esTruco() {
+        return false;
+    }
+
+    @Override
+    public boolean esEnvido() {
+        return true;
     }
 }

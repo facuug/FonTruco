@@ -83,4 +83,14 @@ public class ContraFlor implements EstadoJuego {
     public EstadoJuego contraFlorAlResto(int puntosActuales) {
         return null;
     }
+
+    @Override
+    public boolean esTruco() {
+        return false;
+    }
+
+    @Override
+    public boolean esEnvido() {
+        return false;
+    }
 }
