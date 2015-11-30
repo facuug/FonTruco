@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.modelo.Carta;
+import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
+import fiuba.algo3.vista.controller.Controller;
+import fiuba.algo3.vista.controller.MenuPrincipalController;
+import fiuba.algo3.vista.controller.MesaController;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
@@ -14,8 +19,8 @@ public class CartaHandler implements EventHandler<Event> {
 
 	private ImageView contenedorAsociado;
 	private List<ImageView> cartasDeMano;
-	private List<ImageView> cartasSiguientes;
 	private Carta cartaQueSoy;
+	List<List<ImageView>> cartasEnJuego;
 	
 	public CartaHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Carta cartaQueRepresenta) {
 		this.cartasDeMano = cartasDeMano;
@@ -24,7 +29,7 @@ public class CartaHandler implements EventHandler<Event> {
 			posicionSiguiente = 0;
 		}
 		cartaQueSoy= cartaQueRepresenta;
-		this.cartasSiguientes = cartasJugando.get(posicionSiguiente);
+		this.cartasEnJuego = cartasJugando;
 	}
 	
 	public void setContendorEnMesa(ImageView contenedor) {
@@ -33,16 +38,25 @@ public class CartaHandler implements EventHandler<Event> {
 	
 	@Override
 	public void handle(Event event) {
-		ImageView cartaJugada = (ImageView)event.getSource();
-		cartasDeMano.remove(cartaJugada);
-		cartaJugada.setVisible(false);
-		jugarCarta(cartaJugada);
-		habilitarCartas();
+		try{
+			Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
+			ImageView cartaJugada = (ImageView)event.getSource();
+			cartasDeMano.remove(cartaJugada);
+			cartaJugada.setVisible(false);
+			jugarCarta(cartaJugada);
+			habilitarCartas();
+		} catch(AccionInvalidaException exception){
+			System.out.println("no se puede jugar carta"); //esto es temporal
+		}
 	}
 	
 	private void habilitarCartas() {
 		List<ImageView> cartasAHabilitar = new ArrayList<ImageView>();
 		cartasAHabilitar.addAll(cartasDeMano);
+		
+		int posicionDeManoSiguiente = MesaController.obtenerManosIntercaladas().indexOf(Controller.juegoTruco.jugadorDeTurno().getMano());
+		List<ImageView> cartasSiguientes = this.cartasEnJuego.get(posicionDeManoSiguiente);
+
 		cartasAHabilitar.addAll(cartasSiguientes);
 		for(ImageView carta : cartasAHabilitar) {
 			if(!carta.isDisable()) {
@@ -64,9 +78,9 @@ public class CartaHandler implements EventHandler<Event> {
 				.append("/").append(String.valueOf(carta.getTipoCarta().getValorRealCarta()))
 				.append(".png").toString();
 	}
-	private void jugarCarta(ImageView cartaJugada) {
+	
+	private void jugarCarta(ImageView cartaJugada) {	
 		Image imagenCarta = cartaJugada.getImage();
 		contenedorAsociado.setImage(imagenCarta);
-	}
-	
+	}	
 }

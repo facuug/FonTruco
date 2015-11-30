@@ -49,24 +49,33 @@ public class TurnoTest {
     @Test
     public void calcularJugadorDeTurnoMuestraProximoJugador(){
         assertEquals(this.facu, this.turno.calcularJugadorDeTurno() );
+        this.turno.rotarJugador();
         assertEquals(this.homero, this.turno.calcularJugadorDeTurno() );
     }
 
     @Test
     public void calcularJugadorDeTurnoAlFinalDeLaRondaComienzaDeNuevo(){
-        assertEquals(this.facu, this.turno.calcularJugadorDeTurno() );
+        assertEquals(this.facu, this.turno.calcularJugadorDeTurno());
+        this.turno.rotarJugador();
         assertEquals(this.homero, this.turno.calcularJugadorDeTurno() );
+        this.turno.rotarJugador();
         assertEquals(this.agus, this.turno.calcularJugadorDeTurno() );
+        this.turno.rotarJugador();
         assertEquals(this.lisa, this.turno.calcularJugadorDeTurno() );
+        this.turno.rotarJugador();
         assertEquals(this.facu, this.turno.calcularJugadorDeTurno() );
     }
 
     @Test
     public void calcularJugadorDeTurnoAlFinalDeLaRondaComienzaPorElQueJuegaCartaMayor(){
         this.turno.jugadorJuegaCarta(this.turno.calcularJugadorDeTurno(),new Carta(TipoCarta.CINCO,Palo.ESPADA));
+        this.turno.rotarJugador();
         this.turno.jugadorJuegaCarta(this.turno.calcularJugadorDeTurno(),new Carta(TipoCarta.ANCHO_BASTO,Palo.BASTO));
+        this.turno.rotarJugador();
         this.turno.jugadorJuegaCarta(this.turno.calcularJugadorDeTurno(),new Carta(TipoCarta.CUATRO,Palo.ORO));
+        this.turno.rotarJugador();
         this.turno.jugadorJuegaCarta(this.turno.calcularJugadorDeTurno(),new Carta(TipoCarta.CINCO,Palo.COPA));
+        this.turno.rotarJugador();
 
         assertEquals(this.homero,this.turno.calcularJugadorDeTurno());
     }

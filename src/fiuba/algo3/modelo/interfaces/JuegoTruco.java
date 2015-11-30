@@ -10,7 +10,7 @@ import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
  */
 public abstract class JuegoTruco {
 
-    protected EstadoJuego estadoDeTruco,estadoDeEnvido,estadoJuego;
+    protected EstadoJuego estadoJuego;
 
     protected Equipo equipoUno;
     protected Equipo equipoDos;
@@ -40,8 +40,6 @@ public abstract class JuegoTruco {
 
         this.equipoDeTurno = this.equipoUno;
 
-        this.estadoDeTruco = new EstadoSinCanto();
-        this.estadoDeEnvido = new EstadoSinCanto();
         this.estadoJuego = new EstadoSinCanto();
 
         this.turnoParaCanto = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
@@ -127,6 +125,7 @@ public abstract class JuegoTruco {
         if( (!this.estadoJuego.fueRespondido()) || (this.manoFinalizada()) ) throw new AccionInvalidaException();
 
         this.jugadorDeTurno = this.turnoParaCarta.calcularJugadorDeTurno();
+        this.turnoParaCarta.rotarJugador();
         this.turnoParaCarta.jugadorJuegaCarta(jugadorDeTurno,carta);
         mesa.jugarCarta(jugadorDeTurno.miEquipo(),carta);
 
@@ -155,10 +154,24 @@ public abstract class JuegoTruco {
     public abstract void contraFlor();
 
     public Jugador jugadorDeTurno(){
-        return this.jugadorDeTurno;
+        return this.turnoParaCarta.calcularJugadorDeTurno();
     }
 
     public Mesa obtenerMesa(){
         return this.mesa;
+    }
+
+    public void restablecer(){
+        this.estadoJuego = new EstadoSinCanto();
+        this.puntosDeEnvido = 0;
+        this.puntosDeTruco = 0;
+
+        this.turnoParaCanto = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
+        this.turnoParaCarta = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
+
+        this.ultimoJugadorDeCarta = this.equipoUno.jugadorDeTurno();
+        this.equipoUno.establecerJugadorDeTurno(this.ultimoJugadorDeCarta);
+
+        this.mesa.restablecer();
     }
 }

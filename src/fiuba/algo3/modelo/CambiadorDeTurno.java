@@ -49,12 +49,16 @@ public class CambiadorDeTurno {
 
     public Jugador calcularJugadorDeTurno(){
         try{
-            return this.jugadores.get(this.posicionDeJugadores++);
+            return this.jugadores.get(this.posicionDeJugadores);
         } catch (IndexOutOfBoundsException exception){
             this.posicionDeJugadores = 0;
             this.reordenar( this.jugadorConCartaMayor() );
-            return this.jugadores.get(this.posicionDeJugadores++);
+            return this.jugadores.get(this.posicionDeJugadores);
         }
+    }
+
+    public void rotarJugador(){
+        this.posicionDeJugadores++;
     }
 
     private void reordenar(Jugador jugadorQueVaPrimero){
