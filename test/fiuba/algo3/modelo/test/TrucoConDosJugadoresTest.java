@@ -8,6 +8,7 @@ import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 
+import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -330,4 +331,30 @@ public class TrucoConDosJugadoresTest {
         assertEquals(0, trucoSinFlor.puntosEquipoDos());
 
     }
+
+    @Test ( expected = CantoInvalidoException.class)
+    public void equipoQueCantaTrucoNoPuedeDecirReTruco(){
+        trucoSinFlor.truco();
+        trucoSinFlor.quiero();
+
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS, Palo.COPA));
+
+        trucoSinFlor.reTruco();
+    }
+
+    @Test ( expected = CantoInvalidoException.class)
+    public void despuesDeEnvidoQueridoNoPuedeHaberRealEnvido(){
+        trucoSinFlor.envido();
+        trucoSinFlor.quiero();
+        trucoSinFlor.realEnvido();
+    }
+
+    @Test ( expected = CantoInvalidoException.class)
+    public void despuesDeEnvidoQueridoNoPuedeHaberFaltaEnvido(){
+        trucoSinFlor.envido();
+        trucoSinFlor.quiero();
+        trucoSinFlor.faltaEnvido();
+    }
+
 }

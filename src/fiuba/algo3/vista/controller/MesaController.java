@@ -17,7 +17,9 @@ import fiuba.algo3.modelo.interfaces.MesaGeneralController;
 import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
 import fiuba.algo3.vista.controller.handler.CartaHandler;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventTarget;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -242,6 +244,11 @@ public class MesaController extends MesaGeneralController{
 			public void handle(ActionEvent event){
 				try{
 					juegoTruco.noQuiero();
+					if(Controller.getJuegoTruco().manoFinalizada()){
+						Controller.getJuegoTruco().sumarPuntos();
+						lblPuntosEq1.setText( Integer.toString(Controller.getJuegoTruco().puntosEquipoUno()) );
+						lblPuntosEq2.setText( Integer.toString(Controller.getJuegoTruco().puntosEquipoDos()) );
+					}
 				}catch ( CantoInvalidoException exception ){}
 			}
 		});
@@ -306,7 +313,7 @@ public class MesaController extends MesaGeneralController{
 		for(List<ImageView> cartasEnMano : cartasJugando) {
 			int j = 0;
 			for(ImageView carta : cartasEnMano) {
-				carta.setOnMouseClicked(new CartaHandler(cartasEnMano,cartasJugando,manos.get(i).getCartas().get(j)));
+				carta.setOnMouseClicked(new CartaHandler(cartasEnMano,cartasJugando,manos.get(i).getCartas().get(j),lblPuntosEq1,lblPuntosEq2));
 				((CartaHandler)carta.getOnMouseClicked()).setContendorEnMesa(contenedores.get(i));
 				j++;
 			}
@@ -343,7 +350,4 @@ public class MesaController extends MesaGeneralController{
 		List<ImageView> vistaCartas = cartasJugando.get(0);
 		plasmarCartaEnImageView(equipos.get(0).getJugadores().get(0).getMano(),vistaCartas);
 	}
-	
-	
-
 }

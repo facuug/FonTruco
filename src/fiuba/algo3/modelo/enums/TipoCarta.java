@@ -14,8 +14,7 @@ public enum TipoCarta {
 	SOTA (5,0,10),
 	SEIS (3,6,6),
 	CINCO (2,5,5),
-	CUATRO (1,4,4),
-	INVALIDO(0,0,0);
+	CUATRO (1,4,4);
 	
 	private final int valor;
 	private final int valorEnvido;

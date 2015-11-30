@@ -1,6 +1,8 @@
 package fiuba.algo3.modelo;
 
 
+import fiuba.algo3.modelo.excepciones.JugadorInexistenteException;
+
 import java.util.*;
 
 /**
@@ -86,5 +88,11 @@ public class CambiadorDeTurno {
             }
         }
         return duenioDeCartaMayor;
+    }
+
+    public void establecerJugadorDeTurno(Jugador jugador) {
+        if( !this.jugadores.contains(jugador) ) throw new JugadorInexistenteException();
+
+        this.posicionDeJugadores = this.jugadores.indexOf(jugador);
     }
 }

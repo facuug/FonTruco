@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.modelo.Carta;
-import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.vista.controller.Controller;
-import fiuba.algo3.vista.controller.MenuPrincipalController;
 import fiuba.algo3.vista.controller.MesaController;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -22,7 +21,9 @@ public class CartaHandler implements EventHandler<Event> {
 	private Carta cartaQueSoy;
 	List<List<ImageView>> cartasEnJuego;
 	
-	public CartaHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Carta cartaQueRepresenta) {
+	private Label labelEquipoUno,labelEquipoDos;
+	
+	public CartaHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Carta cartaQueRepresenta, Label puntosEquipoUno, Label puntosEquipoDos) {
 		this.cartasDeMano = cartasDeMano;
 		int posicionSiguiente = cartasJugando.indexOf(cartasDeMano)+1;
 		if(posicionSiguiente == cartasJugando.size()) {
@@ -30,6 +31,9 @@ public class CartaHandler implements EventHandler<Event> {
 		}
 		cartaQueSoy= cartaQueRepresenta;
 		this.cartasEnJuego = cartasJugando;
+		
+		this.labelEquipoUno = puntosEquipoUno;
+		this.labelEquipoDos = puntosEquipoDos;
 	}
 	
 	public void setContendorEnMesa(ImageView contenedor) {
@@ -45,8 +49,14 @@ public class CartaHandler implements EventHandler<Event> {
 			cartaJugada.setVisible(false);
 			jugarCarta(cartaJugada);
 			habilitarCartas();
+			
+			if(Controller.getJuegoTruco().manoFinalizada()){
+				Controller.getJuegoTruco().sumarPuntos();
+				this.labelEquipoUno.setText( Integer.toString(Controller.getJuegoTruco().puntosEquipoUno()) );
+				this.labelEquipoDos.setText( Integer.toString(Controller.getJuegoTruco().puntosEquipoDos()) );
+			}
 		} catch(AccionInvalidaException exception){
-			System.out.println("no se puede jugar carta"); //esto es temporal
+			System.out.println("no se puede jugar carta"); //esto es temporal 
 		}
 	}
 	

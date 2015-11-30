@@ -3,6 +3,7 @@ package fiuba.algo3.modelo.interfaces;
 import fiuba.algo3.modelo.*;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
+import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 
 
 /**
@@ -27,11 +28,12 @@ public abstract class JuegoTruco {
 
     protected boolean finDeMano;
 
-    protected Jugador ultimoJugadorDeCarta;
     private Jugador jugadorDeTurno;
+    private boolean envidoTerminado;
 
     public JuegoTruco(Equipo unEquipo, Equipo otroEquipo){
         this.puntosDeMano = 1;  //si no hay cantos la mano vale 1 punto
+        this.envidoTerminado = false;
 
         this.equipoUno = unEquipo;
         this.equipoDos = otroEquipo;
@@ -39,14 +41,12 @@ public abstract class JuegoTruco {
         this.mesa = new Mesa(this.equipoUno,this.equipoDos);
 
         this.equipoDeTurno = this.equipoUno;
+        this.equipoCantador = new Equipo();
 
         this.estadoJuego = new EstadoSinCanto();
 
         this.turnoParaCanto = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
         this.turnoParaCarta = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
-
-        this.ultimoJugadorDeCarta = unEquipo.jugadorDeTurno();
-        unEquipo.establecerJugadorDeTurno(this.ultimoJugadorDeCarta);
     }
 
     public void envido() {
@@ -74,16 +74,22 @@ public abstract class JuegoTruco {
         else{
             this.puntosDeEnvido += this.estadoJuego.cuantosPuntos();
             this.estadoJuego = new EstadoSinCanto();
+            this.envidoTerminado = true;
         }
+        this.turnoParaCanto.rotarEquipoDeTurno();
     }
 
     public void realEnvido() {
+        if(this.envidoTerminado) throw new CantoInvalidoException();
+
         this.estadoJuego = this.estadoJuego.realEnvido();
         this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
         this.turnoParaCanto.rotarEquipoDeTurno();
     }
 
     public void faltaEnvido() {
+        if(this.envidoTerminado) throw new CantoInvalidoException();
+
         this.estadoJuego = this.estadoJuego.faltaEnvido(this.determinarGanadorDeEnvido().obtenerPuntos());
         this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
         this.turnoParaCanto.rotarEquipoDeTurno();
@@ -97,12 +103,16 @@ public abstract class JuegoTruco {
     }
 
     public void reTruco(){
+        if(this.equipoCantador.equals(this.turnoParaCanto.equipoDeTurno())) throw new CantoInvalidoException();
+
         this.estadoJuego = this.estadoJuego.reTruco();
         this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
         this.turnoParaCanto.rotarEquipoDeTurno();
     }
 
     public void valeCuatro() {
+        if(this.equipoCantador.equals(this.turnoParaCanto.equipoDeTurno())) throw new CantoInvalidoException();
+
         this.estadoJuego = this.estadoJuego.valeCuatro();
         this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
         this.turnoParaCanto.rotarEquipoDeTurno();
@@ -129,8 +139,7 @@ public abstract class JuegoTruco {
         this.turnoParaCarta.jugadorJuegaCarta(jugadorDeTurno,carta);
         mesa.jugarCarta(jugadorDeTurno.miEquipo(),carta);
 
-        if( this.ultimoJugadorDeCarta == jugadorDeTurno ) this.turnoParaCanto.rotarEquipoDeTurno();
-        this.ultimoJugadorDeCarta = jugadorDeTurno;
+        if( !this.turnoParaCarta.calcularJugadorDeTurno().equals(jugadorDeTurno) ) this.turnoParaCanto.rotarEquipoDeTurno();
     }
 
     public boolean manoFinalizada() {
@@ -166,12 +175,8 @@ public abstract class JuegoTruco {
         this.puntosDeEnvido = 0;
         this.puntosDeTruco = 0;
 
-        this.turnoParaCanto = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
-        this.turnoParaCarta = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
-
-        this.ultimoJugadorDeCarta = this.equipoUno.jugadorDeTurno();
-        this.equipoUno.establecerJugadorDeTurno(this.ultimoJugadorDeCarta);
-
+        this.finDeMano = false;
         this.mesa.restablecer();
+        this.turnoParaCarta.establecerJugadorDeTurno(this.mesa.equipoMano().jugadorDeTurno());
     }
 }

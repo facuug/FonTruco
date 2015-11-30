@@ -247,4 +247,52 @@ public class TrucoTest {
         estadoJuego = estadoJuego.truco();
         estadoJuego = estadoJuego.contraFlor();
     }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void trucoMasQuieroMasNoQuieroLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego.quiero();
+        estadoJuego.noQuiero();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void trucoMasNoQuieroMasQuieroLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego.noQuiero();
+        estadoJuego.quiero();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void reTrucoMasQuieroMasNoQuieroLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego.quiero();
+        estadoJuego.noQuiero();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void reTrucoMasNoQuieroMasQuieroLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego.noQuiero();
+        estadoJuego.quiero();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void valeCuatroMasQuieroMasNoQuieroLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego = estadoJuego.valeCuatro();
+        estadoJuego.quiero();
+        estadoJuego.noQuiero();
+    }
+
+    @Test ( expected = CantoInvalidoException.class )
+    public void valeCuatroMasNoQuieroMasQuieroLanzaExcepcion(){
+        estadoJuego = estadoJuego.truco();
+        estadoJuego = estadoJuego.reTruco();
+        estadoJuego = estadoJuego.valeCuatro();
+        estadoJuego.noQuiero();
+        estadoJuego.quiero();
+    }
 }

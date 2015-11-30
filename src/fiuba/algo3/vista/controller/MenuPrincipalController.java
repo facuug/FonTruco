@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mesa;
+import fiuba.algo3.modelo.estados.TrucoConFlor;
 import fiuba.algo3.modelo.estados.TrucoSinFlor;
 import fiuba.algo3.modelo.interfaces.JuegoTruco;
 import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
@@ -30,9 +31,15 @@ public class MenuPrincipalController extends Controller {
 	@FXML
 	private Button btnPicaPica;
 	@FXML
-	private Button btnVolver;     
+	private Button btnVolver;
+	@FXML
+	private Button btnVolverDeFlor;
 	@FXML
 	private Button btnContraIA;
+	@FXML
+	private Button btnSinFlor;     
+	@FXML
+	private Button btnConFlor;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle resource) {
@@ -43,6 +50,9 @@ public class MenuPrincipalController extends Controller {
 		btnDosJugadoresHandler();
 		btnCuatroJugadoresHandler();
 		btnPicaPicaHandler();
+		btnSinFlorHandler();
+		btnConFlorHandler();
+		btnVolverDeFlor();
 	}
 	
 	private EventHandler<ActionEvent> esconderOtrosBotonesHandler = new EventHandler<ActionEvent>(){
@@ -89,13 +99,59 @@ public class MenuPrincipalController extends Controller {
 		});
 	}
 	
+	private void btnVolverDeFlor(){
+		btnVolverDeFlor.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				cambiarVisibilidadBoton(btnDosJugadores);
+				cambiarVisibilidadBoton(btnCuatroJugadores);
+				cambiarVisibilidadBoton(btnContraIA);
+				cambiarVisibilidadBoton(btnPicaPica);
+				cambiarVisibilidadBoton(btnConFlor);
+				cambiarVisibilidadBoton(btnSinFlor);
+				cambiarVisibilidadBoton(btnVolverDeFlor);
+			}
+		});
+	}
+	
 	private void btnDosJugadoresHandler() {
 		btnDosJugadores.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
 				MesaController.setCantidadJugadores(2);
-				juegoTruco = new TrucoSinFlor(armarEquipo(1),armarEquipo(1));
+				cambiarVisibilidadBoton(btnDosJugadores);
+				cambiarVisibilidadBoton(btnCuatroJugadores);
+				cambiarVisibilidadBoton(btnContraIA);
+				cambiarVisibilidadBoton(btnPicaPica);
+				cambiarVisibilidadBoton(btnConFlor);
+				cambiarVisibilidadBoton(btnSinFlor);
+				cambiarVisibilidadBoton(btnVolverDeFlor);
+			}
+		});
+	}
+	
+	private void btnSinFlorHandler(){
+		btnSinFlor.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				int cantidadDeJugadores = MesaController.getCantidadJugadores();
+				juegoTruco = new TrucoSinFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
+				MesaController.setMesa(juegoTruco.obtenerMesa());
+				redirect("Mesa");
+			}
+		});
+	}
+	
+	private void btnConFlorHandler(){
+		btnConFlor.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				int cantidadDeJugadores = MesaController.getCantidadJugadores();
+				juegoTruco = new TrucoConFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
 				MesaController.setMesa(juegoTruco.obtenerMesa());
 				redirect("Mesa");
 			}
@@ -107,9 +163,13 @@ public class MenuPrincipalController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				MesaController.setCantidadJugadores(6);
-				juegoTruco = new TrucoSinFlor(armarEquipo(3), armarEquipo(3));
-				MesaController.setMesa(juegoTruco.obtenerMesa());
-				redirect("MesaDeSeis");
+				cambiarVisibilidadBoton(btnDosJugadores);
+				cambiarVisibilidadBoton(btnCuatroJugadores);
+				cambiarVisibilidadBoton(btnContraIA);
+				cambiarVisibilidadBoton(btnPicaPica);
+				cambiarVisibilidadBoton(btnConFlor);
+				cambiarVisibilidadBoton(btnSinFlor);
+				cambiarVisibilidadBoton(btnVolverDeFlor);
 			}
 		});
 	}
@@ -120,9 +180,13 @@ public class MenuPrincipalController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				MesaController.setCantidadJugadores(4);
-				juegoTruco = new TrucoSinFlor(armarEquipo(2),armarEquipo(2));
-				MesaController.setMesa(juegoTruco.obtenerMesa());
-				redirect("Mesa");
+				cambiarVisibilidadBoton(btnDosJugadores);
+				cambiarVisibilidadBoton(btnCuatroJugadores);
+				cambiarVisibilidadBoton(btnContraIA);
+				cambiarVisibilidadBoton(btnPicaPica);
+				cambiarVisibilidadBoton(btnConFlor);
+				cambiarVisibilidadBoton(btnSinFlor);
+				cambiarVisibilidadBoton(btnVolverDeFlor);
 			}
 		});
 	}
