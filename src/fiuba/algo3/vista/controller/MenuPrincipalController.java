@@ -42,6 +42,7 @@ public class MenuPrincipalController extends Controller {
 		btnAyudaHandler();
 		btnDosJugadoresHandler();
 		btnCuatroJugadoresHandler();
+		btnPicaPicaHandler();
 	}
 	
 	private EventHandler<ActionEvent> esconderOtrosBotonesHandler = new EventHandler<ActionEvent>(){
@@ -97,6 +98,18 @@ public class MenuPrincipalController extends Controller {
 				juegoTruco = new TrucoSinFlor(armarEquipo(1),armarEquipo(1));
 				MesaController.setMesa(juegoTruco.obtenerMesa());
 				redirect("Mesa");
+			}
+		});
+	}
+	
+	private void btnPicaPicaHandler() {
+		btnPicaPica.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				MesaController.setCantidadJugadores(6);
+				juegoTruco = new TrucoSinFlor(armarEquipo(3), armarEquipo(3));
+				MesaController.setMesa(juegoTruco.obtenerMesa());
+				redirect("MesaDeSeis");
 			}
 		});
 	}

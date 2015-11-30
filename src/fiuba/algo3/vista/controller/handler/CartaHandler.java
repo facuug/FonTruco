@@ -39,7 +39,7 @@ public class CartaHandler implements EventHandler<Event> {
 	@Override
 	public void handle(Event event) {
 		try{
-			Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
+			Controller.getJuegoTruco().jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
 			ImageView cartaJugada = (ImageView)event.getSource();
 			cartasDeMano.remove(cartaJugada);
 			cartaJugada.setVisible(false);
@@ -54,7 +54,7 @@ public class CartaHandler implements EventHandler<Event> {
 		List<ImageView> cartasAHabilitar = new ArrayList<ImageView>();
 		cartasAHabilitar.addAll(cartasDeMano);
 		
-		int posicionDeManoSiguiente = MesaController.obtenerManosIntercaladas().indexOf(Controller.juegoTruco.jugadorDeTurno().getMano());
+		int posicionDeManoSiguiente = MesaController.obtenerManosIntercaladas().indexOf(Controller.getJuegoTruco().jugadorDeTurno().getMano());
 		List<ImageView> cartasSiguientes = this.cartasEnJuego.get(posicionDeManoSiguiente);
 
 		cartasAHabilitar.addAll(cartasSiguientes);

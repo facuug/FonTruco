@@ -13,6 +13,7 @@ import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
+import fiuba.algo3.modelo.interfaces.MesaGeneralController;
 import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
 import fiuba.algo3.vista.controller.handler.CartaHandler;
 import javafx.event.ActionEvent;
@@ -23,7 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class MesaController extends Controller{
+public class MesaController extends MesaGeneralController{
 	
 	//Cada control de javafx tiene por nombre el id:fx del control que esta en Mesa.fxml
 	
@@ -154,7 +155,7 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event){
 				try{
-					Controller.juegoTruco.truco();
+					juegoTruco.truco();
 				}catch ( CantoInvalidoException exception ){}
 			}
 		});
@@ -166,7 +167,7 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event){
 				try{
-					Controller.juegoTruco.envido();
+					juegoTruco.envido();
 				}catch ( CantoInvalidoException exception ){
 					System.out.println("cantoInvalido");
 				}
@@ -180,7 +181,7 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event){
 				try{
-					Controller.juegoTruco.reTruco();
+					juegoTruco.reTruco();
 				}catch ( CantoInvalidoException exception ){}
 			}
 		});
@@ -192,7 +193,7 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event){
 				try{
-					Controller.juegoTruco.valeCuatro();
+					juegoTruco.valeCuatro();
 				}catch ( CantoInvalidoException exception ){}
 			}
 		});
@@ -204,7 +205,7 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event){
 				try{
-					Controller.juegoTruco.realEnvido();
+					juegoTruco.realEnvido();
 				}catch ( CantoInvalidoException exception ){}
 			}
 		});
@@ -216,7 +217,7 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event){
 				try{
-					Controller.juegoTruco.faltaEnvido();
+					juegoTruco.faltaEnvido();
 				}catch ( CantoInvalidoException exception ){}
 			}
 		});
@@ -228,7 +229,7 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event){
 				try{
-					Controller.juegoTruco.quiero();
+					juegoTruco.quiero();
 				}catch ( CantoInvalidoException exception ){}
 			}
 		});
@@ -240,7 +241,7 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event){
 				try{
-					Controller.juegoTruco.noQuiero();
+					juegoTruco.noQuiero();
 				}catch ( CantoInvalidoException exception ){}
 			}
 		});
@@ -252,7 +253,7 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event){
 				try{
-					Controller.juegoTruco.flor();
+					juegoTruco.flor();
 				}catch ( CantoInvalidoException exception ){}
 			}
 		});
@@ -264,7 +265,7 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event){
 				try{
-					Controller.juegoTruco.contraFlor();
+					juegoTruco.contraFlor();
 				}catch ( CantoInvalidoException exception ){
 				}
 			}
@@ -277,7 +278,7 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event){
 				try{
-					Controller.juegoTruco.contraFlorAlResto();
+					juegoTruco.contraFlorAlResto();
 				}catch ( CantoInvalidoException exception ){}
 			}
 		});

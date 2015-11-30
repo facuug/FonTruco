@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public abstract class Controller implements Initializable {
 	protected static Stage stage;
 	
-	public static JuegoTruco juegoTruco;
+	protected static JuegoTruco juegoTruco;
 	
 	public void setStage(Stage stage) {
 		this.stage = stage;
@@ -55,23 +55,7 @@ public abstract class Controller implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
-	public String armarRutaImagen(Carta carta) {
-		return new StringBuilder().append("src/fiuba/algo3/vista/recursos/carta/")
-				.append(carta.getPalo().toString().toLowerCase())
-				.append("/").append(String.valueOf(carta.getTipoCarta().getValorRealCarta()))
-				.append(".png").toString();
-	}	
-	
-	public void plasmarCartaEnImageView(Mano unaMano, List<ImageView> cartasAMostrar) {
-		
-		int posicionCarta = 0;
-		for(Carta carta : unaMano.getCartas()) {
-			String rutaImagen = armarRutaImagen(carta);
-			File archivoCarta = new File(rutaImagen);
-			Image pngCarta = new Image(archivoCarta.toURI().toString());
-			cartasAMostrar.get(posicionCarta).setImage(pngCarta);
-			posicionCarta+=1;
-		}
+	public static JuegoTruco getJuegoTruco() {
+		return juegoTruco;
 	}
 }
