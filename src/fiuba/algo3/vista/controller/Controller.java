@@ -9,6 +9,7 @@ import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.interfaces.JuegoTruco;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,7 +25,7 @@ public abstract class Controller implements Initializable {
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
-	public void redirect(String nombreVista){
+	public static void redirect(String nombreVista){
 		Pane pane;
 		try {
 			 pane = (Pane)FXMLLoader.load(Main.class.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
@@ -38,7 +39,7 @@ public abstract class Controller implements Initializable {
 		}
 	}
 	
-	public void popup(String nombreVista) {
+	public static void popup(String nombreVista) {
 		Pane pane;
 		try {
 			 pane = (Pane)FXMLLoader.load(Main.class.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
