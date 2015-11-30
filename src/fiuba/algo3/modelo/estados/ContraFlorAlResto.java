@@ -9,6 +9,7 @@ import fiuba.algo3.modelo.interfaces.EstadoJuego;
 public class ContraFlorAlResto implements EstadoJuego {
 
     private int puntos;
+    private boolean fueRespondido;
 
     public ContraFlorAlResto(int puntosAcumulados) {
         this.puntos = puntosAcumulados;
@@ -16,12 +17,18 @@ public class ContraFlorAlResto implements EstadoJuego {
 
     @Override
     public void noQuiero() {
+        if(this.fueRespondido()) throw new CantoInvalidoException();
+
         this.puntos += 0;
+        this.fueRespondido = true;
     }
 
     @Override
     public void quiero() {
+        if(this.fueRespondido()) throw new CantoInvalidoException();
+
         this.puntos = 33 - this.puntos;
+        this.fueRespondido = true;
     }
 
     @Override
@@ -61,7 +68,7 @@ public class ContraFlorAlResto implements EstadoJuego {
 
     @Override
     public Boolean fueRespondido() {
-        throw new CantoInvalidoException();
+        return this.fueRespondido;
     }
 
     @Override

@@ -18,11 +18,15 @@ public class RealEnvido implements EstadoJuego {
 
     @Override
     public void noQuiero() {
+        if(this.fueRespondido()) throw new CantoInvalidoException();
+
         if(this.puntos == 0) this.puntos = 1;
         this.fueRespondido = true;
     }
 
     public void quiero(){
+        if(this.fueRespondido()) throw new CantoInvalidoException();
+
         this.puntos += 3;
         this.fueRespondido = true;
     }

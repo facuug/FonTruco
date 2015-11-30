@@ -234,4 +234,36 @@ public class FlorTest {
         estadoJuego = estadoJuego.contraFlorAlResto(0);
         estadoJuego = estadoJuego.faltaEnvido(0);
     }
+
+    @Test ( expected = CantoInvalidoException.class)
+    public void contraFlorMasQuieroMasNoQuiero(){
+        estadoJuego = estadoJuego.flor();
+        estadoJuego = estadoJuego.contraFlor();
+        estadoJuego.quiero();
+        estadoJuego.noQuiero();
+    }
+
+    @Test ( expected = CantoInvalidoException.class)
+    public void contraFlorMasNoQuieroMasQuiero(){
+        estadoJuego = estadoJuego.flor();
+        estadoJuego = estadoJuego.contraFlor();
+        estadoJuego.noQuiero();
+        estadoJuego.quiero();
+    }
+
+    @Test ( expected = CantoInvalidoException.class)
+    public void contraFlorAlRestoMasQuieroMasNoQuiero(){
+        estadoJuego = estadoJuego.flor();
+        estadoJuego = estadoJuego.contraFlorAlResto(0);
+        estadoJuego.quiero();
+        estadoJuego.noQuiero();
+    }
+
+    @Test ( expected = CantoInvalidoException.class)
+    public void contraFlorMasAlRestoNoQuieroMasQuiero(){
+        estadoJuego = estadoJuego.flor();
+        estadoJuego = estadoJuego.contraFlorAlResto(0);
+        estadoJuego.noQuiero();
+        estadoJuego.quiero();
+    }
 }

@@ -15,6 +15,8 @@ public class ValeCuatro implements EstadoJuego {
 
     @Override
     public void noQuiero() {
+        if(this.fueRespondido()) throw new CantoInvalidoException();
+
         this.puntos = 3;
         this.fueRespondido = true;
         this.fueNoQuerido = true;
@@ -22,6 +24,8 @@ public class ValeCuatro implements EstadoJuego {
 
     @Override
     public void quiero() {
+        if(this.fueRespondido()) throw new CantoInvalidoException();
+
         this.puntos = 4;
         this.fueRespondido = true;
         this.fueNoQuerido = false;

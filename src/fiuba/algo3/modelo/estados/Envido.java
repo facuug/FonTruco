@@ -17,11 +17,15 @@ public class Envido implements EstadoJuego {
     }
 
     public void noQuiero() {
+        if(this.fueRespondido()) throw new CantoInvalidoException();
+
         if(this.puntos == 0) this.puntos = 1;
         this.cantoRespondido = true;
     }
 
     public void quiero(){
+        if(this.fueRespondido()) throw new CantoInvalidoException();
+
         this.puntos += 2;
         this.cantoRespondido = true;
     }

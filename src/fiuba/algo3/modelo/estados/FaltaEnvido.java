@@ -18,11 +18,15 @@ public class FaltaEnvido implements EstadoJuego {
 
     @Override
     public void noQuiero() {
+        if(this.fueRespondido()) throw new CantoInvalidoException();
+
         if(this.puntos == 0) this.puntos = 1;
         this.fueRespondido = true;
     }
 
     public void quiero(){
+        if(this.fueRespondido()) throw new CantoInvalidoException();
+
         this.fueRespondido = true;
         if(this.puntos < 15) this.puntos = 15 - this.puntos;
         else this.puntos = 30 - this.puntos;
