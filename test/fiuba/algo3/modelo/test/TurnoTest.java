@@ -6,6 +6,7 @@ import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.CambiadorDeTurno;
 import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
+import fiuba.algo3.modelo.excepciones.JugadorInexistenteException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -78,5 +79,31 @@ public class TurnoTest {
         this.turno.rotarJugador();
 
         assertEquals(this.homero,this.turno.calcularJugadorDeTurno());
+    }
+
+    @Test
+    public void establecerJugadorDeTurnoCambiaLaRonda(){
+        assertEquals(this.facu, this.turno.calcularJugadorDeTurno());
+        this.turno.rotarJugador();
+        assertEquals(this.homero, this.turno.calcularJugadorDeTurno() );
+        this.turno.rotarJugador();
+        assertEquals(this.agus, this.turno.calcularJugadorDeTurno() );
+        this.turno.rotarJugador();
+        assertEquals(this.lisa, this.turno.calcularJugadorDeTurno() );
+
+        this.turno.establecerJugadorDeTurno(this.homero);
+
+        assertEquals(this.homero, this.turno.calcularJugadorDeTurno() );
+        this.turno.rotarJugador();
+        assertEquals(this.agus, this.turno.calcularJugadorDeTurno() );
+        this.turno.rotarJugador();
+        assertEquals(this.lisa, this.turno.calcularJugadorDeTurno() );
+        this.turno.rotarJugador();
+        assertEquals(this.facu, this.turno.calcularJugadorDeTurno());
+    }
+
+    @Test ( expected = JugadorInexistenteException.class)
+    public void establecerJugadorDeTurnoInexistenteLanzaExcepcion(){
+        this.turno.establecerJugadorDeTurno(new Jugador("no existe"));
     }
 }

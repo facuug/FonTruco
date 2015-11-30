@@ -74,5 +74,7 @@ public class Mesa {
 
 	public void restablecer() {
 		this.ronda = new PrimeraRonda(this.equipoMano.cantidadDeJugadores() * 2);
+		this.mazo = new Mazo();
+		this.repartir();
 	}
 }

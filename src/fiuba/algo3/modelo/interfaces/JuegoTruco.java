@@ -166,12 +166,8 @@ public abstract class JuegoTruco {
         this.puntosDeEnvido = 0;
         this.puntosDeTruco = 0;
 
-        this.turnoParaCanto = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
-        this.turnoParaCarta = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
-
-        this.ultimoJugadorDeCarta = this.equipoUno.jugadorDeTurno();
-        this.equipoUno.establecerJugadorDeTurno(this.ultimoJugadorDeCarta);
-
+        this.finDeMano = false;
         this.mesa.restablecer();
+        this.turnoParaCarta.establecerJugadorDeTurno(this.mesa.equipoMano().jugadorDeTurno());
     }
 }

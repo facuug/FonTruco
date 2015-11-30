@@ -112,8 +112,8 @@ public class TrucoConDosJugadoresTest {
 
         trucoSinFlor.sumarPuntos();
 
-        assertEquals(1, trucoSinFlor.puntosEquipoUno());
-        assertEquals(0, trucoSinFlor.puntosEquipoDos());
+        assertEquals(0, trucoSinFlor.puntosEquipoUno());
+        assertEquals(1, trucoSinFlor.puntosEquipoDos());
     }
 
     @Test (expected = AccionInvalidaException.class)
