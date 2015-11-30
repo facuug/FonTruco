@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mesa;
+import fiuba.algo3.modelo.estados.TrucoSinFlor;
+import fiuba.algo3.modelo.interfaces.JuegoTruco;
 import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -49,6 +51,7 @@ public class MenuPrincipalController extends Controller {
 	    	cambiarVisibilidadDeBotones();
 	    }
 	};
+	
 	private void btnJugarHandler() {
 		btnJugar.setOnAction(esconderOtrosBotonesHandler);
 	}
@@ -91,7 +94,8 @@ public class MenuPrincipalController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				MesaController.setCantidadJugadores(2);
-				MesaController.setMesa(new Mesa(armarEquipo(1), armarEquipo(1)));
+				juegoTruco = new TrucoSinFlor(armarEquipo(1),armarEquipo(1));
+				MesaController.setMesa(juegoTruco.obtenerMesa());
 				redirect("Mesa");
 			}
 		});
@@ -103,15 +107,16 @@ public class MenuPrincipalController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				MesaController.setCantidadJugadores(4);
-				MesaController.setMesa(new Mesa(armarEquipo(2), armarEquipo(2)));
+				juegoTruco = new TrucoSinFlor(armarEquipo(2),armarEquipo(2));
+				MesaController.setMesa(juegoTruco.obtenerMesa());
 				redirect("Mesa");
 			}
 		});
 	}
-
+	
 	private Equipo armarEquipo(int cantidadDeJugadores) {
 		Equipo equipo = new Equipo();
-
+		
 		for(int i = 0; i<cantidadDeJugadores;i++) {
 			Jugador jugador = new Jugador("Jugador"+(i+1));
 			jugador.asignarEquipo(equipo);

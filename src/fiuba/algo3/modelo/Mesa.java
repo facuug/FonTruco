@@ -71,4 +71,8 @@ public class Mesa {
 	public boolean manoFinalizada() {
 		return this.ronda.manoFinalizada();
 	}
+
+	public void restablecer() {
+		this.ronda = new PrimeraRonda(this.equipoMano.cantidadDeJugadores() * 2);
+	}
 }

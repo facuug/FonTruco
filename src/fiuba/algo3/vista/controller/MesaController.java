@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -28,7 +29,7 @@ public class MesaController extends Controller{
 	
 	private static int cantidadJugadores = 0;
 	
-	private static Mesa mesa;
+	public static Mesa mesa;
 	
 	public static int getCantidadJugadores() {
 		return cantidadJugadores;
@@ -43,11 +44,32 @@ public class MesaController extends Controller{
 	@FXML
     private Button btnVolver;
 	@FXML
-    private Button btnEnvido;
+    private Button btnEnvido3;
 	@FXML
     private Button btnTruco;
 	@FXML
     private Button btnFlor;
+	@FXML
+    private Button btnTruco1;
+	@FXML
+    private Button btnTruco11;
+	@FXML
+    private Button btnEnvido1;
+	@FXML
+    private Button btnEnvido4;
+	@FXML
+    private Button btnNoQuiero;
+	@FXML
+    private Button btnQuiero;
+	@FXML
+    private Button btnFlor1;
+	@FXML
+    private Button btnFlor11;
+	
+	@FXML
+    private Label lblPuntosEq1;
+	@FXML
+    private Label lblPuntosEq2;
 	
 	@FXML
     private ImageView carta1Jug1;
@@ -95,6 +117,16 @@ public class MesaController extends Controller{
 		setBtnVolverHandler();
 		setBtnSalirHandler();
 		setBtnTrucoHandler();
+		setBtnReTrucoHandler();
+		setBtnValeCuatroHandler();
+		setBtnEnvidoHandler();
+		setBtnRealEnvidoHandler();
+		setBtnFaltaEnvidoHandler();
+		setBtnNoQuieroHandler();
+		setBtnQuieroHandler();
+		setBtnFlorHandler();
+		setBtnContraFlorHandler();
+		setBtnContraFlorAlRestoHandler();
 		contenedores = new ArrayList<ImageView>(Arrays.asList(contenedor1,contenedor2,contenedor3,contenedor4));
 		prepararMesa();
 		mesa.repartir();
@@ -112,14 +144,13 @@ public class MesaController extends Controller{
 			@Override
 			public void handle(ActionEvent event) {
 				redirect("MenuPrincipal");
-				
 			}
 		});
 	}
-
+	
 	private void setBtnTrucoHandler(){
 		btnTruco.setOnAction(new EventHandler<ActionEvent>(){
-
+			
 			@Override
 			public void handle(ActionEvent event){
 				try{
@@ -129,7 +160,130 @@ public class MesaController extends Controller{
 		});
 	}
 	
-	public static Mesa getMesa() {
+	private void setBtnEnvidoHandler(){
+		btnEnvido3.setOnAction(new EventHandler<ActionEvent>(){
+			
+			@Override
+			public void handle(ActionEvent event){
+				try{
+					Controller.juegoTruco.envido();
+				}catch ( CantoInvalidoException exception ){
+					System.out.println("cantoInvalido");
+				}
+			}
+		});
+	}
+	
+	private void setBtnReTrucoHandler(){
+		btnTruco1.setOnAction(new EventHandler<ActionEvent>(){
+			
+			@Override
+			public void handle(ActionEvent event){
+				try{
+					Controller.juegoTruco.reTruco();
+				}catch ( CantoInvalidoException exception ){}
+			}
+		});
+	}
+	
+	private void setBtnValeCuatroHandler(){
+		btnTruco11.setOnAction(new EventHandler<ActionEvent>(){
+			
+			@Override
+			public void handle(ActionEvent event){
+				try{
+					Controller.juegoTruco.valeCuatro();
+				}catch ( CantoInvalidoException exception ){}
+			}
+		});
+	}
+	
+	private void setBtnRealEnvidoHandler(){
+		btnEnvido1.setOnAction(new EventHandler<ActionEvent>(){
+			
+			@Override
+			public void handle(ActionEvent event){
+				try{
+					Controller.juegoTruco.realEnvido();
+				}catch ( CantoInvalidoException exception ){}
+			}
+		});
+	}
+	
+	private void setBtnFaltaEnvidoHandler(){
+		btnEnvido4.setOnAction(new EventHandler<ActionEvent>(){
+			
+			@Override
+			public void handle(ActionEvent event){
+				try{
+					Controller.juegoTruco.faltaEnvido();
+				}catch ( CantoInvalidoException exception ){}
+			}
+		});
+	}
+	
+	private void setBtnQuieroHandler(){
+		btnQuiero.setOnAction(new EventHandler<ActionEvent>(){
+			
+			@Override
+			public void handle(ActionEvent event){
+				try{
+					Controller.juegoTruco.quiero();
+				}catch ( CantoInvalidoException exception ){}
+			}
+		});
+	}
+	
+	private void setBtnNoQuieroHandler(){
+		btnNoQuiero.setOnAction(new EventHandler<ActionEvent>(){
+			
+			@Override
+			public void handle(ActionEvent event){
+				try{
+					Controller.juegoTruco.noQuiero();
+				}catch ( CantoInvalidoException exception ){}
+			}
+		});
+	}
+	
+	private void setBtnFlorHandler(){
+		btnFlor.setOnAction(new EventHandler<ActionEvent>(){
+			
+			@Override
+			public void handle(ActionEvent event){
+				try{
+					Controller.juegoTruco.flor();
+				}catch ( CantoInvalidoException exception ){}
+			}
+		});
+	}
+	
+	private void setBtnContraFlorHandler(){
+		btnFlor1.setOnAction(new EventHandler<ActionEvent>(){
+			
+			@Override
+			public void handle(ActionEvent event){
+				try{
+					Controller.juegoTruco.contraFlor();
+				}catch ( CantoInvalidoException exception ){
+				}
+			}
+		});
+	}
+	
+	private void setBtnContraFlorAlRestoHandler(){
+		btnFlor11.setOnAction(new EventHandler<ActionEvent>(){
+			
+			@Override
+			public void handle(ActionEvent event){
+				try{
+					Controller.juegoTruco.contraFlorAlResto();
+				}catch ( CantoInvalidoException exception ){}
+			}
+		});
+	}
+	
+	public Mesa getMesa() {
 		return mesa;
 	}
 
@@ -137,7 +291,7 @@ public class MesaController extends Controller{
 		MesaController.mesa = mesa;
 	}
 	
-	private void prepararMesa() {
+	public void prepararMesa() {
 		if(cantidadJugadores == 2) {
 			esconderCartas();
 		}
@@ -159,7 +313,7 @@ public class MesaController extends Controller{
 		}
 	}
 	
-	private List<Mano> obtenerManosIntercaladas() {
+	public static List<Mano> obtenerManosIntercaladas() {
 		int posicionOtraMano = 0;
 		List<Jugador> equipoUno = mesa.getEquipos().get(0).getJugadores();
 		List<Jugador> equipoDos = mesa.getEquipos().get(1).getJugadores();
