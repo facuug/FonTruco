@@ -185,25 +185,10 @@ public class MesaController extends Controller{
 	
 	private void mostrarCartas() {
 		List<Equipo> equipos = mesa.getEquipos();
-		plasmarCartaEnImageView(equipos.get(0).getJugadores().get(0).getMano(),0);
+		List<ImageView> vistaCartas = cartasJugando.get(0);
+		plasmarCartaEnImageView(equipos.get(0).getJugadores().get(0).getMano(),vistaCartas);
 	}
 	
-	private void plasmarCartaEnImageView(Mano unaMano, int posicionJugador) {
-		List<ImageView> vistaCartas = cartasJugando.get(posicionJugador);
-		int posicionCarta = 0;
-		for(Carta carta : unaMano.getCartas()) {
-			String rutaImagen = armarRutaImagen(carta);
-			File archivoCarta = new File(rutaImagen);
-			Image pngCarta = new Image(archivoCarta.toURI().toString());
-			vistaCartas.get(posicionCarta).setImage(pngCarta);
-			posicionCarta+=1;
-		}
-	}
 	
-	private String armarRutaImagen(Carta carta) {
-		return new StringBuilder().append("src/fiuba/algo3/vista/recursos/carta/")
-				.append(carta.getPalo().toString().toLowerCase())
-				.append("/").append(String.valueOf(carta.getTipoCarta().getValorRealCarta()))
-				.append(".png").toString();
-	}
+
 }
