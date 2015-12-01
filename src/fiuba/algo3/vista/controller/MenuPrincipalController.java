@@ -120,7 +120,7 @@ public class MenuPrincipalController extends Controller {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				MesaController.setCantidadJugadores(2);
+				MesaController.cantidadJugadores=2;
 				cambiarVisibilidadBoton(btnDosJugadores);
 				cambiarVisibilidadBoton(btnCuatroJugadores);
 				cambiarVisibilidadBoton(btnContraIA);
@@ -139,7 +139,7 @@ public class MenuPrincipalController extends Controller {
 			public void handle(ActionEvent event) {
 				int cantidadDeJugadores = MesaController.getCantidadJugadores();
 				juegoTruco = new TrucoSinFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
-				MesaController.setMesa(juegoTruco.obtenerMesa());
+				MesaController.mesa = juegoTruco.obtenerMesa();
 				redirect("Mesa");
 			}
 		});
@@ -147,12 +147,12 @@ public class MenuPrincipalController extends Controller {
 	
 	private void btnConFlorHandler(){
 		btnConFlor.setOnAction(new EventHandler<ActionEvent>() {
-			
+				
 			@Override
 			public void handle(ActionEvent event) {
 				int cantidadDeJugadores = MesaController.getCantidadJugadores();
 				juegoTruco = new TrucoConFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
-				MesaController.setMesa(juegoTruco.obtenerMesa());
+				MesaController.mesa=juegoTruco.obtenerMesa();
 				redirect("Mesa");
 			}
 		});
@@ -162,7 +162,7 @@ public class MenuPrincipalController extends Controller {
 		btnPicaPica.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				MesaController.setCantidadJugadores(6);
+				MesaController.cantidadJugadores=6;
 				cambiarVisibilidadBoton(btnDosJugadores);
 				cambiarVisibilidadBoton(btnCuatroJugadores);
 				cambiarVisibilidadBoton(btnContraIA);
@@ -179,7 +179,7 @@ public class MenuPrincipalController extends Controller {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				MesaController.setCantidadJugadores(4);
+				MesaController.cantidadJugadores=4;
 				cambiarVisibilidadBoton(btnDosJugadores);
 				cambiarVisibilidadBoton(btnCuatroJugadores);
 				cambiarVisibilidadBoton(btnContraIA);
