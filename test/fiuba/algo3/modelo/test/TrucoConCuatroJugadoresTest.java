@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Facundo on 18-Nov-15.
  */
-public class TrucoConCuatroJugadores {
+public class TrucoConCuatroJugadoresTest {
 
     private JuegoTruco trucoConFlor;
 
