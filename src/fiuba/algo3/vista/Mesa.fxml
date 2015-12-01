@@ -5,9 +5,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="821.0" style="-fx-background-color: #598749;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.vista.controller.MesaController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="801.0" prefWidth="843.0" style="-fx-background-color: #598749;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.vista.controller.MesaController">
    <children>
-      <GridPane layoutX="91.0" layoutY="72.0" prefHeight="465.0" prefWidth="644.0">
+      <GridPane layoutX="2.0" layoutY="-6.0" prefHeight="737.0" prefWidth="843.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="2.0" prefWidth="186.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="680.0" minWidth="10.0" prefWidth="444.0" />
@@ -19,11 +19,17 @@
           <RowConstraints maxHeight="217.5" minHeight="10.0" prefHeight="186.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <GridPane prefHeight="71.0" prefWidth="349.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnSalir" layoutX="24.0" layoutY="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Salir" />
+                  <Button fx:id="btnVolver" layoutX="24.0" layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="&lt;- Volver" />
+               </children>
+            </Pane>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
               <columnConstraints>
-                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="191.66668701171875" minWidth="10.0" prefWidth="160.33331298828125" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="139.66668701171875" minWidth="10.0" prefWidth="107.66668701171875" />
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="153.66668701171875" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
@@ -65,9 +71,9 @@
                   </ImageView>
                </children>
                <columnConstraints>
-                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="165.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="134.33334350585938" minWidth="10.0" prefWidth="108.33331298828125" />
-                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="151.33334350585938" minWidth="10.0" prefWidth="148.66668701171875" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
@@ -100,16 +106,16 @@
                   </ImageView>
                </children>
             </GridPane>
-            <GridPane prefHeight="371.0" prefWidth="411.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="158.6666717529297" minHeight="10.0" prefHeight="158.6666717529297" valignment="BOTTOM" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="121.33332824707031" minHeight="10.0" prefHeight="79.33334350585938" valignment="CENTER" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="145.66665649414062" minHeight="10.0" prefHeight="145.66665649414062" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <ImageView fx:id="contenedor4" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.rowIndex="1" />
@@ -118,6 +124,15 @@
                   <ImageView fx:id="contenedor3" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+               <children>
+                  <Label layoutX="78.0" layoutY="16.0" text="Puntos" textFill="WHITE" />
+                  <Label layoutX="62.0" layoutY="45.0" text="Equipo 1:" textFill="WHITE" />
+                  <Label fx:id="lblPuntosEq1" layoutX="124.0" layoutY="45.0" text="0" textFill="WHITE" />
+                  <Label layoutX="62.0" layoutY="75.0" text="Equipo 2:" textFill="WHITE" />
+                  <Label fx:id="lblPuntosEq2" layoutX="124.0" layoutY="75.0" text="0" textFill="WHITE" />
+               </children>
+            </Pane>
             <GridPane rotate="180.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
                   <ImageView fx:id="carta1Jug2" disable="true" fitHeight="115.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
@@ -147,7 +162,7 @@
             </GridPane>
          </children>
       </GridPane>
-      <GridPane layoutX="7.0" layoutY="606.0" prefHeight="62.0" prefWidth="858.0">
+      <GridPane layoutX="27.0" layoutY="721.0" prefHeight="62.0" prefWidth="858.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.0" minWidth="0.0" prefWidth="66.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="662.0" minWidth="70.0" prefWidth="83.0" />
@@ -161,37 +176,20 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints />
-            <RowConstraints />
         </rowConstraints>
          <children>
             <Button fx:id="btnTruco" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" text="Truco!" />
-            <Button fx:id="btnReTruco" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Retruco!" GridPane.columnIndex="1" />
-            <Button fx:id="btnValeCuatro" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Vale Cuatro!" GridPane.columnIndex="2" />
-            <Button fx:id="btnRealEnvido" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Real Envido!" GridPane.columnIndex="4" />
-            <Button fx:id="btnEnvido" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" text="Envido!" GridPane.columnIndex="3" />
-            <Button fx:id="btnFaltaEnvido" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" text="Falta Envido!" GridPane.columnIndex="5" />
+            <Button fx:id="btnTruco1" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Retruco!" GridPane.columnIndex="1" />
+            <Button fx:id="btnTruco11" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Vale Cuatro!" GridPane.columnIndex="2" />
+            <Button fx:id="btnEnvido1" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Real Envido!" GridPane.columnIndex="4" />
+            <Button fx:id="btnEnvido3" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" text="Envido!" GridPane.columnIndex="3" />
+            <Button fx:id="btnEnvido4" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" text="Falta Envido!" GridPane.columnIndex="5" />
             <Button fx:id="btnFlor" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Flor!" GridPane.columnIndex="6" />
-            <Button fx:id="btnContraFlor" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Contra Flor!" GridPane.columnIndex="7" />
-            <Button fx:id="btnContraFlorAlResto" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Contra Flor al Resto!" GridPane.columnIndex="8" />
+            <Button fx:id="btnFlor1" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Contra Flor!" GridPane.columnIndex="7" />
+            <Button fx:id="btnFlor11" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Contra Flor al Resto!" GridPane.columnIndex="8" />
             <Button fx:id="btnNoQuiero" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="No Quiero!" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <Button fx:id="btnQuiero" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" text="Quiero!" GridPane.columnIndex="5" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Pane layoutX="554.0" layoutY="19.0" prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Label layoutX="78.0" layoutY="16.0" text="Puntos" textFill="WHITE" />
-            <Label layoutX="62.0" layoutY="45.0" text="Equipo 1:" textFill="WHITE" />
-            <Label fx:id="lblPuntosEq1" layoutX="124.0" layoutY="45.0" text="0" textFill="WHITE" />
-            <Label layoutX="62.0" layoutY="75.0" text="Equipo 2:" textFill="WHITE" />
-            <Label fx:id="lblPuntosEq2" layoutX="124.0" layoutY="75.0" text="0" textFill="WHITE" />
-         </children>
-      </Pane>
-      <Pane layoutX="96.0" layoutY="38.0" prefHeight="78.0" prefWidth="121.0">
-         <children>
-            <Button fx:id="btnSalir" layoutX="24.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Salir" />
-            <Button fx:id="btnVolver" layoutX="24.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="&lt;- Volver" />
-         </children>
-      </Pane>
    </children>
 </Pane>
