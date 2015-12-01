@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import fiuba.algo3.modelo.interfaces.MesaGeneralController;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 

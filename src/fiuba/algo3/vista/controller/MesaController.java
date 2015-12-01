@@ -13,7 +13,6 @@ import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
-import fiuba.algo3.modelo.interfaces.MesaGeneralController;
 import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
 import fiuba.algo3.vista.controller.handler.CartaHandler;
 import javafx.event.ActionEvent;
@@ -42,32 +41,7 @@ public class MesaController extends MesaGeneralController{
 		MesaController.cantidadJugadores = cantidadJugadores;
 	}
 
-	@FXML
-	private Button btnSalir;
-	@FXML
-    private Button btnVolver;
-	@FXML
-    private Button btnEnvido3;
-	@FXML
-    private Button btnTruco;
-	@FXML
-    private Button btnFlor;
-	@FXML
-    private Button btnTruco1;
-	@FXML
-    private Button btnTruco11;
-	@FXML
-    private Button btnEnvido1;
-	@FXML
-    private Button btnEnvido4;
-	@FXML
-    private Button btnNoQuiero;
-	@FXML
-    private Button btnQuiero;
-	@FXML
-    private Button btnFlor1;
-	@FXML
-    private Button btnFlor11;
+	
 	
 	@FXML
     private Label lblPuntosEq1;
@@ -108,8 +82,6 @@ public class MesaController extends MesaGeneralController{
 	@FXML
 	private ImageView contenedor4;
 	
-	List<List<ImageView>> cartasJugando;
-	List<ImageView> contenedores;
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		cartasJugando = new ArrayList<List<ImageView>>(Arrays.asList(
