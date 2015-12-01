@@ -43,17 +43,17 @@ public class CartaHandler implements EventHandler<Event> {
 	@Override
 	public void handle(Event event) {
 		try{
-			Controller.getJuegoTruco().jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
+			Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
 			ImageView cartaJugada = (ImageView)event.getSource();
 			cartasDeMano.remove(cartaJugada);
 			cartaJugada.setVisible(false);
 			jugarCarta(cartaJugada);
 			habilitarCartas();
 			
-			if(Controller.getJuegoTruco().manoFinalizada()){
-				Controller.getJuegoTruco().sumarPuntos();
-				this.labelEquipoUno.setText( Integer.toString(Controller.getJuegoTruco().puntosEquipoUno()) );
-				this.labelEquipoDos.setText( Integer.toString(Controller.getJuegoTruco().puntosEquipoDos()) );
+			if(Controller.juegoTruco.manoFinalizada()){
+				Controller.juegoTruco.sumarPuntos();
+				this.labelEquipoUno.setText( Integer.toString(Controller.juegoTruco.puntosEquipoUno()) );
+				this.labelEquipoDos.setText( Integer.toString(Controller.juegoTruco.puntosEquipoDos()) );
 			}
 		} catch(AccionInvalidaException exception){
 			System.out.println("no se puede jugar carta"); //esto es temporal 
@@ -64,7 +64,7 @@ public class CartaHandler implements EventHandler<Event> {
 		List<ImageView> cartasAHabilitar = new ArrayList<ImageView>();
 		cartasAHabilitar.addAll(cartasDeMano);
 		
-		int posicionDeManoSiguiente = MesaController.obtenerManosIntercaladas().indexOf(Controller.getJuegoTruco().jugadorDeTurno().getMano());
+		int posicionDeManoSiguiente = MesaController.obtenerManosIntercaladas().indexOf(Controller.juegoTruco.jugadorDeTurno().getMano());
 		List<ImageView> cartasSiguientes = this.cartasEnJuego.get(posicionDeManoSiguiente);
 
 		cartasAHabilitar.addAll(cartasSiguientes);

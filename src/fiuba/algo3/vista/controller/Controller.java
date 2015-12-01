@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 public abstract class Controller implements Initializable {
 	protected static Stage stage;
 	
-	protected static JuegoTruco juegoTruco;
+	public static JuegoTruco juegoTruco;
 	
 	public void setStage(Stage stage) {
 		this.stage = stage;
@@ -55,8 +55,5 @@ public abstract class Controller implements Initializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	public static JuegoTruco getJuegoTruco() {
-		return juegoTruco;
 	}
 }

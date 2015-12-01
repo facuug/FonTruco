@@ -244,10 +244,10 @@ public class MesaController extends MesaGeneralController{
 			public void handle(ActionEvent event){
 				try{
 					juegoTruco.noQuiero();
-					if(Controller.getJuegoTruco().manoFinalizada()){
-						Controller.getJuegoTruco().sumarPuntos();
-						lblPuntosEq1.setText( Integer.toString(Controller.getJuegoTruco().puntosEquipoUno()) );
-						lblPuntosEq2.setText( Integer.toString(Controller.getJuegoTruco().puntosEquipoDos()) );
+					if(Controller.juegoTruco.manoFinalizada()){
+						Controller.juegoTruco.sumarPuntos();
+						lblPuntosEq1.setText( Integer.toString(Controller.juegoTruco.puntosEquipoUno()) );
+						lblPuntosEq2.setText( Integer.toString(Controller.juegoTruco.puntosEquipoDos()) );
 					}
 				}catch ( CantoInvalidoException exception ){}
 			}
