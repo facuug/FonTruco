@@ -107,5 +107,4 @@ public class TrucoConSeisJugadoresTest {
 		
 		Assert.assertTrue(false);
 	}
-
 }
