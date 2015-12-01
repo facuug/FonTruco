@@ -139,7 +139,7 @@ public class MenuPrincipalController extends Controller {
 			public void handle(ActionEvent event) {
 				int cantidadDeJugadores = MesaController.getCantidadJugadores();
 				juegoTruco = new TrucoSinFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
-				MesaController.setMesa(juegoTruco.obtenerMesa());
+				MesaController.mesa =juegoTruco.obtenerMesa();
 				redirect("Mesa");
 			}
 		});
@@ -152,7 +152,7 @@ public class MenuPrincipalController extends Controller {
 			public void handle(ActionEvent event) {
 				int cantidadDeJugadores = MesaController.getCantidadJugadores();
 				juegoTruco = new TrucoConFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
-				MesaController.setMesa(juegoTruco.obtenerMesa());
+				MesaController.mesa =juegoTruco.obtenerMesa();
 				redirect("Mesa");
 			}
 		});

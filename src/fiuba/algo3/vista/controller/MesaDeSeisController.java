@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import fiuba.algo3.modelo.Mesa;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 
@@ -50,6 +51,8 @@ public class MesaDeSeisController extends MesaGeneralController{
 	private ImageView carta3Jug6;
 	
 	private List<List<ImageView>> cartasJugando;
+	
+	public static Mesa mesa;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
