@@ -8,8 +8,6 @@ import java.util.ResourceBundle;
 
 import fiuba.algo3.modelo.interfaces.MesaGeneralController;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 public class MesaDeSeisController extends MesaGeneralController{
@@ -54,51 +52,6 @@ public class MesaDeSeisController extends MesaGeneralController{
 	
 	private List<List<ImageView>> cartasJugando;
 	
-	@FXML
-	private Button btnSalir;
-	@FXML
-    private Button btnVolver;
-	@FXML
-    private Button btnEnvido3;
-	@FXML
-    private Button btnTruco;
-	@FXML
-    private Button btnFlor;
-	@FXML
-    private Button btnTruco1;
-	@FXML
-    private Button btnTruco11;
-	@FXML
-    private Button btnEnvido1;
-	@FXML
-    private Button btnEnvido4;
-	@FXML
-    private Button btnNoQuiero;
-	@FXML
-    private Button btnQuiero;
-	@FXML
-    private Button btnFlor1;
-	@FXML
-    private Button btnFlor11;
-	
-	@FXML
-    private Label lblPuntosEq1;
-	@FXML
-    private Label lblPuntosEq2;
-	
-	@FXML
-	private ImageView contenedor1;
-	@FXML
-	private ImageView contenedor2;
-	@FXML
-	private ImageView contenedor3;
-	@FXML
-	private ImageView contenedor4;
-	@FXML
-	private ImageView contenedor5;
-	@FXML
-	private ImageView contenedor6;
-	
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		cartasJugando = new ArrayList<List<ImageView>>(Arrays.asList(
@@ -109,8 +62,6 @@ public class MesaDeSeisController extends MesaGeneralController{
 				new ArrayList<>(Arrays.asList(carta1Jug5,carta2Jug5,carta3Jug5)),
 				new ArrayList<>(Arrays.asList(carta1Jug6,carta2Jug6,carta3Jug6))));
 	}
-	
-	
 
 	
 	
