@@ -65,6 +65,24 @@ public class MesaDeSeisController extends MesaGeneralController{
 				new ArrayList<>(Arrays.asList(carta1Jug6,carta2Jug6,carta3Jug6))));
 	}
 
+	@Override
+	protected void prepararMesa() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void setImageViewCartaHandler() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void mostrarCartas() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 	

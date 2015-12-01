@@ -242,4 +242,19 @@ public abstract class MesaGeneralController extends Controller{
 		setBtnContraFlorAlRestoHandler();
 	}
 	
+	protected abstract void prepararMesa();
+	
+	protected abstract void setImageViewCartaHandler();
+	
+	protected abstract void mostrarCartas();
+	
+	
+	protected void prepararJuego() {
+		prepararMesa();
+		mesa.repartir();
+		setImageViewCartaHandler();
+		mostrarCartas();
+	}
+	
+	
 }

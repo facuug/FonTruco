@@ -86,23 +86,22 @@ public class MesaController extends MesaGeneralController{
 				new ArrayList<>(Arrays.asList(carta1Jug4,carta2Jug4,carta3Jug4))));
 		inicializarBotones();
 		contenedores = new ArrayList<ImageView>(Arrays.asList(contenedor1,contenedor2,contenedor3,contenedor4));
-		prepararMesa();
 		
+		prepararMesa();
 		mesa.repartir();
 		setImageViewCartaHandler();
 		mostrarCartas();
 	}
 	
-	
+	@Override
 	public void prepararMesa() {
 		if(cantidadJugadores == 2) {
 			esconderCartas();
 		}
 	}
 	
-	private void setImageViewCartaHandler() {
-
-		List<Equipo> equipos = mesa.getEquipos();
+	@Override
+	protected void setImageViewCartaHandler() {
 		List<Mano> manos = obtenerManosIntercaladas();
 		int i = 0;
 		for(List<ImageView> cartasEnMano : cartasJugando) {
@@ -140,7 +139,8 @@ public class MesaController extends MesaGeneralController{
 		}
 	}
 	
-	private void mostrarCartas() {
+	@Override
+	protected void mostrarCartas() {
 		List<Equipo> equipos = mesa.getEquipos();
 		List<ImageView> vistaCartas = cartasJugando.get(0);
 		plasmarCartaEnImageView(equipos.get(0).getJugadores().get(0).getMano(),vistaCartas);
