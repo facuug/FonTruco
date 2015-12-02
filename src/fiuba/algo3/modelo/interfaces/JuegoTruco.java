@@ -28,7 +28,6 @@ public abstract class JuegoTruco {
 
     protected boolean finDeMano;
 
-    private Jugador jugadorDeTurno;
     private boolean envidoTerminado;
 
     public JuegoTruco(Equipo unEquipo, Equipo otroEquipo){
@@ -76,7 +75,7 @@ public abstract class JuegoTruco {
             this.estadoJuego = new EstadoSinCanto();
             this.envidoTerminado = true;
         }
-        this.turnoParaCanto.rotarEquipoDeTurno();
+
     }
 
     public void realEnvido() {
@@ -134,12 +133,12 @@ public abstract class JuegoTruco {
     public void jugadorDeTurnoJuegaCarta(Carta carta) {
         if( (!this.estadoJuego.fueRespondido()) || (this.manoFinalizada()) ) throw new AccionInvalidaException();
 
-        this.jugadorDeTurno = this.turnoParaCarta.calcularJugadorDeTurno();
+        Jugador jugadorDeTurno = this.turnoParaCarta.calcularJugadorDeTurno();
         this.turnoParaCarta.rotarJugador();
         this.turnoParaCarta.jugadorJuegaCarta(jugadorDeTurno,carta);
         mesa.jugarCarta(jugadorDeTurno.miEquipo(),carta);
 
-        if( !this.turnoParaCarta.calcularJugadorDeTurno().equals(jugadorDeTurno) ) this.turnoParaCanto.rotarEquipoDeTurno();
+        if( !this.turnoParaCarta.calcularJugadorDeTurno().miEquipo().equals(this.turnoParaCanto.equipoDeTurno()) ) this.turnoParaCanto.rotarEquipoDeTurno();
     }
 
     public boolean manoFinalizada() {

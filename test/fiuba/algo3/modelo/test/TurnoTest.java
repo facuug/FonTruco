@@ -106,4 +106,12 @@ public class TurnoTest {
     public void establecerJugadorDeTurnoInexistenteLanzaExcepcion(){
         this.turno.establecerJugadorDeTurno(new Jugador("no existe"));
     }
+
+    @Test
+    public void calcualaJugadorDeTurnoSinRotarJugadorNoRota(){
+        assertEquals(this.facu, this.turno.calcularJugadorDeTurno());
+        assertEquals(this.facu, this.turno.calcularJugadorDeTurno());
+        assertEquals(this.facu, this.turno.calcularJugadorDeTurno());
+        assertEquals(this.facu, this.turno.calcularJugadorDeTurno());
+    }
 }

@@ -344,6 +344,23 @@ public class TrucoConDosJugadoresTest {
     }
 
     @Test ( expected = CantoInvalidoException.class)
+    public void equipoQueCantaReTrucoNoPuedeCantarValeCuatro(){
+        trucoSinFlor.truco();
+        trucoSinFlor.quiero();
+
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
+
+        trucoSinFlor.reTruco();
+        trucoSinFlor.quiero();
+
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS, Palo.COPA));
+
+        trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.COPA));
+
+        trucoSinFlor.valeCuatro();
+    }
+
+    @Test ( expected = CantoInvalidoException.class)
     public void despuesDeEnvidoQueridoNoPuedeHaberRealEnvido(){
         trucoSinFlor.envido();
         trucoSinFlor.quiero();
@@ -351,10 +368,9 @@ public class TrucoConDosJugadoresTest {
     }
 
     @Test ( expected = CantoInvalidoException.class)
-    public void despuesDeEnvidoQueridoNoPuedeHaberFaltaEnvido(){
+    public void despuesDeEnvidoQueridoNoPuedeHaberFaltaEnvido() {
         trucoSinFlor.envido();
         trucoSinFlor.quiero();
         trucoSinFlor.faltaEnvido();
     }
-
 }
