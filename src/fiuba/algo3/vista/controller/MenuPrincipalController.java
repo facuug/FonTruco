@@ -140,7 +140,10 @@ public class MenuPrincipalController extends Controller {
 				int cantidadDeJugadores = MesaController.getCantidadJugadores();
 				juegoTruco = new TrucoSinFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
 				MesaController.mesa =juegoTruco.obtenerMesa();
-				redirect("Mesa");
+				if(cantidadDeJugadores<5)
+					redirect("Mesa");
+				else
+					redirect("MesaDeSeis");
 			}
 		});
 	}
@@ -153,7 +156,10 @@ public class MenuPrincipalController extends Controller {
 				int cantidadDeJugadores = MesaController.getCantidadJugadores();
 				juegoTruco = new TrucoConFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
 				MesaController.mesa =juegoTruco.obtenerMesa();
-				redirect("Mesa");
+				if(cantidadDeJugadores<5)
+					redirect("Mesa");
+				else
+					redirect("MesaDeSeis");
 			}
 		});
 	}

@@ -68,6 +68,7 @@ public abstract class MesaGeneralController extends Controller{
 			File archivoCarta = new File(rutaImagen);
 			Image pngCarta = new Image(archivoCarta.toURI().toString());
 			cartasAMostrar.get(posicionCarta).setImage(pngCarta);
+			cartasAMostrar.get(posicionCarta).setDisable(false);
 			posicionCarta+=1;
 		}
 	}

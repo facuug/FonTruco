@@ -87,10 +87,7 @@ public class MesaController extends MesaGeneralController{
 		inicializarBotones();
 		contenedores = new ArrayList<ImageView>(Arrays.asList(contenedor1,contenedor2,contenedor3,contenedor4));
 		
-		prepararMesa();
-		mesa.repartir();
-		setImageViewCartaHandler();
-		mostrarCartas();
+		prepararJuego();
 	}
 	
 	@Override
