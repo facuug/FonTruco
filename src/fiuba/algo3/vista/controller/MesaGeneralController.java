@@ -23,27 +23,27 @@ public abstract class MesaGeneralController extends Controller{
 	@FXML
     protected Button btnVolver;
 	@FXML
-    protected Button btnEnvido3;
+    protected Button btnEnvido;
 	@FXML
     protected Button btnTruco;
 	@FXML
     protected Button btnFlor;
 	@FXML
-    protected Button btnTruco1;
+    protected Button btnReTruco;
 	@FXML
-    protected Button btnTruco11;
+    protected Button btnValeCuatro;
 	@FXML
-    protected Button btnEnvido1;
+    protected Button btnRealEnvido;
 	@FXML
-    protected Button btnEnvido4;
+    protected Button btnFaltaEnvido;
 	@FXML
     protected Button btnNoQuiero;
 	@FXML
     protected Button btnQuiero;
 	@FXML
-    protected Button btnFlor1;
+    protected Button btnContraFlor;
 	@FXML
-    protected Button btnFlor11;
+    protected Button btnContraFlorAlResto;
 	
 	protected List<List<ImageView>> cartasJugando;
 	protected List<ImageView> contenedores;
@@ -100,7 +100,7 @@ public abstract class MesaGeneralController extends Controller{
 	}
 	
 	private void setBtnEnvidoHandler(){
-		btnEnvido3.setOnAction(new EventHandler<ActionEvent>(){
+		btnEnvido.setOnAction(new EventHandler<ActionEvent>(){
 			
 			@Override
 			public void handle(ActionEvent event){
@@ -114,7 +114,7 @@ public abstract class MesaGeneralController extends Controller{
 	}
 	
 	private void setBtnReTrucoHandler(){
-		btnTruco1.setOnAction(new EventHandler<ActionEvent>(){
+		btnReTruco.setOnAction(new EventHandler<ActionEvent>(){
 			
 			@Override
 			public void handle(ActionEvent event){
@@ -126,7 +126,7 @@ public abstract class MesaGeneralController extends Controller{
 	}
 	
 	private void setBtnValeCuatroHandler(){
-		btnTruco11.setOnAction(new EventHandler<ActionEvent>(){
+		btnValeCuatro.setOnAction(new EventHandler<ActionEvent>(){
 			
 			@Override
 			public void handle(ActionEvent event){
@@ -138,7 +138,7 @@ public abstract class MesaGeneralController extends Controller{
 	}
 	
 	private void setBtnRealEnvidoHandler(){
-		btnEnvido1.setOnAction(new EventHandler<ActionEvent>(){
+		btnRealEnvido.setOnAction(new EventHandler<ActionEvent>(){
 			
 			@Override
 			public void handle(ActionEvent event){
@@ -150,7 +150,7 @@ public abstract class MesaGeneralController extends Controller{
 	}
 	
 	private void setBtnFaltaEnvidoHandler(){
-		btnEnvido4.setOnAction(new EventHandler<ActionEvent>(){
+		btnFaltaEnvido.setOnAction(new EventHandler<ActionEvent>(){
 			
 			@Override
 			public void handle(ActionEvent event){
@@ -203,7 +203,7 @@ public abstract class MesaGeneralController extends Controller{
 	}
 	
 	private void setBtnContraFlorHandler(){
-		btnFlor1.setOnAction(new EventHandler<ActionEvent>(){
+		btnContraFlor.setOnAction(new EventHandler<ActionEvent>(){
 			
 			@Override
 			public void handle(ActionEvent event){
@@ -216,7 +216,7 @@ public abstract class MesaGeneralController extends Controller{
 	}
 	
 	private void setBtnContraFlorAlRestoHandler(){
-		btnFlor11.setOnAction(new EventHandler<ActionEvent>(){
+		btnContraFlorAlResto.setOnAction(new EventHandler<ActionEvent>(){
 			
 			@Override
 			public void handle(ActionEvent event){
