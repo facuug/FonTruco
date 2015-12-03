@@ -178,4 +178,14 @@ public abstract class JuegoTruco {
         this.mesa.restablecer();
         this.turnoParaCarta.establecerJugadorDeTurno(this.mesa.equipoMano().jugadorDeTurno());
     }
+
+    public boolean hayGanador(){
+        return ( (this.puntosEquipoUno() >= 30) || (this.puntosEquipoDos() >= 30) );
+    }
+
+    public Equipo ganadorDeJuego() {
+        if( !hayGanador()) return null;
+        else if(this.puntosEquipoUno() >= 30) return this.equipoUno;
+            else return this.equipoDos;
+    }
 }
