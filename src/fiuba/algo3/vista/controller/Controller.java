@@ -60,8 +60,7 @@ public abstract class Controller implements Initializable {
 	public static void popupGanador(String nombreVista, String equipoGanador) {
 		Pane pane;
 		try {
-			pane = (Pane) FXMLLoader.load(Main.class
-					.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
+			pane = (Pane) FXMLLoader.load(Main.class.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
 			ObservableList<Node> nodos = pane.getChildren();
 			for (Node nodo : nodos) {
 				if (nodo instanceof Label) {

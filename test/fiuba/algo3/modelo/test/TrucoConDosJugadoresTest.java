@@ -456,7 +456,7 @@ public class TrucoConDosJugadoresTest {
             trucoSinFlor.restablecer();
         }
 
-        assertEquals(this.equipoUno,trucoSinFlor.ganadorDeJuego());
+        assertEquals("Equipo 1",trucoSinFlor.ganadorDeJuego());
     }
 
     @Test

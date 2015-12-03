@@ -46,41 +46,19 @@ public class CartaHandler implements EventHandler<Event> {
 		try{
 			Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
 			ImageView cartaJugada = (ImageView)event.getSource();
-			cartasDeMano.remove(cartaJugada);
+			//cartasDeMano.remove(cartaJugada);
+			cartaJugada.setOnMouseClicked(null);
 			cartaJugada.setVisible(false);
 			jugarCarta(cartaJugada);
 			habilitarCartas();
 			
-			if(Controller.juegoTruco.manoFinalizada()){
-				Controller.juegoTruco.sumarPuntos();
-				this.labelEquipoUno.setText( Integer.toString(Controller.juegoTruco.puntosEquipoUno()) );
-				this.labelEquipoDos.setText( Integer.toString(Controller.juegoTruco.puntosEquipoDos()) );
-				
-			}
+			
 		} catch(AccionInvalidaException exception){
 			System.out.println("no se puede jugar carta"); //esto es temporal 
 		}
 	}
 	
-	private void finalizarMano() {
-		if(Integer.valueOf(labelEquipoUno.getText()) <= 25 || Integer.valueOf(labelEquipoDos.getText())<=25) {
-			MesaGeneralController.refrescarMesa();
-		} else if (Integer.valueOf(labelEquipoUno.getText()) >= 25 || Integer.valueOf(labelEquipoDos.getText())>=25) {
-			finalizarJuego();
-		}
-	}
 	
-	private void finalizarJuego() {
-		String nombreGanador;
-		if(labelEquipoUno.getText() == labelEquipoDos.getText()){
-			nombreGanador = "Empate";
-		} else if(Integer.valueOf(labelEquipoUno.getText()) >= 25) {
-			nombreGanador = "Equipo 1";
-		} else {
-			nombreGanador = "Equipo 2";
-		}
-		MesaGeneralController.popupGanador("PopUpGanador", nombreGanador);
-	}
 	
 	private void habilitarCartas() {
 		List<ImageView> cartasAHabilitar = new ArrayList<ImageView>();
@@ -96,9 +74,12 @@ public class CartaHandler implements EventHandler<Event> {
 				Image imagenDorso = new Image(fileDorso.toURI().toString());
 				carta.setImage(imagenDorso);
 			} else {
-				File fileDorso = new File(armarRutaImagen(((CartaHandler)carta.getOnMouseClicked()).cartaQueSoy));
-				Image imagenDorso = new Image(fileDorso.toURI().toString());
-				carta.setImage(imagenDorso);
+				CartaHandler cartaHandler = (CartaHandler)carta.getOnMouseClicked();
+				if(cartaHandler!=null){
+					File fileDorso = new File(armarRutaImagen(cartaHandler.cartaQueSoy));
+					Image imagenDorso = new Image(fileDorso.toURI().toString());
+					carta.setImage(imagenDorso);
+				}
 			}
 			carta.setDisable(!carta.isDisable());
 		}

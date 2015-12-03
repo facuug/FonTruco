@@ -6,11 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
-import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.vista.controller.handler.CartaHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -89,6 +87,7 @@ public class MesaDeSeisController extends MesaGeneralController{
 		// TODO Auto-generated method stub
 		
 	}
+	
 	public static List<Mano> obtenerManosIntercaladas() {
 		int posicionOtraMano = 0;
 		List<Jugador> equipoUno = mesa.getEquipos().get(0).getJugadores();
@@ -122,5 +121,11 @@ public class MesaDeSeisController extends MesaGeneralController{
 		List<Equipo> equipos = mesa.getEquipos();
 		List<ImageView> vistaCartas = cartasJugando.get(0);
 		plasmarCartaEnImageView(equipos.get(0).getJugadores().get(0).getMano(),vistaCartas);
+	}
+
+	@Override
+	protected void refrescarMesa() {
+		// TODO Auto-generated method stub
+		
 	}
 }

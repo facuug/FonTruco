@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 
 import fiuba.algo3.modelo.Carta;
+import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
@@ -16,212 +18,220 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public abstract class MesaGeneralController extends Controller{
-	
+public abstract class MesaGeneralController extends Controller {
+
 	@FXML
 	protected Button btnSalir;
 	@FXML
-    protected Button btnVolver;
+	protected Button btnVolver;
 	@FXML
-    protected Button btnEnvido;
+	protected Button btnEnvido;
 	@FXML
-    protected Button btnTruco;
+	protected Button btnTruco;
 	@FXML
-    protected Button btnFlor;
+	protected Button btnFlor;
 	@FXML
-    protected Button btnReTruco;
+	protected Button btnReTruco;
 	@FXML
-    protected Button btnValeCuatro;
+	protected Button btnValeCuatro;
 	@FXML
-    protected Button btnRealEnvido;
+	protected Button btnRealEnvido;
 	@FXML
-    protected Button btnFaltaEnvido;
+	protected Button btnFaltaEnvido;
 	@FXML
-    protected Button btnNoQuiero;
+	protected Button btnNoQuiero;
 	@FXML
-    protected Button btnQuiero;
+	protected Button btnQuiero;
 	@FXML
-    protected Button btnContraFlor;
+	protected Button btnContraFlor;
 	@FXML
-    protected Button btnContraFlorAlResto;
-	
+	protected Button btnContraFlorAlResto;
+
 	protected List<List<ImageView>> cartasJugando;
 	protected List<ImageView> contenedores;
 	@FXML
-    protected Label lblPuntosEq1;
+	protected Label lblPuntosEq1;
 	@FXML
-    protected Label lblPuntosEq2;
+	protected Label lblPuntosEq2;
 	public static Mesa mesa;
-	
+
 	public String armarRutaImagen(Carta carta) {
 		return new StringBuilder().append("src/fiuba/algo3/vista/recursos/carta/")
-				.append(carta.getPalo().toString().toLowerCase())
-				.append("/").append(String.valueOf(carta.getTipoCarta().getValorRealCarta()))
-				.append(".png").toString();
-	}	
-	
+				.append(carta.getPalo().toString().toLowerCase()).append("/")
+				.append(String.valueOf(carta.getTipoCarta().getValorRealCarta())).append(".png").toString();
+	}
+
 	public void plasmarCartaEnImageView(Mano unaMano, List<ImageView> cartasAMostrar) {
-		
+
 		int posicionCarta = 0;
-		for(Carta carta : unaMano.getCartas()) {
+		for (Carta carta : unaMano.getCartas()) {
 			String rutaImagen = armarRutaImagen(carta);
 			File archivoCarta = new File(rutaImagen);
 			Image pngCarta = new Image(archivoCarta.toURI().toString());
 			cartasAMostrar.get(posicionCarta).setImage(pngCarta);
 			cartasAMostrar.get(posicionCarta).setDisable(false);
-			posicionCarta+=1;
+			posicionCarta += 1;
 		}
 	}
-	
+
 	private void setBtnSalirHandler() {
 		btnSalir.setOnAction(new BtnSalirHandler());
 	}
 
 	private void setBtnVolverHandler() {
 		btnVolver.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				redirect("MenuPrincipal");
 			}
 		});
 	}
-	
-	private void setBtnTrucoHandler(){
-		btnTruco.setOnAction(new EventHandler<ActionEvent>(){
-			
+
+	private void setBtnTrucoHandler() {
+		btnTruco.setOnAction(new EventHandler<ActionEvent>() {
+
 			@Override
-			public void handle(ActionEvent event){
-				try{
+			public void handle(ActionEvent event) {
+				try {
 					juegoTruco.truco();
-				}catch ( CantoInvalidoException exception ){}
+				} catch (CantoInvalidoException exception) {
+				}
 			}
 		});
 	}
-	
-	private void setBtnEnvidoHandler(){
-		btnEnvido.setOnAction(new EventHandler<ActionEvent>(){
-			
+
+	private void setBtnEnvidoHandler() {
+		btnEnvido.setOnAction(new EventHandler<ActionEvent>() {
+
 			@Override
-			public void handle(ActionEvent event){
-				try{
+			public void handle(ActionEvent event) {
+				try {
 					juegoTruco.envido();
-				}catch ( CantoInvalidoException exception ){
+				} catch (CantoInvalidoException exception) {
 					System.out.println("cantoInvalido");
 				}
 			}
 		});
 	}
-	
-	private void setBtnReTrucoHandler(){
-		btnReTruco.setOnAction(new EventHandler<ActionEvent>(){
-			
+
+	private void setBtnReTrucoHandler() {
+		btnReTruco.setOnAction(new EventHandler<ActionEvent>() {
+
 			@Override
-			public void handle(ActionEvent event){
-				try{
+			public void handle(ActionEvent event) {
+				try {
 					juegoTruco.reTruco();
-				}catch ( CantoInvalidoException exception ){}
-			}
-		});
-	}
-	
-	private void setBtnValeCuatroHandler(){
-		btnValeCuatro.setOnAction(new EventHandler<ActionEvent>(){
-			
-			@Override
-			public void handle(ActionEvent event){
-				try{
-					juegoTruco.valeCuatro();
-				}catch ( CantoInvalidoException exception ){}
-			}
-		});
-	}
-	
-	private void setBtnRealEnvidoHandler(){
-		btnRealEnvido.setOnAction(new EventHandler<ActionEvent>(){
-			
-			@Override
-			public void handle(ActionEvent event){
-				try{
-					juegoTruco.realEnvido();
-				}catch ( CantoInvalidoException exception ){}
-			}
-		});
-	}
-	
-	private void setBtnFaltaEnvidoHandler(){
-		btnFaltaEnvido.setOnAction(new EventHandler<ActionEvent>(){
-			
-			@Override
-			public void handle(ActionEvent event){
-				try{
-					juegoTruco.faltaEnvido();
-				}catch ( CantoInvalidoException exception ){}
-			}
-		});
-	}
-	
-	private void setBtnQuieroHandler(){
-		btnQuiero.setOnAction(new EventHandler<ActionEvent>(){
-			
-			@Override
-			public void handle(ActionEvent event){
-				try{
-					juegoTruco.quiero();
-				}catch ( CantoInvalidoException exception ){}
-			}
-		});
-	}
-	
-	private void setBtnNoQuieroHandler(){
-		btnNoQuiero.setOnAction(new EventHandler<ActionEvent>(){
-			
-			@Override
-			public void handle(ActionEvent event){
-				try{
-					juegoTruco.noQuiero();
-					if(Controller.juegoTruco.manoFinalizada()){
-						Controller.juegoTruco.sumarPuntos();
-						lblPuntosEq1.setText( Integer.toString(Controller.juegoTruco.puntosEquipoUno()) );
-						lblPuntosEq2.setText( Integer.toString(Controller.juegoTruco.puntosEquipoDos()) );
-					}
-				}catch ( CantoInvalidoException exception ){}
-			}
-		});
-	}
-	
-	private void setBtnFlorHandler(){
-		btnFlor.setOnAction(new EventHandler<ActionEvent>(){
-			
-			@Override
-			public void handle(ActionEvent event){
-				try{
-					juegoTruco.flor();
-				}catch ( CantoInvalidoException exception ){}
-			}
-		});
-	}
-	
-	private void setBtnContraFlorHandler(){
-		btnContraFlor.setOnAction(new EventHandler<ActionEvent>(){
-			
-			@Override
-			public void handle(ActionEvent event){
-				try{
-					juegoTruco.contraFlor();
-				}catch ( CantoInvalidoException exception ){
+				} catch (CantoInvalidoException exception) {
 				}
 			}
 		});
 	}
-	
-	private void setBtnContraFlorAlRestoHandler(){
-		btnContraFlorAlResto.setOnAction(new EventHandler<ActionEvent>(){
+
+	private void setBtnValeCuatroHandler() {
+		btnValeCuatro.setOnAction(new EventHandler<ActionEvent>() {
+
 			@Override
-			public void handle(ActionEvent event){
-				try{
+			public void handle(ActionEvent event) {
+				try {
+					juegoTruco.valeCuatro();
+				} catch (CantoInvalidoException exception) {
+				}
+			}
+		});
+	}
+
+	private void setBtnRealEnvidoHandler() {
+		btnRealEnvido.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					juegoTruco.realEnvido();
+				} catch (CantoInvalidoException exception) {
+				}
+			}
+		});
+	}
+
+	private void setBtnFaltaEnvidoHandler() {
+		btnFaltaEnvido.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					juegoTruco.faltaEnvido();
+				} catch (CantoInvalidoException exception) {
+				}
+			}
+		});
+	}
+
+	private void setBtnQuieroHandler() {
+		btnQuiero.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					juegoTruco.quiero();
+				} catch (CantoInvalidoException exception) {
+				}
+			}
+		});
+	}
+
+	private void setBtnNoQuieroHandler() {
+		btnNoQuiero.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					juegoTruco.noQuiero();
+					if (Controller.juegoTruco.manoFinalizada()) {
+						Controller.juegoTruco.sumarPuntos();
+						lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
+						lblPuntosEq2.setText(Integer.toString(Controller.juegoTruco.puntosEquipoDos()));
+					}
+				} catch (CantoInvalidoException exception) {
+				}
+			}
+		});
+	}
+
+	private void setBtnFlorHandler() {
+		btnFlor.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					juegoTruco.flor();
+				} catch (CantoInvalidoException exception) {
+				}
+			}
+		});
+	}
+
+	private void setBtnContraFlorHandler() {
+		btnContraFlor.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					juegoTruco.contraFlor();
+				} catch (CantoInvalidoException exception) {
+				}
+			}
+		});
+	}
+
+	private void setBtnContraFlorAlRestoHandler() {
+		btnContraFlorAlResto.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				try {
 					juegoTruco.contraFlorAlResto();
-				}catch ( CantoInvalidoException exception ){}
+				} catch (CantoInvalidoException exception) {
+				}
 			}
 		});
 	}
@@ -241,22 +251,32 @@ public abstract class MesaGeneralController extends Controller{
 		setBtnContraFlorHandler();
 		setBtnContraFlorAlRestoHandler();
 	}
-	
+
 	protected abstract void prepararMesa();
-	
+
 	protected abstract void setImageViewCartaHandler();
-	
+
 	protected abstract void mostrarCartas();
-	
-	
+
 	protected void prepararJuego() {
 		prepararMesa();
 		mesa.repartir();
 		setImageViewCartaHandler();
 		mostrarCartas();
 	}
-	
-	public static void refrescarMesa() {
-		prepararJuego();
+
+	protected void finalizarMano() {
+		if (!MesaGeneralController.juegoTruco.hayGanador()) {
+			refrescarMesa();
+		} else if (MesaGeneralController.juegoTruco.hayGanador()) {
+			finalizarJuego();
+		}
 	}
+
+	protected abstract void refrescarMesa();
+
+	private void finalizarJuego() {
+		MesaGeneralController.popupGanador("PopUpGanador", MesaGeneralController.juegoTruco.ganadorDeJuego());
+	}
+
 }

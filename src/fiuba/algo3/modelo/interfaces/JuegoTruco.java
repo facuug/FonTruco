@@ -183,9 +183,9 @@ public abstract class JuegoTruco {
         return ( (this.puntosEquipoUno() >= 30) || (this.puntosEquipoDos() >= 30) );
     }
 
-    public Equipo ganadorDeJuego() {
-        if( !hayGanador()) return null;
-        else if(this.puntosEquipoUno() >= 30) return this.equipoUno;
-            else return this.equipoDos;
+    public String ganadorDeJuego() {
+        if( !hayGanador()) return "Empate";
+        else if(this.puntosEquipoUno() >= 30) return "Equipo 1";
+            else return "Equipo 2";
     }
 }
