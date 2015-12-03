@@ -1,5 +1,8 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.estados.TrucoSinFlor;
+import fiuba.algo3.modelo.interfaces.JuegoTruco;
+
 import java.util.List;
 import java.util.Random;
 
@@ -61,5 +64,48 @@ public class IA extends Jugador{
 			return cartaQueJuego;
 		else
 			return buscarMenorCarta();
+	}
+
+	public String responderCanto(String canto, JuegoTruco truco) {
+		boolean querer = false;
+
+		for(Carta carta:  this.getMano().getCartas() ){
+			if( carta.getTipoCarta().getValor() >= 9 ){
+				querer = true;
+			}
+		}
+
+		if( (canto.equals("truco")) || (canto.equals("re truco")) || (canto.equals("vale cuatro")) ){
+			if(querer){
+				truco.quiero();
+				return "Quiero!";
+			}
+			else{
+				truco.noQuiero();
+				return "No Quiero!";
+			}
+		}
+
+		if ( (canto.equals("envido")) || (canto.equals("real envido")) ){
+			if(this.puntosDeEnvido() >= 25) {
+				truco.quiero();
+				return "Quiero!";
+			}
+			else{
+				truco.noQuiero();
+				return "No Quiero!";
+			}
+		}
+		else if( canto.equals("falta envido") ){
+			if(this.puntosDeEnvido() >= 30){
+				truco.quiero();
+				return "Quiero!";
+			}
+			else{
+				truco.noQuiero();
+				return "No Quiero!";
+			}
+		}
+		else return "";
 	}
 }

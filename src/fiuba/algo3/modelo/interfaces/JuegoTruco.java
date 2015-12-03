@@ -184,7 +184,7 @@ public abstract class JuegoTruco {
     }
 
     public Equipo ganadorDeJuego() {
-        if( !hayGanador()) return null;
+        if( !this.hayGanador()) return null;
         else if(this.puntosEquipoUno() >= 30) return this.equipoUno;
             else return this.equipoDos;
     }
