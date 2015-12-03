@@ -217,7 +217,6 @@ public abstract class MesaGeneralController extends Controller{
 	
 	private void setBtnContraFlorAlRestoHandler(){
 		btnContraFlorAlResto.setOnAction(new EventHandler<ActionEvent>(){
-			
 			@Override
 			public void handle(ActionEvent event){
 				try{
@@ -257,5 +256,7 @@ public abstract class MesaGeneralController extends Controller{
 		mostrarCartas();
 	}
 	
-	
+	public static void refrescarMesa() {
+		prepararJuego();
+	}
 }

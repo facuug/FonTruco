@@ -8,6 +8,7 @@ import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.vista.controller.Controller;
 import fiuba.algo3.vista.controller.MesaController;
+import fiuba.algo3.vista.controller.MesaGeneralController;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -54,10 +55,31 @@ public class CartaHandler implements EventHandler<Event> {
 				Controller.juegoTruco.sumarPuntos();
 				this.labelEquipoUno.setText( Integer.toString(Controller.juegoTruco.puntosEquipoUno()) );
 				this.labelEquipoDos.setText( Integer.toString(Controller.juegoTruco.puntosEquipoDos()) );
+				
 			}
 		} catch(AccionInvalidaException exception){
 			System.out.println("no se puede jugar carta"); //esto es temporal 
 		}
+	}
+	
+	private void finalizarMano() {
+		if(Integer.valueOf(labelEquipoUno.getText()) <= 25 || Integer.valueOf(labelEquipoDos.getText())<=25) {
+			MesaGeneralController.refrescarMesa();
+		} else if (Integer.valueOf(labelEquipoUno.getText()) >= 25 || Integer.valueOf(labelEquipoDos.getText())>=25) {
+			finalizarJuego();
+		}
+	}
+	
+	private void finalizarJuego() {
+		String nombreGanador;
+		if(labelEquipoUno.getText() == labelEquipoDos.getText()){
+			nombreGanador = "Empate";
+		} else if(Integer.valueOf(labelEquipoUno.getText()) >= 25) {
+			nombreGanador = "Equipo 1";
+		} else {
+			nombreGanador = "Equipo 2";
+		}
+		MesaGeneralController.popupGanador("PopUpGanador", nombreGanador);
 	}
 	
 	private void habilitarCartas() {
