@@ -3,6 +3,8 @@ package fiuba.algo3.vista.controller;
 import java.io.File;
 import java.util.List;
 
+import com.sun.media.jfxmediaimpl.platform.Platform;
+
 import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
@@ -47,13 +49,14 @@ public abstract class MesaGeneralController extends Controller {
 	@FXML
 	protected Button btnContraFlorAlResto;
 
-	protected List<List<ImageView>> cartasJugando;
-	protected List<ImageView> contenedores;
+	protected static List<List<ImageView>> cartasJugando;
+	protected static List<ImageView> contenedores;
 	@FXML
 	protected Label lblPuntosEq1;
 	@FXML
 	protected Label lblPuntosEq2;
 	public static Mesa mesa;
+	
 
 	public String armarRutaImagen(Carta carta) {
 		return new StringBuilder().append("src/fiuba/algo3/vista/recursos/carta/")

@@ -1,11 +1,13 @@
 package fiuba.algo3.vista.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
@@ -115,6 +117,7 @@ public class MesaController extends MesaGeneralController {
 		}
 	}
 
+	@Override
 	protected void refrescarMesa() {
 		juegoTruco.restablecer();
 		Jugador jugadorConMano = juegoTruco.jugadorDeTurno();
@@ -122,12 +125,22 @@ public class MesaController extends MesaGeneralController {
 		List<Equipo> equipos = mesa.getEquipos();
 		int posicionJugadorConMano = equipoConMano.getJugadores().indexOf(jugadorConMano);
 		int posicionDeEquipoConMano = equipos.indexOf(equipoConMano);
-		setImageViewCartaHandler();
+		
 		List<Mano> manos = obtenerManosIntercaladas();
 		int i = 0;
 		for(Mano mano : manos) {
-			plasmarCartaEnImageView(mano, cartasJugando.get(i));
-			i++;
+			int posicionCarta = 0;
+			int j = 0;
+			for (Carta carta : mano.getCartas()) {
+				String rutaImagen = armarRutaImagen(carta);
+				File archivoCarta = new File(rutaImagen);
+				Image pngCarta = new Image(archivoCarta.toURI().toString());
+				cartasJugando.get(j).get(posicionCarta).setImage(null);
+				cartasJugando.get(j).get(posicionCarta).setDisable(false);
+				posicionCarta += 1;
+			}
+			j++;
+		setImageViewCartaHandler();
 		}
 	}
 

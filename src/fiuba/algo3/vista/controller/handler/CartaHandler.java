@@ -22,8 +22,6 @@ public class CartaHandler implements EventHandler<Event> {
 	private Carta cartaQueSoy;
 	List<List<ImageView>> cartasEnJuego;
 	
-	private Label labelEquipoUno,labelEquipoDos;
-	
 	public CartaHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Carta cartaQueRepresenta, Label puntosEquipoUno, Label puntosEquipoDos) {
 		this.cartasDeMano = cartasDeMano;
 		int posicionSiguiente = cartasJugando.indexOf(cartasDeMano)+1;
@@ -32,9 +30,6 @@ public class CartaHandler implements EventHandler<Event> {
 		}
 		cartaQueSoy= cartaQueRepresenta;
 		this.cartasEnJuego = cartasJugando;
-		
-		this.labelEquipoUno = puntosEquipoUno;
-		this.labelEquipoDos = puntosEquipoDos;
 	}
 	
 	public void setContendorEnMesa(ImageView contenedor) {
