@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="81.0" prefWidth="287.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.vista.controller.PopUpGanadorController">
+   <children>
+      <Button fx:id="btnVolver" layoutX="119.0" layoutY="41.0" mnemonicParsing="false" text="Volver" />
+      <Label layoutX="78.0" layoutY="19.0" prefHeight="17.0" prefWidth="131.0" text="Ha ganado el Equipo 1" />
+   </children>
+</Pane>
