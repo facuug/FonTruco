@@ -268,17 +268,7 @@ public abstract class MesaGeneralController extends Controller {
 		mostrarCartas();
 	}
 
-	protected void finalizarMano() {
-		if (!MesaGeneralController.juegoTruco.hayGanador()) {
-			refrescarMesa();
-		} else if (MesaGeneralController.juegoTruco.hayGanador()) {
-			finalizarJuego();
-		}
-	}
-
-	protected abstract void refrescarMesa();
-
-	private void finalizarJuego() {
+	private static void finalizarJuego() {
 		MesaGeneralController.popupGanador("PopUpGanador", MesaGeneralController.juegoTruco.ganadorDeJuego());
 	}
 

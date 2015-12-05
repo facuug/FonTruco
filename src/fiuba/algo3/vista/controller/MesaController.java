@@ -101,49 +101,10 @@ public class MesaController extends MesaGeneralController {
 			}
 			i++;
 		}
-		for (ImageView contenedor : contenedores) {
-			contenedor.imageProperty().addListener(new ChangeListener<Image>() {
-				@Override
-				public void changed(ObservableValue<? extends Image> observable, Image oldValue, Image newValue) {
-					if (Controller.juegoTruco.manoFinalizada()) {
-						Controller.juegoTruco.sumarPuntos();
-						lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
-						lblPuntosEq2.setText(Integer.toString(Controller.juegoTruco.puntosEquipoDos()));
-						finalizarMano();
-					}
-				}
-			});
-
-		}
 	}
 
-	@Override
-	protected void refrescarMesa() {
-		juegoTruco.restablecer();
-		Jugador jugadorConMano = juegoTruco.jugadorDeTurno();
-		Equipo equipoConMano = jugadorConMano.miEquipo();
-		List<Equipo> equipos = mesa.getEquipos();
-		int posicionJugadorConMano = equipoConMano.getJugadores().indexOf(jugadorConMano);
-		int posicionDeEquipoConMano = equipos.indexOf(equipoConMano);
-		
-		List<Mano> manos = obtenerManosIntercaladas();
-		int i = 0;
-		for(Mano mano : manos) {
-			int posicionCarta = 0;
-			int j = 0;
-			for (Carta carta : mano.getCartas()) {
-				String rutaImagen = armarRutaImagen(carta);
-				File archivoCarta = new File(rutaImagen);
-				Image pngCarta = new Image(archivoCarta.toURI().toString());
-				cartasJugando.get(j).get(posicionCarta).setImage(null);
-				cartasJugando.get(j).get(posicionCarta).setDisable(false);
-				posicionCarta += 1;
-			}
-			j++;
-		setImageViewCartaHandler();
-		}
-	}
-
+	
+	
 	public static List<Mano> obtenerManosIntercaladas() {
 		int posicionOtraMano = 0;
 		List<Jugador> equipoUno = mesa.getEquipos().get(0).getJugadores();

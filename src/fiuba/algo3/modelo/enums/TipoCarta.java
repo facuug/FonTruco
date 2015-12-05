@@ -5,7 +5,7 @@ public enum TipoCarta {
 	ANCHO_BASTO (13,1,1),
 	SIETE_ESPADA (12,7,7),
 	SIETE_ORO (11,7,7),
-	FALSO_ANCHO (8,1,7),
+	FALSO_ANCHO (8,1,1),
 	FALSO_SIETE (4,7,7),
 	TRES (10,3,3),
 	DOS (9,2,2),

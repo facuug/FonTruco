@@ -8,7 +8,6 @@ import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.vista.controller.Controller;
 import fiuba.algo3.vista.controller.MesaController;
-import fiuba.algo3.vista.controller.MesaGeneralController;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -22,6 +21,8 @@ public class CartaHandler implements EventHandler<Event> {
 	private Carta cartaQueSoy;
 	List<List<ImageView>> cartasEnJuego;
 	
+	private Label labelEquipoUno,labelEquipoDos;
+	
 	public CartaHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Carta cartaQueRepresenta, Label puntosEquipoUno, Label puntosEquipoDos) {
 		this.cartasDeMano = cartasDeMano;
 		int posicionSiguiente = cartasJugando.indexOf(cartasDeMano)+1;
@@ -30,6 +31,9 @@ public class CartaHandler implements EventHandler<Event> {
 		}
 		cartaQueSoy= cartaQueRepresenta;
 		this.cartasEnJuego = cartasJugando;
+		
+		this.labelEquipoUno = puntosEquipoUno;
+		this.labelEquipoDos = puntosEquipoDos;
 	}
 	
 	public void setContendorEnMesa(ImageView contenedor) {
@@ -41,19 +45,20 @@ public class CartaHandler implements EventHandler<Event> {
 		try{
 			Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
 			ImageView cartaJugada = (ImageView)event.getSource();
-			//cartasDeMano.remove(cartaJugada);
-			cartaJugada.setOnMouseClicked(null);
+			cartasDeMano.remove(cartaJugada);
 			cartaJugada.setVisible(false);
 			jugarCarta(cartaJugada);
 			habilitarCartas();
 			
-			
+			if(Controller.juegoTruco.manoFinalizada()){
+				Controller.juegoTruco.sumarPuntos();
+				this.labelEquipoUno.setText( Integer.toString(Controller.juegoTruco.puntosEquipoUno()) );
+				this.labelEquipoDos.setText( Integer.toString(Controller.juegoTruco.puntosEquipoDos()) );
+			}
 		} catch(AccionInvalidaException exception){
 			System.out.println("no se puede jugar carta"); //esto es temporal 
 		}
 	}
-	
-	
 	
 	private void habilitarCartas() {
 		List<ImageView> cartasAHabilitar = new ArrayList<ImageView>();
@@ -69,12 +74,9 @@ public class CartaHandler implements EventHandler<Event> {
 				Image imagenDorso = new Image(fileDorso.toURI().toString());
 				carta.setImage(imagenDorso);
 			} else {
-				CartaHandler cartaHandler = (CartaHandler)carta.getOnMouseClicked();
-				if(cartaHandler!=null){
-					File fileDorso = new File(armarRutaImagen(cartaHandler.cartaQueSoy));
-					Image imagenDorso = new Image(fileDorso.toURI().toString());
-					carta.setImage(imagenDorso);
-				}
+				File fileDorso = new File(armarRutaImagen(((CartaHandler)carta.getOnMouseClicked()).cartaQueSoy));
+				Image imagenDorso = new Image(fileDorso.toURI().toString());
+				carta.setImage(imagenDorso);
 			}
 			carta.setDisable(!carta.isDisable());
 		}

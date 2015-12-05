@@ -122,10 +122,4 @@ public class MesaDeSeisController extends MesaGeneralController{
 		List<ImageView> vistaCartas = cartasJugando.get(0);
 		plasmarCartaEnImageView(equipos.get(0).getJugadores().get(0).getMano(),vistaCartas);
 	}
-
-	@Override
-	protected void refrescarMesa() {
-		// TODO Auto-generated method stub
-		
-	}
 }
