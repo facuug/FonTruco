@@ -101,7 +101,7 @@ public class MesaDeSeisController extends MesaGeneralController{
 		return manos;
 	}
 	@Override
-	protected void setImageViewCartaHandler() {
+	protected void setImageViewCartaHandlerYListener() {
 		List<Mano> manos = obtenerManosIntercaladas();
 		int i = 0;
 		for(List<ImageView> cartasEnMano : cartasJugando) {

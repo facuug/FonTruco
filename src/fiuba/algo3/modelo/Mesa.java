@@ -41,7 +41,7 @@ public class Mesa {
 		int posicion = this.equipos.indexOf(this.equipoMano);
 
 		try{
-			this.equipoMano = this.equipos.get(posicion);
+			this.equipoMano = this.equipos.get(posicion+1);
 		} catch (Exception exception){
 			this.equipoMano = this.equipos.get(0);
 		}

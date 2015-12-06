@@ -257,14 +257,14 @@ public abstract class MesaGeneralController extends Controller {
 
 	protected abstract void prepararMesa();
 
-	protected abstract void setImageViewCartaHandler();
+	protected abstract void setImageViewCartaHandlerYListener();
 
 	protected abstract void mostrarCartas();
 
 	protected void prepararJuego() {
 		prepararMesa();
 		mesa.repartir();
-		setImageViewCartaHandler();
+		setImageViewCartaHandlerYListener();
 		mostrarCartas();
 	}
 
