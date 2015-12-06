@@ -34,7 +34,6 @@ public class Mesa {
     		}
     		unJugador.setMano(unaMano);
     	}
-		this.rotarMano();
     }
 
 	private void rotarMano() {
@@ -76,5 +75,6 @@ public class Mesa {
 		this.ronda = new PrimeraRonda(this.equipoMano.cantidadDeJugadores() * 2);
 		this.mazo = new Mazo();
 		this.repartir();
+		this.rotarMano();
 	}
 }
