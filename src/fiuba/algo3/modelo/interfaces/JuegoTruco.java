@@ -46,6 +46,7 @@ public abstract class JuegoTruco {
 
         this.turnoParaCanto = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
         this.turnoParaCarta = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
+        this.turnoParaCarta.establecerJugadorDeTurno(this.mesa.equipoMano().jugadorDeTurno());
     }
 
     public void envido() {

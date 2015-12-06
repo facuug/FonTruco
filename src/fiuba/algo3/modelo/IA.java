@@ -106,6 +106,6 @@ public class IA extends Jugador{
 				return "No Quiero!";
 			}
 		}
-		else return "";
+		return "";
 	}
 }

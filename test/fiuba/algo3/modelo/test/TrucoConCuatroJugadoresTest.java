@@ -202,4 +202,32 @@ public class TrucoConCuatroJugadoresTest {
         assertEquals(6, this.trucoConFlor.puntosEquipoUno());
         assertEquals(0, this.trucoConFlor.puntosEquipoDos());
     }
+    
+    @Test 
+    public void juegoConCuatroManos(){
+    	//PRIMERA MANO (COMIENZA FACU)
+    	
+    	assertEquals( "Facu" ,trucoConFlor.jugadorDeTurno().getNombre() );
+        trucoConFlor.restablecer();
+        
+        //SEGUNDA MANO (COMIENZA HOMERO)
+        
+        assertEquals( "Homero" ,trucoConFlor.jugadorDeTurno().getNombre() );
+        trucoConFlor.restablecer();
+        
+        //TERCERA MANO (COMIENZA AGUS)
+        
+        assertEquals( "Agus" ,trucoConFlor.jugadorDeTurno().getNombre() );
+        trucoConFlor.restablecer();
+        
+        //CUARTA MANO (COMIENZA LISA)
+        
+        assertEquals( "Lisa" ,trucoConFlor.jugadorDeTurno().getNombre() );
+        trucoConFlor.restablecer();
+        
+        //QUINTA MANO (COMIENZA FACU)
+        
+        assertEquals( "Facu" ,trucoConFlor.jugadorDeTurno().getNombre() );
+        trucoConFlor.restablecer();
+    }
 }

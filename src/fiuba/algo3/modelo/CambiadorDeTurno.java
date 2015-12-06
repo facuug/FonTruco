@@ -93,6 +93,7 @@ public class CambiadorDeTurno {
     public void establecerJugadorDeTurno(Jugador jugador) {
         if( !this.jugadores.contains(jugador) ) throw new JugadorInexistenteException();
 
-        this.posicionDeJugadores = this.jugadores.indexOf(jugador);
+        this.posicionDeJugadores = 0;
+        reordenar(jugador);
     }
 }

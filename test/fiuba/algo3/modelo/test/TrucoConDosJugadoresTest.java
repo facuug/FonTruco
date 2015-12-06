@@ -407,7 +407,7 @@ public class TrucoConDosJugadoresTest {
 
     @Test
     public void hayGanadorDeVuelveTrueCuandoUnEquipoAlcanzaTreintaPuntos(){
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 20; i++){
             trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS, Palo.COPA));
             trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.BASTO));
 
@@ -434,7 +434,7 @@ public class TrucoConDosJugadoresTest {
 
     @Test
     public void ganadorDeJuegoDevuelveEquipoGanador(){
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 20; i++){
             trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SEIS, Palo.COPA));
             trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.BASTO));
 
@@ -457,10 +457,5 @@ public class TrucoConDosJugadoresTest {
         }
 
         assertEquals("Equipo 1",trucoSinFlor.ganadorDeJuego());
-    }
-
-    @Test
-    public void ganadorDeJuegoDevuelveNullSiNoHayGanador(){
-        assertEquals(null,trucoSinFlor.ganadorDeJuego());
     }
 }

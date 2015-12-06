@@ -38,10 +38,10 @@ public class Mesa {
     }
 
 	private void rotarMano() {
-		int posicion = this.equipos.indexOf(this.equipoMano);
+		int posicion = this.equipos.indexOf(this.equipoMano) + 1;
 
 		try{
-			this.equipoMano = this.equipos.get(posicion+1);
+			this.equipoMano = this.equipos.get(posicion);
 		} catch (Exception exception){
 			this.equipoMano = this.equipos.get(0);
 		}
@@ -74,11 +74,6 @@ public class Mesa {
 
 	public void restablecer() {
 		this.ronda = new PrimeraRonda(this.equipoMano.cantidadDeJugadores() * 2);
-		if(equipoMano == equipos.get(0)) {
-			equipoMano = equipos.get(1);
-		} else {
-			equipoMano = equipos.get(0);
-		}
 		this.mazo = new Mazo();
 		this.repartir();
 	}
