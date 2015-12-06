@@ -70,9 +70,8 @@ public class CartaHandler implements EventHandler<Event> {
 						restaurarCartas(cartasEnJuego.get(j), jugador.getMano());
 						j+=2;
 					}
-					mostrarCartasMano();
-					
 				}
+				mostrarCartasMano();
 			}
 		} catch(AccionInvalidaException exception){
 			System.out.println("no se puede jugar carta"); //esto es temporal 
@@ -91,13 +90,22 @@ public class CartaHandler implements EventHandler<Event> {
 			((CartaHandler)cartaVista.getOnMouseClicked()).cartaQueSoy=carta;
 			i++;
 		}
-		mostrarCartasMano();
+		
 	}
 	
 	private void mostrarCartasMano() {
-		Equipo equipoMano = Controller.juegoTruco.obtenerMesa().equipoMano();
-		int posicionEquipo = Controller.juegoTruco.obtenerMesa().getEquipos().indexOf(equipoMano);
-		List<ImageView> cartasHabilitar = cartasEnJuego.get(posicionEquipo);
+		Mesa mesa = Controller.juegoTruco.obtenerMesa();
+		List<Equipo> equipos = mesa.getEquipos();
+		List<Mano> manos = new ArrayList<Mano>();
+		int cantidadDeJugadores = mesa.getEquipos().get(0).cantidadDeJugadores();
+		for(int i = 0; i < cantidadDeJugadores; i++){
+			manos.add(equipos.get(0).getJugadores().get(i).getMano());
+			manos.add(equipos.get(1).getJugadores().get(i).getMano());
+		}
+
+		int posicion = manos.indexOf( Controller.juegoTruco.jugadorDeTurno().getMano() );
+		List<ImageView> cartasHabilitar = cartasEnJuego.get(posicion);
+		
 		for(ImageView carta : cartasHabilitar) {
 			File fileDorso = new File(armarRutaImagen(((CartaHandler)carta.getOnMouseClicked()).cartaQueSoy));
 			Image imagenDorso = new Image(fileDorso.toURI().toString());
