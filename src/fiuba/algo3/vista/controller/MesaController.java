@@ -108,10 +108,8 @@ public class MesaController extends MesaGeneralController {
 
 				@Override
 				public void changed(ObservableValue<? extends Image> observable, Image oldValue, Image newValue) {
-					if (juegoTruco.manoFinalizada()) {
-						finalizarMano();
-					} else if (juegoTruco.hayGanador()) {
-						finalizarJuego();
+					if(juegoTruco.manoFinalizada()) {
+						restablecerContenedores();
 					}
 				}
 
@@ -119,65 +117,7 @@ public class MesaController extends MesaGeneralController {
 		}
 	}
 
-	private void finalizarJuego() {
-		String ganador;
-		if (Integer.valueOf(lblPuntosEq2.getText()) >= PUNTOS_MAXIMOS) {
-			ganador = "Equipo 2";
-		} else if (Integer.valueOf(lblPuntosEq1.getText()) >= PUNTOS_MAXIMOS) {
-			ganador = "Equipo 1";
-		} else {
-			ganador = "Empate";
-		}
-		Controller.popupGanador("PopUpGanador", ganador);
-	}
-
-	private void finalizarMano() {
-		juegoTruco.sumarPuntos();
-		lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
-		lblPuntosEq2.setText(Integer.toString(Controller.juegoTruco.puntosEquipoDos()));
-		juegoTruco.restablecer();
-		restablecerVista();
-	}
-
-	private void restablecerVista() {
-		List<Equipo> equipos = Controller.juegoTruco.obtenerMesa().getEquipos();
-		int posicionJugador = 0;
-		for (Equipo equipo : equipos) {
-			for (Jugador jugador : equipo.getJugadores()) {
-				Mano mano = jugador.getMano();
-				restablecerMano(mano, cartasJugando.get(posicionJugador));
-				posicionJugador++;
-			}
-		}
-		restablecerContenedores();
-		habilitarJugadorMano();
-	}
-
-	private void habilitarJugadorMano() {
-		Equipo equipoMano = mesa.equipoMano();
-		Jugador jugadorMano = equipoMano.jugadorDeTurno();
-		int posicionJugador = mesa.getEquipos().indexOf(equipoMano) * equipoMano.getJugadores().indexOf(jugadorMano);
-
-		List<ImageView> cartasDeMano = cartasJugando.get(posicionJugador);
-		for (ImageView carta : cartasDeMano) {
-			String rutaImagen = armarRutaImagen(((CartaHandler) (carta.getOnMouseClicked())).getCartaQueSoy());
-			File archivoImagen = new File(rutaImagen);
-			carta.setImage(new Image(archivoImagen.toURI().toString()));
-			carta.setDisable(false);
-		}
-
-	}
-
-	private void restablecerMano(Mano mano, List<ImageView> vistaMano) {
-		int posicionCarta = 0;
-		for (Carta carta : mano.getCartas()) {
-			((CartaHandler) (vistaMano.get(posicionCarta).getOnMouseClicked())).setCartaQueSoy(carta);
-			vistaMano.get(posicionCarta).setVisible(true);
-			vistaMano.get(posicionCarta).setDisable(true);
-			posicionCarta++;
-		}
-	}
-
+	
 	private void restablecerContenedores() {
 		for (ImageView contenedor : contenedores) {
 			contenedor.setImage(null);
@@ -185,16 +125,17 @@ public class MesaController extends MesaGeneralController {
 	}
 
 	public static List<Mano> obtenerManosIntercaladas() {
-		int posicionOtraMano = 0;
-		List<Jugador> equipoUno = mesa.getEquipos().get(0).getJugadores();
-		List<Jugador> equipoDos = mesa.getEquipos().get(1).getJugadores();
-		List<Mano> manos = new ArrayList<>();
-		for (Jugador jugador : equipoUno) {
-			manos.add(jugador.getMano());
-			manos.add(equipoDos.get(posicionOtraMano).getMano());
-			posicionOtraMano++;
-		}
-		return manos;
+
+			int posicionOtraMano = 0;
+			List<Jugador> equipoUno = mesa.getEquipos().get(0).getJugadores();
+			List<Jugador> equipoDos = mesa.getEquipos().get(1).getJugadores();
+			List<Mano> manos = new ArrayList<>();
+			for (Jugador jugador : equipoUno) {
+				manos.add(jugador.getMano());
+				manos.add(equipoDos.get(posicionOtraMano).getMano());
+				posicionOtraMano++;
+			}
+			return manos;
 	}
 
 	private void esconderCartas() {

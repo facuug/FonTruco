@@ -74,6 +74,11 @@ public class Mesa {
 
 	public void restablecer() {
 		this.ronda = new PrimeraRonda(this.equipoMano.cantidadDeJugadores() * 2);
+		if(equipoMano == equipos.get(0)) {
+			equipoMano = equipos.get(1);
+		} else {
+			equipoMano = equipos.get(0);
+		}
 		this.mazo = new Mazo();
 		this.repartir();
 	}
