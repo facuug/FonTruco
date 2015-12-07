@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import fiuba.algo3.modelo.CambiadorDeTurno;
 import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
@@ -50,7 +49,6 @@ public class CartaHandler implements EventHandler<Event> {
 		try{
 			Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
 			ImageView cartaJugada = (ImageView)event.getSource();
-			//cartasDeMano.remove(cartaJugada);
 			cartaJugada.setVisible(false);
 			jugarCarta(cartaJugada);
 			habilitarCartas();

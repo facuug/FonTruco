@@ -1,10 +1,15 @@
 package fiuba.algo3.modelo;
 
-import fiuba.algo3.modelo.estados.TrucoSinFlor;
-import fiuba.algo3.modelo.interfaces.JuegoTruco;
-
 import java.util.List;
-import java.util.Random;
+
+import fiuba.algo3.modelo.estados.Envido;
+import fiuba.algo3.modelo.estados.FaltaEnvido;
+import fiuba.algo3.modelo.estados.ReTruco;
+import fiuba.algo3.modelo.estados.RealEnvido;
+import fiuba.algo3.modelo.estados.Truco;
+import fiuba.algo3.modelo.estados.ValeCuatro;
+import fiuba.algo3.modelo.interfaces.EstadoJuego;
+import fiuba.algo3.modelo.interfaces.JuegoTruco;
 
 public class IA extends Jugador{
 
@@ -66,8 +71,9 @@ public class IA extends Jugador{
 			return buscarMenorCarta();
 	}
 
-	public String responderCanto(String canto, JuegoTruco truco) {
+	public String responderCanto(JuegoTruco truco) {
 		boolean querer = false;
+		EstadoJuego canto = truco.getEstadoJuego();
 
 		for(Carta carta:  this.getMano().getCartas() ){
 			if( carta.getTipoCarta().getValor() >= 9 ){
@@ -75,7 +81,7 @@ public class IA extends Jugador{
 			}
 		}
 
-		if( (canto.equals("truco")) || (canto.equals("re truco")) || (canto.equals("vale cuatro")) ){
+		if( (canto instanceof Truco) || (canto instanceof ReTruco) || (canto instanceof ValeCuatro)){
 			if(querer){
 				truco.quiero();
 				return "Quiero!";
@@ -86,7 +92,7 @@ public class IA extends Jugador{
 			}
 		}
 
-		if ( (canto.equals("envido")) || (canto.equals("real envido")) ){
+		if ( (canto instanceof Envido) || (canto  instanceof RealEnvido) ){
 			if(this.puntosDeEnvido() >= 25) {
 				truco.quiero();
 				return "Quiero!";
@@ -96,7 +102,7 @@ public class IA extends Jugador{
 				return "No Quiero!";
 			}
 		}
-		else if( canto.equals("falta envido") ){
+		else if( canto instanceof FaltaEnvido ){
 			if(this.puntosDeEnvido() >= 30){
 				truco.quiero();
 				return "Quiero!";

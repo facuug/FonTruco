@@ -25,13 +25,21 @@ public abstract class Controller implements Initializable {
 
 	public static void redirect(String nombreVista) {
 		Pane pane;
+		MesaGeneralController mesaController = null;
+		if(nombreVista.equals("Mesa")){
+			mesaController = new MesaController();
+		} else if(nombreVista.equals("MesaDeSeis")) {
+			mesaController = new MesaDeSeisController();
+		}
 		try {
-			pane = (Pane) FXMLLoader.load(Main.class
+			FXMLLoader fxmlLoader = new FXMLLoader(Main.class
 					.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
+			fxmlLoader.setController(mesaController);
+			pane = fxmlLoader.load();
 			Scene scene = new Scene(pane);
 			stage.setScene(scene);
 			stage.close();
-			stage.setTitle(new StringBuilder().append(nombreVista).toString());
+			stage.setTitle("FonTruco");
 			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -49,7 +57,7 @@ public abstract class Controller implements Initializable {
 			popup.initModality(Modality.APPLICATION_MODAL);
 			popup.initOwner(stage);
 			popup.setScene(scene);
-			popup.setTitle(new StringBuilder().append(nombreVista).toString());
+			popup.setTitle("FonTruco");
 			popup.showAndWait();
 
 		} catch (IOException e) {

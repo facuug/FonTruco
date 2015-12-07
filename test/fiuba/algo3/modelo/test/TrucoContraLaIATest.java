@@ -1,20 +1,18 @@
 package fiuba.algo3.modelo.test;
 
-import fiuba.algo3.modelo.*;
-import fiuba.algo3.modelo.enums.Palo;
-import fiuba.algo3.modelo.enums.TipoCarta;
-import fiuba.algo3.modelo.estados.TrucoSinFlor;
+import static junit.framework.TestCase.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import fiuba.algo3.modelo.Carta;
+import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.IA;
+import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.enums.Palo;
+import fiuba.algo3.modelo.enums.TipoCarta;
+import fiuba.algo3.modelo.estados.TrucoSinFlor;
 
-import static junit.framework.TestCase.assertEquals;
-
-/**
- * Created by Facundo on 03-Dec-15.
- */
 public class TrucoContraLaIATest {
 
     private TrucoSinFlor trucoSinFlor;
@@ -48,7 +46,7 @@ public class TrucoContraLaIATest {
     @Test
     public void responderTrucoCuandoIATieneDeDoceParaArribaDevuelveQuiero(){
         trucoSinFlor.truco();
-        ia.responderCanto("truco",trucoSinFlor);
+        ia.responderCanto(trucoSinFlor);
 
         trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
         trucoSinFlor.jugadorDeTurnoJuegaCarta(ia.jugar(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA)));
@@ -68,7 +66,7 @@ public class TrucoContraLaIATest {
     @Test
     public void responderReTrucoCuandoIATieneDeDoceParaArribaDevuelveQuiero(){
         trucoSinFlor.truco();
-        ia.responderCanto("truco",trucoSinFlor);
+        ia.responderCanto(trucoSinFlor);
 
         trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));
         trucoSinFlor.jugadorDeTurnoJuegaCarta(ia.jugar(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA)));
@@ -93,7 +91,7 @@ public class TrucoContraLaIATest {
         ia.recibirCarta(new Carta(TipoCarta.CINCO, Palo.ORO));
 
         trucoSinFlor.truco();
-        ia.responderCanto("truco",trucoSinFlor);
+        ia.responderCanto(trucoSinFlor);
 
         trucoSinFlor.sumarPuntos();
 
@@ -109,7 +107,7 @@ public class TrucoContraLaIATest {
         ia.recibirCarta(new Carta(TipoCarta.CINCO, Palo.ORO));
 
         trucoSinFlor.truco();
-        ia.responderCanto("re truco",trucoSinFlor);
+        ia.responderCanto(trucoSinFlor);
 
         trucoSinFlor.sumarPuntos();
 
@@ -127,7 +125,7 @@ public class TrucoContraLaIATest {
         this.equipoDos.agregarJugador(ia);
 
         trucoSinFlor.envido();
-        ia.responderCanto("envido",trucoSinFlor);
+        ia.responderCanto(trucoSinFlor);
 
         trucoSinFlor.sumarPuntos();
 
@@ -145,7 +143,7 @@ public class TrucoContraLaIATest {
         this.equipoDos.agregarJugador(ia);
 
         trucoSinFlor.envido();
-        ia.responderCanto("real envido",trucoSinFlor);
+        ia.responderCanto(trucoSinFlor);
 
         trucoSinFlor.sumarPuntos();
 
@@ -156,7 +154,7 @@ public class TrucoContraLaIATest {
     @Test
     public void responderEnvidoCuantoNoTieneAlMenosVeinticincoPuntosDevuleveNoQuiero(){
         trucoSinFlor.envido();
-        ia.responderCanto("envido",trucoSinFlor);
+        ia.responderCanto(trucoSinFlor);
 
         trucoSinFlor.sumarPuntos();
 
@@ -167,7 +165,7 @@ public class TrucoContraLaIATest {
     @Test
     public void responderRealEnvidoCuantoNoTieneAlMenosVeinticincoPuntosDevuleveNoQuiero(){
         trucoSinFlor.envido();
-        ia.responderCanto("real envido",trucoSinFlor);
+        ia.responderCanto(trucoSinFlor);
 
         trucoSinFlor.sumarPuntos();
 
@@ -185,7 +183,7 @@ public class TrucoContraLaIATest {
         this.equipoDos.agregarJugador(ia);
 
         trucoSinFlor.faltaEnvido();
-        ia.responderCanto("falta envido",trucoSinFlor);
+        ia.responderCanto(trucoSinFlor);
 
         trucoSinFlor.sumarPuntos();
 

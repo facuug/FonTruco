@@ -30,6 +30,11 @@ public abstract class JuegoTruco {
 
     private boolean envidoTerminado;
 
+    public EstadoJuego getEstadoJuego() {
+    	return estadoJuego;
+    }
+    
+    
     public JuegoTruco(Equipo unEquipo, Equipo otroEquipo){
         this.puntosDeMano = 1;  //si no hay cantos la mano vale 1 punto
         this.envidoTerminado = false;
