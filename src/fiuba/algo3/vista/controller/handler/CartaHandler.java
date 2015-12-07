@@ -18,11 +18,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class CartaHandler implements EventHandler<Event> {
+public class CartaHandler extends CartaHandlerGeneral {
 
 	private ImageView contenedorAsociado;
 	private List<ImageView> cartasDeMano;
-	private Carta cartaQueSoy;
+	
 	List<List<ImageView>> cartasEnJuego;
 	
 	private Label labelEquipoUno,labelEquipoDos;
@@ -130,19 +130,10 @@ public class CartaHandler implements EventHandler<Event> {
 				Image imagenDorso = new Image(fileDorso.toURI().toString());
 				carta.setImage(imagenDorso);
 			} else {
-				File fileDorso = new File(armarRutaImagen(((CartaHandler)carta.getOnMouseClicked()).cartaQueSoy));
-				Image imagenDorso = new Image(fileDorso.toURI().toString());
-				carta.setImage(imagenDorso);
+				algo(carta);
 			}
 			carta.setDisable(!carta.isDisable());
 		}
-	}
-	
-	private String armarRutaImagen(Carta carta) {
-		return new StringBuilder().append("src/fiuba/algo3/vista/recursos/carta/")
-				.append(carta.getPalo().toString().toLowerCase())
-				.append("/").append(String.valueOf(carta.getTipoCarta().getValorRealCarta()))
-				.append(".png").toString();
 	}
 	
 	private void jugarCarta(ImageView cartaJugada) {	

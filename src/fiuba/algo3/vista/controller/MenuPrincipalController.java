@@ -41,8 +41,11 @@ public class MenuPrincipalController extends Controller {
 	@FXML
 	private Button btnConFlor;
 	
+	private boolean isMesaConIA;
+	
 	@Override
 	public void initialize(URL url, ResourceBundle resource) {
+		isMesaConIA = false;
 		btnJugarHandler();
 		btnVolverHandler();
 		btnSalirHandler();
@@ -53,6 +56,7 @@ public class MenuPrincipalController extends Controller {
 		btnSinFlorHandler();
 		btnConFlorHandler();
 		btnVolverDeFlor();
+		btnContraIAHandler();
 	}
 	
 	private EventHandler<ActionEvent> esconderOtrosBotonesHandler = new EventHandler<ActionEvent>(){
@@ -132,6 +136,36 @@ public class MenuPrincipalController extends Controller {
 		});
 	}
 	
+	private void btnContraIAHandler() {
+		btnContraIA.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				isMesaConIA = true;
+				MesaController.setCantidadJugadores(2);
+				cambiarVisibilidadBoton(btnDosJugadores);
+				cambiarVisibilidadBoton(btnCuatroJugadores);
+				cambiarVisibilidadBoton(btnContraIA);
+				cambiarVisibilidadBoton(btnPicaPica);
+				cambiarVisibilidadBoton(btnConFlor);
+				cambiarVisibilidadBoton(btnSinFlor);
+				cambiarVisibilidadBoton(btnVolverDeFlor);
+			}
+		});
+	}
+	
+	private void btnesFlor(int cantidadDeJugadores) {
+		if(cantidadDeJugadores<5)
+			if(isMesaConIA){
+				redirect("MesaConIA");
+			} else {
+				redirect("Mesa");
+			}
+		else
+			redirect("MesaDeSeis");
+	}
+	
+	
 	private void btnSinFlorHandler(){
 		btnSinFlor.setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -140,10 +174,7 @@ public class MenuPrincipalController extends Controller {
 				int cantidadDeJugadores = MesaController.getCantidadJugadores();
 				juegoTruco = new TrucoSinFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
 				MesaController.mesa =juegoTruco.obtenerMesa();
-				if(cantidadDeJugadores<5)
-					redirect("Mesa");
-				else
-					redirect("MesaDeSeis");
+				btnesFlor(cantidadDeJugadores);
 			}
 		});
 	}
@@ -156,10 +187,7 @@ public class MenuPrincipalController extends Controller {
 				int cantidadDeJugadores = MesaController.getCantidadJugadores();
 				juegoTruco = new TrucoConFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
 				MesaController.mesa =juegoTruco.obtenerMesa();
-				if(cantidadDeJugadores<5)
-					redirect("Mesa");
-				else
-					redirect("MesaDeSeis");
+				btnesFlor(cantidadDeJugadores);
 			}
 		});
 	}

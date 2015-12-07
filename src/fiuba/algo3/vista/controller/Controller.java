@@ -30,11 +30,16 @@ public abstract class Controller implements Initializable {
 			mesaController = new MesaController();
 		} else if(nombreVista.equals("MesaDeSeis")) {
 			mesaController = new MesaDeSeisController();
+		} else if(nombreVista.equals("MesaConIA")){
+			mesaController = new MesaConIAController();
+			nombreVista = "Mesa";
 		}
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(Main.class
 					.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
-			fxmlLoader.setController(mesaController);
+			if(mesaController!=null) {
+				fxmlLoader.setController(mesaController);
+			}
 			pane = fxmlLoader.load();
 			Scene scene = new Scene(pane);
 			stage.setScene(scene);
