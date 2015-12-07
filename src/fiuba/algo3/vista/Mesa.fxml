@@ -178,7 +178,7 @@
             <Button fx:id="btnQuiero" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" text="Quiero!" GridPane.columnIndex="5" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Pane layoutX="554.0" layoutY="19.0" prefHeight="200.0" prefWidth="200.0">
+      <Pane layoutX="554.0" layoutY="19.0" prefHeight="108.0" prefWidth="200.0">
          <children>
             <Label layoutX="78.0" layoutY="16.0" text="Puntos" textFill="WHITE" />
             <Label layoutX="62.0" layoutY="45.0" text="Equipo 1:" textFill="WHITE" />

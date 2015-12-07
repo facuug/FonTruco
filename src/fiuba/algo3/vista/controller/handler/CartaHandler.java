@@ -54,27 +54,31 @@ public class CartaHandler implements EventHandler<Event> {
 			cartaJugada.setVisible(false);
 			jugarCarta(cartaJugada);
 			habilitarCartas();
+			actualizar();
 			
-			if(Controller.juegoTruco.manoFinalizada()){
-				Controller.juegoTruco.sumarPuntos();
-				this.labelEquipoUno.setText( Integer.toString(Controller.juegoTruco.puntosEquipoUno()) );
-				this.labelEquipoDos.setText( Integer.toString(Controller.juegoTruco.puntosEquipoDos()) );
-				Controller.juegoTruco.restablecer();
-				Mesa mesa = Controller.juegoTruco.obtenerMesa();
-				List<Equipo> equipos = mesa.getEquipos();
-				int j = 0;
-				for(int i = 0 ; i<equipos.size();i++) {
-					List<Jugador> jugadores = equipos.get(i).getJugadores();
-					j=i;
-					for(Jugador jugador: jugadores) {
-						restaurarCartas(cartasEnJuego.get(j), jugador.getMano());
-						j+=2;
-					}
-				}
-				mostrarCartasMano();
-			}
 		} catch(AccionInvalidaException exception){
 			System.out.println("no se puede jugar carta"); //esto es temporal 
+		}
+	}
+	
+	public void actualizar() {
+		if(Controller.juegoTruco.manoFinalizada()){
+			Controller.juegoTruco.sumarPuntos();
+			this.labelEquipoUno.setText( Integer.toString(Controller.juegoTruco.puntosEquipoUno()) );
+			this.labelEquipoDos.setText( Integer.toString(Controller.juegoTruco.puntosEquipoDos()) );
+			Controller.juegoTruco.restablecer();
+			Mesa mesa = Controller.juegoTruco.obtenerMesa();
+			List<Equipo> equipos = mesa.getEquipos();
+			int j = 0;
+			for(int i = 0 ; i<equipos.size();i++) {
+				List<Jugador> jugadores = equipos.get(i).getJugadores();
+				j=i;
+				for(Jugador jugador: jugadores) {
+					restaurarCartas(cartasEnJuego.get(j), jugador.getMano());
+					j+=2;
+				}
+			}
+			mostrarCartasMano();
 		}
 	}
 	

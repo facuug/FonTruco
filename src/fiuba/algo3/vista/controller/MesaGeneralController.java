@@ -3,15 +3,12 @@ package fiuba.algo3.vista.controller;
 import java.io.File;
 import java.util.List;
 
-import com.sun.media.jfxmediaimpl.platform.Platform;
-
 import fiuba.algo3.modelo.Carta;
-import fiuba.algo3.modelo.Equipo;
-import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
+import fiuba.algo3.vista.controller.handler.CartaHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -57,6 +54,8 @@ public abstract class MesaGeneralController extends Controller {
 	protected Label lblPuntosEq2;
 	public static Mesa mesa;
 	
+	
+	
 
 	public String armarRutaImagen(Carta carta) {
 		return new StringBuilder().append("src/fiuba/algo3/vista/recursos/carta/")
@@ -98,7 +97,7 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					juegoTruco.truco();
-				} catch (CantoInvalidoException exception) {
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
@@ -111,7 +110,7 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					juegoTruco.envido();
-				} catch (CantoInvalidoException exception) {
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 					System.out.println("cantoInvalido");
 				}
 			}
@@ -125,7 +124,7 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					juegoTruco.reTruco();
-				} catch (CantoInvalidoException exception) {
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
@@ -138,7 +137,7 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					juegoTruco.valeCuatro();
-				} catch (CantoInvalidoException exception) {
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
@@ -151,7 +150,7 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					juegoTruco.realEnvido();
-				} catch (CantoInvalidoException exception) {
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
@@ -164,7 +163,7 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					juegoTruco.faltaEnvido();
-				} catch (CantoInvalidoException exception) {
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
@@ -177,7 +176,7 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					juegoTruco.quiero();
-				} catch (CantoInvalidoException exception) {
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
@@ -190,12 +189,11 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					juegoTruco.noQuiero();
-					if (Controller.juegoTruco.manoFinalizada()) {
-						Controller.juegoTruco.sumarPuntos();
-						lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
-						lblPuntosEq2.setText(Integer.toString(Controller.juegoTruco.puntosEquipoDos()));
-					}
-				} catch (CantoInvalidoException exception) {
+					Controller.juegoTruco.sumarPuntos();
+					lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
+					lblPuntosEq2.setText(Integer.toString(Controller.juegoTruco.puntosEquipoDos()));
+					((CartaHandler)(cartasJugando.get(0).get(0).getOnMouseClicked())).actualizar();
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
@@ -208,7 +206,7 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					juegoTruco.flor();
-				} catch (CantoInvalidoException exception) {
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
@@ -221,7 +219,7 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					juegoTruco.contraFlor();
-				} catch (CantoInvalidoException exception) {
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
@@ -233,7 +231,7 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					juegoTruco.contraFlorAlResto();
-				} catch (CantoInvalidoException exception) {
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
@@ -254,7 +252,7 @@ public abstract class MesaGeneralController extends Controller {
 		setBtnContraFlorHandler();
 		setBtnContraFlorAlRestoHandler();
 	}
-
+	
 	protected abstract void prepararMesa();
 
 	protected abstract void setImageViewCartaHandlerYListener();
