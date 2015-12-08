@@ -283,16 +283,15 @@ public abstract class JuegoTruco {
 
 	private JuegoTruco siguienteEnfrentamiento() {
 		
-			try {
+		try {
 			
 			int indice = this.enfrentamientos.indexOf(enfrentamientoActual);
-			this.enfrentamientoActual = this.enfrentamientos.get(indice + 1); 
+			return this.enfrentamientoActual = this.enfrentamientos.get(indice + 1); 
+		
 		} catch (Exception e) {
 			
-			this.enfrentamientoActual = this.enfrentamientos.get(0);
+			return this.enfrentamientoActual = this.enfrentamientos.get(0);
 		}
-		
-		return this.enfrentamientoActual;
 	}
 
 }
