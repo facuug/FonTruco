@@ -100,6 +100,7 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					ejecutarAudio("truco");
 					juegoTruco.truco();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
@@ -113,6 +114,7 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					ejecutarAudio("envido");
 					juegoTruco.envido();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 					System.out.println("cantoInvalido");
@@ -127,6 +129,7 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					ejecutarAudio("reTruco");
 					juegoTruco.reTruco();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
@@ -140,6 +143,7 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					ejecutarAudio("valeCuatro");
 					juegoTruco.valeCuatro();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
@@ -153,6 +157,7 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					ejecutarAudio("realEnvido");
 					juegoTruco.realEnvido();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
@@ -166,6 +171,7 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					ejecutarAudio("faltaEnvido");
 					juegoTruco.faltaEnvido();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
@@ -179,10 +185,7 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					File f = new File("src/fiuba/algo3/vista/recursos/audio/quiero.mp3");
-					Media media = new Media(f.toURI().toString());
-					mediaPlayer = new MediaPlayer(media);
-					mediaPlayer.play();
+					ejecutarAudio("quiero");
 					juegoTruco.quiero();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
@@ -190,16 +193,22 @@ public abstract class MesaGeneralController extends Controller {
 		});
 	}
 
+	private void ejecutarAudio(String nombre) {
+		File f = new File(new StringBuilder().append("src/fiuba/algo3/vista/recursos/audio/")
+				.append(nombre).append(".mp3").toString());
+		Media media = new Media(f.toURI().toString());
+		mediaPlayer = new MediaPlayer(media);
+		mediaPlayer.play();
+		
+	}
+	
 	private void setBtnNoQuieroHandler() {
 		btnNoQuiero.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					File f = new File("src/fiuba/algo3/vista/recursos/audio/noQuiero.mp3");
-					Media media = new Media(f.toURI().toString());
-					mediaPlayer = new MediaPlayer(media);
-					mediaPlayer.play();
+					ejecutarAudio("noQuiero");
 					juegoTruco.noQuiero();
 					Controller.juegoTruco.sumarPuntos();
 					lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
@@ -217,6 +226,7 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					ejecutarAudio("flor");
 					juegoTruco.flor();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
@@ -230,6 +240,7 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					ejecutarAudio("contraFlor");
 					juegoTruco.contraFlor();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
@@ -242,6 +253,7 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					ejecutarAudio("contraFlorResto");
 					juegoTruco.contraFlorAlResto();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
@@ -276,10 +288,6 @@ public abstract class MesaGeneralController extends Controller {
 		mesa.repartir();
 		setImageViewCartaHandlerYListener();
 		mostrarCartas();
-	}
-
-	private static void finalizarJuego() {
-		MesaGeneralController.popupGanador("PopUpGanador", MesaGeneralController.juegoTruco.ganadorDeJuego());
 	}
 
 	public static List<Mano> obtenerManosIntercaladas() {

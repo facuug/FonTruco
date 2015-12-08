@@ -1,17 +1,12 @@
 package fiuba.algo3.vista.controller;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.smartcardio.CardTerminals;
-
-import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Equipo;
-import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.vista.controller.handler.CartaHandler;
 import javafx.beans.value.ChangeListener;
@@ -22,9 +17,6 @@ import javafx.scene.image.ImageView;
 
 public class MesaController extends MesaGeneralController {
 
-	// Cada control de javafx tiene por nombre el id:fx del control que esta en
-	// Mesa.fxml
-	private static final int PUNTOS_MAXIMOS = 25;
 	private static int cantidadJugadores = 0;
 
 	public static int getCantidadJugadores() {

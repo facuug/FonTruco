@@ -126,6 +126,7 @@ public class MenuPrincipalController extends Controller {
 
 			@Override
 			public void handle(ActionEvent event) {
+				isMesaConIA = false;
 				MesaController.setCantidadJugadores(2);
 				cambiarVisibilidadBoton(btnDosJugadores);
 				cambiarVisibilidadBoton(btnCuatroJugadores);
@@ -199,6 +200,7 @@ public class MenuPrincipalController extends Controller {
 		btnPicaPica.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				isMesaConIA = false;
 				MesaController.setCantidadJugadores(6);
 				cambiarVisibilidadBoton(btnDosJugadores);
 				cambiarVisibilidadBoton(btnCuatroJugadores);
@@ -216,6 +218,7 @@ public class MenuPrincipalController extends Controller {
 
 			@Override
 			public void handle(ActionEvent event) {
+				isMesaConIA = false;
 				MesaController.setCantidadJugadores(4);
 				cambiarVisibilidadBoton(btnDosJugadores);
 				cambiarVisibilidadBoton(btnCuatroJugadores);
