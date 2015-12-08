@@ -1,9 +1,11 @@
 package fiuba.algo3.vista.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.modelo.Carta;
+import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
@@ -270,4 +272,18 @@ public abstract class MesaGeneralController extends Controller {
 		MesaGeneralController.popupGanador("PopUpGanador", MesaGeneralController.juegoTruco.ganadorDeJuego());
 	}
 
+	public static List<Mano> obtenerManosIntercaladas() {
+
+		int posicionOtraMano = 0;
+		List<Jugador> equipoUno = mesa.getEquipos().get(0).getJugadores();
+		List<Jugador> equipoDos = mesa.getEquipos().get(1).getJugadores();
+		List<Mano> manos = new ArrayList<>();
+		for (Jugador jugador : equipoUno) {
+			manos.add(jugador.getMano());
+			manos.add(equipoDos.get(posicionOtraMano).getMano());
+			posicionOtraMano++;
+		}
+		return manos;
+}
+	
 }

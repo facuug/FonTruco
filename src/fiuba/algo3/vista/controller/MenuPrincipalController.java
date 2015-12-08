@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.IA;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.estados.TrucoConFlor;
@@ -23,7 +24,7 @@ public class MenuPrincipalController extends Controller {
 	private Button btnAyuda;
 	@FXML
 	private Button btnSalir;
-	
+
 	@FXML
 	private Button btnDosJugadores;
 	@FXML
@@ -37,12 +38,12 @@ public class MenuPrincipalController extends Controller {
 	@FXML
 	private Button btnContraIA;
 	@FXML
-	private Button btnSinFlor;     
+	private Button btnSinFlor;
 	@FXML
 	private Button btnConFlor;
-	
+
 	private boolean isMesaConIA;
-	
+
 	@Override
 	public void initialize(URL url, ResourceBundle resource) {
 		isMesaConIA = false;
@@ -58,15 +59,15 @@ public class MenuPrincipalController extends Controller {
 		btnVolverDeFlor();
 		btnContraIAHandler();
 	}
-	
-	private EventHandler<ActionEvent> esconderOtrosBotonesHandler = new EventHandler<ActionEvent>(){
 
-	    @Override
-	    public void handle(final ActionEvent event) {
-	    	cambiarVisibilidadDeBotones();
-	    }
+	private EventHandler<ActionEvent> esconderOtrosBotonesHandler = new EventHandler<ActionEvent>() {
+
+		@Override
+		public void handle(final ActionEvent event) {
+			cambiarVisibilidadDeBotones();
+		}
 	};
-	
+
 	private void btnJugarHandler() {
 		btnJugar.setOnAction(esconderOtrosBotonesHandler);
 	}
@@ -74,6 +75,7 @@ public class MenuPrincipalController extends Controller {
 	private void btnVolverHandler() {
 		btnVolver.setOnAction(esconderOtrosBotonesHandler);
 	}
+
 	private void cambiarVisibilidadDeBotones() {
 		cambiarVisibilidadBoton(btnDosJugadores);
 		cambiarVisibilidadBoton(btnCuatroJugadores);
@@ -84,28 +86,28 @@ public class MenuPrincipalController extends Controller {
 		cambiarVisibilidadBoton(btnVolver);
 		cambiarVisibilidadBoton(btnContraIA);
 	}
-	
+
 	private void cambiarVisibilidadBoton(Button unBoton) {
 		unBoton.setVisible(!unBoton.isVisible());
 	}
-	
+
 	private void btnSalirHandler() {
 		btnSalir.setOnAction(new BtnSalirHandler());
 	}
-	
+
 	private void btnAyudaHandler() {
 		btnAyuda.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				redirect("Ayuda");
 			}
 		});
 	}
-	
-	private void btnVolverDeFlor(){
+
+	private void btnVolverDeFlor() {
 		btnVolverDeFlor.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				cambiarVisibilidadBoton(btnDosJugadores);
@@ -118,10 +120,10 @@ public class MenuPrincipalController extends Controller {
 			}
 		});
 	}
-	
+
 	private void btnDosJugadoresHandler() {
 		btnDosJugadores.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				MesaController.setCantidadJugadores(2);
@@ -135,10 +137,10 @@ public class MenuPrincipalController extends Controller {
 			}
 		});
 	}
-	
+
 	private void btnContraIAHandler() {
 		btnContraIA.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				isMesaConIA = true;
@@ -153,10 +155,10 @@ public class MenuPrincipalController extends Controller {
 			}
 		});
 	}
-	
+
 	private void btnesFlor(int cantidadDeJugadores) {
-		if(cantidadDeJugadores<5)
-			if(isMesaConIA){
+		if (cantidadDeJugadores < 5)
+			if (isMesaConIA) {
 				redirect("MesaConIA");
 			} else {
 				redirect("Mesa");
@@ -164,34 +166,35 @@ public class MenuPrincipalController extends Controller {
 		else
 			redirect("MesaDeSeis");
 	}
-	
-	
-	private void btnSinFlorHandler(){
+
+	private void btnSinFlorHandler() {
 		btnSinFlor.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				int cantidadDeJugadores = MesaController.getCantidadJugadores();
-				juegoTruco = new TrucoSinFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
-				MesaController.mesa =juegoTruco.obtenerMesa();
+				juegoTruco = new TrucoSinFlor(armarEquipo(cantidadDeJugadores / 2, false),
+						armarEquipo(cantidadDeJugadores / 2, isMesaConIA));
+				MesaController.mesa = juegoTruco.obtenerMesa();
 				btnesFlor(cantidadDeJugadores);
 			}
 		});
 	}
-	
-	private void btnConFlorHandler(){
+
+	private void btnConFlorHandler() {
 		btnConFlor.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				int cantidadDeJugadores = MesaController.getCantidadJugadores();
-				juegoTruco = new TrucoConFlor(armarEquipo(cantidadDeJugadores/2),armarEquipo(cantidadDeJugadores/2));
-				MesaController.mesa =juegoTruco.obtenerMesa();
+				juegoTruco = new TrucoConFlor(armarEquipo(cantidadDeJugadores / 2, false),
+						armarEquipo(cantidadDeJugadores / 2, isMesaConIA));
+				MesaController.mesa = juegoTruco.obtenerMesa();
 				btnesFlor(cantidadDeJugadores);
 			}
 		});
 	}
-	
+
 	private void btnPicaPicaHandler() {
 		btnPicaPica.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -207,10 +210,10 @@ public class MenuPrincipalController extends Controller {
 			}
 		});
 	}
-	
+
 	private void btnCuatroJugadoresHandler() {
 		btnCuatroJugadores.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				MesaController.setCantidadJugadores(4);
@@ -224,12 +227,17 @@ public class MenuPrincipalController extends Controller {
 			}
 		});
 	}
-	
-	private Equipo armarEquipo(int cantidadDeJugadores) {
+
+	private Equipo armarEquipo(int cantidadDeJugadores, boolean isIA) {
 		Equipo equipo = new Equipo();
-		
-		for(int i = 0; i<cantidadDeJugadores;i++) {
-			Jugador jugador = new Jugador("Jugador"+(i+1));
+
+		for (int i = 0; i < cantidadDeJugadores; i++) {
+			Jugador jugador;
+			if (isIA) {
+				jugador = new IA();
+			} else {
+				jugador = new Jugador("Jugador" + (i + 1));
+			}
 			jugador.asignarEquipo(equipo);
 			equipo.agregarJugador(jugador);
 		}

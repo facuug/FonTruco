@@ -1,5 +1,6 @@
 package fiuba.algo3.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.modelo.estados.Envido;
@@ -13,11 +14,17 @@ import fiuba.algo3.modelo.interfaces.JuegoTruco;
 
 public class IA extends Jugador{
 
+	private List<Carta> cartasPorJugar;
+	
 	public IA() {
 		super("IA");
+		cartasPorJugar = new ArrayList<>();
 	}
 	
 	public Carta jugar(Carta cartaRival){
+		if(cartasPorJugar.isEmpty()) {
+			cartasPorJugar = new ArrayList<>(this.getMano().getCartas());
+		}
 		if(cartaRival== null) {
 			return jugarPrimero();
 		} else {
@@ -45,28 +52,29 @@ public class IA extends Jugador{
 	}
 	
 	private Carta buscarMenorCarta() {
-		List<Carta> misCartas = getMano().getCartas();
 		Carta cartaQueJuego=null;
-		for(Carta unaCarta: misCartas) {
+		for(Carta unaCarta: cartasPorJugar) {
 			if(cartaQueJuego==null || cartaQueJuego.comparar(unaCarta)>0) {
 				cartaQueJuego = unaCarta;
 			}
 		}
-		return getMano().sacarCarta(misCartas.indexOf(cartaQueJuego));
+		cartasPorJugar.remove(cartaQueJuego);
+		return cartaQueJuego;
 	}
 		
 	private Carta buscarCartaQueGana(Carta otraCarta) {
 		Carta cartaQueJuego = null;
-		List<Carta> misCartas = getMano().getCartas();
-		for(Carta unaCarta : misCartas) {
+		for(Carta unaCarta : cartasPorJugar) {
 			if(cartaQueJuego == null) {
 				cartaQueJuego = unaCarta;
 			} else if (cartaQueJuego.comparar(unaCarta)>0 && cartaQueJuego.comparar(otraCarta)>0) {
 				cartaQueJuego = unaCarta;
 			}
 		}
-		if(cartaQueJuego.comparar(otraCarta)>0)
+		if(cartaQueJuego.comparar(otraCarta)>0){
+			cartasPorJugar.remove(cartaQueJuego);
 			return cartaQueJuego;
+		}
 		else
 			return buscarMenorCarta();
 	}

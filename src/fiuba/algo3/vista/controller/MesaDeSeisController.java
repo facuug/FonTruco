@@ -88,18 +88,6 @@ public class MesaDeSeisController extends MesaGeneralController{
 		
 	}
 	
-	public static List<Mano> obtenerManosIntercaladas() {
-		int posicionOtraMano = 0;
-		List<Jugador> equipoUno = mesa.getEquipos().get(0).getJugadores();
-		List<Jugador> equipoDos = mesa.getEquipos().get(1).getJugadores();
-		List<Mano> manos = new ArrayList<>();
-		for(Jugador jugador : equipoUno) {
-			manos.add(jugador.getMano());
-			manos.add(equipoDos.get(posicionOtraMano).getMano());
-			posicionOtraMano++;
-		}
-		return manos;
-	}
 	@Override
 	protected void setImageViewCartaHandlerYListener() {
 		List<Mano> manos = obtenerManosIntercaladas();
@@ -108,7 +96,7 @@ public class MesaDeSeisController extends MesaGeneralController{
 			int j = 0;
 			for(ImageView carta : cartasEnMano) {
 				carta.setOnMouseClicked(new CartaHandler(cartasEnMano,cartasJugando,manos.get(i).getCartas().get(j),lblPuntosEq1,lblPuntosEq2));
-				((CartaHandler)carta.getOnMouseClicked()).setContendorEnMesa(contenedores.get(i));
+				((CartaHandler)carta.getOnMouseClicked()).setContenedorEnMesa(contenedores.get(i));
 				carta.setDisable(true);
 				j++;
 			}
