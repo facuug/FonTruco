@@ -85,6 +85,8 @@ public class IA extends Jugador{
 
 	public String responderCanto(JuegoTruco truco) {
 		boolean querer = false;
+		String quiero = "quiero";
+		String noQuiero = "noQuiero";
 		EstadoJuego canto = truco.getEstadoJuego();
 
 		for(Carta carta:  this.getMano().getCartas() ){
@@ -96,32 +98,32 @@ public class IA extends Jugador{
 		if( (canto instanceof Truco) || (canto instanceof ReTruco) || (canto instanceof ValeCuatro)){
 			if(querer){
 				truco.quiero();
-				return "Quiero!";
+				return quiero;
 			}
 			else{
 				truco.noQuiero();
-				return "No Quiero!";
+				return noQuiero;
 			}
 		}
 
 		if ( (canto instanceof Envido) || (canto  instanceof RealEnvido) ){
 			if(this.puntosDeEnvido() >= 25) {
 				truco.quiero();
-				return "Quiero!";
+				return quiero;
 			}
 			else{
 				truco.noQuiero();
-				return "No Quiero!";
+				return noQuiero;
 			}
 		}
 		else if( canto instanceof FaltaEnvido ){
 			if(this.puntosDeEnvido() >= 30){
 				truco.quiero();
-				return "Quiero!";
+				return quiero;
 			}
 			else{
 				truco.noQuiero();
-				return "No Quiero!";
+				return noQuiero;
 			}
 		}
 		return "";

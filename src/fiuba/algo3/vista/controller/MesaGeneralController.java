@@ -10,7 +10,7 @@ import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
-import fiuba.algo3.vista.controller.handler.CartaHandler;
+import fiuba.algo3.vista.controller.handler.CartaHandlerGeneral;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -187,13 +187,13 @@ public abstract class MesaGeneralController extends Controller {
 				try {
 					ejecutarAudio("quiero");
 					juegoTruco.quiero();
-				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");exception.printStackTrace();
 				}
 			}
 		});
 	}
 
-	private void ejecutarAudio(String nombre) {
+	protected void ejecutarAudio(String nombre) {
 		File f = new File(new StringBuilder().append("src/fiuba/algo3/vista/recursos/audio/")
 				.append(nombre).append(".mp3").toString());
 		Media media = new Media(f.toURI().toString());
@@ -213,8 +213,10 @@ public abstract class MesaGeneralController extends Controller {
 					Controller.juegoTruco.sumarPuntos();
 					lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
 					lblPuntosEq2.setText(Integer.toString(Controller.juegoTruco.puntosEquipoDos()));
-					((CartaHandler)(cartasJugando.get(0).get(0).getOnMouseClicked())).actualizar();
-				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
+					((CartaHandlerGeneral)(cartasJugando.get(0).get(0).getOnMouseClicked())).actualizar();
+				} catch (CantoInvalidoException exception) { 
+					exception.printStackTrace();
+					popup("popupCantoProhibido");
 				}
 			}
 		});
@@ -228,7 +230,8 @@ public abstract class MesaGeneralController extends Controller {
 				try {
 					ejecutarAudio("flor");
 					juegoTruco.flor();
-				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
+				} catch (CantoInvalidoException exception) { 
+					popup("popupCantoProhibido");
 				}
 			}
 		});
