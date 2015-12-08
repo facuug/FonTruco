@@ -285,8 +285,8 @@ public abstract class JuegoTruco {
 		
 		try {
 			
-			int indice = this.enfrentamientos.indexOf(enfrentamientoActual);
-			return this.enfrentamientoActual = this.enfrentamientos.get(indice + 1); 
+			int numeroEnfrentamiento = this.enfrentamientos.indexOf(enfrentamientoActual);
+			return this.enfrentamientoActual = this.enfrentamientos.get(numeroEnfrentamiento + 1); 
 		
 		} catch (Exception e) {
 			
