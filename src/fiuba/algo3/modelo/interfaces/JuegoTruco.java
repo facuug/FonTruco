@@ -1,7 +1,16 @@
 package fiuba.algo3.modelo.interfaces;
 
-import fiuba.algo3.modelo.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import fiuba.algo3.modelo.CambiadorDeTurno;
+import fiuba.algo3.modelo.Carta;
+import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
+import fiuba.algo3.modelo.estados.TrucoConFlor;
+import fiuba.algo3.modelo.estados.TrucoSinFlor;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 
@@ -13,10 +22,13 @@ public abstract class JuegoTruco {
 
     protected EstadoJuego estadoJuego;
 
+    private static final int JUGADORES_PICA_PICA = 6;
     protected Equipo equipoUno;
     protected Equipo equipoDos;
 
-    protected int puntosDeEnvido, puntosDeTruco,puntosDeMano;
+	private static final int PUNTOS_MINIMOS = 5;
+	private static final int PUNTOS_MAXIMOS = 25;
+    protected int puntosDeEnvido, puntosDeTruco, puntosDeMano;
 
     protected Mesa mesa;
 
@@ -29,13 +41,16 @@ public abstract class JuegoTruco {
     protected boolean finDeMano;
 
     private boolean envidoTerminado;
+    
+    private List<JuegoTruco> enfrentamientos;
+    private JuegoTruco enfrentamientoActual;
 
     public EstadoJuego getEstadoJuego() {
     	return estadoJuego;
     }
     
     
-    public JuegoTruco(Equipo unEquipo, Equipo otroEquipo){
+    public JuegoTruco(Equipo unEquipo, Equipo otroEquipo) {
         this.puntosDeMano = 1;  //si no hay cantos la mano vale 1 punto
         this.envidoTerminado = false;
 
@@ -81,7 +96,6 @@ public abstract class JuegoTruco {
             this.estadoJuego = new EstadoSinCanto();
             this.envidoTerminado = true;
         }
-
     }
 
     public void realEnvido() {
@@ -194,4 +208,91 @@ public abstract class JuegoTruco {
         else if(this.puntosEquipoUno() >= 30) return "Equipo 1";
             else return "Equipo 2";
     }
+    
+	private int cantidadDeJugadores() {
+		
+		return this.equipoUno.cantidadDeJugadores() + this.equipoDos.cantidadDeJugadores();
+	}
+	
+	private boolean haySeisJugadores(){
+		
+		return (this.cantidadDeJugadores() == JUGADORES_PICA_PICA);
+	}
+	
+	private boolean HayPuntosParaPicaPica(){
+		
+		int puntos = Math.max(this.equipoUno.obtenerPuntos(), this.equipoDos.obtenerPuntos());
+		
+		return ( (puntos >= PUNTOS_MINIMOS) && (puntos <= PUNTOS_MAXIMOS) );
+	}
+	
+	private boolean esPicaPica() {
+		
+		if ( haySeisJugadores() && HayPuntosParaPicaPica() ) {
+			
+			return true;
+		}
+		else {
+			
+			return false;
+		}
+	}
+	
+	private Equipo crearEquipoPicaPica(Jugador jugador) {
+		
+		Equipo equipo = new Equipo();
+		equipo.agregarJugador(jugador);
+		
+		return equipo;		
+	}
+	
+	public void crearEnfrentamientosPicaPica() {
+		
+		List<Jugador> jugadoresEquipoUno = this.equipoUno.getJugadores();
+		List<Jugador> jugadoresEquipoDos = this.equipoDos.getJugadores();
+		
+		this.enfrentamientos = new ArrayList<JuegoTruco>();
+		
+		if(this instanceof TrucoConFlor) {
+			
+			this.enfrentamientos.add( new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(0)), crearEquipoPicaPica(jugadoresEquipoDos.get(1))) );
+			this.enfrentamientos.add( new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(2)), crearEquipoPicaPica(jugadoresEquipoDos.get(0))) );
+			this.enfrentamientos.add( new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(1)), crearEquipoPicaPica(jugadoresEquipoDos.get(2))) );
+		}
+		else {
+			
+			this.enfrentamientos.add( new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(0)), crearEquipoPicaPica(jugadoresEquipoDos.get(1))) );
+			this.enfrentamientos.add( new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(2)), crearEquipoPicaPica(jugadoresEquipoDos.get(0))) );
+			this.enfrentamientos.add( new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(1)), crearEquipoPicaPica(jugadoresEquipoDos.get(2))) );
+		}
+		
+		this.enfrentamientoActual = this.enfrentamientos.get(0);
+	}
+	
+	public void terminarEnfrentamiento() {
+		
+		if(this.manoFinalizada()) {
+			
+			this.sumarPuntos();
+		}
+		
+		this.equipoUno.sumarPuntos(enfrentamientoActual.puntosEquipoUno());
+		this.equipoDos.sumarPuntos(enfrentamientoActual.puntosEquipoDos());
+	}
+
+
+	private JuegoTruco siguienteEnfrentamiento() {
+		
+			try {
+			
+			int indice = this.enfrentamientos.indexOf(enfrentamientoActual);
+			this.enfrentamientoActual = this.enfrentamientos.get(indice + 1); 
+		} catch (Exception e) {
+			
+			this.enfrentamientoActual = this.enfrentamientos.get(0);
+		}
+		
+		return this.enfrentamientoActual;
+	}
+
 }
