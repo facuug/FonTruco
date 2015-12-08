@@ -33,6 +33,10 @@ public class IA extends Jugador{
 			
 	}
 	
+	public void vaciar() {
+		cartasPorJugar.removeAll(cartasPorJugar);
+	}
+	
 	private Carta jugarPrimero() {
 		return buscarMenorCarta();
 	}

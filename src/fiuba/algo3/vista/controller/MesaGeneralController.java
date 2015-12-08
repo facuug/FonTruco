@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public abstract class MesaGeneralController extends Controller {
 
@@ -56,7 +58,7 @@ public abstract class MesaGeneralController extends Controller {
 	protected Label lblPuntosEq2;
 	public static Mesa mesa;
 	
-	
+	private MediaPlayer mediaPlayer;
 	
 
 	public String armarRutaImagen(Carta carta) {
@@ -177,6 +179,10 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					File f = new File("src/fiuba/algo3/vista/recursos/audio/quiero.mp3");
+					Media media = new Media(f.toURI().toString());
+					mediaPlayer = new MediaPlayer(media);
+					mediaPlayer.play();
 					juegoTruco.quiero();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
@@ -190,6 +196,10 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					File f = new File("src/fiuba/algo3/vista/recursos/audio/noQuiero.mp3");
+					Media media = new Media(f.toURI().toString());
+					mediaPlayer = new MediaPlayer(media);
+					mediaPlayer.play();
 					juegoTruco.noQuiero();
 					Controller.juegoTruco.sumarPuntos();
 					lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
