@@ -26,18 +26,18 @@ public abstract class Controller implements Initializable {
 	public static void redirect(String nombreVista) {
 		Pane pane;
 		MesaGeneralController mesaController = null;
-		if(nombreVista.equals("Mesa")){
+		if (nombreVista.equals("Mesa")) {
 			mesaController = new MesaController();
-		} else if(nombreVista.equals("MesaDeSeis")) {
+		} else if (nombreVista.equals("MesaDeSeis")) {
 			mesaController = new MesaDeSeisController();
-		} else if(nombreVista.equals("MesaConIA")){
+		} else if (nombreVista.equals("MesaConIA")) {
 			mesaController = new MesaConIAController();
 			nombreVista = "Mesa";
 		}
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(Main.class
 					.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
-			if(mesaController!=null) {
+			if (mesaController != null) {
 				fxmlLoader.setController(mesaController);
 			}
 			pane = fxmlLoader.load();
@@ -73,12 +73,18 @@ public abstract class Controller implements Initializable {
 	public static void popupGanador(String nombreVista, String equipoGanador) {
 		Pane pane;
 		try {
-			pane = (Pane) FXMLLoader.load(Main.class.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
+			pane = (Pane) FXMLLoader.load(Main.class
+					.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
 			ObservableList<Node> nodos = pane.getChildren();
 			for (Node nodo : nodos) {
 				if (nodo instanceof Label) {
-					((Label) nodo)
-							.setText(new StringBuilder().append("Ha ganado el ").append(equipoGanador).toString());
+					if (!equipoGanador.equals("Empate")) {
+						((Label) nodo)
+								.setText(new StringBuilder().append("Ha ganado el ").append(equipoGanador).toString());
+					} else {
+						((Label) nodo)
+						.setText("Ha sido un empate");
+					}
 				}
 
 			}
@@ -89,9 +95,8 @@ public abstract class Controller implements Initializable {
 			popup.initOwner(stage);
 			popup.setScene(scene);
 			popup.initStyle(StageStyle.UNDECORATED);
-			popup.setTitle(new StringBuilder().append(nombreVista).toString());
 			popup.showAndWait();
-		} catch (IOException e)	{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

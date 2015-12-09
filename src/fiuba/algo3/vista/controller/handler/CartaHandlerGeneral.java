@@ -60,6 +60,8 @@ public abstract class CartaHandlerGeneral implements EventHandler<Event>{
 				}
 			}
 			mostrarCartasMano();
+		} else if(Controller.juegoTruco.hayGanador()) {
+			Controller.popupGanador("PopUpGanador", Controller.juegoTruco.ganadorDeJuego());
 		}
 	}
 	private void restaurarCartas(List<ImageView> cartasVista, Mano mano) {

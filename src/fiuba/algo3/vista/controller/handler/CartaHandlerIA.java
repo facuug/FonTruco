@@ -110,11 +110,10 @@ public class CartaHandlerIA extends CartaHandlerGeneral {
 				carta.setVisible(true);
 			}
 			cartaRival = 0;
-			/*if (Controller.juegoTruco.jugadorDeTurno() instanceof IA) {
-				jugarCartaIA((IA) Controller.juegoTruco.jugadorDeTurno(), null);
-				cartaRival++;
-			}*/
-		} 
+		}  
+		if(Controller.juegoTruco.hayGanador()) {
+			Controller.popupGanador("PopUpGanador", Controller.juegoTruco.ganadorDeJuego());
+		}
 		if (Controller.juegoTruco.jugadorDeTurno() instanceof IA) {
 			jugarCartaIA((IA) Controller.juegoTruco.jugadorDeTurno(), null);
 		}
