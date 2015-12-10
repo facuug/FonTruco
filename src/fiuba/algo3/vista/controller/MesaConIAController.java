@@ -107,9 +107,9 @@ public class MesaConIAController extends MesaGeneralController {
 	private void respuestaIA() {
 		String respuesta = jugadorIA.responderCanto(juegoTruco);
 			if (respuesta.equals("quiero")) {
-				ejecutarAudio(respuesta);
+				ejecutarAudio("quieroIA");
 			} else {
-				ejecutarAudio(respuesta);
+				ejecutarAudio("noQuieroIA");
 				Controller.juegoTruco.sumarPuntos();
 				lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
 				lblPuntosEq2.setText(Integer.toString(Controller.juegoTruco.puntosEquipoDos()));
