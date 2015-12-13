@@ -32,7 +32,7 @@ public class CartaHandlerIA extends CartaHandlerGeneral {
 	
 	public CartaHandlerIA(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Carta cartaQueRepresenta,
 			Label lblEquipoUno, Label lblEquipoDos) {
-		super(cartasDeMano, cartasJugando, cartaQueRepresenta,lblEquipoUno,lblEquipoDos);
+		super(cartasDeMano, cartasJugando, cartaQueRepresenta,lblEquipoUno,lblEquipoDos)
 		jugadores = new ArrayList<>();
 		for (Equipo equipo : Controller.juegoTruco.obtenerMesa().getEquipos()) {
 			jugadores.add(equipo.getJugadores().get(0));

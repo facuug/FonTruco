@@ -101,9 +101,8 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 
 	@Override
 	public void handle(Event arg0) {
-		// TODO Auto-generated method stub
-		
 	}
+	
 	public CartaHandlerGeneral(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Carta cartaQueRepresenta, Label puntosEquipoUno, Label puntosEquipoDos) {
 		this.cartasDeMano = cartasDeMano;
 		int posicionSiguiente = cartasJugando.indexOf(cartasDeMano)+1;

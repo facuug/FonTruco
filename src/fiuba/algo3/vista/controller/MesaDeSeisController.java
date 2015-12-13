@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
+import fiuba.algo3.vista.controller.handler.CartaDeSeisHandler;
 import fiuba.algo3.vista.controller.handler.CartaHandler;
 import fiuba.algo3.vista.controller.handler.CartaHandlerGeneral;
 import javafx.fxml.FXML;
@@ -85,8 +86,6 @@ public class MesaDeSeisController extends MesaGeneralController{
 
 	@Override
 	protected void prepararMesa() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	@Override
@@ -96,7 +95,7 @@ public class MesaDeSeisController extends MesaGeneralController{
 		for(List<ImageView> cartasEnMano : cartasJugando) {
 			int j = 0;
 			for(ImageView carta : cartasEnMano) {
-				carta.setOnMouseClicked(new CartaHandlerGeneral(cartasEnMano,cartasJugando,manos.get(i).getCartas().get(j),lblPuntosEq1,lblPuntosEq2));
+				carta.setOnMouseClicked(new CartaDeSeisHandler(cartasEnMano,cartasJugando,manos.get(i).getCartas().get(j),lblPuntosEq1,lblPuntosEq2));
 				((CartaHandler)carta.getOnMouseClicked()).setContenedorEnMesa(contenedores.get(i));
 				carta.setDisable(true);
 				j++;
