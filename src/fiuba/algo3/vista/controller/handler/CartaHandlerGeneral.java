@@ -9,7 +9,9 @@ import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
+import fiuba.algo3.modelo.interfaces.JuegoTruco;
 import fiuba.algo3.vista.controller.Controller;
+import fiuba.algo3.vista.controller.MesaDeSeisController;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -23,7 +25,7 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 	protected List<ImageView> cartasDeMano;
 	protected List<List<ImageView>> cartasEnJuego;
 	
-	protected Label labelEquipoUno,labelEquipoDos;
+	protected Label lblEquipoUno,lblEquipoDos;
 	
 	protected String armarRutaImagen(Carta carta) {
 		return new StringBuilder().append("src/fiuba/algo3/vista/recursos/carta/")
@@ -40,13 +42,14 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 		File fileDorso = new File(armarRutaImagen(((CartaHandlerGeneral)carta.getOnMouseClicked()).cartaQueSoy));
 		Image imagenDorso = new Image(fileDorso.toURI().toString());
 		carta.setImage(imagenDorso);
+		carta.setDisable(false);
 	}
 	
 	public void actualizar() {
 		if(Controller.juegoTruco.manoFinalizada()){
 			Controller.juegoTruco.sumarPuntos();
-			this.labelEquipoUno.setText( Integer.toString(Controller.juegoTruco.puntosEquipoUno()) );
-			this.labelEquipoDos.setText( Integer.toString(Controller.juegoTruco.puntosEquipoDos()) );
+			this.lblEquipoUno.setText( Integer.toString(Controller.juegoTruco.puntosEquipoUno()) );
+			this.lblEquipoDos.setText( Integer.toString(Controller.juegoTruco.puntosEquipoDos()) );
 			Controller.juegoTruco.restablecer();
 			Mesa mesa = Controller.juegoTruco.obtenerMesa();
 			List<Equipo> equipos = mesa.getEquipos();
@@ -59,21 +62,49 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 					j+=2;
 				}
 			}
-			mostrarCartasMano();
+			if( Controller.juegoTruco.esPicaPica()) {
+				mostrarCartasPicaPica();
+			}else {
+				mostrarCartasMano();
+			}
 		} else if(Controller.juegoTruco.hayGanador()) {
 			Controller.popupGanador("PopUpGanador", Controller.juegoTruco.ganadorDeJuego());
 		}
 	}
+	
+	private void mostrarCartasPicaPica() {
+		Controller.juegoTruco.crearEnfrentamientosPicaPica();
+		JuegoTruco juegoPicaPica = Controller.juegoTruco.getEnfrentamientoActual();
+		Jugador jugadorPicaPica = juegoPicaPica.jugadorDeTurno();
+		int posicionJugadorPicaPica = MesaDeSeisController.obtenerManosIntercaladas().indexOf(jugadorPicaPica.getMano());
+		//muestro cartas en la posicion 
+		for(List<ImageView> cartas : cartasEnJuego) {
+			if(cartasEnJuego.indexOf(cartas)==posicionJugadorPicaPica) {
+				for(ImageView carta :cartas) {
+					mostrarCarta(carta);
+					carta.setDisable(false);
+				}
+			}
+		}
+	}
+	
+	protected void mostrarDorso(ImageView carta) {
+		File fileDorso = new File("src/fiuba/algo3/vista/recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg");
+		Image imagenDorso = new Image(fileDorso.toURI().toString());
+		carta.setImage(imagenDorso);
+		carta.setDisable(true);
+		
+	}
+	
+	
 	private void restaurarCartas(List<ImageView> cartasVista, Mano mano) {
 		int i = 0;
 		for(Carta carta : mano.getCartas()) {
-			File fileDorso = new File("src/fiuba/algo3/vista/recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg");
-			Image imagenDorso = new Image(fileDorso.toURI().toString());
 			ImageView cartaVista = cartasVista.get(i);
-			cartaVista.setImage(imagenDorso);
+			mostrarDorso(cartaVista);
 			cartaVista.setVisible(true);
-			cartaVista.setDisable(true);
-			((CartaHandler)cartaVista.getOnMouseClicked()).cartaQueSoy=carta;
+			
+			((CartaHandlerGeneral)cartaVista.getOnMouseClicked()).cartaQueSoy=carta;
 			i++;
 		}
 		
@@ -92,7 +123,7 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 		List<ImageView> cartasHabilitar = cartasEnJuego.get(posicion);
 		
 		for(ImageView carta : cartasHabilitar) {
-			File fileDorso = new File(armarRutaImagen(((CartaHandler)carta.getOnMouseClicked()).cartaQueSoy));
+			File fileDorso = new File(armarRutaImagen(((CartaHandlerGeneral)carta.getOnMouseClicked()).cartaQueSoy));
 			Image imagenDorso = new Image(fileDorso.toURI().toString());
 			carta.setImage(imagenDorso);
 			carta.setDisable(false);
@@ -112,8 +143,8 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 		cartaQueSoy= cartaQueRepresenta;
 		this.cartasEnJuego = cartasJugando;
 		
-		this.labelEquipoUno = puntosEquipoUno;
-		this.labelEquipoDos = puntosEquipoDos;
+		this.lblEquipoUno = puntosEquipoUno;
+		this.lblEquipoDos = puntosEquipoDos;
 	}
 
 }

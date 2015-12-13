@@ -40,7 +40,6 @@ public class CartaHandler extends CartaHandlerGeneral {
 		
 		int posicionDeManoSiguiente = MesaController.obtenerManosIntercaladas().indexOf(Controller.juegoTruco.jugadorDeTurno().getMano());
 		List<ImageView> cartasSiguientes = this.cartasEnJuego.get(posicionDeManoSiguiente);
-
 		cartasAHabilitar.addAll(cartasSiguientes);
 		for(ImageView carta : cartasAHabilitar) {
 			if(!carta.isDisable()) {

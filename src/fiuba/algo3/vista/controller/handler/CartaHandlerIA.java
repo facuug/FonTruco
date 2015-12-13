@@ -23,10 +23,6 @@ public class CartaHandlerIA extends CartaHandlerGeneral {
 
 	private ImageView contenedorRival;
 	private static int cartaRival;
-	private List<ImageView> cartasDeMano;
-	private Carta cartaQueSoy;
-	private List<List<ImageView>> cartasEnJuego;
-	private Label lblEquipoUno, lblEquipoDos;
 	private List<Jugador> jugadores;
 
 	

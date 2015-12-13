@@ -61,7 +61,7 @@ public abstract class MesaGeneralController extends Controller {
 	private MediaPlayer mediaPlayer;
 	
 
-	public String armarRutaImagen(Carta carta) {
+	public static String armarRutaImagen(Carta carta) {
 		return new StringBuilder().append("src/fiuba/algo3/vista/recursos/carta/")
 				.append(carta.getPalo().toString().toLowerCase()).append("/")
 				.append(String.valueOf(carta.getTipoCarta().getValorRealCarta())).append(".png").toString();

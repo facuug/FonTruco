@@ -35,6 +35,15 @@ public class Mesa {
     		unJugador.setMano(unaMano);
     	}
     }
+    
+    public List<Jugador> getJugadores() {
+    	List<Jugador> jugadores = new ArrayList<>();
+    	for(int i = 0; i<equipos.get(0).getJugadores().size();i++) {
+    		jugadores.add(equipos.get(0).getJugadores().get(i));
+    		jugadores.add(equipos.get(1).getJugadores().get(i));
+    	}
+    	return jugadores;
+    }
 
 	private void rotarMano() {
 		int posicion = this.equipos.indexOf(this.equipoMano) + 1;

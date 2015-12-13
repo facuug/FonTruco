@@ -25,8 +25,8 @@ public abstract class JuegoTruco {
 	protected Equipo equipoUno;
 	protected Equipo equipoDos;
 
-	private static final int PUNTOS_MINIMOS = 5;
-	private static final int PUNTOS_MAXIMOS = 25;
+	private static final int PUNTOS_MINIMOS = 1;//5;
+	private static final int PUNTOS_MAXIMOS = 3;//25
 	protected int puntosDeEnvido, puntosDeTruco, puntosDeMano;
 
 	protected Mesa mesa;
@@ -261,42 +261,40 @@ public abstract class JuegoTruco {
 	}
 
 	public void crearEnfrentamientosPicaPica() {
+		if (enfrentamientos == null) {
+			List<Jugador> jugadoresEquipoUno = this.equipoUno.getJugadores();
+			List<Jugador> jugadoresEquipoDos = this.equipoDos.getJugadores();
 
-		List<Jugador> jugadoresEquipoUno = this.equipoUno.getJugadores();
-		List<Jugador> jugadoresEquipoDos = this.equipoDos.getJugadores();
+			this.enfrentamientos = new ArrayList<JuegoTruco>();
 
-		this.enfrentamientos = new ArrayList<JuegoTruco>();
+			if (this instanceof TrucoConFlor) {
 
-		if (this instanceof TrucoConFlor) {
+				this.enfrentamientos.add(new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(0)),
+						crearEquipoPicaPica(jugadoresEquipoDos.get(0))));
+				this.enfrentamientos.add(new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(1)),
+						crearEquipoPicaPica(jugadoresEquipoDos.get(1))));
+				this.enfrentamientos.add(new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(2)),
+						crearEquipoPicaPica(jugadoresEquipoDos.get(2))));
+			} else {
 
-			this.enfrentamientos.add(new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(0)),
-					crearEquipoPicaPica(jugadoresEquipoDos.get(1))));
-			this.enfrentamientos.add(new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(2)),
-					crearEquipoPicaPica(jugadoresEquipoDos.get(0))));
-			this.enfrentamientos.add(new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(1)),
-					crearEquipoPicaPica(jugadoresEquipoDos.get(2))));
-		} else {
+				this.enfrentamientos.add(new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(0)),
+						crearEquipoPicaPica(jugadoresEquipoDos.get(0))));
+				this.enfrentamientos.add(new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(1)),
+						crearEquipoPicaPica(jugadoresEquipoDos.get(1))));
+				this.enfrentamientos.add(new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(2)),
+						crearEquipoPicaPica(jugadoresEquipoDos.get(2))));
+			}
 
-			this.enfrentamientos.add(new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(0)),
-					crearEquipoPicaPica(jugadoresEquipoDos.get(1))));
-			this.enfrentamientos.add(new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(2)),
-					crearEquipoPicaPica(jugadoresEquipoDos.get(0))));
-			this.enfrentamientos.add(new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(1)),
-					crearEquipoPicaPica(jugadoresEquipoDos.get(2))));
+			this.enfrentamientoActual = this.enfrentamientos.get(0);
 		}
-
-		this.enfrentamientoActual = this.enfrentamientos.get(0);
 	}
 
 	public void terminarEnfrentamiento() {
-
-		if (this.manoFinalizada()) {
-
-			this.sumarPuntos();
+		if (manoFinalizada()) {
+			sumarPuntos();
 		}
-
-		this.equipoUno.sumarPuntos(enfrentamientoActual.puntosEquipoUno());
-		this.equipoDos.sumarPuntos(enfrentamientoActual.puntosEquipoDos());
+		equipoUno.sumarPuntos(enfrentamientoActual.puntosEquipoUno());
+		equipoDos.sumarPuntos(enfrentamientoActual.puntosEquipoDos());
 	}
 
 	private JuegoTruco siguienteEnfrentamiento() {
