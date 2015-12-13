@@ -15,17 +15,8 @@ import javafx.scene.image.ImageView;
 
 public class CartaHandler extends CartaHandlerGeneral {
 
-	public CartaHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Carta cartaQueRepresenta, Label puntosEquipoUno, Label puntosEquipoDos) {
-		this.cartasDeMano = cartasDeMano;
-		int posicionSiguiente = cartasJugando.indexOf(cartasDeMano)+1;
-		if(posicionSiguiente == cartasJugando.size()) {
-			posicionSiguiente = 0;
-		}
-		cartaQueSoy= cartaQueRepresenta;
-		this.cartasEnJuego = cartasJugando;
-		
-		this.labelEquipoUno = puntosEquipoUno;
-		this.labelEquipoDos = puntosEquipoDos;
+	public CartaHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Carta cartaQueRepresenta, Label lblEquipoUno, Label lblEquipoDos) {
+		super(cartasDeMano, cartasJugando, cartaQueRepresenta,lblEquipoUno,lblEquipoDos);
 	}
 	
 	@Override

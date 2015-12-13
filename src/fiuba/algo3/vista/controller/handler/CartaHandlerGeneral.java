@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public abstract class CartaHandlerGeneral implements EventHandler<Event>{
+public class CartaHandlerGeneral implements EventHandler<Event>{
 	
 	protected Carta cartaQueSoy;
 	protected ImageView contenedorAsociado;
@@ -98,6 +98,23 @@ public abstract class CartaHandlerGeneral implements EventHandler<Event>{
 			carta.setDisable(false);
 		}
 	}
-	
+
+	@Override
+	public void handle(Event arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public CartaHandlerGeneral(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Carta cartaQueRepresenta, Label puntosEquipoUno, Label puntosEquipoDos) {
+		this.cartasDeMano = cartasDeMano;
+		int posicionSiguiente = cartasJugando.indexOf(cartasDeMano)+1;
+		if(posicionSiguiente == cartasJugando.size()) {
+			posicionSiguiente = 0;
+		}
+		cartaQueSoy= cartaQueRepresenta;
+		this.cartasEnJuego = cartasJugando;
+		
+		this.labelEquipoUno = puntosEquipoUno;
+		this.labelEquipoDos = puntosEquipoDos;
+	}
 
 }

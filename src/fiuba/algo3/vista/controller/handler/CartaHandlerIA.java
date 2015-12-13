@@ -29,17 +29,10 @@ public class CartaHandlerIA extends CartaHandlerGeneral {
 	private Label lblEquipoUno, lblEquipoDos;
 	private List<Jugador> jugadores;
 
+	
 	public CartaHandlerIA(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando, Carta cartaQueRepresenta,
 			Label lblEquipoUno, Label lblEquipoDos) {
-		this.cartasDeMano = cartasDeMano;
-		int posicionSiguiente = cartasJugando.indexOf(cartasDeMano) + 1;
-		if (posicionSiguiente == cartasJugando.size()) {
-			posicionSiguiente = 0;
-		}
-		cartaQueSoy = cartaQueRepresenta;
-		this.cartasEnJuego = cartasJugando;
-		this.lblEquipoUno = lblEquipoUno;
-		this.lblEquipoDos = lblEquipoDos;
+		super(cartasDeMano, cartasJugando, cartaQueRepresenta,lblEquipoUno,lblEquipoDos);
 		jugadores = new ArrayList<>();
 		for (Equipo equipo : Controller.juegoTruco.obtenerMesa().getEquipos()) {
 			jugadores.add(equipo.getJugadores().get(0));
