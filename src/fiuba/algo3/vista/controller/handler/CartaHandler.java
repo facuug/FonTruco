@@ -43,13 +43,11 @@ public class CartaHandler extends CartaHandlerGeneral {
 		cartasAHabilitar.addAll(cartasSiguientes);
 		for(ImageView carta : cartasAHabilitar) {
 			if(!carta.isDisable()) {
-				File fileDorso = new File("src/fiuba/algo3/vista/recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg");
-				Image imagenDorso = new Image(fileDorso.toURI().toString());
-				carta.setImage(imagenDorso);
+				mostrarDorso(carta);
 			} else {
 				mostrarCarta(carta);
 			}
-			carta.setDisable(!carta.isDisable());
+			
 		}
 	}
 	
