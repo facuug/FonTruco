@@ -14,282 +14,300 @@ import fiuba.algo3.modelo.estados.TrucoSinFlor;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 
-
 /**
  * Created by Facundo on 20-Nov-15.
  */
 public abstract class JuegoTruco {
 
-    protected EstadoJuego estadoJuego;
+	protected EstadoJuego estadoJuego;
 
-    private static final int JUGADORES_PICA_PICA = 6;
-    protected Equipo equipoUno;
-    protected Equipo equipoDos;
+	private static final int JUGADORES_PICA_PICA = 6;
+	protected Equipo equipoUno;
+	protected Equipo equipoDos;
 
 	private static final int PUNTOS_MINIMOS = 5;
 	private static final int PUNTOS_MAXIMOS = 25;
-    protected int puntosDeEnvido, puntosDeTruco, puntosDeMano;
+	protected int puntosDeEnvido, puntosDeTruco, puntosDeMano;
 
-    protected Mesa mesa;
+	protected Mesa mesa;
 
-    protected Equipo equipoDeTurno;
-    protected CambiadorDeTurno turnoParaCanto;
-    protected CambiadorDeTurno turnoParaCarta;
+	protected Equipo equipoDeTurno;
+	protected CambiadorDeTurno turnoParaCanto;
+	protected CambiadorDeTurno turnoParaCarta;
 
-    protected Equipo equipoCantador;
+	protected Equipo equipoCantador;
 
-    protected boolean finDeMano;
+	protected boolean finDeMano;
 
-    private boolean envidoTerminado;
-    
-    private List<JuegoTruco> enfrentamientos;
-    private JuegoTruco enfrentamientoActual;
+	private boolean envidoTerminado;
 
-    public EstadoJuego getEstadoJuego() {
-    	return estadoJuego;
-    }
-    
-    
-    public JuegoTruco(Equipo unEquipo, Equipo otroEquipo) {
-        this.puntosDeMano = 1;  //si no hay cantos la mano vale 1 punto
-        this.envidoTerminado = false;
+	private List<JuegoTruco> enfrentamientos;
+	private JuegoTruco enfrentamientoActual;
 
-        this.equipoUno = unEquipo;
-        this.equipoDos = otroEquipo;
+	public EstadoJuego getEstadoJuego() {
+		return estadoJuego;
+	}
 
-        this.mesa = new Mesa(this.equipoUno,this.equipoDos);
+	public JuegoTruco(Equipo unEquipo, Equipo otroEquipo) {
+		this.puntosDeMano = 1; // si no hay cantos la mano vale 1 punto
+		this.envidoTerminado = false;
 
-        this.equipoDeTurno = this.equipoUno;
-        this.equipoCantador = new Equipo();
+		this.equipoUno = unEquipo;
+		this.equipoDos = otroEquipo;
 
-        this.estadoJuego = new EstadoSinCanto();
+		this.mesa = new Mesa(this.equipoUno, this.equipoDos);
 
-        this.turnoParaCanto = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
-        this.turnoParaCarta = new CambiadorDeTurno(this.equipoUno,this.equipoDos);
-        this.turnoParaCarta.establecerJugadorDeTurno(this.mesa.equipoMano().jugadorDeTurno());
-    }
+		this.equipoDeTurno = this.equipoUno;
+		this.equipoCantador = new Equipo();
 
-    public void envido() {
-        this.estadoJuego = this.estadoJuego.envido();
-        this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
-        this.turnoParaCanto.rotarEquipoDeTurno();
-    }
+		this.estadoJuego = new EstadoSinCanto();
 
-    public void noQuiero() {
-        this.estadoJuego.noQuiero();
-        this.equipoCantador.sumarPuntos(this.estadoJuego.cuantosPuntos());
-        this.puntosDeMano = 1;
-        this.finDeMano = this.estadoJuego.fueNoQuerido();
-        this.estadoJuego = new EstadoSinCanto();
-    }
+		this.turnoParaCanto = new CambiadorDeTurno(this.equipoUno, this.equipoDos);
+		this.turnoParaCarta = new CambiadorDeTurno(this.equipoUno, this.equipoDos);
+		this.turnoParaCarta.establecerJugadorDeTurno(this.mesa.equipoMano().jugadorDeTurno());
+	}
 
-    public int cuantosPuntos() {
-        return this.estadoJuego.cuantosPuntos();
-    }
+	public void envido() {
+		this.estadoJuego = this.estadoJuego.envido();
+		this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
+		this.turnoParaCanto.rotarEquipoDeTurno();
+	}
 
-    public void quiero(){
-        this.estadoJuego.quiero();
+	public void noQuiero() {
+		this.estadoJuego.noQuiero();
+		this.equipoCantador.sumarPuntos(this.estadoJuego.cuantosPuntos());
+		this.puntosDeMano = 1;
+		this.finDeMano = this.estadoJuego.fueNoQuerido();
+		this.estadoJuego = new EstadoSinCanto();
+	}
 
-        if( this.estadoJuego.esTruco() )this.puntosDeTruco = this.estadoJuego.cuantosPuntos();
-        else{
-            this.puntosDeEnvido += this.estadoJuego.cuantosPuntos();
-            this.estadoJuego = new EstadoSinCanto();
-            this.envidoTerminado = true;
-        }
-    }
+	public int cuantosPuntos() {
+		return this.estadoJuego.cuantosPuntos();
+	}
 
-    public void realEnvido() {
-        if(this.envidoTerminado) throw new CantoInvalidoException();
+	public void quiero() {
+		this.estadoJuego.quiero();
 
-        this.estadoJuego = this.estadoJuego.realEnvido();
-        this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
-        this.turnoParaCanto.rotarEquipoDeTurno();
-    }
+		if (this.estadoJuego.esTruco())
+			this.puntosDeTruco = this.estadoJuego.cuantosPuntos();
+		else {
+			this.puntosDeEnvido += this.estadoJuego.cuantosPuntos();
+			this.estadoJuego = new EstadoSinCanto();
+			this.envidoTerminado = true;
+		}
+	}
 
-    public void faltaEnvido() {
-        if(this.envidoTerminado) throw new CantoInvalidoException();
+	public void realEnvido() {
+		if (this.envidoTerminado)
+			throw new CantoInvalidoException();
 
-        this.estadoJuego = this.estadoJuego.faltaEnvido(this.determinarGanadorDeEnvido().obtenerPuntos());
-        this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
-        this.turnoParaCanto.rotarEquipoDeTurno();
-    }
+		this.estadoJuego = this.estadoJuego.realEnvido();
+		this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
+		this.turnoParaCanto.rotarEquipoDeTurno();
+	}
 
-    public void truco() {
-        this.estadoJuego = this.estadoJuego.truco();
-        this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
-        this.turnoParaCanto.rotarEquipoDeTurno();
-        this.puntosDeMano = 0;
-    }
+	public void faltaEnvido() {
+		if (this.envidoTerminado)
+			throw new CantoInvalidoException();
 
-    public void reTruco(){
-        if(this.equipoCantador.equals(this.turnoParaCanto.equipoDeTurno())) throw new CantoInvalidoException();
+		this.estadoJuego = this.estadoJuego.faltaEnvido(this.determinarGanadorDeEnvido().obtenerPuntos());
+		this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
+		this.turnoParaCanto.rotarEquipoDeTurno();
+	}
 
-        this.estadoJuego = this.estadoJuego.reTruco();
-        this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
-        this.turnoParaCanto.rotarEquipoDeTurno();
-    }
+	public void truco() {
+		this.estadoJuego = this.estadoJuego.truco();
+		this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
+		this.turnoParaCanto.rotarEquipoDeTurno();
+		this.puntosDeMano = 0;
+	}
 
-    public void valeCuatro() {
-        if(this.equipoCantador.equals(this.turnoParaCanto.equipoDeTurno())) throw new CantoInvalidoException();
+	public void reTruco() {
+		if (this.equipoCantador.equals(this.turnoParaCanto.equipoDeTurno()))
+			throw new CantoInvalidoException();
 
-        this.estadoJuego = this.estadoJuego.valeCuatro();
-        this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
-        this.turnoParaCanto.rotarEquipoDeTurno();
-    }
+		this.estadoJuego = this.estadoJuego.reTruco();
+		this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
+		this.turnoParaCanto.rotarEquipoDeTurno();
+	}
 
-    public int puntosEquipoUno() {
-        return this.equipoUno.obtenerPuntos();
-    }
+	public void valeCuatro() {
+		if (this.equipoCantador.equals(this.turnoParaCanto.equipoDeTurno()))
+			throw new CantoInvalidoException();
 
-    public int puntosEquipoDos() {
-        return this.equipoDos.obtenerPuntos();
-    }
+		this.estadoJuego = this.estadoJuego.valeCuatro();
+		this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
+		this.turnoParaCanto.rotarEquipoDeTurno();
+	}
 
-    public void sumarPuntos() {
-        this.determinarGanadorDeEnvido().sumarPuntos(this.puntosDeEnvido);
-        this.determinarGanadorDeMano().sumarPuntos(this.puntosDeTruco + this.puntosDeMano);
-    }
+	public int puntosEquipoUno() {
+		return this.equipoUno.obtenerPuntos();
+	}
 
-    public void jugadorDeTurnoJuegaCarta(Carta carta) {
-        if( (!this.estadoJuego.fueRespondido()) || (this.manoFinalizada()) ) throw new AccionInvalidaException();
+	public int puntosEquipoDos() {
+		return this.equipoDos.obtenerPuntos();
+	}
 
-        Jugador jugadorDeTurno = this.turnoParaCarta.calcularJugadorDeTurno();
-        this.turnoParaCarta.rotarJugador();
-        this.turnoParaCarta.jugadorJuegaCarta(jugadorDeTurno,carta);
-        mesa.jugarCarta(jugadorDeTurno.miEquipo(),carta);
+	public void sumarPuntos() {
+		this.determinarGanadorDeEnvido().sumarPuntos(this.puntosDeEnvido);
+		this.determinarGanadorDeMano().sumarPuntos(this.puntosDeTruco + this.puntosDeMano);
+	}
 
-        if( !this.turnoParaCarta.calcularJugadorDeTurno().miEquipo().equals(this.turnoParaCanto.equipoDeTurno()) ) this.turnoParaCanto.rotarEquipoDeTurno();
-    }
+	public void jugadorDeTurnoJuegaCarta(Carta carta) {
+		if ((!this.estadoJuego.fueRespondido()) || (this.manoFinalizada()))
+			throw new AccionInvalidaException();
 
-    public boolean manoFinalizada() {
-        return ( this.mesa.manoFinalizada() || ( this.finDeMano ) );
-    }
+		Jugador jugadorDeTurno = this.turnoParaCarta.calcularJugadorDeTurno();
+		this.turnoParaCarta.rotarJugador();
+		this.turnoParaCarta.jugadorJuegaCarta(jugadorDeTurno, carta);
+		mesa.jugarCarta(jugadorDeTurno.miEquipo(), carta);
 
-    protected Resultado determinarGanadorDeMano(){
-        return this.mesa.determinarGanadorDeMano();
-    }
+		if (!this.turnoParaCarta.calcularJugadorDeTurno().miEquipo().equals(this.turnoParaCanto.equipoDeTurno()))
+			this.turnoParaCanto.rotarEquipoDeTurno();
+	}
 
-    protected Equipo determinarGanadorDeEnvido(){
-        if( this.equipoUno.puntosDeEnvido() > this.equipoDos.puntosDeEnvido() ) return this.equipoUno;
-        else if( this.equipoUno.puntosDeEnvido() < this.equipoDos.puntosDeEnvido() ) return this.equipoDos;
-            else return this.mesa.equipoMano();
-    }
+	public boolean manoFinalizada() {
+		return (this.mesa.manoFinalizada() || (this.finDeMano));
+	}
 
-    public abstract void flor();
+	protected Resultado determinarGanadorDeMano() {
+		return this.mesa.determinarGanadorDeMano();
+	}
 
-    public abstract void contraFlorAlResto();
+	protected Equipo determinarGanadorDeEnvido() {
+		if (this.equipoUno.puntosDeEnvido() > this.equipoDos.puntosDeEnvido())
+			return this.equipoUno;
+		else if (this.equipoUno.puntosDeEnvido() < this.equipoDos.puntosDeEnvido())
+			return this.equipoDos;
+		else
+			return this.mesa.equipoMano();
+	}
 
-    public abstract void contraFlor();
+	public abstract void flor();
 
-    public Jugador jugadorDeTurno(){
-        return this.turnoParaCarta.calcularJugadorDeTurno();
-    }
+	public abstract void contraFlorAlResto();
 
-    public Mesa obtenerMesa(){
-        return this.mesa;
-    }
+	public abstract void contraFlor();
 
-    public void restablecer(){
-        this.estadoJuego = new EstadoSinCanto();
-        this.puntosDeEnvido = 0;
-        this.puntosDeTruco = 0;
+	public Jugador jugadorDeTurno() {
+		return this.turnoParaCarta.calcularJugadorDeTurno();
+	}
 
-        this.finDeMano = false;
-        this.mesa.restablecer();
-        this.turnoParaCarta.establecerJugadorDeTurno(this.mesa.equipoMano().jugadorDeTurno());
-    }
+	public Mesa obtenerMesa() {
+		return this.mesa;
+	}
 
-    public boolean hayGanador(){
-        return ( (this.puntosEquipoUno() >= 30) || (this.puntosEquipoDos() >= 30) );
-    }
+	public void restablecer() {
+		this.estadoJuego = new EstadoSinCanto();
+		this.puntosDeEnvido = 0;
+		this.puntosDeTruco = 0;
 
-    public String ganadorDeJuego() {
-        if( !hayGanador()) return "Empate";
-        else if(this.puntosEquipoUno() >= 30) return "Equipo 1";
-            else return "Equipo 2";
-    }
-    
+		this.finDeMano = false;
+		this.mesa.restablecer();
+		this.turnoParaCarta.establecerJugadorDeTurno(this.mesa.equipoMano().jugadorDeTurno());
+	}
+
+	public boolean hayGanador() {
+		return ((this.puntosEquipoUno() >= 30) || (this.puntosEquipoDos() >= 30));
+	}
+
+	public String ganadorDeJuego() {
+		if (!hayGanador())
+			return "Empate";
+		else if (this.puntosEquipoUno() >= 30)
+			return "Equipo 1";
+		else
+			return "Equipo 2";
+	}
+
 	private int cantidadDeJugadores() {
-		
+
 		return this.equipoUno.cantidadDeJugadores() + this.equipoDos.cantidadDeJugadores();
 	}
-	
-	private boolean haySeisJugadores(){
-		
+
+	private boolean haySeisJugadores() {
+
 		return (this.cantidadDeJugadores() == JUGADORES_PICA_PICA);
 	}
-	
-	private boolean HayPuntosParaPicaPica(){
-		
+
+	private boolean HayPuntosParaPicaPica() {
+
 		int puntos = Math.max(this.equipoUno.obtenerPuntos(), this.equipoDos.obtenerPuntos());
-		
-		return ( (puntos >= PUNTOS_MINIMOS) && (puntos <= PUNTOS_MAXIMOS) );
+
+		return ((puntos >= PUNTOS_MINIMOS) && (puntos <= PUNTOS_MAXIMOS));
 	}
-	
-	private boolean esPicaPica() {
-		
-		if ( haySeisJugadores() && HayPuntosParaPicaPica() ) {
-			
+
+	public boolean esPicaPica() {
+
+		if (haySeisJugadores() && HayPuntosParaPicaPica()) {
+
 			return true;
-		}
-		else {
-			
+		} else {
+
 			return false;
 		}
 	}
-	
+
 	private Equipo crearEquipoPicaPica(Jugador jugador) {
-		
+
 		Equipo equipo = new Equipo();
 		equipo.agregarJugador(jugador);
-		
-		return equipo;		
+
+		return equipo;
 	}
-	
+
+	public JuegoTruco getEnfrentamientoActual() {
+		return enfrentamientoActual;
+	}
+
 	public void crearEnfrentamientosPicaPica() {
-		
+
 		List<Jugador> jugadoresEquipoUno = this.equipoUno.getJugadores();
 		List<Jugador> jugadoresEquipoDos = this.equipoDos.getJugadores();
-		
+
 		this.enfrentamientos = new ArrayList<JuegoTruco>();
-		
-		if(this instanceof TrucoConFlor) {
-			
-			this.enfrentamientos.add( new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(0)), crearEquipoPicaPica(jugadoresEquipoDos.get(1))) );
-			this.enfrentamientos.add( new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(2)), crearEquipoPicaPica(jugadoresEquipoDos.get(0))) );
-			this.enfrentamientos.add( new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(1)), crearEquipoPicaPica(jugadoresEquipoDos.get(2))) );
+
+		if (this instanceof TrucoConFlor) {
+
+			this.enfrentamientos.add(new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(0)),
+					crearEquipoPicaPica(jugadoresEquipoDos.get(1))));
+			this.enfrentamientos.add(new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(2)),
+					crearEquipoPicaPica(jugadoresEquipoDos.get(0))));
+			this.enfrentamientos.add(new TrucoConFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(1)),
+					crearEquipoPicaPica(jugadoresEquipoDos.get(2))));
+		} else {
+
+			this.enfrentamientos.add(new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(0)),
+					crearEquipoPicaPica(jugadoresEquipoDos.get(1))));
+			this.enfrentamientos.add(new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(2)),
+					crearEquipoPicaPica(jugadoresEquipoDos.get(0))));
+			this.enfrentamientos.add(new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(1)),
+					crearEquipoPicaPica(jugadoresEquipoDos.get(2))));
 		}
-		else {
-			
-			this.enfrentamientos.add( new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(0)), crearEquipoPicaPica(jugadoresEquipoDos.get(1))) );
-			this.enfrentamientos.add( new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(2)), crearEquipoPicaPica(jugadoresEquipoDos.get(0))) );
-			this.enfrentamientos.add( new TrucoSinFlor(crearEquipoPicaPica(jugadoresEquipoUno.get(1)), crearEquipoPicaPica(jugadoresEquipoDos.get(2))) );
-		}
-		
+
 		this.enfrentamientoActual = this.enfrentamientos.get(0);
 	}
-	
+
 	public void terminarEnfrentamiento() {
-		
-		if(this.manoFinalizada()) {
-			
+
+		if (this.manoFinalizada()) {
+
 			this.sumarPuntos();
 		}
-		
+
 		this.equipoUno.sumarPuntos(enfrentamientoActual.puntosEquipoUno());
 		this.equipoDos.sumarPuntos(enfrentamientoActual.puntosEquipoDos());
 	}
 
-
 	private JuegoTruco siguienteEnfrentamiento() {
-		
+
 		try {
-			
+
 			int numeroEnfrentamiento = this.enfrentamientos.indexOf(enfrentamientoActual);
-			return this.enfrentamientoActual = this.enfrentamientos.get(numeroEnfrentamiento + 1); 
-		
+			return this.enfrentamientoActual = this.enfrentamientos.get(numeroEnfrentamiento + 1);
+
 		} catch (Exception e) {
-			
+
 			return this.enfrentamientoActual = this.enfrentamientos.get(0);
 		}
 	}
