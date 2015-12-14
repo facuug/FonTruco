@@ -100,8 +100,13 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					if(juegoTruco.esPicaPica()){
+						
+						juegoTruco.getEnfrentamientoActual().truco();
+					} else {
+						juegoTruco.truco();
+					}
 					ejecutarAudio("truco");
-					juegoTruco.truco();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
@@ -114,8 +119,13 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					if(juegoTruco.esPicaPica()) {
+						
+						juegoTruco.getEnfrentamientoActual().envido();
+					} else {
+						juegoTruco.envido();
+					}
 					ejecutarAudio("envido");
-					juegoTruco.envido();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 					System.out.println("cantoInvalido");
 				}
@@ -129,8 +139,13 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					if(juegoTruco.esPicaPica()) {
+						
+						juegoTruco.getEnfrentamientoActual().reTruco();
+					} else {
+						juegoTruco.reTruco();
+					}
 					ejecutarAudio("reTruco");
-					juegoTruco.reTruco();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
@@ -143,8 +158,13 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					if(juegoTruco.esPicaPica()){
+						
+						juegoTruco.getEnfrentamientoActual().valeCuatro();
+					} else {
+						juegoTruco.valeCuatro();
+					}
 					ejecutarAudio("valeCuatro");
-					juegoTruco.valeCuatro();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
@@ -157,8 +177,13 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					if(juegoTruco.esPicaPica()){
+						
+						juegoTruco.getEnfrentamientoActual().realEnvido();
+					} else {
+						juegoTruco.realEnvido();
+					}
 					ejecutarAudio("realEnvido");
-					juegoTruco.realEnvido();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
@@ -171,8 +196,14 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					if(juegoTruco.esPicaPica()){
+						
+						juegoTruco.getEnfrentamientoActual().faltaEnvido();
+					} else {
+						
+						juegoTruco.faltaEnvido();
+					}
 					ejecutarAudio("faltaEnvido");
-					juegoTruco.faltaEnvido();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
@@ -185,8 +216,13 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					if(juegoTruco.esPicaPica()){
+						
+						juegoTruco.getEnfrentamientoActual().quiero();
+					} else {
+						juegoTruco.quiero();
+					}
 					ejecutarAudio("quiero");
-					juegoTruco.quiero();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");exception.printStackTrace();
 				}
 			}
@@ -208,12 +244,12 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					ejecutarAudio("noQuiero");
 					juegoTruco.noQuiero();
 					Controller.juegoTruco.sumarPuntos();
 					lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
 					lblPuntosEq2.setText(Integer.toString(Controller.juegoTruco.puntosEquipoDos()));
 					((CartaHandlerGeneral)(cartasJugando.get(0).get(0).getOnMouseClicked())).actualizar();
+					ejecutarAudio("noQuiero");
 				} catch (CantoInvalidoException exception) { 
 					exception.printStackTrace();
 					popup("popupCantoProhibido");
@@ -228,8 +264,13 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					if(juegoTruco.esPicaPica()){
+						
+						juegoTruco.getEnfrentamientoActual().flor();
+					} else {
+						juegoTruco.flor();
+					}
 					ejecutarAudio("flor");
-					juegoTruco.flor();
 				} catch (CantoInvalidoException exception) { 
 					popup("popupCantoProhibido");
 				}
@@ -243,8 +284,13 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					if(juegoTruco.esPicaPica()){
+						
+						juegoTruco.getEnfrentamientoActual().contraFlor();
+					} else { 
+						juegoTruco.contraFlor();
+					}
 					ejecutarAudio("contraFlor");
-					juegoTruco.contraFlor();
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
@@ -256,8 +302,13 @@ public abstract class MesaGeneralController extends Controller {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					ejecutarAudio("contraFlorResto");
+					if(juegoTruco.esPicaPica()) {
+						
+						juegoTruco.getEnfrentamientoActual().contraFlorAlResto();
+					} else {
 					juegoTruco.contraFlorAlResto();
+					}
+					ejecutarAudio("contraFlorResto");
 				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
@@ -305,6 +356,5 @@ public abstract class MesaGeneralController extends Controller {
 			posicionOtraMano++;
 		}
 		return manos;
-}
-	
+	}	
 }
