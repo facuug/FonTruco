@@ -295,6 +295,12 @@ public abstract class JuegoTruco {
 		}
 		equipoUno.sumarPuntos(enfrentamientoActual.puntosEquipoUno());
 		equipoDos.sumarPuntos(enfrentamientoActual.puntosEquipoDos());
+		try {
+			int numeroEnfrentamiento = enfrentamientos.indexOf(enfrentamientoActual);
+			enfrentamientoActual = enfrentamientos.get(numeroEnfrentamiento+1);
+		} catch (Exception e) {
+			enfrentamientoActual = enfrentamientos.get(0);
+		}
 	}
 
 	private JuegoTruco siguienteEnfrentamiento() {

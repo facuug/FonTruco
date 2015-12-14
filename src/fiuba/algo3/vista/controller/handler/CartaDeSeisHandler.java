@@ -1,21 +1,21 @@
 package fiuba.algo3.vista.controller.handler;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.modelo.Carta;
+import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
+import fiuba.algo3.modelo.interfaces.JuegoTruco;
 import fiuba.algo3.vista.controller.Controller;
 import fiuba.algo3.vista.controller.MesaController;
-import fiuba.algo3.vista.controller.MesaGeneralController;
+import fiuba.algo3.vista.controller.MesaDeSeisController;
 import javafx.event.Event;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class CartaDeSeisHandler extends CartaHandlerGeneral {
-
 
 	public CartaDeSeisHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando,
 			Carta cartaQueRepresenta, Label puntosEquipoUno, Label puntosEquipoDos) {
@@ -25,14 +25,25 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 	@Override
 	public void handle(Event event) {
 		try {
+			JuegoTruco juegoTruco = Controller.juegoTruco;
 			ImageView cartaJugada = (ImageView) event.getSource();
 			cartaJugada.setVisible(false);
 			jugarCarta(cartaJugada);
-			if (Controller.juegoTruco.esPicaPica()) {
-				Controller.juegoTruco.crearEnfrentamientosPicaPica();
-				Controller.juegoTruco.getEnfrentamientoActual().jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
-				habilitarCartasPicaPica();
-				actualizarPicaPica();
+			if (juegoTruco.esPicaPica()) {
+				juegoTruco.crearEnfrentamientosPicaPica();
+				juegoTruco.getEnfrentamientoActual().jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
+				if (!juegoTruco.getEnfrentamientoActual().manoFinalizada()) {
+					habilitarCartasPicaPica();
+				} else {
+					juegoTruco.terminarEnfrentamiento();
+					
+					if(juegoTruco.obtenerMesa().getJugadores().indexOf(juegoTruco.
+							getEnfrentamientoActual().obtenerMesa().getJugadores().get(0))==0) {
+						
+					} else {
+						habilitarSiguientePicaPica();
+					}
+				}
 			} else {
 				Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
 				habilitarCartas();
@@ -43,32 +54,35 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 			System.out.println("no se puede jugar carta"); // esto es temporal
 		}
 	}
+	
+	private void restaurarMesa() {
+		
+	}
 
-	private void actualizarPicaPica() {
-		if(Controller.juegoTruco.getEnfrentamientoActual().manoFinalizada()) {
-		} else {
-			
-		}
-	}
-	
 	private void habilitarSiguientePicaPica() {
-		
-	}
-	
-	private void habilitarCartasPicaPica() {
-		int posicionJugador =Controller.juegoTruco.obtenerMesa().getJugadores().indexOf( 
-				Controller.juegoTruco.getEnfrentamientoActual().jugadorDeTurno());
-		
-		for(ImageView carta : cartasDeMano) {
-			mostrarDorso(carta);
-		}
-		
-		List<ImageView> manoAHabilitar = cartasEnJuego.get(posicionJugador);
-		
-		for(ImageView carta : manoAHabilitar) {
+		JuegoTruco juegoTruco = Controller.juegoTruco;
+		Jugador jugador = juegoTruco.getEnfrentamientoActual().jugadorDeTurno();
+		int posicionJugador = juegoTruco.obtenerMesa().getJugadores().indexOf(jugador);
+		List<ImageView> cartas = cartasEnJuego.get(posicionJugador);
+		for(ImageView carta : cartas) {
 			mostrarCarta(carta);
 		}
-		
+	}
+
+	private void habilitarCartasPicaPica() {
+		int posicionJugador = Controller.juegoTruco.obtenerMesa().getJugadores()
+				.indexOf(Controller.juegoTruco.getEnfrentamientoActual().jugadorDeTurno());
+
+		for (ImageView carta : cartasDeMano) {
+			mostrarDorso(carta);
+		}
+
+		List<ImageView> manoAHabilitar = cartasEnJuego.get(posicionJugador);
+
+		for (ImageView carta : manoAHabilitar) {
+			mostrarCarta(carta);
+		}
+
 	}
 
 	private void habilitarCartas() {
@@ -87,7 +101,7 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 				mostrarCarta(carta);
 				carta.setDisable(false);
 			}
-			
+
 		}
 	}
 
