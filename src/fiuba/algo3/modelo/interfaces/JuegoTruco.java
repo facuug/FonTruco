@@ -242,23 +242,12 @@ public abstract class JuegoTruco {
 
 	public boolean esPicaPica() {
 
-		if (!(this.manoPicaPica) && (haySeisJugadores() && hayPuntosParaPicaPica())) {
-
-			return true;
-		} else {
-
-			return false;
-		}
+		return this.manoPicaPica;
 	}
 	
-	public void setProximaRondaPicaPica() {
+	public void setTipoDeRondaProximaMano() {
 		
-		this.manoPicaPica = true;
-	}
-	
-	public void setProximaRondaRedonda() {
-		
-		this.manoPicaPica = false;
+		this.manoPicaPica = ( !(this.manoPicaPica) && (haySeisJugadores() && hayPuntosParaPicaPica()) );
 	}
 
 	private Equipo crearEquipoPicaPica(Jugador jugador) {

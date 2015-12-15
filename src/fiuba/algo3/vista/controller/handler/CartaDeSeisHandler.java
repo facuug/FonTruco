@@ -9,7 +9,6 @@ import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.modelo.interfaces.JuegoTruco;
 import fiuba.algo3.vista.controller.Controller;
 import fiuba.algo3.vista.controller.MesaController;
-import fiuba.algo3.vista.controller.MesaDeSeisController;
 import javafx.event.Event;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
