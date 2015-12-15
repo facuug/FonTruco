@@ -302,6 +302,7 @@ public abstract class JuegoTruco {
 			enfrentamientoActual = enfrentamientos.get(numeroEnfrentamiento+1);
 		} catch (Exception e) {
 			enfrentamientoActual = enfrentamientos.get(0);
+			this.setTipoDeRondaProximaMano();
 		}
 	}
 }
