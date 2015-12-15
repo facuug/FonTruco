@@ -44,7 +44,7 @@ public class TrucoConSeisJugadoresTest {
 		Jugador esteban = new Jugador("Esteban");
 		esteban.recibirCarta(new Carta(TipoCarta.SOTA, Palo.BASTO));
 		esteban.recibirCarta(new Carta(TipoCarta.CABALLO, Palo.ORO));
-		esteban.recibirCarta(new Carta(TipoCarta.CABALLO, Palo.ORO));
+		esteban.recibirCarta(new Carta(TipoCarta.CABALLO, Palo.BASTO));
 		
 		Jugador flor	= new Jugador("Flor");
 		flor.recibirCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));
@@ -92,6 +92,36 @@ public class TrucoConSeisJugadoresTest {
 	
 	@Test
 	public void alLlegarACincoPuntosLaSiguienteRondaEsPicaPicaTest() {
+		
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CINCO, Palo.COPA));			//	Agus
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.FALSO_SIETE, Palo.BASTO));	//	Daniel
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.COPA));				//	Benja
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.BASTO));			//	Esteban
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.DOS, Palo.BASTO));			//	Carla
+		
+		trucoSinFlor.envido();
+		trucoSinFlor.envido();
+		trucoSinFlor.noQuiero();
+		
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.TRES, Palo.ORO));				//	Flor <- GANA RONDA
+		
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));		//	Flor
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CABALLO, Palo.COPA));			//	Agus
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.FALSO_ANCHO, Palo.ORO));		//	Daniel
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CINCO, Palo.BASTO));			//	Benja
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CABALLO, Palo.ORO));			//	Esteban
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.DOS, Palo.COPA));				//	Carla <- GANA RONDA
+		
+		trucoSinFlor.truco();
+		trucoSinFlor.reTruco();
+		trucoSinFlor.valeCuatro();
+		
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CINCO, Palo.ESPADA));			//	Carla
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.BASTO));			//	Flor
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));	//	Agua <- GANA RONDA	
+		trucoSinFlor.jugadorDeTurnoJuegaCarta();
+		trucoSinFlor.jugadorDeTurnoJuegaCarta();
+		trucoSinFlor.jugadorDeTurnoJuegaCarta();
 		
 		Assert.assertTrue(false);
 	}

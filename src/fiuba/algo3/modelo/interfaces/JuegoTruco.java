@@ -41,6 +41,7 @@ public abstract class JuegoTruco {
 
 	private boolean envidoTerminado;
 
+	private boolean manoPicaPica;
 	private List<JuegoTruco> enfrentamientos;
 	private JuegoTruco enfrentamientoActual;
 
@@ -65,6 +66,8 @@ public abstract class JuegoTruco {
 		this.turnoParaCanto = new CambiadorDeTurno(this.equipoUno, this.equipoDos);
 		this.turnoParaCarta = new CambiadorDeTurno(this.equipoUno, this.equipoDos);
 		this.turnoParaCarta.establecerJugadorDeTurno(this.mesa.equipoMano().jugadorDeTurno());
+		
+		this.manoPicaPica = false;
 	}
 
 	public void envido() {
@@ -230,7 +233,7 @@ public abstract class JuegoTruco {
 		return (this.cantidadDeJugadores() == JUGADORES_PICA_PICA);
 	}
 
-	private boolean HayPuntosParaPicaPica() {
+	private boolean hayPuntosParaPicaPica() {
 
 		int puntos = Math.max(this.equipoUno.obtenerPuntos(), this.equipoDos.obtenerPuntos());
 
@@ -239,13 +242,23 @@ public abstract class JuegoTruco {
 
 	public boolean esPicaPica() {
 
-		if (haySeisJugadores() && HayPuntosParaPicaPica()) {
+		if (!(this.manoPicaPica) && (haySeisJugadores() && hayPuntosParaPicaPica())) {
 
 			return true;
 		} else {
 
 			return false;
 		}
+	}
+	
+	public void setProximaRondaPicaPica() {
+		
+		this.manoPicaPica = true;
+	}
+	
+	public void setProximaRondaRedonda() {
+		
+		this.manoPicaPica = false;
 	}
 
 	private Equipo crearEquipoPicaPica(Jugador jugador) {
@@ -300,19 +313,6 @@ public abstract class JuegoTruco {
 			enfrentamientoActual = enfrentamientos.get(numeroEnfrentamiento+1);
 		} catch (Exception e) {
 			enfrentamientoActual = enfrentamientos.get(0);
-		}
-	}
-
-	private JuegoTruco siguienteEnfrentamiento() {
-
-		try {
-
-			int numeroEnfrentamiento = this.enfrentamientos.indexOf(enfrentamientoActual);
-			return this.enfrentamientoActual = this.enfrentamientos.get(numeroEnfrentamiento + 1);
-
-		} catch (Exception e) {
-
-			return this.enfrentamientoActual = this.enfrentamientos.get(0);
 		}
 	}
 }
