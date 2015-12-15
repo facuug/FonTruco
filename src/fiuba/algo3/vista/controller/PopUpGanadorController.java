@@ -26,5 +26,4 @@ public class PopUpGanadorController extends Controller{
 			}
 		});
 	}
-	
 }

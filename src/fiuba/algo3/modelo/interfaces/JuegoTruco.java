@@ -25,8 +25,8 @@ public abstract class JuegoTruco {
 	protected Equipo equipoUno;
 	protected Equipo equipoDos;
 
-	private static final int PUNTOS_MINIMOS = 5;	//5;
-	private static final int PUNTOS_MAXIMOS = 25;	//25
+	private static final int PUNTOS_MINIMOS = 5;
+	private static final int PUNTOS_MAXIMOS = 25;
 	protected int puntosDeEnvido, puntosDeTruco, puntosDeMano;
 
 	protected Mesa mesa;
@@ -75,8 +75,13 @@ public abstract class JuegoTruco {
 		this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
 		this.turnoParaCanto.rotarEquipoDeTurno();
 	}
+	
+	public int cuantosPuntos() {
+		return this.estadoJuego.cuantosPuntos();
+	}
 
 	public void noQuiero() {
+	
 		this.estadoJuego.noQuiero();
 		this.equipoCantador.sumarPuntos(this.estadoJuego.cuantosPuntos());
 		this.puntosDeMano = 1;
@@ -84,13 +89,10 @@ public abstract class JuegoTruco {
 		this.estadoJuego = new EstadoSinCanto();
 	}
 
-	public int cuantosPuntos() {
-		return this.estadoJuego.cuantosPuntos();
-	}
-
 	public void quiero() {
+	
 		this.estadoJuego.quiero();
-
+		
 		if (this.estadoJuego.esTruco())
 			this.puntosDeTruco = this.estadoJuego.cuantosPuntos();
 		else {
@@ -248,11 +250,6 @@ public abstract class JuegoTruco {
 	public void setTipoDeRondaProximaMano() {
 		
 		this.manoPicaPica = ( !(this.manoPicaPica) && (haySeisJugadores() && hayPuntosParaPicaPica()) );
-	}
-	
-	public void setRondaRedonda() {
-		
-		this.manoPicaPica = false;
 	}
 
 	private Equipo crearEquipoPicaPica(Jugador jugador) {

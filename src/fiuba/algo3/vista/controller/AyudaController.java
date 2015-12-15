@@ -26,5 +26,4 @@ public class AyudaController extends Controller{
 			}
 		});
 	}
-
 }

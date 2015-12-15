@@ -10,7 +10,7 @@ import fiuba.algo3.modelo.interfaces.EstadoJuego;
 public class Truco implements EstadoJuego {
 
     private int puntos = 0;
-    private Boolean fueRespondido = false;
+    private boolean fueRespondido = false;
     private boolean fueNoQuerido;
 
     @Override

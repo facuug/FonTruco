@@ -1,6 +1,5 @@
 package fiuba.algo3.vista.controller.handler;
 
-import java.io.Console;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,6 @@ import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
-import fiuba.algo3.modelo.interfaces.JuegoTruco;
 import fiuba.algo3.vista.controller.Controller;
 import javafx.event.Event;
 import javafx.scene.control.Label;
@@ -46,7 +44,7 @@ public class CartaHandlerIA extends CartaHandlerGeneral {
 			actualizar();
 
 		} catch (AccionInvalidaException exception) {
-			System.out.println("no se puede jugar carta"); // esto es temporal
+			System.out.println("no se puede jugar carta - CartaHandlerIA"); // esto es temporal
 		}
 	}
 

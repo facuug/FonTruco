@@ -1,6 +1,5 @@
 package fiuba.algo3.vista.controller.handler;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class CartaHandler extends CartaHandlerGeneral {
 			actualizar();
 			
 		} catch(AccionInvalidaException exception){
-			System.out.println("no se puede jugar carta"); //esto es temporal 
+			System.out.println("no se puede jugar carta - CartaHandler"); //esto es temporal 
 		}
 	}
 

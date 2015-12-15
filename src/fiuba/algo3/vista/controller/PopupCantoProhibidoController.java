@@ -29,5 +29,4 @@ public class PopupCantoProhibidoController extends Controller {
 			}
 		});
 	}
-	
 }

@@ -47,10 +47,11 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 				Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
 				habilitarCartas();
 				actualizar();
+				juegoTruco.setTipoDeRondaProximaMano();
 			}
 
 		} catch (AccionInvalidaException exception) {
-			System.out.println("no se puede jugar carta"); // esto es temporal
+			System.out.println("no se puede jugar carta - CartaDeSeisHandler"); // esto es temporal
 		}
 	}
 	

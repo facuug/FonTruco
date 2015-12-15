@@ -23,9 +23,8 @@ public class Main extends Application {
 	            stage.setTitle("FonTruco");
 	            menuPrincipalController.setStage(stage);
 	            stage.show();
-	        } catch (Exception ex) {
+		 } catch (Exception ex) {
 	           ex.printStackTrace();
-	        }
+		 }
 	}
-
 }

@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.vista.controller.handler.CartaDeSeisHandler;
-import fiuba.algo3.vista.controller.handler.CartaHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 
