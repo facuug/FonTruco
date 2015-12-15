@@ -249,6 +249,11 @@ public abstract class JuegoTruco {
 		
 		this.manoPicaPica = ( !(this.manoPicaPica) && (haySeisJugadores() && hayPuntosParaPicaPica()) );
 	}
+	
+	public void setRondaRedonda() {
+		
+		this.manoPicaPica = false;
+	}
 
 	private Equipo crearEquipoPicaPica(Jugador jugador) {
 
