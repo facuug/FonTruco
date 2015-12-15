@@ -29,7 +29,7 @@ public class CartaHandler extends CartaHandlerGeneral {
 			actualizar();
 			
 		} catch(AccionInvalidaException exception){
-			System.out.println("no se puede jugar carta - CartaHandler"); //esto es temporal 
+			System.out.println("no se puede jugar carta"); //esto es temporal 
 		}
 	}
 

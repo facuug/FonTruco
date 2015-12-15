@@ -114,6 +114,7 @@ public class MesaConIAController extends MesaGeneralController {
 				lblPuntosEq2.setText(Integer.toString(Controller.juegoTruco.puntosEquipoDos()));
 				((CartaHandlerGeneral)(cartasJugando.get(0).get(0).getOnMouseClicked())).actualizar();
 			}
+			
 	}
 
 	private void setBtnTrucoHandler() {

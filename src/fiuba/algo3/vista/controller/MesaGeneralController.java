@@ -231,15 +231,14 @@ public abstract class MesaGeneralController extends Controller {
 					ejecutarAudio("quiero");
 				} catch (CantoInvalidoException exception) { 
 					popup("popupCantoProhibido");
-					//exception.printStackTrace();
+					exception.printStackTrace();
 				}
 			}
 		});
 	}
-	
 	private void setBtnNoQuieroHandler() {
 		btnNoQuiero.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				try {
@@ -250,16 +249,16 @@ public abstract class MesaGeneralController extends Controller {
 					((CartaHandlerGeneral)(cartasJugando.get(0).get(0).getOnMouseClicked())).actualizar();
 					ejecutarAudio("noQuiero");
 				} catch (CantoInvalidoException exception) { 
-					//exception.printStackTrace();
+					exception.printStackTrace();
 					popup("popupCantoProhibido");
 				}
 			}
 		});
 	}
-	
+
 	private void setBtnFlorHandler() {
 		btnFlor.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				try {
@@ -276,10 +275,10 @@ public abstract class MesaGeneralController extends Controller {
 			}
 		});
 	}
-	
+
 	private void setBtnContraFlorHandler() {
 		btnContraFlor.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				try {
@@ -290,13 +289,12 @@ public abstract class MesaGeneralController extends Controller {
 						juegoTruco.contraFlor();
 					}
 					ejecutarAudio("contraFlor");
-				} catch (CantoInvalidoException exception) { 
-					popup("popupCantoProhibido");
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
 	}
-	
+
 	private void setBtnContraFlorAlRestoHandler() {
 		btnContraFlorAlResto.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -306,22 +304,22 @@ public abstract class MesaGeneralController extends Controller {
 						
 						juegoTruco.getEnfrentamientoActual().contraFlorAlResto();
 					} else {
-						juegoTruco.contraFlorAlResto();
+					juegoTruco.contraFlorAlResto();
 					}
 					ejecutarAudio("contraFlorResto");
-				} catch (CantoInvalidoException exception) { 
-					popup("popupCantoProhibido");
+				} catch (CantoInvalidoException exception) { popup("popupCantoProhibido");
 				}
 			}
 		});
 	}
-
+	
 	protected void ejecutarAudio(String nombre) {
 		File f = new File(new StringBuilder().append("src/fiuba/algo3/vista/recursos/audio/")
 				.append(nombre).append(".mp3").toString());
 		Media media = new Media(f.toURI().toString());
 		mediaPlayer = new MediaPlayer(media);
-		mediaPlayer.play();	
+		mediaPlayer.play();
+		
 	}
 
 	public void inicializarBotones() {

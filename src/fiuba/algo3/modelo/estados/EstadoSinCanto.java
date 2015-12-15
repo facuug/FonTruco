@@ -11,12 +11,10 @@ public class EstadoSinCanto implements EstadoJuego {
 
     @Override
     public void noQuiero() {
-    	throw new CantoInvalidoException();
     }
 
     @Override
     public void quiero() {
-    	throw new CantoInvalidoException();
     }
 
     @Override

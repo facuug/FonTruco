@@ -1,7 +1,7 @@
 package fiuba.algo3.vista.controller;
 
-import javafx.fxml.FXMLLoader;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -23,8 +23,8 @@ public class Main extends Application {
 	            stage.setTitle("FonTruco");
 	            menuPrincipalController.setStage(stage);
 	            stage.show();
-		 } catch (Exception ex) {
+	        } catch (Exception ex) {
 	           ex.printStackTrace();
-		 }
+	        }
 	}
 }

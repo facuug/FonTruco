@@ -95,8 +95,7 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 		carta.setDisable(true);
 		
 	}
-	
-	
+		
 	private void restaurarCartas(List<ImageView> cartasVista, Mano mano) {
 		int i = 0;
 		for(Carta carta : mano.getCartas()) {
@@ -109,6 +108,7 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 		}
 		
 	}
+	
 	private void mostrarCartasMano() {
 		Mesa mesa = Controller.juegoTruco.obtenerMesa();
 		List<Equipo> equipos = mesa.getEquipos();
@@ -146,5 +146,4 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 		this.lblEquipoUno = puntosEquipoUno;
 		this.lblEquipoDos = puntosEquipoDos;
 	}
-
 }

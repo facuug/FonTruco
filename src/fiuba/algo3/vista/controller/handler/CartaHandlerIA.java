@@ -44,7 +44,7 @@ public class CartaHandlerIA extends CartaHandlerGeneral {
 			actualizar();
 
 		} catch (AccionInvalidaException exception) {
-			System.out.println("no se puede jugar carta - CartaHandlerIA"); // esto es temporal
+			System.out.println("No se puede jugar carta - CartaHandlerIA"); // esto es temporal
 		}
 	}
 

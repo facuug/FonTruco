@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public abstract class Controller implements Initializable {
-	
 	protected static Stage stage;
 
 	public static JuegoTruco juegoTruco;

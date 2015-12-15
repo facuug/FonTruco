@@ -37,7 +37,7 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 					juegoTruco.terminarEnfrentamiento();
 					
 					if(juegoTruco.obtenerMesa().getJugadores().indexOf(juegoTruco.
-							getEnfrentamientoActual().obtenerMesa().getJugadores().get(0))==0) {
+							getEnfrentamientoActual().obtenerMesa().getJugadores().get(0)) == 0) {
 						
 					} else {
 						habilitarSiguientePicaPica();
@@ -47,11 +47,10 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 				Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
 				habilitarCartas();
 				actualizar();
-				juegoTruco.setTipoDeRondaProximaMano();
 			}
 
 		} catch (AccionInvalidaException exception) {
-			System.out.println("no se puede jugar carta - CartaDeSeisHandler"); // esto es temporal
+			System.out.println("No se puede jugar carta - CartaDeSeisHandler"); // esto es temporal
 		}
 	}
 	
