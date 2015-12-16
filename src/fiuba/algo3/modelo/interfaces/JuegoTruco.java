@@ -293,11 +293,15 @@ public abstract class JuegoTruco {
 	}
 
 	public void terminarEnfrentamiento() {
-		if (manoFinalizada()) {
-			sumarPuntos();
+		if (enfrentamientoActual.manoFinalizada()) {
+			enfrentamientoActual.sumarPuntos();
 		}
 		equipoUno.sumarPuntos(enfrentamientoActual.puntosEquipoUno());
 		equipoDos.sumarPuntos(enfrentamientoActual.puntosEquipoDos());
+		
+	}
+	
+	public void cambiarEnfrentamiento() {
 		try {
 			int numeroEnfrentamiento = enfrentamientos.indexOf(enfrentamientoActual);
 			enfrentamientoActual = enfrentamientos.get(numeroEnfrentamiento+1);

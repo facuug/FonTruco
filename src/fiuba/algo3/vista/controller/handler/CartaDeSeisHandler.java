@@ -38,6 +38,9 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 					habilitarCartasPicaPica();
 				} else {
 					juegoTruco.terminarEnfrentamiento();
+					lblEquipoUno.setText(String.valueOf(juegoTruco.puntosEquipoUno()));
+					lblEquipoDos.setText(String.valueOf(juegoTruco.puntosEquipoDos()));
+					juegoTruco.cambiarEnfrentamiento();
 					habilitarSiguientePicaPica();
 					fuePicaPica = true;
 				}
