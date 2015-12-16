@@ -302,6 +302,8 @@ public abstract class JuegoTruco {
 			int numeroEnfrentamiento = enfrentamientos.indexOf(enfrentamientoActual);
 			enfrentamientoActual = enfrentamientos.get(numeroEnfrentamiento+1);
 		} catch (Exception e) {
+			enfrentamientos = null;
+			crearEnfrentamientosPicaPica();
 			setTipoDeRondaProximaMano();
 			enfrentamientoActual = enfrentamientos.get(0);
 		}
