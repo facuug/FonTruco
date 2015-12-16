@@ -16,6 +16,8 @@ import javafx.scene.image.ImageView;
 
 public class CartaDeSeisHandler extends CartaHandlerGeneral {
 
+	private boolean fuePicaPica = false;
+	
 	public CartaDeSeisHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando,
 			Carta cartaQueRepresenta, Label puntosEquipoUno, Label puntosEquipoDos) {
 		super(cartasDeMano, cartasJugando, cartaQueRepresenta, puntosEquipoUno, puntosEquipoDos);
@@ -28,6 +30,7 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 			ImageView cartaJugada = (ImageView) event.getSource();
 			cartaJugada.setVisible(false);
 			jugarCarta(cartaJugada);
+			
 			if (juegoTruco.esPicaPica()) {
 				juegoTruco.crearEnfrentamientosPicaPica();
 				juegoTruco.getEnfrentamientoActual().jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
@@ -35,18 +38,19 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 					habilitarCartasPicaPica();
 				} else {
 					juegoTruco.terminarEnfrentamiento();
-					
-					if(juegoTruco.obtenerMesa().getJugadores().indexOf(juegoTruco.
-							getEnfrentamientoActual().obtenerMesa().getJugadores().get(0))==0) {
-						
-					} else {
-						habilitarSiguientePicaPica();
-					}
+					habilitarSiguientePicaPica();
+					fuePicaPica = true;
 				}
 			} else {
 				Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
-				habilitarCartas();
 				actualizar();
+				if(!juegoTruco.esPicaPica()) {
+					habilitarCartas();
+				}
+				fuePicaPica = false;
+			}
+			if(!juegoTruco.esPicaPica() && fuePicaPica){
+				restaurarMesa();
 			}
 
 		} catch (AccionInvalidaException exception) {
@@ -55,7 +59,21 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 	}
 	
 	private void restaurarMesa() {
-		
+		int posicionJugadorMano = Controller.juegoTruco.obtenerMesa()
+				.getJugadores().indexOf(Controller.juegoTruco.jugadorDeTurno());
+		int posicionJugadorActual = 0;
+		for(List<ImageView> mano : cartasEnJuego) {
+			for(ImageView carta : mano) {
+				if(posicionJugadorActual == posicionJugadorMano) {
+					mostrarCarta(carta);
+				} else {
+					mostrarDorso(carta);
+				}
+				carta.setVisible(true);
+				
+			}
+			posicionJugadorActual++;
+		}
 	}
 
 	private void habilitarSiguientePicaPica() {

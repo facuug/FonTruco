@@ -45,23 +45,27 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 		carta.setDisable(false);
 	}
 	
+	private void restaurarCartas() {
+		Controller.juegoTruco.restablecer();
+		Mesa mesa = Controller.juegoTruco.obtenerMesa();
+		List<Equipo> equipos = mesa.getEquipos();
+		int j = 0;
+		for(int i = 0 ; i<equipos.size();i++) {
+			List<Jugador> jugadores = equipos.get(i).getJugadores();
+			j=i;
+			for(Jugador jugador: jugadores) {
+				restaurarCartas(cartasEnJuego.get(j), jugador.getMano());
+				j+=2;
+			}
+		}
+	}
+	
 	public void actualizar() {
 		if(Controller.juegoTruco.manoFinalizada()){
 			Controller.juegoTruco.sumarPuntos();
 			this.lblEquipoUno.setText( Integer.toString(Controller.juegoTruco.puntosEquipoUno()) );
 			this.lblEquipoDos.setText( Integer.toString(Controller.juegoTruco.puntosEquipoDos()) );
-			Controller.juegoTruco.restablecer();
-			Mesa mesa = Controller.juegoTruco.obtenerMesa();
-			List<Equipo> equipos = mesa.getEquipos();
-			int j = 0;
-			for(int i = 0 ; i<equipos.size();i++) {
-				List<Jugador> jugadores = equipos.get(i).getJugadores();
-				j=i;
-				for(Jugador jugador: jugadores) {
-					restaurarCartas(cartasEnJuego.get(j), jugador.getMano());
-					j+=2;
-				}
-			}
+			restaurarCartas();
 			if( Controller.juegoTruco.esPicaPica()) {
 				mostrarCartasPicaPica();
 			}else {

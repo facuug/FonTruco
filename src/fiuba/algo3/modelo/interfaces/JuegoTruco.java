@@ -25,8 +25,8 @@ public abstract class JuegoTruco {
 	protected Equipo equipoUno;
 	protected Equipo equipoDos;
 
-	private static final int PUNTOS_MINIMOS = 5;	//5;
-	private static final int PUNTOS_MAXIMOS = 25;	//25
+	private static final int PUNTOS_MINIMOS = 1;	//5;
+	private static final int PUNTOS_MAXIMOS = 3;	//25
 	protected int puntosDeEnvido, puntosDeTruco, puntosDeMano;
 
 	protected Mesa mesa;
@@ -201,6 +201,7 @@ public abstract class JuegoTruco {
 	}
 
 	public void restablecer() {
+		this.setTipoDeRondaProximaMano();
 		this.estadoJuego = new EstadoSinCanto();
 		this.puntosDeEnvido = 0;
 		this.puntosDeTruco = 0;
@@ -247,7 +248,7 @@ public abstract class JuegoTruco {
 	
 	public void setTipoDeRondaProximaMano() {
 		
-		this.manoPicaPica = ( !(this.manoPicaPica) && (haySeisJugadores() && hayPuntosParaPicaPica()) );
+		this.manoPicaPica = ( !manoPicaPica && (haySeisJugadores() && hayPuntosParaPicaPica()) );
 	}
 
 	private Equipo crearEquipoPicaPica(Jugador jugador) {
@@ -301,6 +302,7 @@ public abstract class JuegoTruco {
 			int numeroEnfrentamiento = enfrentamientos.indexOf(enfrentamientoActual);
 			enfrentamientoActual = enfrentamientos.get(numeroEnfrentamiento+1);
 		} catch (Exception e) {
+			setTipoDeRondaProximaMano();
 			enfrentamientoActual = enfrentamientos.get(0);
 		}
 	}

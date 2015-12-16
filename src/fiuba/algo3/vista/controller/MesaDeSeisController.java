@@ -84,6 +84,7 @@ public class MesaDeSeisController extends MesaGeneralController{
 
 	@Override
 	protected void prepararMesa() {
+
 	}
 	
 	@Override
