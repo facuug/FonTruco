@@ -24,13 +24,14 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 	}
 
 	public void actualizarConPicaPica() {
-		for(List<ImageView> imagesView :cartasEnJuego) {
+
+		JuegoTruco juegoTruco = Controller.juegoTruco;
+		if (juegoTruco.esPicaPica()) 
+		{		for(List<ImageView> imagesView :cartasEnJuego) {
 			for(ImageView imageView : imagesView) {
 				mostrarDorso(imageView);
 			}
 		}
-		JuegoTruco juegoTruco = Controller.juegoTruco;
-		if (juegoTruco.esPicaPica()) {
 			if (!juegoTruco.getEnfrentamientoActual().manoFinalizada()) {
 				habilitarCartasPicaPica();
 			} else {
@@ -67,7 +68,6 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 			if (juegoTruco.esPicaPica()) {
 				juegoTruco.crearEnfrentamientosPicaPica();
 				juegoTruco.getEnfrentamientoActual().jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
-				
 			}
 			actualizarConPicaPica();
 			
