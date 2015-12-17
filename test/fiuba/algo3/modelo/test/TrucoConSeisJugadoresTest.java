@@ -1,7 +1,5 @@
 package fiuba.algo3.modelo.test;
 
-import java.util.Iterator;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -72,37 +70,18 @@ public class TrucoConSeisJugadoresTest {
 		
 		this.trucoSinFlor = new TrucoSinFlor(equipoUno,equipoDos);
 	}
-
-	@Test
-	public void elJuegoComienzaConRondaRedondaTest() {
-		
-		int cantidadDeJugadores = 0;
-		
-		Iterator<Equipo> i = this.trucoSinFlor.obtenerMesa().getEquipos().iterator();
-		
-		while (i.hasNext()) {
-			
-			Equipo equipoActual = i.next();
-			
-			cantidadDeJugadores += equipoActual.cantidadDeJugadores();
-		}
-		
-		Assert.assertEquals(6, cantidadDeJugadores);
-	}
 	
-	@Test
-	public void alLlegarACincoPuntosLaSiguienteRondaEsPicaPicaTest() {
+	public void jugarUnaRonda() {
 		
 		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CINCO, Palo.COPA));			//	Agus
 		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.FALSO_SIETE, Palo.BASTO));	//	Daniel
 		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.COPA));				//	Benja
 		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.SOTA, Palo.BASTO));			//	Esteban
+		
+		trucoSinFlor.envido();
+		trucoSinFlor.noQuiero();					//	Equipo 1: 1 - Equipo 2: 0
+		
 		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.DOS, Palo.BASTO));			//	Carla
-		
-		trucoSinFlor.envido();
-		trucoSinFlor.envido();
-		trucoSinFlor.noQuiero();
-		
 		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.TRES, Palo.ORO));				//	Flor <- GANA RONDA
 		
 		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CUATRO, Palo.ESPADA));		//	Flor
@@ -115,26 +94,67 @@ public class TrucoConSeisJugadoresTest {
 		trucoSinFlor.truco();
 		trucoSinFlor.reTruco();
 		trucoSinFlor.valeCuatro();
+		trucoSinFlor.quiero();
 		
 		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CINCO, Palo.ESPADA));			//	Carla
 		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.BASTO));			//	Flor
-		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));	//	Agua <- GANA RONDA	
-		trucoSinFlor.jugadorDeTurnoJuegaCarta();
-		trucoSinFlor.jugadorDeTurnoJuegaCarta();
-		trucoSinFlor.jugadorDeTurnoJuegaCarta();
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.ANCHO_ESPADA, Palo.ESPADA));	//	Agus <- GANA RONDA	
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.DOS, Palo.ORO));				//	Daniel
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.REY, Palo.ORO));				//	Benja
+		trucoSinFlor.jugadorDeTurnoJuegaCarta(new Carta(TipoCarta.CABALLO, Palo.BASTO));		//	Esteban
 		
-		Assert.assertTrue(false);
+		trucoSinFlor.sumarPuntos();					//	Equipo 1: 5 - Equipo 2: 0
+	}
+
+	@Test
+	public void elJuegoComienzaConRondaRedondaTest() {
+		
+		Assert.assertFalse(this.trucoSinFlor.esPicaPica());
+	}
+	
+	@Test
+	public void alLlegarACincoPuntosLaSiguienteRondaEsPicaPicaTest() {
+		
+		this.jugarUnaRonda();			//	Equipo 1: 5 - Equipo 2: 0
+				
+		trucoSinFlor.restablecer();
+		
+		Assert.assertTrue(trucoSinFlor.esPicaPica());
 	}
 	
 	@Test
 	public void entreLosCincoYVeinticincoPuntosSeJuegaUnaManoRedondaYOtraPicaPicaTest() {
 		
-		Assert.assertTrue(false);
+		this.jugarUnaRonda();			//	Equipo 1: 5 - Equipo 2: 0
+		
+		trucoSinFlor.restablecer();
+		
+		this.jugarUnaRonda();			//	Equipo 1: 10 - Equipo 2: 0
+		
+		trucoSinFlor.restablecer();
+		
+		Assert.assertFalse(this.trucoSinFlor.esPicaPica());
 	}
 	
 	@Test
 	public void pasadosLosVeinticincoPuntosSoloSeJuegaManoRedondaTest(){
 		
-		Assert.assertTrue(false);
+		this.jugarUnaRonda();			//	Equipo 1: 5 - Equipo 2: 0
+		
+		trucoSinFlor.restablecer();
+		
+		this.jugarUnaRonda();			//	Equipo 1: 10 - Equipo 2: 0
+		
+		this.trucoSinFlor.restablecer();
+		
+		this.jugarUnaRonda();			//	Equipo 1: 15 - Equipo 2: 0
+		
+		this.trucoSinFlor.restablecer();
+		
+		this.jugarUnaRonda();			//	Equipo 1: 20 - Equipo 2: 0
+		
+		this.trucoSinFlor.restablecer();
+		
+		Assert.assertFalse(this.trucoSinFlor.esPicaPica());
 	}
 }
