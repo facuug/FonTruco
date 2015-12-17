@@ -23,6 +23,39 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 		super(cartasDeMano, cartasJugando, cartaQueRepresenta, puntosEquipoUno, puntosEquipoDos);
 	}
 
+	public void actualizarConPicaPica() {
+		for(List<ImageView> imagesView :cartasEnJuego) {
+			for(ImageView imageView : imagesView) {
+				mostrarDorso(imageView);
+			}
+		}
+		JuegoTruco juegoTruco = Controller.juegoTruco;
+		if (juegoTruco.esPicaPica()) {
+			if (!juegoTruco.getEnfrentamientoActual().manoFinalizada()) {
+				habilitarCartasPicaPica();
+			} else {
+				juegoTruco.terminarEnfrentamiento();
+				lblEquipoUno.setText(String.valueOf(juegoTruco.puntosEquipoUno()));
+				lblEquipoDos.setText(String.valueOf(juegoTruco.puntosEquipoDos()));
+				juegoTruco.cambiarEnfrentamiento();
+				habilitarSiguientePicaPica();
+				fuePicaPica = true;
+			}
+		} else {
+			Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
+			actualizar();
+			if(!juegoTruco.esPicaPica()) {
+				habilitarCartas();
+			}
+			fuePicaPica = false;
+		
+		}
+		if(!juegoTruco.esPicaPica() && fuePicaPica){
+			restaurarMesa();
+		}
+	}
+	
+	
 	@Override
 	public void handle(Event event) {
 		try {
@@ -34,27 +67,10 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 			if (juegoTruco.esPicaPica()) {
 				juegoTruco.crearEnfrentamientosPicaPica();
 				juegoTruco.getEnfrentamientoActual().jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
-				if (!juegoTruco.getEnfrentamientoActual().manoFinalizada()) {
-					habilitarCartasPicaPica();
-				} else {
-					juegoTruco.terminarEnfrentamiento();
-					lblEquipoUno.setText(String.valueOf(juegoTruco.puntosEquipoUno()));
-					lblEquipoDos.setText(String.valueOf(juegoTruco.puntosEquipoDos()));
-					juegoTruco.cambiarEnfrentamiento();
-					habilitarSiguientePicaPica();
-					fuePicaPica = true;
-				}
-			} else {
-				Controller.juegoTruco.jugadorDeTurnoJuegaCarta(this.cartaQueSoy);
-				actualizar();
-				if(!juegoTruco.esPicaPica()) {
-					habilitarCartas();
-				}
-				fuePicaPica = false;
+				
 			}
-			if(!juegoTruco.esPicaPica() && fuePicaPica){
-				restaurarMesa();
-			}
+			actualizarConPicaPica();
+			
 
 		} catch (AccionInvalidaException exception) {
 			System.out.println("no se puede jugar carta"); // esto es temporal
@@ -79,7 +95,7 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 		}
 	}
 
-	private void habilitarSiguientePicaPica() {
+	public void habilitarSiguientePicaPica() {
 		JuegoTruco juegoTruco = Controller.juegoTruco;
 		Jugador jugador = juegoTruco.getEnfrentamientoActual().jugadorDeTurno();
 		int posicionJugador = juegoTruco.obtenerMesa().getJugadores().indexOf(jugador);

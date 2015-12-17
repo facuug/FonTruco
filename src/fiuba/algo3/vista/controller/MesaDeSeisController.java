@@ -65,8 +65,6 @@ public class MesaDeSeisController extends MesaGeneralController{
 	@FXML
 	private ImageView contenedor6;
 	
-	private List<List<ImageView>> cartasJugando;
-	
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		cartasJugando = new ArrayList<List<ImageView>>(Arrays.asList(

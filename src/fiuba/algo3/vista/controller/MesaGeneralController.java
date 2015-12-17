@@ -9,7 +9,9 @@ import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
+import fiuba.algo3.modelo.interfaces.JuegoTruco;
 import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
+import fiuba.algo3.vista.controller.handler.CartaDeSeisHandler;
 import fiuba.algo3.vista.controller.handler.CartaHandlerGeneral;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -245,33 +247,39 @@ public abstract class MesaGeneralController extends Controller {
 
 	}
 
+	private void actualizarPuntos(JuegoTruco juegoTruco) {
+		juegoTruco.sumarPuntos();
+		lblPuntosEq1.setText(Integer.toString(juegoTruco.puntosEquipoUno()));
+		lblPuntosEq2.setText(Integer.toString(juegoTruco.puntosEquipoDos()));
+	}
+
 	private void setBtnNoQuieroHandler() {
 		btnNoQuiero.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 				try {
+					for (ImageView contenedor : contenedores ) {
+						contenedor.setImage(null);
+					}
 					if (juegoTruco.esPicaPica()) {
 						juegoTruco.getEnfrentamientoActual().noQuiero();
-						Controller.juegoTruco.getEnfrentamientoActual().sumarPuntos();
-						Controller.juegoTruco.terminarEnfrentamiento();
-						lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
-						lblPuntosEq2.setText(Integer.toString(Controller.juegoTruco.puntosEquipoDos()));
-						Controller.juegoTruco.cambiarEnfrentamiento();
-						((CartaHandlerGeneral) (cartasJugando.get(2).get(0).getOnMouseClicked())).actualizar();//esto falla hay que cambiarlo y hacerlo generico (un metodo que busque algun imageview disponible para hacer esta operaicion)
+						juegoTruco.getEnfrentamientoActual().sumarPuntos();
+						juegoTruco.terminarEnfrentamiento();
+						actualizarPuntos(juegoTruco.getEnfrentamientoActual());
+						((CartaDeSeisHandler) (cartasJugando.get(2).get(0).getOnMouseClicked()))
+								.actualizarConPicaPica();
 						ejecutarAudio("noQuiero");
 					} else {
 						juegoTruco.noQuiero();
-						Controller.juegoTruco.sumarPuntos();
-						lblPuntosEq1.setText(Integer.toString(Controller.juegoTruco.puntosEquipoUno()));
-						lblPuntosEq2.setText(Integer.toString(Controller.juegoTruco.puntosEquipoDos()));
-						((CartaHandlerGeneral) (cartasJugando.get(2).get(0).getOnMouseClicked())).actualizar();//esto falla hay que cambiarlo y hacerlo generico (un metodo que busque algun imageview disponible para hacer esta operaicion)
+						actualizarPuntos(juegoTruco);
+						((CartaHandlerGeneral) (cartasJugando.get(2).get(0).getOnMouseClicked())).actualizar();
 						ejecutarAudio("noQuiero");
 					}
 				} catch (CantoInvalidoException exception) {
 					exception.printStackTrace();
 					popup("popupCantoProhibido");
-				} 
+				}
 			}
 		});
 	}

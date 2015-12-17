@@ -24,8 +24,9 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 	protected ImageView contenedorAsociado;
 	protected List<ImageView> cartasDeMano;
 	protected List<List<ImageView>> cartasEnJuego;
-	
 	protected Label lblEquipoUno,lblEquipoDos;
+	
+	
 	
 	protected String armarRutaImagen(Carta carta) {
 		return new StringBuilder().append("src/fiuba/algo3/vista/recursos/carta/")
@@ -39,9 +40,9 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 	}
 	
 	protected void mostrarCarta(ImageView carta) {
-		File fileDorso = new File(armarRutaImagen(((CartaHandlerGeneral)carta.getOnMouseClicked()).cartaQueSoy));
-		Image imagenDorso = new Image(fileDorso.toURI().toString());
-		carta.setImage(imagenDorso);
+		File file = new File(armarRutaImagen(((CartaHandlerGeneral)carta.getOnMouseClicked()).cartaQueSoy));
+		Image imagen = new Image(file.toURI().toString());
+		carta.setImage(imagen);
 		carta.setDisable(false);
 	}
 	
@@ -77,6 +78,11 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 	}
 	
 	private void mostrarCartasPicaPica() {
+		for (List<ImageView> imageViews :cartasEnJuego) {
+			for(ImageView imageView : imageViews ) {
+				
+			}
+		}
 		Controller.juegoTruco.crearEnfrentamientosPicaPica();
 		JuegoTruco juegoPicaPica = Controller.juegoTruco.getEnfrentamientoActual();
 		Jugador jugadorPicaPica = juegoPicaPica.jugadorDeTurno();
@@ -92,7 +98,7 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 		}
 	}
 	
-	protected void mostrarDorso(ImageView carta) {
+	public void mostrarDorso(ImageView carta) {
 		File fileDorso = new File("src/fiuba/algo3/vista/recursos/carta/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg");
 		Image imagenDorso = new Image(fileDorso.toURI().toString());
 		carta.setImage(imagenDorso);
