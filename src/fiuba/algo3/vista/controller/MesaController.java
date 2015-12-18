@@ -109,15 +109,6 @@ public class MesaController extends MesaGeneralController {
 		}
 	}
 
-	
-	private void restablecerContenedores() {
-		for (ImageView contenedor : contenedores) {
-			contenedor.setImage(null);
-		}
-	}
-
-
-
 	private void esconderCartas() {
 		for (int i = 1; i < 3; i++) {
 			List<ImageView> cartasNoUsadas = cartasJugando.get(i);

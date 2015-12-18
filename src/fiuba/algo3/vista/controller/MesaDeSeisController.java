@@ -10,7 +10,10 @@ import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.vista.controller.handler.CartaDeSeisHandler;
 import fiuba.algo3.vista.controller.handler.CartaHandler;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class MesaDeSeisController extends MesaGeneralController{
@@ -98,6 +101,18 @@ public class MesaDeSeisController extends MesaGeneralController{
 				j++;
 			}
 			i++;
+		}
+		for (ImageView contenedor : contenedores) {
+			contenedor.imageProperty().addListener(new ChangeListener<Image>() {
+
+				@Override
+				public void changed(ObservableValue<? extends Image> observable, Image oldValue, Image newValue) {
+					if(juegoTruco.manoFinalizada()) {
+						restablecerContenedores();
+					}
+				}
+
+			});
 		}
 	}
 

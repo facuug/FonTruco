@@ -175,6 +175,12 @@ public abstract class MesaGeneralController extends Controller {
 			}
 		});
 	}
+	
+	protected void restablecerContenedores() {
+		for (ImageView contenedor : contenedores) {
+			contenedor.setImage(null);
+		}
+	}
 
 	private void setBtnRealEnvidoHandler() {
 		btnRealEnvido.setOnAction(new EventHandler<ActionEvent>() {
