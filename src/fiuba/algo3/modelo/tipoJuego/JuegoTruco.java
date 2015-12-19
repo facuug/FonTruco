@@ -8,13 +8,11 @@ import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mesa;
+import fiuba.algo3.modelo.estados.EstadoJuego;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
-import fiuba.algo3.modelo.interfaces.EstadoJuego;
-import fiuba.algo3.modelo.interfaces.Resultado;
-import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoConFlor;
-import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoSinFlor;
+import fiuba.algo3.modelo.resultado.Resultado;
 
 /**
  * Created by Facundo on 20-Nov-15.
@@ -73,6 +71,9 @@ public abstract class JuegoTruco {
 	}
 
 	public void envido() {
+		if (this.envidoTerminado)
+			throw new CantoInvalidoException();
+		
 		this.estadoJuego = this.estadoJuego.envido();
 		this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
 		this.turnoParaCanto.rotarEquipoDeTurno();
@@ -83,6 +84,7 @@ public abstract class JuegoTruco {
 		this.equipoCantador.sumarPuntos(this.estadoJuego.cuantosPuntos());
 		this.puntosDeMano = 1;
 		this.finDeMano = this.estadoJuego.fueNoQuerido();
+		this.envidoTerminado = true;
 		this.estadoJuego = new EstadoSinCanto();
 	}
 
@@ -208,6 +210,7 @@ public abstract class JuegoTruco {
 		this.puntosDeEnvido = 0;
 		this.puntosDeTruco = 0;
 
+		this.envidoTerminado = false;
 		this.finDeMano = false;
 		this.mesa.restablecer();
 		this.turnoParaCarta.establecerJugadorDeTurno(this.mesa.equipoMano().jugadorDeTurno());

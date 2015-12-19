@@ -1,8 +1,7 @@
-package fiuba.algo3.modelo.tipoJuego.implementaciones;
+package fiuba.algo3.modelo.tipoJuego;
 
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
-import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 
 /**
  * Created by Facundo on 11-Nov-15.

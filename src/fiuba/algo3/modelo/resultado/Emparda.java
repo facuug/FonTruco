@@ -1,7 +1,8 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.resultado;
 
-import fiuba.algo3.modelo.interfaces.Resultado;
-import fiuba.algo3.modelo.interfaces.Ronda;
+import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.rondas.Ronda;
+import fiuba.algo3.modelo.rondas.RondaFinal;
 
 public class Emparda implements Resultado {
 

@@ -1,9 +1,8 @@
-package fiuba.algo3.modelo.tipoJuego.implementaciones;
+package fiuba.algo3.modelo.tipoJuego;
 
 import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.estados.EstadoJuego;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
-import fiuba.algo3.modelo.interfaces.EstadoJuego;
-import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 
 /**
  * Created by Facundo on 25-Nov-15.
@@ -20,16 +19,18 @@ public class TrucoConFlor extends JuegoTruco {
 
     @Override
     public void quiero(){
-        this.estadoJuego.quiero();
+    	this.estadoJuego.quiero();
 
-        if( this.estadoJuego.esTruco() )this.puntosDeTruco = this.estadoJuego.cuantosPuntos();
-        else if( this.estadoJuego.esEnvido() ){
+        if( this.estadoJuego.esTruco() ) {
+        	this.puntosDeTruco = this.estadoJuego.cuantosPuntos();
+        }
+        else if( this.estadoJuego.esEnvido() ) {
             this.puntosDeEnvido += this.estadoJuego.cuantosPuntos();
             this.estadoJuego = new EstadoSinCanto();
-        } else{
-            this.puntosFlor = this.estadoJuego.cuantosPuntos();
-            this.estadoJuego = new EstadoSinCanto();
-        }
+        	} else {
+	            this.puntosFlor = this.estadoJuego.cuantosPuntos();
+	            this.estadoJuego = new EstadoSinCanto();
+        	}
     }
 
     @Override

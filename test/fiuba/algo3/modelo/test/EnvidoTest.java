@@ -2,7 +2,7 @@ package fiuba.algo3.modelo.test;
 
 import static org.junit.Assert.assertEquals;
 
-import fiuba.algo3.modelo.interfaces.EstadoJuego;
+import fiuba.algo3.modelo.estados.EstadoJuego;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
 import org.junit.Before;

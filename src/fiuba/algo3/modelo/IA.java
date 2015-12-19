@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.modelo.estados.Envido;
+import fiuba.algo3.modelo.estados.EstadoJuego;
 import fiuba.algo3.modelo.estados.FaltaEnvido;
 import fiuba.algo3.modelo.estados.ReTruco;
 import fiuba.algo3.modelo.estados.RealEnvido;
 import fiuba.algo3.modelo.estados.Truco;
 import fiuba.algo3.modelo.estados.ValeCuatro;
-import fiuba.algo3.modelo.interfaces.EstadoJuego;
 import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 
 public class IA extends Jugador{

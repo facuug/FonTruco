@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import fiuba.algo3.modelo.interfaces.Resultado;
-import fiuba.algo3.modelo.interfaces.Ronda;
+import fiuba.algo3.modelo.resultado.Resultado;
+import fiuba.algo3.modelo.rondas.PrimeraRonda;
+import fiuba.algo3.modelo.rondas.Ronda;
 
 public class Mesa {
 	

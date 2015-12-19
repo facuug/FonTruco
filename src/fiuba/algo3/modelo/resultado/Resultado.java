@@ -1,7 +1,7 @@
-package fiuba.algo3.modelo.interfaces;
+package fiuba.algo3.modelo.resultado;
 
 import fiuba.algo3.modelo.Equipo;
-import fiuba.algo3.modelo.interfaces.Ronda;
+import fiuba.algo3.modelo.rondas.Ronda;
 
 public interface Resultado {
 
