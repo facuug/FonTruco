@@ -9,10 +9,10 @@ import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
-import fiuba.algo3.modelo.estados.TrucoConFlor;
-import fiuba.algo3.modelo.estados.TrucoSinFlor;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
+import fiuba.algo3.modelo.tipoJuego.TrucoConFlor;
+import fiuba.algo3.modelo.tipoJuego.TrucoSinFlor;
 
 /**
  * Created by Facundo on 20-Nov-15.

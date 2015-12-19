@@ -198,8 +198,14 @@
 
 
 	<target name="empaquetar.con.imagenes" depends="compilar.paquete">
+			<copydir src="src/gui/views"
+				dest="${build}/classes/gui/views"
+				includes="**/*.fxml"/>
 			<copydir src="src/gui/imagess"
-				dest="${build}/classes/gui/imagess"
+				dest="${build}/classes/gui/views"
+				includes="**/*.png"/>
+			<copydir src="src/gui/sounds"
+				dest="${build}/classes/gui/sounds"
 				includes="**/*.png"/>
 		<jar destfile="${build}/dist/algo3.jar" basedir="${build}/classes"/>
 	</target>

@@ -1,10 +1,10 @@
 package fiuba.algo3.modelo.test;
 
 import fiuba.algo3.modelo.Equipo;
-import fiuba.algo3.modelo.estados.TrucoSinFlor;
-
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
+import fiuba.algo3.modelo.tipoJuego.TrucoSinFlor;
+
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,6 +1,7 @@
-package fiuba.algo3.modelo.estados;
+package fiuba.algo3.modelo.tipoJuego;
 
 import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.estados.EstadoSinCanto;
 import fiuba.algo3.modelo.interfaces.EstadoJuego;
 import fiuba.algo3.modelo.interfaces.JuegoTruco;
 

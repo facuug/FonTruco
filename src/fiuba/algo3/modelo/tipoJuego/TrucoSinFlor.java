@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo.estados;
+package fiuba.algo3.modelo.tipoJuego;
 
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.interfaces.JuegoTruco;
