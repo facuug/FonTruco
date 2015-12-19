@@ -1,6 +1,5 @@
 package fiuba.algo3.vista.controller.handler;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 

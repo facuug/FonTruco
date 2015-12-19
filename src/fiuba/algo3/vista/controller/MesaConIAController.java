@@ -15,7 +15,6 @@ import fiuba.algo3.vista.controller.handler.CartaHandlerIA;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
 public class MesaConIAController extends MesaGeneralController {

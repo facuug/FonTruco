@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.IA;
 import fiuba.algo3.modelo.Jugador;
-import fiuba.algo3.modelo.Mesa;
-import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoConFlor;
 import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoSinFlor;
 import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
@@ -61,7 +59,6 @@ public class MenuPrincipalController extends Controller {
 	}
 
 	private EventHandler<ActionEvent> esconderOtrosBotonesHandler = new EventHandler<ActionEvent>() {
-
 		@Override
 		public void handle(final ActionEvent event) {
 			cambiarVisibilidadDeBotones();

@@ -1,6 +1,5 @@
 package fiuba.algo3.vista.controller.handler;
 
-import java.io.Console;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,6 @@ import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
-import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 import fiuba.algo3.vista.controller.Controller;
 import javafx.event.Event;
 import javafx.scene.control.Label;
@@ -112,9 +110,9 @@ public class CartaHandlerIA extends CartaHandlerGeneral {
 		int i = 0;
 		for (Carta carta : mano.getCartas()) {
 			File fileCarta = new File(armarRutaImagen(carta));
-			Image imagenDorso = new Image(fileCarta.toURI().toString());
+			Image imagenCarta = new Image(fileCarta.toURI().toString());
 			ImageView cartaVista = cartasVista.get(i);
-			cartaVista.setImage(imagenDorso);
+			cartaVista.setImage(imagenCarta);
 			cartaVista.setVisible(true);
 			((CartaHandlerIA) cartaVista.getOnMouseClicked()).cartaQueSoy = carta;
 			i++;

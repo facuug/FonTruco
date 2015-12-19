@@ -26,8 +26,10 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 	protected List<List<ImageView>> cartasEnJuego;
 	protected Label lblEquipoUno,lblEquipoDos;
 	
+	
+	
 	protected String armarRutaImagen(Carta carta) {
-		return new StringBuilder().append("/gui/imagess/")
+		return new StringBuilder().append("bin/gui/imagess/")
 				.append(carta.getPalo().toString().toLowerCase())
 				.append("/").append(String.valueOf(carta.getTipoCarta().getValorRealCarta()))
 				.append(".png").toString();
@@ -80,7 +82,6 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 		JuegoTruco juegoPicaPica = Controller.juegoTruco.getEnfrentamientoActual();
 		Jugador jugadorPicaPica = juegoPicaPica.jugadorDeTurno();
 		int posicionJugadorPicaPica = MesaDeSeisController.obtenerManosIntercaladas().indexOf(jugadorPicaPica.getMano());
-		//muestro cartas en la posicion 
 		for(List<ImageView> cartas : cartasEnJuego) {
 			if(cartasEnJuego.indexOf(cartas)==posicionJugadorPicaPica) {
 				for(ImageView carta :cartas) {
@@ -92,10 +93,8 @@ public class CartaHandlerGeneral implements EventHandler<Event>{
 	}
 	
 	protected void mostrarDorso(ImageView carta) {
-		File fileDorso = new File("/gui/imagess/CARTA_JUMBO_BICYCLE_52_EN_1_DORSO_AZUL_-_DORSO.jpg");
-		System.out.println(fileDorso.toURI());
+		File fileDorso = new File("bin/gui/imagess/dorso.jpg");
 		Image imagenDorso = new Image(fileDorso.toURI().toString());
-		System.out.println(imagenDorso.isError());
 		carta.setImage(imagenDorso);
 		carta.setDisable(true);
 		

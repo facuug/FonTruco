@@ -1,6 +1,7 @@
 package fiuba.algo3.vista.controller;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,24 +60,29 @@ public abstract class MesaGeneralController extends Controller {
 	@FXML
 	protected Label lblPuntosEq2;
 	public static Mesa mesa;
-
+	
+	private static final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+	
 	private MediaPlayer mediaPlayer;
 
 	public static String armarRutaImagen(Carta carta) {
-		return new StringBuilder().append("src/fiuba/algo3/vista/recursos/carta/")
-				.append(carta.getPalo().toString().toLowerCase()).append("/")
-				.append(String.valueOf(carta.getTipoCarta().getValorRealCarta())).append(".png").toString();
+		String rutaImagen ="";
+		try {
+			rutaImagen = classLoader.getResource(new StringBuilder().append("gui/imagess/")
+					.append(carta.getPalo().toString().toLowerCase()).append("/")
+					.append(String.valueOf(carta.getTipoCarta().getValorRealCarta())).append(".png").toString())
+			.toURI().toString();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return rutaImagen;
 	}
 
 	public void plasmarCartaEnImageView(Mano unaMano, List<ImageView> cartasAMostrar) {
 
 		int posicionCarta = 0;
 		for (Carta carta : unaMano.getCartas()) {
-			String rutaImagen = armarRutaImagen(carta);
-			File archivoCarta = new File(rutaImagen);
-			System.out.println(archivoCarta.toURI());
-			Image pngCarta = new Image(archivoCarta.toURI().toString());
-			System.out.println(pngCarta.isError());
+			Image pngCarta = new Image(armarRutaImagen(carta));
 			cartasAMostrar.get(posicionCarta).setImage(pngCarta);
 			cartasAMostrar.get(posicionCarta).setDisable(false);
 			posicionCarta += 1;
@@ -247,9 +253,15 @@ public abstract class MesaGeneralController extends Controller {
 	}
 
 	protected void ejecutarAudio(String nombre) {
-		File f = new File(new StringBuilder().append("src/fiuba/algo3/vista/recursos/audio/").append(nombre)
-				.append(".mp3").toString());
-		Media media = new Media(f.toURI().toString());
+		String rutaAudio ="";
+		try {
+			rutaAudio = classLoader.getResource(new StringBuilder().append("gui/sounds/").append(nombre)
+					.append(".mp3").toString()).toURI().toString();
+					
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		Media media = new Media(rutaAudio);
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.play();
 
@@ -275,13 +287,13 @@ public abstract class MesaGeneralController extends Controller {
 						juegoTruco.getEnfrentamientoActual().sumarPuntos();
 						juegoTruco.terminarEnfrentamiento();
 						actualizarPuntos(juegoTruco.getEnfrentamientoActual());
-						((CartaDeSeisHandler) (cartasJugando.get(2).get(0).getOnMouseClicked()))
+						((CartaDeSeisHandler) (cartasJugando.get(0).get(0).getOnMouseClicked()))
 								.actualizarConPicaPica();
 						ejecutarAudio("noQuiero");
 					} else {
 						juegoTruco.noQuiero();
 						actualizarPuntos(juegoTruco);
-						((CartaHandlerGeneral) (cartasJugando.get(2).get(0).getOnMouseClicked())).actualizar();
+						((CartaHandlerGeneral) (cartasJugando.get(0).get(0).getOnMouseClicked())).actualizar();
 						ejecutarAudio("noQuiero");
 					}
 				} catch (CantoInvalidoException exception) {
@@ -377,9 +389,30 @@ public abstract class MesaGeneralController extends Controller {
 		prepararMesa();
 		mesa.repartir();
 		setImageViewCartaHandlerYListener();
+		mostrarDorsos();
 		mostrarCartas();
 	}
 
+	protected void mostrarDorso(ImageView carta) {
+		
+		Image imagenDorso=null;
+		try {
+			imagenDorso = new Image(classLoader.getResource("gui/imagess/dorso.jpg").toURI().toString());
+			carta.setImage(imagenDorso);
+			carta.setDisable(true);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void mostrarDorsos() {
+		for(List<ImageView> mano : cartasJugando) {
+			for(ImageView carta : mano) {
+				mostrarDorso(carta);
+			}
+		}
+	}
+	
 	public static List<Mano> obtenerManosIntercaladas() {
 
 		int posicionOtraMano = 0;

@@ -119,7 +119,7 @@ public class MesaController extends MesaGeneralController {
 			contenedores.remove(i);
 		}
 	}
-
+	
 	@Override
 	protected void mostrarCartas() {
 		List<Equipo> equipos = mesa.getEquipos();
