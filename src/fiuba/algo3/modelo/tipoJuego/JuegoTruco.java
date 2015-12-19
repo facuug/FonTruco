@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo.interfaces;
+package fiuba.algo3.modelo.tipoJuego;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,10 @@ import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
-import fiuba.algo3.modelo.tipoJuego.TrucoConFlor;
-import fiuba.algo3.modelo.tipoJuego.TrucoSinFlor;
+import fiuba.algo3.modelo.interfaces.EstadoJuego;
+import fiuba.algo3.modelo.interfaces.Resultado;
+import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoConFlor;
+import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoSinFlor;
 
 /**
  * Created by Facundo on 20-Nov-15.

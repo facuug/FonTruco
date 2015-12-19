@@ -10,7 +10,7 @@ import fiuba.algo3.modelo.estados.RealEnvido;
 import fiuba.algo3.modelo.estados.Truco;
 import fiuba.algo3.modelo.estados.ValeCuatro;
 import fiuba.algo3.modelo.interfaces.EstadoJuego;
-import fiuba.algo3.modelo.interfaces.JuegoTruco;
+import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 
 public class IA extends Jugador{
 
