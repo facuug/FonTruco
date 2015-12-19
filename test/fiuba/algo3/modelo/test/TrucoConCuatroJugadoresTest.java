@@ -3,11 +3,12 @@ package fiuba.algo3.modelo.test;
 import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
-import fiuba.algo3.modelo.estados.TrucoConFlor;
 import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
-import fiuba.algo3.modelo.estados.TrucoSinFlor;
-import fiuba.algo3.modelo.interfaces.JuegoTruco;
+import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
+import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoConFlor;
+import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoSinFlor;
+
 import org.junit.Before;
 import org.junit.Test;
 

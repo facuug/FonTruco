@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo.interfaces;
+package fiuba.algo3.modelo.tipoJuego;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,12 @@ import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
-import fiuba.algo3.modelo.estados.TrucoConFlor;
-import fiuba.algo3.modelo.estados.TrucoSinFlor;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
+import fiuba.algo3.modelo.interfaces.EstadoJuego;
+import fiuba.algo3.modelo.interfaces.Resultado;
+import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoConFlor;
+import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoSinFlor;
 
 /**
  * Created by Facundo on 20-Nov-15.
@@ -25,7 +27,7 @@ public abstract class JuegoTruco {
 	protected Equipo equipoUno;
 	protected Equipo equipoDos;
 
-	private static final int PUNTOS_MINIMOS = 1;
+	private static final int PUNTOS_MINIMOS = 5;
 	private static final int PUNTOS_MAXIMOS = 25;
 	protected int puntosDeEnvido, puntosDeTruco, puntosDeMano;
 
