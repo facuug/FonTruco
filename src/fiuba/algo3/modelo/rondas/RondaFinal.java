@@ -1,10 +1,11 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.rondas;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fiuba.algo3.modelo.interfaces.Resultado;
-import fiuba.algo3.modelo.interfaces.Ronda;
+import fiuba.algo3.modelo.Carta;
+import fiuba.algo3.modelo.resultado.EquipoGanador;
+import fiuba.algo3.modelo.resultado.Resultado;
 
 public class RondaFinal extends Ronda {
 

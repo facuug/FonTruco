@@ -1,7 +1,6 @@
 package fiuba.algo3.modelo.estados;
 
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
-import fiuba.algo3.modelo.interfaces.EstadoJuego;
 
 /**
  * Created by Facundo on 12-Nov-15.

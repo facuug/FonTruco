@@ -1,8 +1,9 @@
 package fiuba.algo3.modelo.test;
 
+import fiuba.algo3.modelo.estados.EstadoJuego;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
-import fiuba.algo3.modelo.interfaces.EstadoJuego;
+
 import org.junit.Before;
 import org.junit.Test;
 

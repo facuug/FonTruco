@@ -1,10 +1,6 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.estados;
 
-import fiuba.algo3.modelo.estados.ContraFlor;
-import fiuba.algo3.modelo.estados.ContraFlorAlResto;
-import fiuba.algo3.modelo.estados.Truco;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
-import fiuba.algo3.modelo.interfaces.EstadoJuego;
 
 /**
  * Created by Facundo on 25-Nov-15.

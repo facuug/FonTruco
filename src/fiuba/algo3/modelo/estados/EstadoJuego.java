@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo.interfaces;
+package fiuba.algo3.modelo.estados;
 
 /**
  * Created by Facundo on 11-Nov-15.

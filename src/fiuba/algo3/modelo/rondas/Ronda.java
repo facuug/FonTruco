@@ -1,8 +1,12 @@
-package fiuba.algo3.modelo.interfaces;
+package fiuba.algo3.modelo.rondas;
 
-import fiuba.algo3.modelo.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-import java.util.*;
+import fiuba.algo3.modelo.Carta;
+import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.resultado.Resultado;
 
 public abstract class Ronda {
 

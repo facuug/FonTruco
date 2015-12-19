@@ -8,13 +8,11 @@ import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mesa;
+import fiuba.algo3.modelo.estados.EstadoJuego;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
-import fiuba.algo3.modelo.interfaces.EstadoJuego;
-import fiuba.algo3.modelo.interfaces.Resultado;
-import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoConFlor;
-import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoSinFlor;
+import fiuba.algo3.modelo.resultado.Resultado;
 
 /**
  * Created by Facundo on 20-Nov-15.

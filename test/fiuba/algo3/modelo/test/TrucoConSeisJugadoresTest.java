@@ -10,7 +10,7 @@ import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
 import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
-import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoSinFlor;
+import fiuba.algo3.modelo.tipoJuego.TrucoSinFlor;
 
 public class TrucoConSeisJugadoresTest {
 
