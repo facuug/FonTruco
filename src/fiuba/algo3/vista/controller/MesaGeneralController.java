@@ -279,7 +279,7 @@ public abstract class MesaGeneralController extends Controller {
 					} else {
 						juegoTruco.noQuiero();
 						actualizarPuntos(juegoTruco);
-						((CartaHandlerGeneral) (cartasJugando.get(2).get(0).getOnMouseClicked())).actualizar();
+						((CartaHandlerGeneral) (cartasJugando.get(0).get(0).getOnMouseClicked())).actualizar();
 						ejecutarAudio("noQuiero");
 					}
 				} catch (CantoInvalidoException exception) {
