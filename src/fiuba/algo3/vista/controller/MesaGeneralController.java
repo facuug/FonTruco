@@ -74,7 +74,9 @@ public abstract class MesaGeneralController extends Controller {
 		for (Carta carta : unaMano.getCartas()) {
 			String rutaImagen = armarRutaImagen(carta);
 			File archivoCarta = new File(rutaImagen);
+			System.out.println(archivoCarta.toURI());
 			Image pngCarta = new Image(archivoCarta.toURI().toString());
+			System.out.println(pngCarta.isError());
 			cartasAMostrar.get(posicionCarta).setImage(pngCarta);
 			cartasAMostrar.get(posicionCarta).setDisable(false);
 			posicionCarta += 1;

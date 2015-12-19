@@ -35,8 +35,10 @@ public abstract class Controller implements Initializable {
 			nombreVista = "Mesa";
 		}
 		try {
+			
+			
 			FXMLLoader fxmlLoader = new FXMLLoader(Main.class
-					.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
+					.getResource(new StringBuilder().append("/gui/views/").append(nombreVista).append(".fxml").toString()));
 			if (mesaController != null) {
 				fxmlLoader.setController(mesaController);
 			}
@@ -55,7 +57,7 @@ public abstract class Controller implements Initializable {
 		Pane pane;
 		try {
 			pane = (Pane) FXMLLoader.load(Main.class
-					.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
+					.getResource(new StringBuilder().append("/gui/views/").append(nombreVista).append(".fxml").toString()));
 			Scene scene = new Scene(pane);
 
 			Stage popup = new Stage();
@@ -74,7 +76,7 @@ public abstract class Controller implements Initializable {
 		Pane pane;
 		try {
 			pane = (Pane) FXMLLoader.load(Main.class
-					.getResource(new StringBuilder().append("../").append(nombreVista).append(".fxml").toString()));
+					.getResource(new StringBuilder().append("/gui/views/").append(nombreVista).append(".fxml").toString()));
 			ObservableList<Node> nodos = pane.getChildren();
 			for (Node nodo : nodos) {
 				if (nodo instanceof Label) {
