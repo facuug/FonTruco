@@ -1,9 +1,9 @@
-package fiuba.algo3.modelo.tipoJuego;
+package fiuba.algo3.modelo.tipoJuego.implementaciones;
 
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.estados.EstadoSinCanto;
 import fiuba.algo3.modelo.interfaces.EstadoJuego;
-import fiuba.algo3.modelo.interfaces.JuegoTruco;
+import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 
 /**
  * Created by Facundo on 25-Nov-15.

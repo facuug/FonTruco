@@ -9,7 +9,7 @@ import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
-import fiuba.algo3.modelo.interfaces.JuegoTruco;
+import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 import fiuba.algo3.vista.controller.handler.BtnSalirHandler;
 import fiuba.algo3.vista.controller.handler.CartaDeSeisHandler;
 import fiuba.algo3.vista.controller.handler.CartaHandlerGeneral;

@@ -9,7 +9,7 @@ import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.Mano;
 import fiuba.algo3.modelo.Mesa;
-import fiuba.algo3.modelo.interfaces.JuegoTruco;
+import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 import fiuba.algo3.vista.controller.Controller;
 import fiuba.algo3.vista.controller.MesaDeSeisController;
 import javafx.event.Event;

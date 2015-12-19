@@ -6,7 +6,7 @@ import java.util.List;
 import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
-import fiuba.algo3.modelo.interfaces.JuegoTruco;
+import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 import fiuba.algo3.vista.controller.Controller;
 import fiuba.algo3.vista.controller.MesaController;
 import javafx.event.Event;

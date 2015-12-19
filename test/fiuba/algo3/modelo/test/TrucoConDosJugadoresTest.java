@@ -8,7 +8,7 @@ import fiuba.algo3.modelo.enums.TipoCarta;
 import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 
 import fiuba.algo3.modelo.excepciones.CantoInvalidoException;
-import fiuba.algo3.modelo.tipoJuego.TrucoSinFlor;
+import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoSinFlor;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -2,7 +2,7 @@ package fiuba.algo3.vista.controller;
 
 import java.io.IOException;
 
-import fiuba.algo3.modelo.interfaces.JuegoTruco;
+import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

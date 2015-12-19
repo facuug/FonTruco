@@ -11,7 +11,7 @@ import fiuba.algo3.modelo.IA;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
-import fiuba.algo3.modelo.tipoJuego.TrucoSinFlor;
+import fiuba.algo3.modelo.tipoJuego.implementaciones.TrucoSinFlor;
 
 public class TrucoContraLaIATest {
 
