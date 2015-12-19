@@ -71,6 +71,9 @@ public abstract class JuegoTruco {
 	}
 
 	public void envido() {
+		if (this.envidoTerminado)
+			throw new CantoInvalidoException();
+		
 		this.estadoJuego = this.estadoJuego.envido();
 		this.equipoCantador = this.turnoParaCanto.equipoDeTurno();
 		this.turnoParaCanto.rotarEquipoDeTurno();
@@ -81,6 +84,7 @@ public abstract class JuegoTruco {
 		this.equipoCantador.sumarPuntos(this.estadoJuego.cuantosPuntos());
 		this.puntosDeMano = 1;
 		this.finDeMano = this.estadoJuego.fueNoQuerido();
+		this.envidoTerminado = true;
 		this.estadoJuego = new EstadoSinCanto();
 	}
 
@@ -206,6 +210,7 @@ public abstract class JuegoTruco {
 		this.puntosDeEnvido = 0;
 		this.puntosDeTruco = 0;
 
+		this.envidoTerminado = false;
 		this.finDeMano = false;
 		this.mesa.restablecer();
 		this.turnoParaCarta.establecerJugadorDeTurno(this.mesa.equipoMano().jugadorDeTurno());
