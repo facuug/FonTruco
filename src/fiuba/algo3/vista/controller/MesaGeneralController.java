@@ -1,6 +1,5 @@
 package fiuba.algo3.vista.controller;
 
-import java.io.File;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
@@ -171,7 +170,6 @@ public abstract class MesaGeneralController extends Controller {
 			public void handle(ActionEvent event) {
 				try {
 					if (juegoTruco.esPicaPica()) {
-
 						juegoTruco.getEnfrentamientoActual().valeCuatro();
 					} else {
 						juegoTruco.valeCuatro();

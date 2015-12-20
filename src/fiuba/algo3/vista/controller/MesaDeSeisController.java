@@ -82,6 +82,12 @@ public class MesaDeSeisController extends MesaGeneralController{
 		prepararJuego();
 	}
 
+	public static void refrescarContenedores() {
+		for(ImageView contenedor : contenedores) {
+			contenedor.setImage(null);
+		}
+	}
+	
 	@Override
 	protected void prepararMesa() {
 

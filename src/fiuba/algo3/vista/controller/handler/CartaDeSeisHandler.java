@@ -9,6 +9,8 @@ import fiuba.algo3.modelo.excepciones.AccionInvalidaException;
 import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 import fiuba.algo3.vista.controller.Controller;
 import fiuba.algo3.vista.controller.MesaController;
+import fiuba.algo3.vista.controller.MesaDeSeisController;
+import fiuba.algo3.vista.controller.MesaGeneralController;
 import javafx.event.Event;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -35,6 +37,7 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 			if (!juegoTruco.getEnfrentamientoActual().manoFinalizada()) {
 				habilitarCartasPicaPica();
 			} else {
+				MesaDeSeisController.refrescarContenedores();
 				juegoTruco.terminarEnfrentamiento();
 				lblEquipoUno.setText(String.valueOf(juegoTruco.puntosEquipoUno()));
 				lblEquipoDos.setText(String.valueOf(juegoTruco.puntosEquipoDos()));
