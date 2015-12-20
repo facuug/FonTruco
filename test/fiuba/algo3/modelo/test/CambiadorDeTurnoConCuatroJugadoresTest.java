@@ -15,7 +15,7 @@ import static junit.framework.TestCase.assertEquals;
 /**
  * Created by Facundo on 20-Nov-15.
  */
-public class TurnoTest {
+public class CambiadorDeTurnoConCuatroJugadoresTest {
 
     private CambiadorDeTurno turno;
     Equipo equipoUno;
