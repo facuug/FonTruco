@@ -1,6 +1,7 @@
 package fiuba.algo3.vista.controller.handler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import fiuba.algo3.modelo.Carta;
@@ -19,10 +20,29 @@ import javafx.scene.image.ImageView;
 public class CartaDeSeisHandler extends CartaHandlerGeneral {
 
 	private boolean fuePicaPica = false;
-	
+	private int picaPicaJugando = 0;
 	public CartaDeSeisHandler(List<ImageView> cartasDeMano, List<List<ImageView>> cartasJugando,
 			Carta cartaQueRepresenta, Label puntosEquipoUno, Label puntosEquipoDos) {
 		super(cartasDeMano, cartasJugando, cartaQueRepresenta, puntosEquipoUno, puntosEquipoDos);
+	}
+	
+	private void borrarManosActualesYPicaPica() {
+		JuegoTruco juegoTruco = Controller.juegoTruco.getEnfrentamientoActual();
+		int posicionJugador = juegoTruco.obtenerMesa()
+				.getJugadores().indexOf(juegoTruco.jugadorDeTurno())+picaPicaJugando;
+		int posicionRival;
+		if(posicionJugador%2==0) {
+			posicionRival = posicionJugador+1;
+		} else {
+			posicionRival = posicionJugador-1;
+		}
+		List<ImageView> cartasQueVuelvenAlMazo = new ArrayList<>();
+		cartasQueVuelvenAlMazo.addAll(cartasEnJuego.get(posicionJugador));
+		cartasQueVuelvenAlMazo.addAll(cartasEnJuego.get(posicionRival));
+		for(ImageView carta : cartasQueVuelvenAlMazo) {
+			carta.setVisible(false);
+		}
+		picaPicaJugando+=2;
 	}
 
 	public void actualizarConPicaPica() {
@@ -37,6 +57,7 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 			if (!juegoTruco.getEnfrentamientoActual().manoFinalizada()) {
 				habilitarCartasPicaPica();
 			} else {
+				borrarManosActualesYPicaPica();
 				MesaDeSeisController.refrescarContenedores();
 				juegoTruco.terminarEnfrentamiento();
 				lblEquipoUno.setText(String.valueOf(juegoTruco.puntosEquipoUno()));
@@ -56,6 +77,7 @@ public class CartaDeSeisHandler extends CartaHandlerGeneral {
 		}
 		if(!juegoTruco.esPicaPica() && fuePicaPica){
 			restaurarMesa();
+			picaPicaJugando=0;
 		}
 	}
 	

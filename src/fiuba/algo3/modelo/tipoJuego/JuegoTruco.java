@@ -25,7 +25,7 @@ public abstract class JuegoTruco {
 	protected Equipo equipoUno;
 	protected Equipo equipoDos;
 
-	private static final int PUNTOS_MINIMOS = 5;
+	private static final int PUNTOS_MINIMOS = 1;
 	private static final int PUNTOS_MAXIMOS = 25;
 	protected int puntosDeEnvido, puntosDeTruco, puntosDeMano;
 
