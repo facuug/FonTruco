@@ -1,5 +1,10 @@
 package fiuba.algo3.modelo.test;
 
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import fiuba.algo3.modelo.Carta;
 import fiuba.algo3.modelo.Equipo;
 import fiuba.algo3.modelo.Jugador;
@@ -7,12 +12,6 @@ import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
 import fiuba.algo3.modelo.tipoJuego.JuegoTruco;
 import fiuba.algo3.modelo.tipoJuego.TrucoConFlor;
-import fiuba.algo3.modelo.tipoJuego.TrucoSinFlor;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Facundo on 18-Nov-15.

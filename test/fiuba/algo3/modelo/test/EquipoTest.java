@@ -1,17 +1,16 @@
 package fiuba.algo3.modelo.test;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import fiuba.algo3.modelo.Carta;
-import fiuba.algo3.modelo.Mano;
+import fiuba.algo3.modelo.Equipo;
+import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.enums.Palo;
 import fiuba.algo3.modelo.enums.TipoCarta;
 import fiuba.algo3.modelo.excepciones.JugadorInexistenteException;
 import fiuba.algo3.modelo.excepciones.NoHayJugadoresException;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.Assert;
-
-import fiuba.algo3.modelo.Equipo;
-import fiuba.algo3.modelo.Jugador;
 
 public class EquipoTest {
 
